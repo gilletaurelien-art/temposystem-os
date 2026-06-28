@@ -36,9 +36,14 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
 
       <footer className="border-t border-white/10 bg-[#030711]">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <p className="text-sm text-slate-400">
-            TEMPOSYSTEM OS prépare une mémoire durable de la coopération.
-          </p>
+          <div>
+            <p className="text-sm text-slate-400">
+              TEMPOSYSTEM OS prépare une mémoire durable de la coopération.
+            </p>
+            <p className="mt-2 text-xs font-medium uppercase text-slate-500">
+              Launch 000 · Premier déploiement public · 2026
+            </p>
+          </div>
           <div className="flex flex-wrap gap-3">
             {publicNavigation.slice(1).map((item) => (
               <a

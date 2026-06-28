@@ -37,3 +37,4 @@ Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implém
 - Créer ou recommander un ADR lorsqu'une décision touche l'architecture, la gouvernance, les rôles permanents ou la mémoire stratégique.
 - Préserver la séparation entre interface publique, Conseil de Bord local et futures connexions IA.
 - Ne pas introduire d'API externe pour la vitrine publique tant que la mémoire et le récit ne sont pas stabilisés.
+- Traiter Launch 000 comme une naissance publique de l'infrastructure, pas comme la sortie d'un produit complet.

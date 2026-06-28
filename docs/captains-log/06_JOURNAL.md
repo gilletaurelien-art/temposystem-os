@@ -15,3 +15,5 @@ Ajout des domaines prévus : `temposystem.eu`, `temposystem.fr`, `manafrance.org
 Mise en place du registre ADR dans `docs/captains-log/decisions/` avec les trois premières décisions structurantes : naissance de TEMPOSYSTEM OS, architecture des rôles et mémoire comme actif stratégique.
 
 Création de la première interface publique vivante de TEMPOSYSTEM OS : page d'accueil, navigation minimaliste, présentation du Conseil, de l'équipage 2042, de MANA et des jalons du livre de bord.
+
+Launch 000 : préparation du premier déploiement public. TEMPOSYSTEM OS se présente au monde sans promettre plus que son socle actuel : gouvernance, mémoire, Conseil de Bord et premier projet MANA.

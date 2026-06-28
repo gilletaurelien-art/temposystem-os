@@ -76,7 +76,7 @@ Le Capitaine définit la vision, arbitre les désaccords et prend les décisions
 
 ## Déploiement Vercel
 
-Le projet est prêt pour un premier déploiement Vercel avec Vite.
+Le projet est prêt pour **Launch 000**, premier déploiement public Vercel avec Vite.
 
 Configuration attendue :
 
@@ -87,13 +87,12 @@ Configuration attendue :
 
 Procédure :
 
-1. Connecter le dépôt GitHub à Vercel.
-2. Importer le projet dans Vercel avec le preset Vite.
-3. Vérifier que la commande de build est `npm run build` et que le dossier de sortie est `dist`.
-4. Ajouter `temposystem.fr` dans Vercel Domains.
-5. Ajouter `temposystem.eu` dans Vercel Domains.
-6. Configurer les DNS chez le registrar selon les instructions affichées par Vercel.
-7. Vérifier l'activation SSL et les redirections.
+1. Importer le dépôt GitHub dans Vercel avec le preset Vite.
+2. Vérifier que la commande de build est `npm run build` et que le dossier de sortie est `dist`.
+3. Ajouter `temposystem.fr` dans Vercel Domains.
+4. Ajouter `temposystem.eu` dans Vercel Domains.
+5. Configurer les DNS chez le registrar selon les instructions affichées par Vercel.
+6. Vérifier l'activation SSL et les redirections.
 
 Références utiles :
 

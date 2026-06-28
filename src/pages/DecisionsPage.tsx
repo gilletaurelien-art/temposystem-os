@@ -6,6 +6,7 @@ const decisions = [
   "ADR-0003 - La mémoire comme actif stratégique",
   "ADR-0005 - Équipage 2042",
   "ADR-0006 - Interface publique vivante",
+  "ADR-0007 - Premier déploiement public",
 ];
 
 export function DecisionsPage() {

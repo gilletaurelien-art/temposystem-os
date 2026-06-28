@@ -51,3 +51,11 @@ TEMPOSYSTEM OS se dote d'une première interface publique pour se présenter ava
 Cette interface prépare le déploiement sur `temposystem.fr` et `temposystem.eu`.
 
 - [ADR-0006 - Interface publique vivante de TEMPOSYSTEM OS](./decisions/ADR-0006-interface-publique-vivante-de-temposystem-os.md)
+
+## 2026-06-28 - Launch 000
+
+TEMPOSYSTEM OS prépare son premier déploiement public sans connexion IA, GitHub applicative ou Supabase.
+
+Ce lancement affirme l'existence publique de l'infrastructure avant les fonctionnalités avancées.
+
+- [ADR-0007 - Premier déploiement public](./decisions/ADR-0007-premier-deploiement-public.md)

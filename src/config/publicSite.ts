@@ -61,4 +61,5 @@ export const logMilestones = [
   "Vision stratégique",
   "ADR",
   "Équipage 2042",
+  "Launch 000",
 ];

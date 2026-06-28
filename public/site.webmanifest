@@ -1,0 +1,16 @@
+{
+  "name": "TEMPOSYSTEM OS",
+  "short_name": "TEMPOSYSTEM",
+  "description": "Le système d'exploitation de la coopération entre humains et intelligences artificielles.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050914",
+  "theme_color": "#050914",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
