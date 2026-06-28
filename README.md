@@ -36,6 +36,8 @@ Les modèles actuels sont seulement des implémentations configurables de ces fo
 
 GitHub est prévu comme mémoire durable : issues, décisions, journal de bord, backlog et historique des arbitrages. Cette mémoire est un actif stratégique du projet. Le bouton "Créer une issue GitHub" reste désactivé tant que l'intégration n'est pas volontairement branchée.
 
+Les décisions structurantes sont conservées sous forme d'Architecture Decision Records dans [docs/captains-log/decisions](docs/captains-log/decisions/README.md).
+
 ## Rôle du Capitaine
 
 Le Capitaine définit la vision, arbitre les désaccords et prend les décisions finales. Les membres du Conseil éclairent le choix, mais ne remplacent jamais la responsabilité humaine.

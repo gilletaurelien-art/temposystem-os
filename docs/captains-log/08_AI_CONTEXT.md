@@ -25,3 +25,4 @@ Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implém
 - Préférer une trace durable dans la mémoire à une réponse perdue dans une conversation.
 - Traiter GitHub comme mémoire durable prévue pour les décisions et les traces opérationnelles.
 - Préserver la généricité de TEMPOSYSTEM OS afin qu'il puisse accueillir d'autres applications que MANA.
+- Créer ou recommander un ADR lorsqu'une décision touche l'architecture, la gouvernance, les rôles permanents ou la mémoire stratégique.

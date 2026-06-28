@@ -10,6 +10,7 @@ Ce dossier concentre la mémoire longue de TEMPOSYSTEM OS. Il documente la visio
 - `03_DOMAINES.md` : périmètres fonctionnels.
 - `04_ROADMAP.md` : jalons à court et moyen terme.
 - `05_DECISIONS.md` : décisions structurantes.
+- `decisions/` : Architecture Decision Records détaillant les décisions durables.
 - `06_JOURNAL.md` : notes chronologiques.
 - `07_LESSONS_LEARNED.md` : apprentissages réutilisables.
 - `08_AI_CONTEXT.md` : contexte destiné aux rôles et à leurs implémentations IA.

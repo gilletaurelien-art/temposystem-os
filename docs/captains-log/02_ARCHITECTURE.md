@@ -45,3 +45,5 @@ TEMPOSYSTEM OS orchestrera progressivement :
 La mémoire est prioritaire sur la conversation. Une conversation aide à réfléchir, mais la mémoire conserve ce qui engage le projet : questions, réponses, consensus, décisions, dates et traces futures.
 
 GitHub est envisagé comme mémoire durable pour les décisions, les issues et les journaux opérationnels.
+
+Les décisions structurantes sont enregistrées comme Architecture Decision Records dans [`decisions/`](./decisions/README.md). Un ADR doit être créé lorsqu'une décision modifie l'architecture, la gouvernance, les rôles, la mémoire ou les futurs connecteurs du système.

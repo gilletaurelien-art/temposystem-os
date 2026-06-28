@@ -11,3 +11,5 @@ Clarification de l'architecture : les rôles du Conseil sont permanents, les imp
 Ajout de la vision stratégique : TEMPOSYSTEM OS n'est pas une application mais un système d'exploitation de la coopération. MANA est identifié comme première application construite sur ce socle.
 
 Ajout des domaines prévus : `temposystem.eu`, `temposystem.fr`, `manafrance.org` et `mana.bzh`.
+
+Mise en place du registre ADR dans `docs/captains-log/decisions/` avec les trois premières décisions structurantes : naissance de TEMPOSYSTEM OS, architecture des rôles et mémoire comme actif stratégique.
