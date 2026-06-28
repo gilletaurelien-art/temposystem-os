@@ -13,6 +13,8 @@
 - Historique local des sessions.
 - Persistance Supabase des questions, réponses, consensus et décisions.
 - Création d'issues GitHub depuis une décision validée.
+- Première définition du Timonier comme Dispatcher local.
+- Cartographie documentaire entre TEMPOSYSTEM OS et MANA.
 
 ## Plus tard
 
@@ -21,3 +23,5 @@
 - Règles d'arbitrage par type de décision.
 - Tableau de bord des décisions ouvertes.
 - Tests automatisés du cycle décisionnel.
+- Déploiement documentaire sur `temposystem.eu` et `temposystem.fr`.
+- Mise en place des espaces MANA sur `manafrance.org` et `mana.bzh`.

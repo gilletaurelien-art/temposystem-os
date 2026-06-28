@@ -1,12 +1,16 @@
 # TEMPOSYSTEM OS
 
-TEMPOSYSTEM OS est le système d'exploitation de la coopération. Il pose un Conseil de Bord local où des fonctions permanentes éclairent une question, produisent un consensus et laissent au Capitaine la décision finale.
+TEMPOSYSTEM OS n'est pas une application. C'est un système d'exploitation de la coopération entre humains et intelligences artificielles.
+
+Le Conseil de Bord est le premier composant de cette architecture. Il permet à des fonctions permanentes d'éclairer une question, de produire un consensus et de laisser au Capitaine la décision finale.
 
 Ce MVP ne connecte aucune API IA, aucun appel GitHub et aucune connexion Supabase. Tout fonctionne localement avec des données mockées.
 
 ## Vision
 
-Le but est de transformer une question en décision traçable. TEMPOSYSTEM OS privilégie la mémoire longue aux conversations éphémères : une décision utile doit pouvoir être retrouvée, comprise et reliée au cap du projet.
+Le but est de transformer une conversation en décision traçable. Les conversations servent à réfléchir et produire des arbitrages ; les décisions doivent ensuite rejoindre une mémoire durable afin que le système puisse évoluer sans reconstruire son contexte à chaque session.
+
+MANA est la première application construite sur TEMPOSYSTEM OS. Le système doit rester assez générique pour accueillir d'autres applications et d'autres domaines de coopération.
 
 ## Conseil de Bord
 
@@ -30,11 +34,28 @@ Les modèles actuels sont seulement des implémentations configurables de ces fo
 
 ## Mémoire GitHub
 
-GitHub est prévu comme mémoire opérationnelle : issues, décisions, journal de bord, backlog et historique des arbitrages. Le bouton "Créer une issue GitHub" reste désactivé tant que l'intégration n'est pas volontairement branchée.
+GitHub est prévu comme mémoire durable : issues, décisions, journal de bord, backlog et historique des arbitrages. Cette mémoire est un actif stratégique du projet. Le bouton "Créer une issue GitHub" reste désactivé tant que l'intégration n'est pas volontairement branchée.
 
 ## Rôle du Capitaine
 
 Le Capitaine définit la vision, arbitre les désaccords et prend les décisions finales. Les membres du Conseil éclairent le choix, mais ne remplacent jamais la responsabilité humaine.
+
+## Architecture Cible
+
+À terme, TEMPOSYSTEM OS orchestrera :
+
+- un Dispatcher, nommé Timonier, chargé de sélectionner les expertises nécessaires ;
+- plusieurs agents spécialisés ;
+- une mémoire commune ;
+- un protocole de décision ;
+- une gouvernance humaine où le Capitaine conserve toujours la décision finale.
+
+## Domaines Prévus
+
+- `temposystem.eu` : documentation et gouvernance internationales en anglais.
+- `temposystem.fr` : documentation et gouvernance françaises.
+- `manafrance.org` : première application civique construite sur TEMPOSYSTEM OS.
+- `mana.bzh` : territoire pilote et environnement d'expérimentation.
 
 ## Stack
 

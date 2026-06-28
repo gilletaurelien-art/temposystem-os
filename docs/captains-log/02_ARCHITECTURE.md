@@ -1,6 +1,8 @@
 # Architecture
 
-Le MVP est une application React locale structurée par domaines. Il ne déclenche aucun appel IA, GitHub ou Supabase.
+Le MVP actuel est une interface React locale structurée par domaines. Il ne déclenche aucun appel IA, GitHub ou Supabase.
+
+TEMPOSYSTEM OS lui-même n'est pas limité à cette interface : c'est une architecture de coopération destinée à orchestrer des humains, des fonctions IA, une mémoire commune et un protocole de décision.
 
 ## Séparation clé
 
@@ -14,9 +16,19 @@ Cette séparation permet de remplacer un outil sans renommer les rôles, sans ca
 - `features/council` : interface, cycle local et réponses mockées.
 - `features/agents` : futur domaine de gestion des rôles.
 - `features/memory` : futur accès à la mémoire commune.
-- `features/dispatcher` : future orchestration réelle des questions et réponses.
+- `features/dispatcher` : futur Timonier, chargé de sélectionner les expertises nécessaires.
 - `lib` : helpers transverses, dont la préparation Supabase.
 - `types` : contrats TypeScript partagés.
+
+## Architecture cible
+
+TEMPOSYSTEM OS orchestrera progressivement :
+
+- un Dispatcher, nommé Timonier ;
+- plusieurs agents spécialisés ;
+- une mémoire commune ;
+- un protocole de décision ;
+- une gouvernance humaine où le Capitaine conserve toujours la décision finale.
 
 ## Cycle local
 
@@ -31,3 +43,5 @@ Cette séparation permet de remplacer un outil sans renommer les rôles, sans ca
 ## Mémoire
 
 La mémoire est prioritaire sur la conversation. Une conversation aide à réfléchir, mais la mémoire conserve ce qui engage le projet : questions, réponses, consensus, décisions, dates et traces futures.
+
+GitHub est envisagé comme mémoire durable pour les décisions, les issues et les journaux opérationnels.

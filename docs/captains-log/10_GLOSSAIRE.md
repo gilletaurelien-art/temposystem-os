@@ -6,7 +6,7 @@ Personne responsable de la question, de l'arbitrage final et du cap produit.
 
 ## Conseil de Bord
 
-Interface où les agents contribuent à une décision commune.
+Premier composant de TEMPOSYSTEM OS. Il réunit des fonctions permanentes pour éclairer une question et produire un consensus.
 
 ## Rôle permanent
 
@@ -23,3 +23,15 @@ Synthèse commune produite à partir des réponses des rôles du Conseil.
 ## Mémoire commune
 
 Ensemble des traces durables : questions, réponses, décisions, issues, journal et apprentissages.
+
+## Timonier
+
+Nom du futur Dispatcher. Il sélectionne les expertises nécessaires selon la question, le contexte et le protocole de décision.
+
+## MANA
+
+Première application construite sur TEMPOSYSTEM OS.
+
+## Domaine pilote
+
+Espace public ou territorial permettant de documenter, expérimenter ou déployer une partie de TEMPOSYSTEM OS ou de MANA.
