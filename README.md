@@ -1,31 +1,40 @@
 # TEMPOSYSTEM OS
 
-TEMPOSYSTEM OS est le socle d'un Conseil de Bord IA : un espace de décision où plusieurs agents spécialisés peuvent analyser une même question, confronter leurs angles de vue et produire une recommandation commune.
+TEMPOSYSTEM OS est le système d'exploitation de la coopération. Il pose un Conseil de Bord local où des fonctions permanentes éclairent une question, produisent un consensus et laissent au Capitaine la décision finale.
 
-Ce premier jalon reste volontairement statique. Il pose l'interface, les types TypeScript, la structure documentaire et les points d'extension sans connecter d'API IA, GitHub ou Supabase.
+Ce MVP ne connecte aucune API IA, aucun appel GitHub et aucune connexion Supabase. Tout fonctionne localement avec des données mockées.
 
 ## Vision
 
-TEMPOSYSTEM OS vise à devenir une couche d'orchestration légère pour transformer une intuition du Capitaine en décision traçable. Le système doit aider à clarifier les enjeux, distribuer les rôles, conserver la mémoire et faire émerger un consensus actionnable.
+Le but est de transformer une question en décision traçable. TEMPOSYSTEM OS privilégie la mémoire longue aux conversations éphémères : une décision utile doit pouvoir être retrouvée, comprise et reliée au cap du projet.
 
 ## Conseil de Bord
 
-Le Conseil de Bord réunit quatre agents initiaux :
+Le Conseil de Bord ne représente pas des modèles d'IA. Il représente des rôles durables :
 
-- Corvus : stratégie, architecture, cohérence.
-- Claude : construction, implémentation.
-- Codex : audit, sécurité, fiabilité.
-- Gemini : identité visuelle, culture, design.
+- Quartier-Maître : stratégie, architecture, cohérence, mémoire, gouvernance.
+- Maître Charpentier : développement, implémentation, refactoring, architecture logicielle.
+- Maître Calfat : audit, sécurité, qualité, performance, CI/CD, tests.
+- Maître Enlumineur : identité visuelle, design system, culture, expérience utilisateur.
 
-Dans le MVP, leurs réponses sont des espaces réservés. La prochaine étape sera de brancher ces agents sur des fournisseurs IA ou des workflows internes.
+Les modèles actuels sont seulement des implémentations configurables de ces fonctions. Ils vivent dans `src/config/agents.ts` afin de pouvoir changer d'outil sans changer l'architecture du Conseil.
+
+## Cycle Décisionnel
+
+1. Le Capitaine écrit une question.
+2. Il consulte le Conseil.
+3. Chaque rôle produit une réponse simulée selon sa spécialité.
+4. Le système génère un consensus local.
+5. Le Capitaine rédige et valide sa décision.
+6. La session passe au statut `decided`.
 
 ## Mémoire GitHub
 
-GitHub est prévu comme mémoire opérationnelle : issues, décisions, journal de bord, backlog et historique des arbitrages. Le bouton "Créer une issue GitHub" est déjà présent mais désactivé tant que l'intégration n'est pas branchée.
+GitHub est prévu comme mémoire opérationnelle : issues, décisions, journal de bord, backlog et historique des arbitrages. Le bouton "Créer une issue GitHub" reste désactivé tant que l'intégration n'est pas volontairement branchée.
 
 ## Rôle du Capitaine
 
-Le Capitaine formule la question, lit le consensus, tranche la décision finale et conserve la responsabilité du cap. Les agents assistent, mais ne remplacent pas l'arbitrage humain.
+Le Capitaine définit la vision, arbitre les désaccords et prend les décisions finales. Les membres du Conseil éclairent le choix, mais ne remplacent jamais la responsabilité humaine.
 
 ## Stack
 
@@ -36,8 +45,8 @@ Le Capitaine formule la question, lit le consensus, tranche la décision finale 
 
 ## Prochaines étapes
 
-1. Connecter une première source IA pour générer des réponses d'agents.
-2. Persister les questions, réponses et décisions dans Supabase.
-3. Créer des issues GitHub depuis une décision validée.
-4. Enrichir le journal de bord avec les décisions structurantes.
-5. Ajouter des tests ciblés autour des types et des flux critiques.
+1. Persister les sessions du Conseil dans Supabase.
+2. Transformer une décision validée en issue GitHub.
+3. Ajouter l'historique local des sessions.
+4. Brancher une première implémentation IA réelle derrière un rôle permanent.
+5. Ajouter des tests ciblés autour des transitions `draft`, `consulted` et `decided`.

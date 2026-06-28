@@ -1,6 +1,141 @@
-import { councilAgents } from "../agents/agents";
+import { useMemo, useState } from "react";
+import { councilAgents } from "../../config/agents";
+import type { CouncilSession, CouncilSessionStatus } from "../../types";
+import {
+  generateMockCouncilConsensus,
+  generateMockCouncilResponses,
+} from "./mockCouncil";
+
+const makeLocalId = (prefix: string) =>
+  `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+const createDraftSession = (): CouncilSession => {
+  const createdAt = new Date().toISOString();
+
+  return {
+    id: makeLocalId("session"),
+    question: {
+      id: makeLocalId("question"),
+      text: "",
+      createdAt,
+    },
+    responses: [],
+    consensus: null,
+    decision: null,
+    status: "draft",
+    createdAt,
+  };
+};
+
+const statusLabel: Record<CouncilSessionStatus, string> = {
+  draft: "Brouillon",
+  consulted: "Conseil consulté",
+  decided: "Décision validée",
+};
 
 export function CouncilPage() {
+  const [session, setSession] = useState<CouncilSession>(() =>
+    createDraftSession(),
+  );
+  const [decisionText, setDecisionText] = useState("");
+
+  const responsesByAgent = useMemo(
+    () =>
+      new Map(
+        session.responses.map((response) => [response.agentId, response]),
+      ),
+    [session.responses],
+  );
+
+  const canConsult = session.question.text.trim().length > 0;
+  const canValidate =
+    session.status === "consulted" &&
+    Boolean(session.consensus) &&
+    decisionText.trim().length > 0;
+
+  const updateQuestion = (text: string) => {
+    if (session.status !== "draft") {
+      setDecisionText("");
+    }
+
+    setSession((currentSession) => {
+      if (currentSession.status === "draft") {
+        return {
+          ...currentSession,
+          question: {
+            ...currentSession.question,
+            text,
+          },
+        };
+      }
+
+      const createdAt = new Date().toISOString();
+
+      return {
+        id: makeLocalId("session"),
+        question: {
+          id: makeLocalId("question"),
+          text,
+          createdAt,
+        },
+        responses: [],
+        consensus: null,
+        decision: null,
+        status: "draft",
+        createdAt,
+      };
+    });
+  };
+
+  const consultCouncil = () => {
+    const questionText = session.question.text.trim();
+
+    if (!questionText) {
+      return;
+    }
+
+    const question = {
+      ...session.question,
+      text: questionText,
+    };
+    const responses = generateMockCouncilResponses(question);
+    const consensus = generateMockCouncilConsensus(question, responses);
+
+    setDecisionText("");
+    setSession({
+      ...session,
+      question,
+      responses,
+      consensus,
+      decision: null,
+      status: "consulted",
+      decidedAt: undefined,
+    });
+  };
+
+  const validateDecision = () => {
+    const content = decisionText.trim();
+
+    if (!session.consensus || !content) {
+      return;
+    }
+
+    const decidedAt = new Date().toISOString();
+
+    setSession({
+      ...session,
+      decision: {
+        id: makeLocalId("decision"),
+        questionId: session.question.id,
+        content,
+        decidedBy: "Capitaine",
+        decidedAt,
+      },
+      status: "decided",
+      decidedAt,
+    });
+  };
+
   return (
     <main className="min-h-screen bg-slate-50 text-ink">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
@@ -14,69 +149,120 @@ export function CouncilPage() {
             </h1>
           </div>
           <span className="w-fit rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-600">
-            MVP statique
+            {statusLabel[session.status]}
           </span>
         </header>
 
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
           <div className="flex flex-col gap-6">
             <label className="flex flex-col gap-3">
-              <span className="text-sm font-semibold text-stone-800">
+              <span className="text-sm font-semibold text-slate-800">
                 Question du Capitaine
               </span>
               <textarea
+                value={session.question.text}
+                onChange={(event) => updateQuestion(event.target.value)}
                 className="min-h-40 resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-base leading-7 shadow-sm outline-none transition focus:border-harbor focus:ring-4 focus:ring-teal-100"
                 placeholder="Quelle décision devons-nous éclairer aujourd'hui ?"
               />
             </label>
 
-            <section aria-labelledby="agents-heading" className="flex flex-col gap-4">
+            <button
+              type="button"
+              disabled={!canConsult}
+              onClick={consultCouncil}
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-harbor px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-800 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
+            >
+              Consulter le Conseil
+            </button>
+
+            <section
+              aria-labelledby="council-heading"
+              className="flex flex-col gap-4"
+            >
               <div className="flex items-center justify-between gap-3">
-                <h2 id="agents-heading" className="text-xl font-semibold">
-                  Agents
+                <h2 id="council-heading" className="text-xl font-semibold">
+                  Conseil de Bord
                 </h2>
                 <span className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-600">
-                  4 rôles
+                  Fonctions permanentes
                 </span>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                {councilAgents.map((agent) => (
-                  <article
-                    key={agent.id}
-                    className="flex min-h-48 flex-col justify-between rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
-                  >
-                    <div>
-                      <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <h3 className="text-lg font-semibold">
-                            <span aria-hidden="true">{agent.symbol}</span>{" "}
-                            {agent.name}
-                          </h3>
-                          <p className="mt-1 text-sm text-slate-600">
-                            {agent.domain}
-                          </p>
+                {councilAgents.map((agent) => {
+                  const response = responsesByAgent.get(agent.id);
+
+                  return (
+                    <article
+                      key={agent.id}
+                      className="flex min-h-64 flex-col justify-between rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                    >
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h3 className="text-lg font-semibold">
+                              <span aria-hidden="true">{agent.symbol}</span>{" "}
+                              {agent.title}
+                            </h3>
+                            <p className="mt-1 text-sm text-slate-600">
+                              {agent.responsibilities.join(", ")}
+                            </p>
+                          </div>
                         </div>
+                        <p className="mt-4 text-sm leading-6 text-slate-700">
+                          {agent.stance}
+                        </p>
+                        <p className="mt-3 text-xs font-medium text-slate-500">
+                          Implémentation actuelle :{" "}
+                          {agent.currentImplementation.name}
+                        </p>
                       </div>
-                      <p className="mt-4 text-sm leading-6 text-slate-700">
-                        {agent.stance}
-                      </p>
-                    </div>
-                    <p className="mt-5 rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-sm text-slate-500">
-                      En attente de réponse.
-                    </p>
-                  </article>
-                ))}
+
+                      <div className="mt-5 rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm text-slate-600">
+                        {response ? (
+                          <div className="flex flex-col gap-3">
+                            <p className="leading-6">{response.summary}</p>
+                            <p>
+                              <span className="font-semibold">
+                                Recommandation :
+                              </span>{" "}
+                              {response.recommendation}
+                            </p>
+                          </div>
+                        ) : (
+                          <p>En attente de consultation.</p>
+                        )}
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           </div>
 
           <aside className="flex flex-col gap-5">
             <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Consensus</h2>
-              <p className="mt-3 min-h-32 rounded-md border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-500">
-                En attente de synthèse.
-              </p>
+              <h2 className="text-lg font-semibold">Consensus du Conseil</h2>
+              <div className="mt-3 min-h-36 rounded-md border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+                {session.consensus ? (
+                  <div className="flex flex-col gap-3">
+                    <p>{session.consensus.summary}</p>
+                    <div>
+                      <p className="font-semibold text-slate-800">
+                        Points d'attention
+                      </p>
+                      <ul className="mt-2 list-disc space-y-1 pl-5">
+                        {session.consensus.openQuestions.map((question) => (
+                          <li key={question}>{question}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-slate-500">En attente de synthèse.</p>
+                )}
+              </div>
             </section>
 
             <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
@@ -85,10 +271,26 @@ export function CouncilPage() {
                   Décision du Capitaine
                 </span>
                 <textarea
+                  value={decisionText}
+                  onChange={(event) => setDecisionText(event.target.value)}
+                  readOnly={session.status === "decided"}
                   className="min-h-36 resize-y rounded-md border border-slate-300 bg-white px-4 py-3 text-sm leading-6 outline-none transition focus:border-harbor focus:ring-4 focus:ring-teal-100"
                   placeholder="Décision retenue, justification et prochain mouvement."
                 />
               </label>
+              <button
+                type="button"
+                disabled={!canValidate}
+                onClick={validateDecision}
+                className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-signal px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
+              >
+                Valider la décision
+              </button>
+              {session.status === "decided" && session.decision ? (
+                <p className="mt-3 rounded-md bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-800">
+                  Décision validée.
+                </p>
+              ) : null}
             </section>
 
             <button

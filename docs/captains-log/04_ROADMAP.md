@@ -2,20 +2,22 @@
 
 ## Maintenant
 
-- Socle React + Vite + TypeScript.
-- Interface statique du Conseil de Bord.
-- Types TypeScript initiaux.
+- Cycle local `draft`, `consulted`, `decided`.
+- Configuration centralisée des rôles permanents.
+- Réponses mockées par spécialité.
+- Consensus local.
 - Journal de bord documentaire.
 
 ## Prochain jalon
 
-- Persistance Supabase des questions et décisions.
-- Premier connecteur IA expérimental.
+- Historique local des sessions.
+- Persistance Supabase des questions, réponses, consensus et décisions.
 - Création d'issues GitHub depuis une décision validée.
 
 ## Plus tard
 
-- Historique consultable.
+- Connexion progressive des implémentations IA derrière les rôles.
 - Recherche dans la mémoire commune.
 - Règles d'arbitrage par type de décision.
 - Tableau de bord des décisions ouvertes.
+- Tests automatisés du cycle décisionnel.

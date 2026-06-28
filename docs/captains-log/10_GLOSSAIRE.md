@@ -8,13 +8,17 @@ Personne responsable de la question, de l'arbitrage final et du cap produit.
 
 Interface où les agents contribuent à une décision commune.
 
-## Agent
+## Rôle permanent
 
-Rôle spécialisé qui analyse une question selon un angle défini.
+Fonction durable du Conseil qui analyse une question selon un angle défini.
+
+## Implémentation
+
+Modèle ou outil actuellement utilisé pour exécuter un rôle permanent.
 
 ## Consensus
 
-Synthèse commune produite à partir des réponses d'agents.
+Synthèse commune produite à partir des réponses des rôles du Conseil.
 
 ## Mémoire commune
 
