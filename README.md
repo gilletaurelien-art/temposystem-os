@@ -6,6 +6,12 @@ Le Conseil de Bord est le premier composant de cette architecture. Il permet à 
 
 Ce MVP ne connecte aucune API IA, aucun appel GitHub et aucune connexion Supabase. Tout fonctionne localement avec des données mockées.
 
+## Interface publique
+
+La page d'accueil présente TEMPOSYSTEM OS comme interface vivante pour `temposystem.fr` et `temposystem.eu`.
+
+Elle explique la vision, l'état du système, le Conseil de Bord, l'équipage 2042, le rôle de MANA et les derniers jalons du livre de bord. Le routage reste volontairement minimal avec des liens `#/...`, sans librairie supplémentaire.
+
 ## Vision
 
 Le but est de transformer une conversation en décision traçable. Les conversations servent à réfléchir et produire des arbitrages ; les décisions doivent ensuite rejoindre une mémoire durable afin que le système puisse évoluer sans reconstruire son contexte à chaque session.
@@ -67,6 +73,32 @@ Le Capitaine définit la vision, arbitre les désaccords et prend les décisions
 - TailwindCSS
 - Préparation Supabase via variables d'environnement
 - Architecture simple par domaines fonctionnels
+
+## Déploiement Vercel
+
+Le projet est prêt pour un premier déploiement Vercel avec Vite.
+
+Configuration attendue :
+
+- commande de build : `npm run build`
+- dossier de sortie : `dist`
+- framework : Vite
+- aucun `vercel.json` nécessaire à ce stade
+
+Procédure :
+
+1. Connecter le dépôt GitHub à Vercel.
+2. Importer le projet dans Vercel avec le preset Vite.
+3. Vérifier que la commande de build est `npm run build` et que le dossier de sortie est `dist`.
+4. Ajouter `temposystem.fr` dans Vercel Domains.
+5. Ajouter `temposystem.eu` dans Vercel Domains.
+6. Configurer les DNS chez le registrar selon les instructions affichées par Vercel.
+7. Vérifier l'activation SSL et les redirections.
+
+Références utiles :
+
+- [Vercel pour Vite](https://vercel.com/docs/frameworks/vite)
+- [Domaines Vercel](https://vercel.com/docs/domains)
 
 ## Prochaines étapes
 

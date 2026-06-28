@@ -8,6 +8,7 @@
 - Consensus local.
 - Journal de bord documentaire.
 - Équipage 2042 déclaré comme capacités disponibles.
+- Interface publique vivante pour `temposystem.fr` et `temposystem.eu`.
 
 ## Prochain jalon
 
@@ -17,6 +18,7 @@
 - Première définition du Timonier comme Dispatcher local.
 - Règles de dispatch plus fines vers l'équipage 2042.
 - Cartographie documentaire entre TEMPOSYSTEM OS et MANA.
+- Premier déploiement Vercel public.
 
 ## Plus tard
 

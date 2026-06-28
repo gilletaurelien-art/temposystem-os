@@ -154,7 +154,7 @@ export function CouncilPage() {
         </header>
 
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-          <div className="flex flex-col gap-6">
+          <div className="flex min-w-0 flex-col gap-6">
             <label className="flex flex-col gap-3">
               <span className="text-sm font-semibold text-slate-800">
                 Question du Capitaine
@@ -280,7 +280,7 @@ export function CouncilPage() {
             </section>
           </div>
 
-          <aside className="flex flex-col gap-5">
+          <aside className="flex min-w-0 flex-col gap-5">
             <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
               <h2 className="text-lg font-semibold">Consensus du Conseil</h2>
               <div className="mt-3 min-h-36 rounded-md border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">

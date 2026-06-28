@@ -43,3 +43,11 @@ TEMPOSYSTEM OS déclare des rôles supplémentaires pour préparer le futur Timo
 Les rôles 2042 ne sont pas consultés par défaut. Ils deviennent des capacités disponibles pour des consultations futures plus ciblées.
 
 - [ADR-0005 - Équipage 2042 et extension des fonctions permanentes](./decisions/ADR-0005-equipage-2042-et-extension-des-fonctions-permanentes.md)
+
+## 2026-06-28 - Interface publique vivante
+
+TEMPOSYSTEM OS se dote d'une première interface publique pour se présenter avant toute connexion IA, GitHub ou Supabase.
+
+Cette interface prépare le déploiement sur `temposystem.fr` et `temposystem.eu`.
+
+- [ADR-0006 - Interface publique vivante de TEMPOSYSTEM OS](./decisions/ADR-0006-interface-publique-vivante-de-temposystem-os.md)
