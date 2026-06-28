@@ -28,6 +28,38 @@ Ensemble des traces durables : questions, réponses, décisions, issues, journal
 
 Nom du futur Dispatcher. Il sélectionne les expertises nécessaires selon la question, le contexte et le protocole de décision.
 
+## Équipage 2042
+
+Extension des fonctions permanentes de TEMPOSYSTEM OS. Ces rôles sont déclarés et disponibles pour le Timonier, mais ne sont pas membres principaux du Conseil de Bord par défaut.
+
+## Archiviste
+
+Rôle responsable de la mémoire, des ADR, du journal, de la traçabilité et de la continuité historique.
+
+## Chancelier
+
+Rôle responsable du droit, de la conformité, de l'éthique, des licences et du cadre institutionnel.
+
+## Intendant
+
+Rôle responsable des ressources, du budget, de la capacité, des priorités et de la soutenabilité.
+
+## Ambassadeur
+
+Rôle responsable des partenaires, citoyens, collectivités, traductions, communications et relations extérieures.
+
+## Vigie
+
+Rôle responsable de la veille, des signaux faibles, des tendances, de l'anticipation et des risques émergents.
+
+## Maître d'Essais
+
+Rôle responsable des expérimentations, prototypes, tests, validations terrain et apprentissages rapides.
+
+## Cartographe
+
+Rôle responsable de la cartographie système, des dépendances, des flux, des domaines et des interfaces.
+
 ## MANA
 
 Première application construite sur TEMPOSYSTEM OS.

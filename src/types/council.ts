@@ -1,22 +1,45 @@
 export type AgentRole =
+  | "captain"
+  | "helmsman"
   | "quartermaster"
   | "masterCarpenter"
   | "masterCaulker"
-  | "masterIlluminator";
+  | "masterIlluminator"
+  | "archivist"
+  | "chancellor"
+  | "steward"
+  | "ambassador"
+  | "lookout"
+  | "testMaster"
+  | "cartographer";
+
+export type AgentStatus = "active" | "available" | "future";
+
+export type AgentCategory =
+  | "command"
+  | "orchestration"
+  | "core"
+  | "specialist"
+  | "memory"
+  | "governance"
+  | "exploration";
 
 export type CouncilSessionStatus = "draft" | "consulted" | "decided";
 
 export interface Agent {
   id: string;
   role: AgentRole;
-  title: string;
-  symbol: string;
+  name: string;
+  emoji: string;
+  description: string;
   responsibilities: string[];
-  stance: string;
-  currentImplementation: {
+  implementation: {
     name: string;
     provider?: string;
   };
+  status: AgentStatus;
+  category: AgentCategory;
+  isDefaultCouncilMember: boolean;
 }
 
 export interface CouncilQuestion {

@@ -25,10 +25,16 @@ Cette séparation permet de remplacer un outil sans renommer les rôles, sans ca
 TEMPOSYSTEM OS orchestrera progressivement :
 
 - un Dispatcher, nommé Timonier ;
-- plusieurs agents spécialisés ;
+- plusieurs capacités spécialisées ;
 - une mémoire commune ;
 - un protocole de décision ;
 - une gouvernance humaine où le Capitaine conserve toujours la décision finale.
+
+## Équipage 2042
+
+Les rôles 2042 sont déclarés dans `src/config/agents.ts` comme capacités disponibles. Ils ne sont pas membres principaux du Conseil de Bord par défaut.
+
+Cette extension prépare le Timonier sans complexifier le MVP. Les rôles 2042 couvrent la mémoire, la gouvernance, les ressources, les relations extérieures, la veille, l'expérimentation et la cartographie du système.
 
 ## Cycle local
 

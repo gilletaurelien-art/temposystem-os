@@ -7,6 +7,7 @@
 - Réponses mockées par spécialité.
 - Consensus local.
 - Journal de bord documentaire.
+- Équipage 2042 déclaré comme capacités disponibles.
 
 ## Prochain jalon
 
@@ -14,6 +15,7 @@
 - Persistance Supabase des questions, réponses, consensus et décisions.
 - Création d'issues GitHub depuis une décision validée.
 - Première définition du Timonier comme Dispatcher local.
+- Règles de dispatch plus fines vers l'équipage 2042.
 - Cartographie documentaire entre TEMPOSYSTEM OS et MANA.
 
 ## Plus tard

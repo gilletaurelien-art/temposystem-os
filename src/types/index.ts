@@ -1,6 +1,8 @@
 export type {
   Agent,
+  AgentCategory,
   AgentRole,
+  AgentStatus,
   CouncilConsensus,
   CouncilDecision,
   CouncilQuestion,

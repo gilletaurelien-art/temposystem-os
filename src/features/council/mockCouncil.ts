@@ -73,6 +73,17 @@ export function generateMockCouncilResponses(
           recommendation:
             "Hiérarchiser Question, Conseil, Consensus puis Décision avec des libellés calmes et lisibles.",
         };
+      default:
+        return {
+          ...base,
+          summary: `${agent.name} peut éclairer cette question selon sa mission : ${agent.description}`,
+          risks: [
+            "Rôle disponible mais non intégré au Conseil par défaut.",
+            "Sollicitation prématurée sans règle de dispatch explicite.",
+          ],
+          recommendation:
+            "Laisser le Timonier décider quand cette capacité doit rejoindre une consultation.",
+        };
     }
   });
 }

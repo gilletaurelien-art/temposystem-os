@@ -40,3 +40,4 @@ Un ADR accepté ne doit pas être réécrit pour changer le passé. Si une déci
 - [ADR-0001 - Naissance de TEMPOSYSTEM OS](./ADR-0001-naissance-de-temposystem-os.md)
 - [ADR-0002 - Architecture des rôles](./ADR-0002-architecture-des-roles.md)
 - [ADR-0003 - La mémoire comme actif stratégique](./ADR-0003-memoire-comme-actif-strategique.md)
+- [ADR-0005 - Équipage 2042 et extension des fonctions permanentes](./ADR-0005-equipage-2042-et-extension-des-fonctions-permanentes.md)

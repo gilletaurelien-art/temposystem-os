@@ -23,6 +23,8 @@ Le Conseil de Bord ne représente pas des modèles d'IA. Il représente des rôl
 
 Les modèles actuels sont seulement des implémentations configurables de ces fonctions. Ils vivent dans `src/config/agents.ts` afin de pouvoir changer d'outil sans changer l'architecture du Conseil.
 
+L'équipage 2042 ajoute des rôles disponibles pour le futur Timonier : Archiviste, Chancelier, Intendant, Ambassadeur, Vigie, Maître d'Essais et Cartographe. Ils sont déclarés et typés, mais ne sont pas consultés par défaut dans le Conseil actuel.
+
 ## Cycle Décisionnel
 
 1. Le Capitaine écrit une question.
@@ -47,7 +49,7 @@ Le Capitaine définit la vision, arbitre les désaccords et prend les décisions
 À terme, TEMPOSYSTEM OS orchestrera :
 
 - un Dispatcher, nommé Timonier, chargé de sélectionner les expertises nécessaires ;
-- plusieurs agents spécialisés ;
+- plusieurs capacités spécialisées ;
 - une mémoire commune ;
 - un protocole de décision ;
 - une gouvernance humaine où le Capitaine conserve toujours la décision finale.
@@ -71,5 +73,6 @@ Le Capitaine définit la vision, arbitre les désaccords et prend les décisions
 1. Persister les sessions du Conseil dans Supabase.
 2. Transformer une décision validée en issue GitHub.
 3. Ajouter l'historique local des sessions.
-4. Brancher une première implémentation IA réelle derrière un rôle permanent.
-5. Ajouter des tests ciblés autour des transitions `draft`, `consulted` et `decided`.
+4. Activer progressivement le Timonier sur les rôles 2042.
+5. Brancher une première implémentation IA réelle derrière un rôle permanent.
+6. Ajouter des tests ciblés autour des transitions `draft`, `consulted` et `decided`.

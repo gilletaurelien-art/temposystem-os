@@ -1,11 +1,40 @@
 import type { Agent } from "../types";
 
-export const councilAgents: Agent[] = [
+export const crewAgents: Agent[] = [
+  {
+    id: "captain",
+    role: "captain",
+    name: "Capitaine",
+    emoji: "🧭",
+    description: "Humain responsable de la vision, des arbitrages et des décisions finales.",
+    responsibilities: ["vision", "arbitrage", "décision finale", "priorités"],
+    implementation: {
+      name: "Humain",
+    },
+    status: "active",
+    category: "command",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "helmsman",
+    role: "helmsman",
+    name: "Timonier",
+    emoji: "🛟",
+    description: "Dispatcher chargé de sélectionner les expertises nécessaires selon la question.",
+    responsibilities: ["dispatch", "orchestration", "sélection des rôles", "routage"],
+    implementation: {
+      name: "Règles locales",
+    },
+    status: "future",
+    category: "orchestration",
+    isDefaultCouncilMember: false,
+  },
   {
     id: "quartermaster",
     role: "quartermaster",
-    title: "Quartier-Maître",
-    symbol: "⚓",
+    name: "Quartier-Maître",
+    emoji: "⚓",
+    description: "Relie chaque décision au cap, à la mémoire et à la cohérence du système.",
     responsibilities: [
       "stratégie",
       "architecture",
@@ -15,43 +44,52 @@ export const councilAgents: Agent[] = [
       "gouvernance",
       "vision produit",
     ],
-    stance: "Relie chaque décision au cap, à la mémoire et à la cohérence du système.",
-    currentImplementation: {
+    implementation: {
       name: "ChatGPT",
     },
+    status: "active",
+    category: "core",
+    isDefaultCouncilMember: true,
   },
   {
     id: "master-carpenter",
     role: "masterCarpenter",
-    title: "Maître Charpentier",
-    symbol: "🔨",
+    name: "Maître Charpentier",
+    emoji: "🔨",
+    description: "Transforme les intentions en structure logicielle concrète et maintenable.",
     responsibilities: [
       "développement",
       "implémentation",
       "refactoring",
       "architecture logicielle",
     ],
-    stance: "Transforme les intentions en structure logicielle concrète et maintenable.",
-    currentImplementation: {
+    implementation: {
       name: "Claude",
     },
+    status: "active",
+    category: "core",
+    isDefaultCouncilMember: true,
   },
   {
     id: "master-caulker",
     role: "masterCaulker",
-    title: "Maître Calfat",
-    symbol: "🧰",
+    name: "Maître Calfat",
+    emoji: "🧰",
+    description: "Cherche les failles, les risques et les points de fiabilité avant la mise à l'eau.",
     responsibilities: ["audit", "sécurité", "qualité", "performance", "CI/CD", "tests"],
-    stance: "Cherche les failles, les risques et les points de fiabilité avant la mise à l'eau.",
-    currentImplementation: {
+    implementation: {
       name: "Codex",
     },
+    status: "active",
+    category: "core",
+    isDefaultCouncilMember: true,
   },
   {
     id: "master-illuminator",
     role: "masterIlluminator",
-    title: "Maître Enlumineur",
-    symbol: "🎨",
+    name: "Maître Enlumineur",
+    emoji: "🎨",
+    description: "Veille à la lisibilité, au ton, à l'identité et à l'expérience vécue.",
     responsibilities: [
       "identité visuelle",
       "design system",
@@ -60,9 +98,168 @@ export const councilAgents: Agent[] = [
       "expérience utilisateur",
       "documentation graphique",
     ],
-    stance: "Veille à la lisibilité, au ton, à l'identité et à l'expérience vécue.",
-    currentImplementation: {
+    implementation: {
       name: "Gemini",
     },
+    status: "active",
+    category: "core",
+    isDefaultCouncilMember: true,
+  },
+  {
+    id: "archivist",
+    role: "archivist",
+    name: "Archiviste",
+    emoji: "📚",
+    description: "Protège la continuité historique et la traçabilité des décisions.",
+    responsibilities: [
+      "mémoire",
+      "ADR",
+      "journal",
+      "traçabilité",
+      "décisions passées",
+      "continuité historique",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "available",
+    category: "memory",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "chancellor",
+    role: "chancellor",
+    name: "Chancelier",
+    emoji: "⚖️",
+    description: "Cadre les décisions sous l'angle juridique, éthique et institutionnel.",
+    responsibilities: [
+      "droit",
+      "conformité",
+      "éthique",
+      "gouvernance",
+      "licences",
+      "cadre institutionnel",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "available",
+    category: "governance",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "steward",
+    role: "steward",
+    name: "Intendant",
+    emoji: "📈",
+    description: "Évalue les ressources, la capacité et la soutenabilité des priorités.",
+    responsibilities: [
+      "ressources",
+      "budget",
+      "capacité",
+      "priorités",
+      "charge IA",
+      "soutenabilité",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "available",
+    category: "governance",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "ambassador",
+    role: "ambassador",
+    name: "Ambassadeur",
+    emoji: "🌍",
+    description: "Relie le système aux partenaires, citoyens et collectivités.",
+    responsibilities: [
+      "partenaires",
+      "citoyens",
+      "collectivités",
+      "traduction",
+      "communication",
+      "relations extérieures",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "future",
+    category: "specialist",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "lookout",
+    role: "lookout",
+    name: "Vigie",
+    emoji: "🔭",
+    description: "Observe les signaux faibles, tendances et risques émergents.",
+    responsibilities: [
+      "veille",
+      "signaux faibles",
+      "tendances",
+      "recherche",
+      "anticipation",
+      "risques émergents",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "future",
+    category: "exploration",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "test-master",
+    role: "testMaster",
+    name: "Maître d'Essais",
+    emoji: "🧪",
+    description: "Transforme les hypothèses en prototypes, validations et apprentissages rapides.",
+    responsibilities: [
+      "expérimentation",
+      "prototypes",
+      "A/B tests",
+      "validation terrain",
+      "apprentissages rapides",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "future",
+    category: "exploration",
+    isDefaultCouncilMember: false,
+  },
+  {
+    id: "cartographer",
+    role: "cartographer",
+    name: "Cartographe",
+    emoji: "🗺️",
+    description: "Maintient une lecture vivante des dépendances, flux, domaines et interfaces.",
+    responsibilities: [
+      "cartographie système",
+      "dépendances",
+      "flux",
+      "architecture vivante",
+      "domaines",
+      "interfaces",
+    ],
+    implementation: {
+      name: "À définir",
+    },
+    status: "available",
+    category: "specialist",
+    isDefaultCouncilMember: false,
   },
 ];
+
+export const councilAgents = crewAgents.filter(
+  (agent) => agent.isDefaultCouncilMember,
+);
+
+export const crew2042Agents = crewAgents.filter(
+  (agent) =>
+    !agent.isDefaultCouncilMember &&
+    agent.role !== "captain" &&
+    agent.role !== "helmsman",
+);

@@ -10,6 +10,8 @@ L'équipage regroupe les fonctions stables du Conseil : Quartier-Maître, Maîtr
 
 Chaque fonction porte des responsabilités durables. Son implémentation actuelle est configurable et peut changer sans modifier le sens du rôle.
 
+L'équipage 2042 étend ces fonctions avec Archiviste, Chancelier, Intendant, Ambassadeur, Vigie, Maître d'Essais et Cartographe. Ces rôles sont disponibles pour le Timonier mais ne sont pas consultés par défaut.
+
 ## Mémoire
 
 Historique des questions, réponses, consensus, décisions, issues GitHub et apprentissages. La mémoire doit survivre aux conversations et rendre les arbitrages compréhensibles dans le temps.
@@ -19,6 +21,8 @@ Historique des questions, réponses, consensus, décisions, issues GitHub et app
 Couche d'orchestration prévue pour distribuer les demandes aux implémentations réelles lorsque les connecteurs seront branchés.
 
 Le Dispatcher porte le nom de Timonier. Il sélectionne les expertises nécessaires selon la question, le contexte et le protocole de décision.
+
+Les règles locales de dispatch peuvent référencer les rôles 2042 par mots-clés, sans connexion IA ni appel externe.
 
 ## Capitaine
 

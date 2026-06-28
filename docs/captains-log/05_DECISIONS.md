@@ -35,3 +35,11 @@ Premiers ADR :
 - [ADR-0001 - Naissance de TEMPOSYSTEM OS](./decisions/ADR-0001-naissance-de-temposystem-os.md)
 - [ADR-0002 - Architecture des rôles](./decisions/ADR-0002-architecture-des-roles.md)
 - [ADR-0003 - La mémoire comme actif stratégique](./decisions/ADR-0003-memoire-comme-actif-strategique.md)
+
+## 2026-06-28 - Équipage 2042
+
+TEMPOSYSTEM OS déclare des rôles supplémentaires pour préparer le futur Timonier sans alourdir le Conseil de Bord actuel.
+
+Les rôles 2042 ne sont pas consultés par défaut. Ils deviennent des capacités disponibles pour des consultations futures plus ciblées.
+
+- [ADR-0005 - Équipage 2042 et extension des fonctions permanentes](./decisions/ADR-0005-equipage-2042-et-extension-des-fonctions-permanentes.md)
