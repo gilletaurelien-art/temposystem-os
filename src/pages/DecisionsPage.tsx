@@ -7,15 +7,16 @@ const decisions = [
   "ADR-0005 - Équipage 2042",
   "ADR-0006 - Interface publique vivante",
   "ADR-0007 - Premier déploiement public",
+  "ADR-0008 - Le Cockpit comme interface principale",
 ];
 
 export function DecisionsPage() {
   return (
     <main>
       <Section
-        eyebrow="Décisions"
+        eyebrow="Décisions d'Architecture (ADR)"
         title="Les décisions importantes doivent survivre aux conversations"
-        intro="Les ADR conservent le contexte, les alternatives et les conséquences des choix structurants."
+        intro="Les Architecture Decision Records conservent le contexte, les alternatives et les conséquences des choix structurants."
       >
         <div className="grid gap-4">
           {decisions.map((decision) => (

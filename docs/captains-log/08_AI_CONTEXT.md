@@ -38,3 +38,4 @@ Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implém
 - Préserver la séparation entre interface publique, Conseil de Bord local et futures connexions IA.
 - Ne pas introduire d'API externe pour la vitrine publique tant que la mémoire et le récit ne sont pas stabilisés.
 - Traiter Launch 000 comme une naissance publique de l'infrastructure, pas comme la sortie d'un produit complet.
+- Traiter Cockpit 001 comme l'interface principale du système : elle doit montrer TEMPOSYSTEM en fonctionnement, même lorsque les signaux restent mockés localement.

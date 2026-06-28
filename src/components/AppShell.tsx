@@ -40,6 +40,10 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
             <p className="text-sm text-slate-400">
               TEMPOSYSTEM OS prépare une mémoire durable de la coopération.
             </p>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
+              Chaque décision importante laisse une trace. Chaque évolution
+              s'appuie sur la mémoire du système.
+            </p>
             <p className="mt-2 text-xs font-medium uppercase text-slate-500">
               Launch 000 · Premier déploiement public · 2026
             </p>

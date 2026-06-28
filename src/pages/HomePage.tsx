@@ -1,8 +1,13 @@
-import { RoleCard } from "../components/RoleCard";
 import { Section } from "../components/Section";
 import { StatusCard } from "../components/StatusCard";
-import { crew2042Agents, crewAgents } from "../config/agents";
-import { logMilestones, publicDomains, systemStatusCards } from "../config/publicSite";
+import { crewAgents } from "../config/agents";
+import {
+  cockpitCouncilSnapshot,
+  cockpitStatusCards,
+  featuredArchitectureDecision,
+  narrativeMilestones,
+  publicDomains,
+} from "../config/publicSite";
 
 const roleById = (id: string) => crewAgents.find((agent) => agent.id === id);
 
@@ -35,21 +40,32 @@ export function HomePage() {
         <div className="relative mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl items-center px-5 py-20 sm:px-8 lg:px-10">
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase text-[#d6b46a]">
-              Interface vivante
+              Cockpit 001
             </p>
             <h1 className="mt-5 text-5xl font-semibold text-slate-50 sm:text-6xl lg:text-7xl">
               TEMPOSYSTEM OS
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
-              Le système d'exploitation de la coopération entre humains et
-              intelligences artificielles.
+              Une infrastructure ouverte pour coordonner le temps, les
+              décisions et les intelligences.
             </p>
+            <div className="mt-6 flex flex-wrap gap-2 text-xs font-medium uppercase text-slate-300">
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
+                Conseil opérationnel
+              </span>
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
+                Mémoire ADR active
+              </span>
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
+                MANA connecté au socle
+              </span>
+            </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#/council"
                 className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#d6b46a] px-6 text-sm font-semibold text-[#07101d] shadow-sm transition hover:bg-[#e4c77f]"
               >
-                Explorer le Conseil de Bord
+                Entrer dans le Conseil de Bord
               </a>
               <a
                 href="#/vision"
@@ -63,13 +79,37 @@ export function HomePage() {
       </section>
 
       <Section
-        id="etat"
-        eyebrow="État du système"
-        title="Un socle local, documenté et prêt à évoluer"
-        intro="La première version publique montre ce qui existe déjà et ce qui est préparé pour les prochains jalons."
+        id="pourquoi"
+        eyebrow="Pourquoi TEMPOSYSTEM ?"
+        title="Organiser ce qui reste trop souvent invisible"
       >
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {systemStatusCards.map((card) => (
+        <div className="max-w-4xl space-y-5 text-base leading-8 text-slate-300">
+          <p>
+            Chaque jour, des millions d'heures sont consacrées à aider,
+            transmettre, organiser ou protéger.
+          </p>
+          <p>
+            Cette coopération reste souvent fragmentée et difficile à
+            coordonner.
+          </p>
+          <p>
+            TEMPOSYSTEM propose une infrastructure ouverte permettant
+            d'organiser cette coopération, de conserver la mémoire des
+            décisions et de faciliter le travail collectif entre humains et
+            intelligences artificielles.
+          </p>
+        </div>
+      </Section>
+
+      <Section
+        id="etat"
+        eyebrow="État de l'infrastructure"
+        title="Le système expose son état courant"
+        intro="Cockpit 001 affiche des signaux locaux et documentés. Certaines données sont simulées, mais l'architecture qu'elles représentent est déjà en place."
+        className="bg-white/[0.025]"
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {cockpitStatusCards.map((card) => (
             <StatusCard key={card.title} {...card} />
           ))}
         </div>
@@ -78,28 +118,115 @@ export function HomePage() {
       <Section
         id="conseil"
         eyebrow="Conseil de Bord"
-        title="Des fonctions permanentes, pas des marques d'IA"
-        intro="Le Conseil de Bord réunit les responsabilités nécessaires à une décision claire. Les implémentations peuvent changer ; les fonctions restent."
-        className="bg-white/[0.025]"
+        title="Le cœur vivant de TEMPOSYSTEM"
+        intro="Le Conseil ne présente pas seulement des rôles. Il montre une consultation, un consensus, une décision et la trace associée dans la mémoire."
       >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {boardRoles.map((agent) => (
-            <RoleCard key={agent.id} agent={agent} />
-          ))}
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
+          <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6 shadow-sm">
+            <div className="flex flex-col gap-2 border-b border-white/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-400">
+                  Dernière consultation
+                </p>
+                <p className="mt-1 text-lg font-semibold text-slate-50">
+                  {cockpitCouncilSnapshot.lastConsultation}
+                </p>
+              </div>
+              <span className="w-fit rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs font-semibold uppercase text-emerald-100">
+                Décision validée
+              </span>
+            </div>
+
+            <div className="mt-6 grid gap-5">
+              <div>
+                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                  Question
+                </p>
+                <p className="mt-2 text-base leading-7 text-slate-200">
+                  {cockpitCouncilSnapshot.question}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                  Consensus
+                </p>
+                <p className="mt-2 text-base leading-7 text-slate-300">
+                  {cockpitCouncilSnapshot.consensus}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                  Décision du Capitaine
+                </p>
+                <p className="mt-2 text-base leading-7 text-slate-200">
+                  {cockpitCouncilSnapshot.decision}
+                </p>
+              </div>
+              <a
+                href={cockpitCouncilSnapshot.adr.href}
+                className="inline-flex w-fit items-center rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#d6b46a]"
+              >
+                {cockpitCouncilSnapshot.adr.label} ·{" "}
+                {cockpitCouncilSnapshot.adr.title}
+              </a>
+            </div>
+          </article>
+
+          <aside className="rounded-lg border border-white/10 bg-[#07101d] p-5">
+            <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+              Fonctions consultées
+            </p>
+            <div className="mt-5 grid gap-3">
+              {boardRoles.map((agent) => (
+                <div
+                  key={agent.id}
+                  className="rounded-md border border-white/10 bg-white/[0.035] px-4 py-3"
+                >
+                  <p className="font-semibold text-slate-50">
+                    <span aria-hidden="true">{agent.emoji}</span> {agent.name}
+                  </p>
+                  <p className="mt-1 text-sm leading-6 text-slate-400">
+                    {agent.responsibilities.slice(0, 3).join(", ")}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </Section>
 
       <Section
-        id="equipage-2042"
-        eyebrow="Équipage 2042"
-        title="Des capacités disponibles pour le futur Timonier"
-        intro="Ces rôles ne sont pas membres principaux du Conseil actuel. Ils sont déclarés pour préparer des consultations plus fines."
+        id="decisions-architecture"
+        eyebrow="Décisions d'Architecture (ADR)"
+        title="La mémoire transforme les décisions en infrastructure"
+        intro="Chaque décision structurante conserve son contexte, ses alternatives et ses conséquences pour que le système puisse évoluer sans perdre son histoire."
+        className="bg-white/[0.025]"
       >
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          {crew2042Agents.map((agent) => (
-            <RoleCard key={agent.id} agent={agent} compact />
-          ))}
-        </div>
+        <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+          <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                Décision mise en avant
+              </p>
+              <h3 className="mt-3 text-2xl font-semibold text-slate-50">
+                {featuredArchitectureDecision.number} ·{" "}
+                {featuredArchitectureDecision.title}
+              </h3>
+              <p className="mt-2 text-sm text-slate-500">
+                Date : {featuredArchitectureDecision.date}
+              </p>
+              <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
+                {featuredArchitectureDecision.summary}
+              </p>
+            </div>
+            <a
+              href={featuredArchitectureDecision.href}
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-4 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#d6b46a]"
+            >
+              Ouvrir le registre ADR
+            </a>
+          </div>
+        </article>
       </Section>
 
       <Section
@@ -138,21 +265,24 @@ export function HomePage() {
       <Section
         id="livre-de-bord"
         eyebrow="Livre de Bord"
-        title="Derniers jalons"
-        intro="La mémoire documentaire conserve les étapes importantes plutôt que de les laisser disparaître dans les conversations."
+        title="Chronologie narrative"
+        intro="Les jalons racontent comment TEMPOSYSTEM devient une infrastructure vivante plutôt qu'une suite de pages."
       >
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {logMilestones.map((milestone, index) => (
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+          {narrativeMilestones.map((milestone) => (
             <div
-              key={milestone}
+              key={milestone.title}
               className="rounded-lg border border-white/10 bg-white/[0.04] p-5"
             >
-              <p className="text-sm font-semibold text-[#d6b46a]">
-                {String(index + 1).padStart(2, "0")}
+              <p className="text-2xl" aria-hidden="true">
+                {milestone.icon}
               </p>
               <h3 className="mt-3 text-lg font-semibold text-slate-50">
-                {milestone}
+                {milestone.title}
               </h3>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                {milestone.detail}
+              </p>
             </div>
           ))}
         </div>

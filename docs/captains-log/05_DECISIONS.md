@@ -59,3 +59,11 @@ TEMPOSYSTEM OS prépare son premier déploiement public sans connexion IA, GitHu
 Ce lancement affirme l'existence publique de l'infrastructure avant les fonctionnalités avancées.
 
 - [ADR-0007 - Premier déploiement public](./decisions/ADR-0007-premier-deploiement-public.md)
+
+## 2026-06-29 - Cockpit 001
+
+TEMPOSYSTEM OS transforme son interface principale en cockpit d'infrastructure.
+
+Le site ne se contente plus de présenter le système : il expose son état, son Conseil vivant, sa mémoire ADR, ses jalons et MANA comme première application active.
+
+- [ADR-0008 - Le Cockpit comme interface principale](./decisions/ADR-0008-le-cockpit-comme-interface-principale.md)

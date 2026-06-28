@@ -17,3 +17,7 @@ Mise en place du registre ADR dans `docs/captains-log/decisions/` avec les trois
 Création de la première interface publique vivante de TEMPOSYSTEM OS : page d'accueil, navigation minimaliste, présentation du Conseil, de l'équipage 2042, de MANA et des jalons du livre de bord.
 
 Launch 000 : préparation du premier déploiement public. TEMPOSYSTEM OS se présente au monde sans promettre plus que son socle actuel : gouvernance, mémoire, Conseil de Bord et premier projet MANA.
+
+## 2026-06-29
+
+Cockpit 001 : transformation de la page d'accueil en centre de commandement vivant. TEMPOSYSTEM OS expose désormais l'état de son infrastructure, une consultation simulée du Conseil, une décision associée à la mémoire ADR et une chronologie narrative.

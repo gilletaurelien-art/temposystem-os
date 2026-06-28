@@ -43,3 +43,4 @@ Un ADR accepté ne doit pas être réécrit pour changer le passé. Si une déci
 - [ADR-0005 - Équipage 2042 et extension des fonctions permanentes](./ADR-0005-equipage-2042-et-extension-des-fonctions-permanentes.md)
 - [ADR-0006 - Interface publique vivante de TEMPOSYSTEM OS](./ADR-0006-interface-publique-vivante-de-temposystem-os.md)
 - [ADR-0007 - Premier déploiement public](./ADR-0007-premier-deploiement-public.md)
+- [ADR-0008 - Le Cockpit comme interface principale](./ADR-0008-le-cockpit-comme-interface-principale.md)
