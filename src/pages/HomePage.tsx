@@ -1,3 +1,4 @@
+import { CortexMap } from "../components/CortexMap";
 import { Section } from "../components/Section";
 import { StatusCard } from "../components/StatusCard";
 import { crewAgents } from "../config/agents";
@@ -40,7 +41,7 @@ export function HomePage() {
         <div className="relative mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl items-center px-5 py-20 sm:px-8 lg:px-10">
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase text-[#d6b46a]">
-              Cockpit 001
+              Phase expérimentale
             </p>
             <h1 className="mt-5 text-5xl font-semibold text-slate-50 sm:text-6xl lg:text-7xl">
               TEMPOSYSTEM OS
@@ -79,6 +80,17 @@ export function HomePage() {
       </section>
 
       <Section
+        id="cortex-vivant"
+        eyebrow="Infrastructure ouverte pour coordonner le temps, les décisions et les intelligences"
+        title="Tableau de contrôle du Cortex vivant"
+        intro="Le Conseil n'est plus représenté comme une liste de rôles : il apparaît comme une infrastructure en activité, avec ses flux, sa mémoire, ses décisions et ses signaux système."
+        className="bg-[#030711]"
+        wide
+      >
+        <CortexMap />
+      </Section>
+
+      <Section
         id="pourquoi"
         eyebrow="Pourquoi TEMPOSYSTEM ?"
         title="Organiser ce qui reste trop souvent invisible"
@@ -105,7 +117,7 @@ export function HomePage() {
         id="etat"
         eyebrow="État de l'infrastructure"
         title="Le système expose son état courant"
-        intro="Cockpit 001 affiche des signaux locaux et documentés. Certaines données sont simulées, mais l'architecture qu'elles représentent est déjà en place."
+        intro="La phase expérimentale affiche des signaux locaux et documentés. Certaines données sont simulées, mais l'architecture qu'elles représentent est déjà en place."
         className="bg-white/[0.025]"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

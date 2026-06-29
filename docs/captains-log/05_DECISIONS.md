@@ -67,3 +67,11 @@ TEMPOSYSTEM OS transforme son interface principale en cockpit d'infrastructure.
 Le site ne se contente plus de présenter le système : il expose son état, son Conseil vivant, sa mémoire ADR, ses jalons et MANA comme première application active.
 
 - [ADR-0008 - Le Cockpit comme interface principale](./decisions/ADR-0008-le-cockpit-comme-interface-principale.md)
+
+## 2026-06-29 - Cockpit 002
+
+TEMPOSYSTEM OS ajoute un premier poste de contrôle du Cortex vivant en SVG natif.
+
+Cette décision permet de tester une interface dense, synaptique et instrumentée sans dépendance 3D, en conservant `src/config/agents.ts` comme source de vérité pour les rôles.
+
+- [ADR-0009 - Cockpit 002 : Cortex vivant et poste de contrôle SVG natif](./decisions/ADR-0009-cockpit-002-cortex-vivant-svg-natif.md)

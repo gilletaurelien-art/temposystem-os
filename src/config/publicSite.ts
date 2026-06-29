@@ -48,7 +48,7 @@ export const cockpitStatusCards = [
     title: "API IA",
     value: "Non connectées",
     detail: "Architecture prête.",
-    supportingDetail: "Aucun appel externe dans Cockpit 001.",
+    supportingDetail: "Aucun appel externe pendant la phase expérimentale.",
   },
 ];
 
@@ -59,7 +59,7 @@ export const cockpitCouncilSnapshot = {
   consensus:
     "Le Conseil recommande d'exposer l'état du système, la mémoire ADR, la gouvernance et MANA comme signaux opérationnels plutôt que comme promesses produit.",
   decision:
-    "Le Capitaine valide Cockpit 001 : TEMPOSYSTEM présente désormais son fonctionnement en cours, avec des données locales mockées et une mémoire durable.",
+    "Le Capitaine valide la phase expérimentale : TEMPOSYSTEM présente désormais son fonctionnement en cours, avec des données locales mockées et une mémoire durable.",
   adr: {
     label: "ADR-0007",
     title: "Premier déploiement public",
@@ -125,5 +125,10 @@ export const narrativeMilestones = [
     icon: "🚀",
     title: "Première application",
     detail: "MANA devient le premier terrain d'application civique.",
+  },
+  {
+    icon: "🧠",
+    title: "Cortex vivant",
+    detail: "Le Conseil reçoit un poste de contrôle synaptique natif en SVG.",
   },
 ];

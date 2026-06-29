@@ -39,3 +39,4 @@ Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implém
 - Ne pas introduire d'API externe pour la vitrine publique tant que la mémoire et le récit ne sont pas stabilisés.
 - Traiter Launch 000 comme une naissance publique de l'infrastructure, pas comme la sortie d'un produit complet.
 - Traiter Cockpit 001 comme l'interface principale du système : elle doit montrer TEMPOSYSTEM en fonctionnement, même lorsque les signaux restent mockés localement.
+- Traiter Cockpit 002 comme une étape prudente mais visuellement dense : visualiser le Cortex et ses instruments de bord en SVG natif avant d'envisager une scène 3D ou de nouvelles dépendances.

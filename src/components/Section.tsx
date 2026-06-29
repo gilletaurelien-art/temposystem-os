@@ -7,6 +7,7 @@ interface SectionProps {
   intro?: string;
   children: ReactNode;
   className?: string;
+  wide?: boolean;
 }
 
 export function Section({
@@ -16,10 +17,15 @@ export function Section({
   intro,
   children,
   className = "",
+  wide = false,
 }: SectionProps) {
   return (
     <section id={id} className={`py-14 sm:py-18 ${className}`}>
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
+      <div
+        className={`mx-auto w-full px-5 sm:px-8 lg:px-10 ${
+          wide ? "max-w-[96rem]" : "max-w-6xl"
+        }`}
+      >
         <div className="mb-8 max-w-3xl">
           {eyebrow ? (
             <p className="text-sm font-semibold uppercase text-[#d6b46a]">
