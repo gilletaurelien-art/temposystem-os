@@ -38,11 +38,12 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div>
             <p className="text-sm text-slate-400">
-              TEMPOSYSTEM OS prépare une mémoire durable de la coopération.
+              TEMPOSYSTEM OS transforme le temps partagé en énergie durable.
             </p>
             <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
               Chaque décision importante laisse une trace. Chaque évolution
-              s'appuie sur la mémoire du système.
+              s'appuie sur la mémoire du système et rayonne vers l'ensemble de
+              la coopération.
             </p>
             <p className="mt-2 text-xs font-medium uppercase text-slate-500">
               Launch 000 · Premier déploiement public · 2026

@@ -2,6 +2,8 @@
 
 TEMPOSYSTEM OS n'est pas une application. C'est un système d'exploitation de la coopération entre humains et intelligences artificielles.
 
+TEMPOSYSTEM est aussi une énergie : une énergie produite par le temps partagé, la mémoire, les décisions et l'intelligence collective. Le site public doit faire ressentir ce cœur vivant plutôt qu'un simple tableau de bord.
+
 Le Conseil de Bord constitue le premier composant de cette architecture. Il organise plusieurs fonctions permanentes autour d'une mémoire commune.
 
 L'objectif n'est pas de déléguer le commandement à l'IA, mais d'augmenter la qualité des décisions humaines : meilleure formulation des questions, angles de vue explicites, consensus lisible, arbitrage final documenté.

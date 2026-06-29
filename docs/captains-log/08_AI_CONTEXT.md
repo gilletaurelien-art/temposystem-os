@@ -4,6 +4,8 @@ TEMPOSYSTEM OS orchestre des fonctions permanentes autour d'une question posée 
 
 TEMPOSYSTEM OS n'est pas une application. C'est un système d'exploitation de la coopération entre humains et intelligences artificielles. MANA est la première application construite sur ce socle.
 
+Vision publique actuelle : **TEMPOSYSTEM is energy**. TEMPOSYSTEM doit être présenté comme une énergie produite par le temps partagé, la mémoire, les décisions et l'intelligence collective. Le Cortex vivant doit évoquer un cœur solaire, un cerveau, une cellule vivante et une étoile cognitive, jamais un dashboard classique.
+
 ## Principe central
 
 Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implémentent. Les modèles actuels sont des moyens d'exécution. Les rôles sont la structure durable.
@@ -40,3 +42,4 @@ Le Conseil de Bord ne doit jamais être confondu avec les modèles qui l'implém
 - Traiter Launch 000 comme une naissance publique de l'infrastructure, pas comme la sortie d'un produit complet.
 - Traiter Cockpit 001 comme l'interface principale du système : elle doit montrer TEMPOSYSTEM en fonctionnement, même lorsque les signaux restent mockés localement.
 - Traiter Cockpit 002 comme une étape prudente mais visuellement dense : visualiser le Cortex et ses instruments de bord en SVG natif avant d'envisager une scène 3D ou de nouvelles dépendances.
+- Traiter ADR-0010 comme la direction esthétique et narrative actuelle : le site doit refléter l'énergie du temps partagé sur toutes les pages publiques.

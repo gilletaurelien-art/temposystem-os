@@ -2,6 +2,8 @@
 
 TEMPOSYSTEM OS n'est pas une application. C'est un système d'exploitation de la coopération entre humains et intelligences artificielles.
 
+TEMPOSYSTEM est une énergie : une énergie produite par le temps partagé, la mémoire, les décisions et l'intelligence collective. Son interface publique doit donner la sensation d'observer le cœur vivant de cette coopération.
+
 Le Conseil de Bord est le premier composant de cette architecture. Il permet à des fonctions permanentes d'éclairer une question, de produire un consensus et de laisser au Capitaine la décision finale.
 
 Ce MVP ne connecte aucune API IA, aucun appel GitHub et aucune connexion Supabase. Tout fonctionne localement avec des données mockées.
@@ -10,7 +12,7 @@ Ce MVP ne connecte aucune API IA, aucun appel GitHub et aucune connexion Supabas
 
 La page d'accueil présente TEMPOSYSTEM OS comme interface vivante pour `temposystem.fr` et `temposystem.eu`.
 
-Elle explique la vision, l'état du système, le Conseil de Bord, l'équipage 2042, le rôle de MANA et les derniers jalons du livre de bord. Le routage reste volontairement minimal avec des liens `#/...`, sans librairie supplémentaire.
+Elle explique la vision énergétique, l'état du système, le Conseil de Bord, l'équipage 2042, le rôle de MANA et les derniers jalons du livre de bord. Le routage reste volontairement minimal avec des liens `#/...`, sans librairie supplémentaire.
 
 ## Vision
 

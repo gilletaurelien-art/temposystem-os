@@ -13,35 +13,35 @@ export const cockpitStatusCards = [
     title: "Conseil de Bord",
     value: "Opérationnel",
     detail: "Dernière consultation : 29 juin 2026, 09:12.",
-    supportingDetail: "Cycle local prêt : question, consensus, décision.",
+    supportingDetail: "Les questions deviennent consensus, puis impulsions de décision.",
   },
   {
     signal: "🟢",
     title: "Mémoire",
     value: "GitHub synchronisé",
     detail: "ADR disponibles.",
-    supportingDetail: "Livre de Bord actif.",
+    supportingDetail: "La mémoire stabilise l'énergie des échanges.",
   },
   {
     signal: "🟢",
     title: "Gouvernance",
     value: "Architecture documentée",
     detail: "Décisions traçables.",
-    supportingDetail: "Le Capitaine conserve l'arbitrage final.",
+    supportingDetail: "Le Capitaine oriente l'énergie collective.",
   },
   {
     signal: "🟢",
     title: "Applications",
     value: "MANA",
     detail: "Première application active.",
-    supportingDetail: "Cas d'usage civique et territorial.",
+    supportingDetail: "Le temps donné devient énergie civique visible.",
   },
   {
     signal: "🟡",
     title: "Timonier",
     value: "Prototype",
     detail: "Dispatch local.",
-    supportingDetail: "Règles simples, sans connexion IA.",
+    supportingDetail: "Les signaux préparent l'orchestration future.",
   },
   {
     signal: "🟡",
@@ -55,11 +55,11 @@ export const cockpitStatusCards = [
 export const cockpitCouncilSnapshot = {
   lastConsultation: "29 juin 2026 · 09:12",
   question:
-    "Comment transformer TEMPOSYSTEM OS en infrastructure publique vivante sans connecter encore d'API externe ?",
+    "Comment montrer que TEMPOSYSTEM n'est pas une interface informatique, mais une énergie produite par l'intelligence collective ?",
   consensus:
-    "Le Conseil recommande d'exposer l'état du système, la mémoire ADR, la gouvernance et MANA comme signaux opérationnels plutôt que comme promesses produit.",
+    "Le Conseil recommande de présenter le cœur, les agents, les flux et la mémoire comme un organisme vivant plutôt que comme des modules logiciels.",
   decision:
-    "Le Capitaine valide la phase expérimentale : TEMPOSYSTEM présente désormais son fonctionnement en cours, avec des données locales mockées et une mémoire durable.",
+    "Le Capitaine valide la vision : TEMPOSYSTEM est une énergie produite par le temps partagé, éclairée par les décisions et conservée par la mémoire.",
   adr: {
     label: "ADR-0007",
     title: "Premier déploiement public",
@@ -73,7 +73,7 @@ export const featuredArchitectureDecision = {
   date: "2026-06-28",
   href: "#/decisions",
   summary:
-    "TEMPOSYSTEM OS est publié avant les connexions IA afin de rendre visible sa gouvernance, sa mémoire et son Conseil de Bord dès sa fondation.",
+    "TEMPOSYSTEM OS est publié avant les connexions IA afin de rendre visible son énergie fondatrice : gouvernance, mémoire, Conseil de Bord et temps partagé.",
 };
 
 export const publicDomains = [
@@ -99,17 +99,17 @@ export const narrativeMilestones = [
   {
     icon: "🏴",
     title: "Launch 000",
-    detail: "TEMPOSYSTEM OS affirme publiquement son existence.",
+    detail: "TEMPOSYSTEM OS affirme publiquement son existence comme socle vivant.",
   },
   {
     icon: "⚓",
     title: "Premier Conseil",
-    detail: "Le Conseil de Bord local éclaire les décisions du Capitaine.",
+    detail: "Le Conseil transforme les échanges en énergie de décision.",
   },
   {
     icon: "📜",
     title: "Première ADR",
-    detail: "Les décisions structurantes quittent les conversations pour la mémoire durable.",
+    detail: "Les décisions quittent les conversations pour devenir mémoire durable.",
   },
   {
     icon: "🧭",
@@ -128,7 +128,7 @@ export const narrativeMilestones = [
   },
   {
     icon: "🧠",
-    title: "Cortex vivant",
-    detail: "Le Conseil reçoit un poste de contrôle synaptique natif en SVG.",
+    title: "Étoile cognitive",
+    detail: "Le Conseil devient un cœur énergétique entouré d'agents en orbite.",
   },
 ];

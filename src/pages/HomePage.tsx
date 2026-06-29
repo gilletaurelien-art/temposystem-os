@@ -41,24 +41,24 @@ export function HomePage() {
         <div className="relative mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl items-center px-5 py-20 sm:px-8 lg:px-10">
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase text-[#d6b46a]">
-              Phase expérimentale
+              TEMPOSYSTEM IS ENERGY
             </p>
             <h1 className="mt-5 text-5xl font-semibold text-slate-50 sm:text-6xl lg:text-7xl">
               TEMPOSYSTEM OS
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
-              Une infrastructure ouverte pour coordonner le temps, les
-              décisions et les intelligences.
+              Une énergie produite par le temps partagé, synchronisée par la
+              mémoire et orientée par les décisions collectives.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-medium uppercase text-slate-300">
               <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
-                Conseil opérationnel
+                Temps partagé
               </span>
               <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
-                Mémoire ADR active
+                Mémoire active
               </span>
               <span className="rounded-full border border-white/15 bg-white/5 px-3 py-2">
-                MANA connecté au socle
+                Décisions éclairées
               </span>
             </div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -81,9 +81,9 @@ export function HomePage() {
 
       <Section
         id="cortex-vivant"
-        eyebrow="Infrastructure ouverte pour coordonner le temps, les décisions et les intelligences"
-        title="Tableau de contrôle du Cortex vivant"
-        intro="Le Conseil n'est plus représenté comme une liste de rôles : il apparaît comme une infrastructure en activité, avec ses flux, sa mémoire, ses décisions et ses signaux système."
+        eyebrow="TEMPOSYSTEM IS ENERGY"
+        title="Le cœur énergétique de l'intelligence collective"
+        intro="Le Conseil n'est plus un tableau de bord. Il devient un système solaire cognitif : un cœur vivant alimenté par les échanges, la mémoire, les signaux et les consensus."
         className="bg-[#030711]"
         wide
       >
@@ -93,7 +93,7 @@ export function HomePage() {
       <Section
         id="pourquoi"
         eyebrow="Pourquoi TEMPOSYSTEM ?"
-        title="Organiser ce qui reste trop souvent invisible"
+        title="Transformer le temps partagé en énergie collective"
       >
         <div className="max-w-4xl space-y-5 text-base leading-8 text-slate-300">
           <p>
@@ -102,12 +102,13 @@ export function HomePage() {
           </p>
           <p>
             Cette coopération reste souvent fragmentée et difficile à
-            coordonner.
+            coordonner. Son énergie existe déjà, mais elle circule rarement
+            dans un système commun.
           </p>
           <p>
             TEMPOSYSTEM propose une infrastructure ouverte permettant
-            d'organiser cette coopération, de conserver la mémoire des
-            décisions et de faciliter le travail collectif entre humains et
+            d'organiser cette énergie, de conserver la mémoire des décisions
+            et de synchroniser le travail collectif entre humains et
             intelligences artificielles.
           </p>
         </div>
@@ -115,9 +116,9 @@ export function HomePage() {
 
       <Section
         id="etat"
-        eyebrow="État de l'infrastructure"
-        title="Le système expose son état courant"
-        intro="La phase expérimentale affiche des signaux locaux et documentés. Certaines données sont simulées, mais l'architecture qu'elles représentent est déjà en place."
+        eyebrow="État de l'énergie coopérative"
+        title="Le système montre ce qui l'alimente"
+        intro="La phase expérimentale expose les signaux qui nourrissent le cœur : Conseil, mémoire, gouvernance, applications, orchestration et connexions futures."
         className="bg-white/[0.025]"
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -130,8 +131,8 @@ export function HomePage() {
       <Section
         id="conseil"
         eyebrow="Conseil de Bord"
-        title="Le cœur vivant de TEMPOSYSTEM"
-        intro="Le Conseil ne présente pas seulement des rôles. Il montre une consultation, un consensus, une décision et la trace associée dans la mémoire."
+        title="Les décisions alimentent le cœur"
+        intro="Le Conseil ne présente pas seulement des rôles. Chaque question, consensus et décision devient une impulsion qui nourrit la mémoire et rayonne dans tout le système."
       >
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
           <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6 shadow-sm">
@@ -210,8 +211,8 @@ export function HomePage() {
       <Section
         id="decisions-architecture"
         eyebrow="Décisions d'Architecture (ADR)"
-        title="La mémoire transforme les décisions en infrastructure"
-        intro="Chaque décision structurante conserve son contexte, ses alternatives et ses conséquences pour que le système puisse évoluer sans perdre son histoire."
+        title="La mémoire stabilise l'énergie"
+        intro="Chaque décision structurante conserve son contexte, ses alternatives et ses conséquences. L'énergie de la conversation devient une trace durable."
         className="bg-white/[0.025]"
       >
         <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
@@ -244,7 +245,7 @@ export function HomePage() {
       <Section
         id="mana"
         eyebrow="Première application"
-        title="MANA, le premier terrain d'application"
+        title="MANA, premier terrain de l'énergie civique"
         className="bg-white/[0.025]"
       >
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -255,9 +256,9 @@ export function HomePage() {
               l'entraide et de la coopération territoriale.
             </p>
             <p className="mt-5 text-sm leading-6 text-slate-400">
-              MANA sert de premier cas d'usage sans enfermer TEMPOSYSTEM OS
-              dans un seul domaine. Le socle doit rester réutilisable pour
-              d'autres formes de coopération.
+              MANA sert de premier cas d'usage : transformer le temps donné,
+              l'entraide et les contributions locales en énergie visible,
+              mémorisée et gouvernable.
             </p>
           </div>
           <div className="grid gap-3">
@@ -277,8 +278,8 @@ export function HomePage() {
       <Section
         id="livre-de-bord"
         eyebrow="Livre de Bord"
-        title="Chronologie narrative"
-        intro="Les jalons racontent comment TEMPOSYSTEM devient une infrastructure vivante plutôt qu'une suite de pages."
+        title="L'énergie laisse une trace"
+        intro="Les jalons racontent comment TEMPOSYSTEM transforme le temps partagé en mémoire, en décisions et en énergie collective."
       >
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {narrativeMilestones.map((milestone) => (

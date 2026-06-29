@@ -7,7 +7,9 @@ const decisions = [
   "ADR-0005 - Équipage 2042",
   "ADR-0006 - Interface publique vivante",
   "ADR-0007 - Premier déploiement public",
-  "ADR-0008 - Le Cockpit comme interface principale",
+  "ADR-0008 - Interface principale vivante",
+  "ADR-0009 - Cortex vivant et énergie du Conseil",
+  "ADR-0010 - TEMPOSYSTEM is energy",
 ];
 
 export function DecisionsPage() {
@@ -15,8 +17,8 @@ export function DecisionsPage() {
     <main>
       <Section
         eyebrow="Décisions d'Architecture (ADR)"
-        title="Les décisions importantes doivent survivre aux conversations"
-        intro="Les Architecture Decision Records conservent le contexte, les alternatives et les conséquences des choix structurants."
+        title="Les décisions transforment l'énergie en mémoire"
+        intro="Les Architecture Decision Records conservent le contexte, les alternatives et les conséquences des choix structurants, afin que l'énergie des échanges ne disparaisse pas."
       >
         <div className="grid gap-4">
           {decisions.map((decision) => (
@@ -28,7 +30,8 @@ export function DecisionsPage() {
                 {decision}
               </h3>
               <p className="mt-2 text-sm leading-6 text-slate-400">
-                Décision conservée dans le registre ADR du journal de bord.
+                Décision conservée dans le registre ADR : une trace durable de
+                l'énergie de décision.
               </p>
             </article>
           ))}

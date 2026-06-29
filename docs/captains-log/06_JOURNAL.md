@@ -23,3 +23,5 @@ Launch 000 : préparation du premier déploiement public. TEMPOSYSTEM OS se pré
 Cockpit 001 : transformation de la page d'accueil en centre de commandement vivant. TEMPOSYSTEM OS expose désormais l'état de son infrastructure, une consultation simulée du Conseil, une décision associée à la mémoire ADR et une chronologie narrative.
 
 Cockpit 002 : ajout du Cortex vivant en SVG natif. Le Conseil reçoit un poste de contrôle dense avec flux, mémoire, ADR, état système et décision en cours, branché sur la configuration des agents, sans ajout de dépendance.
+
+TEMPOSYSTEM is energy : réorientation de l'interface publique autour d'un cœur énergétique. Le site doit évoquer une étoile cognitive alimentée par le temps partagé, les décisions, la mémoire et les flux de coopération.

@@ -1,6 +1,6 @@
 import { crewAgents } from "../config/agents";
 import type { Agent } from "../types";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 type CortexVisual = {
   x: number;
@@ -21,6 +21,8 @@ type CortexLink = {
 
 type SynapsePath = {
   id: string;
+  fromId: string;
+  toId: string;
   d: string;
   color: string;
   isFuture: boolean;
@@ -129,9 +131,9 @@ const systemRows = [
 ];
 
 const recentAdrs = [
-  ["ADR-0009", "Cortex SVG natif", "29/06/2026"],
-  ["ADR-0008", "Cockpit principal", "29/06/2026"],
-  ["ADR-0007", "Déploiement public", "28/06/2026"],
+  ["ADR-0010", "TEMPOSYSTEM is energy", "29/06/2026"],
+  ["ADR-0009", "Cortex énergétique", "29/06/2026"],
+  ["ADR-0008", "Interface vivante", "29/06/2026"],
 ];
 
 const networkStats = [
@@ -247,6 +249,8 @@ const synapsePaths: SynapsePath[] = cortexLinks.flatMap((link, linkIndex) => {
 
     return {
       id: `synapse-${link.from}-${link.to}-${index}`,
+      fromId: link.from,
+      toId: link.to,
       d: makePath(from, to, offset, curveBias),
       color: from.color,
       isFuture,
@@ -348,8 +352,20 @@ function HudPanel({
 }
 
 export function CortexMap() {
+  const [activeAgentId, setActiveAgentId] = useState<string | null>(null);
+  const activeSynapsePaths = activeAgentId
+    ? synapsePaths.filter(
+        (synapse) =>
+          synapse.fromId === activeAgentId || synapse.toId === activeAgentId,
+      )
+    : [];
+
   return (
-    <div className="overflow-hidden rounded-lg border border-white/10 bg-[#030712] shadow-2xl shadow-black/30">
+    <div
+      className={`cortex-energy-field overflow-hidden rounded-lg border border-white/10 bg-[#030712] shadow-2xl shadow-black/30 ${
+        activeAgentId ? "cortex-is-focused" : ""
+      }`}
+    >
       <div className="relative min-h-[760px] overflow-hidden bg-[#030712]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(214,180,106,0.16),transparent_32%),radial-gradient(circle_at_72%_48%,rgba(94,234,212,0.12),transparent_28%),radial-gradient(circle_at_28%_50%,rgba(192,132,252,0.13),transparent_30%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,7,18,0.2),rgba(3,7,18,0.92))]" />
@@ -363,7 +379,7 @@ export function CortexMap() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold uppercase text-slate-50">
-                    Conseil de Bord
+                    Énergie du Conseil
                   </p>
                   <p className="mt-1 text-xs leading-5 text-slate-400">
                     Session active · Depuis 00:28:47
@@ -378,7 +394,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Activité globale
+                Ondes globales
               </p>
               <svg className="mt-4 h-24 w-full" viewBox="0 0 260 96" aria-hidden="true">
                 <path d="M0 50 C24 12 46 80 70 42 S116 22 140 52 S188 78 214 35 S246 46 260 26" fill="none" stroke="#d6b46a" strokeWidth="1.5" opacity="0.82" />
@@ -391,7 +407,7 @@ export function CortexMap() {
             <HudPanel>
               <div className="flex items-center justify-between gap-4">
                 <p className="text-sm font-semibold uppercase text-slate-50">
-                  Flux de coopération
+                  Flux d'énergie
                 </p>
                 <span className="text-xs font-semibold text-emerald-300">
                   Élevée
@@ -404,7 +420,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Mémoire vive
+                Mémoire lumineuse
               </p>
               <div className="mt-4 flex items-end justify-between">
                 <span className="text-sm text-slate-400">Synapses actives</span>
@@ -416,7 +432,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                ADR récents
+                Traces ADR
               </p>
               <div className="mt-4 grid gap-3">
                 {recentAdrs.map(([id, title, date]) => (
@@ -508,6 +524,58 @@ export function CortexMap() {
                 <rect width="900" height="620" fill="#030712" />
                 <circle cx="450" cy="320" r="326" fill="url(#cortex-glow)" />
 
+                <g className="cognitive-space" aria-hidden="true">
+                  <ellipse
+                    className="energy-orbit-ring energy-orbit-ring-1"
+                    cx="450"
+                    cy="320"
+                    rx="322"
+                    ry="214"
+                    fill="none"
+                    stroke="#d6b46a"
+                    strokeOpacity="0.13"
+                    strokeWidth="0.8"
+                  />
+                  <ellipse
+                    className="energy-orbit-ring energy-orbit-ring-2"
+                    cx="450"
+                    cy="320"
+                    rx="274"
+                    ry="182"
+                    fill="none"
+                    stroke="#7dd3fc"
+                    strokeOpacity="0.11"
+                    strokeWidth="0.7"
+                  />
+                  <ellipse
+                    className="energy-orbit-ring energy-orbit-ring-3"
+                    cx="450"
+                    cy="320"
+                    rx="224"
+                    ry="150"
+                    fill="none"
+                    stroke="#f0a6d5"
+                    strokeOpacity="0.1"
+                    strokeWidth="0.7"
+                  />
+                  <path
+                    className="energy-nebula-line"
+                    d="M118 392 C236 270 336 350 454 238 S666 128 792 262"
+                    fill="none"
+                    stroke="#fff7cc"
+                    strokeOpacity="0.09"
+                    strokeWidth="0.7"
+                  />
+                  <path
+                    className="energy-nebula-line energy-nebula-line-2"
+                    d="M98 240 C230 110 350 232 478 178 S656 84 806 188"
+                    fill="none"
+                    stroke="#5eead4"
+                    strokeOpacity="0.08"
+                    strokeWidth="0.6"
+                  />
+                </g>
+
                 <g className="cortex-atmosphere" filter="url(#cortex-soft-glow)" opacity="0.82">
                   <path d="M64 365 C138 148 302 78 448 108 S728 204 814 334 S640 546 424 520 S40 492 64 365" fill="#1e40af" opacity="0.24" />
                   <path d="M132 136 C230 70 386 88 500 160 S698 188 752 302 S632 442 486 408 S268 474 172 354 S34 218 132 136" fill="#06b6d4" opacity="0.18" />
@@ -564,6 +632,7 @@ export function CortexMap() {
                   ))}
                 </g>
 
+                <g className="cognitive-system-orbit">
                 <g>
                   {synapsePaths.map((synapse) => (
                     <path
@@ -659,6 +728,24 @@ export function CortexMap() {
                         />
                       </circle>
                     ))}
+                </g>
+
+                {activeAgentId ? (
+                  <g className="cortex-convergence" filter="url(#cortex-photon-glow)">
+                    {activeSynapsePaths.map((synapse, index) => (
+                      <path
+                        key={`${synapse.id}-converge`}
+                        d={synapse.d}
+                        fill="none"
+                        stroke={synapse.color}
+                        strokeLinecap="round"
+                        strokeWidth={index % 2 === 0 ? 3.2 : 2.2}
+                        className="cortex-converge-flow"
+                        style={{ animationDelay: `${index * 0.08}s` }}
+                      />
+                    ))}
+                  </g>
+                ) : null}
                 </g>
 
                 <g className="core-scale">
@@ -794,13 +881,35 @@ export function CortexMap() {
                   </g>
                 </g>
 
-                {cortexNodes.map((agent) => (
-                  <g
-                    key={agent.id}
-                    transform={`translate(${agent.x} ${agent.y})`}
-                    className={agent.status === "future" ? "cortex-node-future" : "cortex-node"}
-                    filter={agent.status === "future" ? undefined : "url(#cortex-node-glow)"}
-                  >
+                <g className="cognitive-system-orbit">
+                {cortexNodes.map((agent) => {
+                  const isActive = activeAgentId === agent.id;
+                  const isDimmed = Boolean(activeAgentId && !isActive);
+
+                  return (
+                    <g
+                      key={agent.id}
+                      transform={`translate(${agent.x} ${agent.y})`}
+                      className={`${agent.status === "future" ? "cortex-node-future" : "cortex-node"} ${
+                        isActive ? "cortex-node-active" : ""
+                      } ${isDimmed ? "cortex-node-dimmed" : ""}`}
+                      filter={agent.status === "future" ? undefined : "url(#cortex-node-glow)"}
+                      role="img"
+                      aria-label={`${agent.name} : ${agent.subtitle}`}
+                      tabIndex={0}
+                      onMouseEnter={() => setActiveAgentId(agent.id)}
+                      onMouseLeave={() => setActiveAgentId(null)}
+                      onFocus={() => setActiveAgentId(agent.id)}
+                      onBlur={() => setActiveAgentId(null)}
+                    >
+                    <circle
+                      className="agent-orbit-aura"
+                      r={agent.status === "future" ? 42 : 68}
+                      fill="none"
+                      stroke={agent.color}
+                      strokeOpacity={agent.status === "future" ? 0.12 : 0.24}
+                      strokeWidth={agent.status === "future" ? 0.8 : 1.2}
+                    />
                     <circle r={agent.status === "future" ? 34 : 56} fill={agent.color} opacity={agent.status === "future" ? 0.07 : 0.16} />
                     <circle r={agent.status === "future" ? 25 : 39} fill="#030712" stroke={agent.color} strokeOpacity={agent.status === "future" ? 0.52 : 0.94} strokeWidth={agent.status === "future" ? 1.2 : 1.7} />
                     <circle r={agent.status === "future" ? 16 : 23} fill="none" stroke={agent.color} strokeOpacity={agent.status === "future" ? 0.24 : 0.48} strokeWidth="0.8" strokeDasharray="3 5" />
@@ -828,11 +937,13 @@ export function CortexMap() {
                       {agent.subtitle}
                     </text>
                   </g>
-                ))}
+                  );
+                })}
+                </g>
               </svg>
 
               <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-slate-950/70 px-3 py-1.5 text-xs font-medium uppercase text-slate-400 backdrop-blur">
-                TEMPOSYSTEM_CORE_CORTEX // DENSE_SVG_FLUX
+                TEMPOSYSTEM_IS_ENERGY // COGNITIVE_STAR
               </div>
 
             </div>
@@ -843,7 +954,7 @@ export function CortexMap() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold uppercase text-[#d6b46a]">
-                    Décision en cours
+                    Impulsion en cours
                   </p>
                   <p className="mt-3 text-sm leading-6 text-slate-100">
                     Quelle priorité pour le prochain jalon système ?
@@ -877,7 +988,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Flux en temps réel
+                Photons en circulation
               </p>
               <div className="mt-4 grid gap-3">
                 {fluxEvents.map((event) => (
@@ -907,7 +1018,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                État du système
+                État énergétique
               </p>
               <div className="mt-4 grid gap-2">
                 {systemRows.map(([label, state, color]) => (
@@ -930,7 +1041,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Réseaux connectés
+                Constellations reliées
               </p>
               <div className="mt-4 grid gap-2">
                 {networkStats.map(([label, value]) => (

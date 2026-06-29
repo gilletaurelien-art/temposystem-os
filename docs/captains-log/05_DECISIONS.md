@@ -75,3 +75,11 @@ TEMPOSYSTEM OS ajoute un premier poste de contrôle du Cortex vivant en SVG nati
 Cette décision permet de tester une interface dense, synaptique et instrumentée sans dépendance 3D, en conservant `src/config/agents.ts` comme source de vérité pour les rôles.
 
 - [ADR-0009 - Cockpit 002 : Cortex vivant et poste de contrôle SVG natif](./decisions/ADR-0009-cockpit-002-cortex-vivant-svg-natif.md)
+
+## 2026-06-29 - TEMPOSYSTEM is energy
+
+TEMPOSYSTEM OS adopte l'énergie comme métaphore publique principale.
+
+Le site doit présenter un cœur vivant alimenté par le temps partagé, les décisions, la mémoire et l'intelligence collective, plutôt qu'un dashboard classique.
+
+- [ADR-0010 - TEMPOSYSTEM is energy](./decisions/ADR-0010-temposystem-is-energy.md)

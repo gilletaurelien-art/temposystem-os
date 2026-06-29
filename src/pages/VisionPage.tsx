@@ -5,14 +5,14 @@ export function VisionPage() {
     <main>
       <Section
         eyebrow="Vision"
-        title="TEMPOSYSTEM OS n'est pas une application"
-        intro="C'est un système d'exploitation de la coopération entre humains et intelligences artificielles."
+        title="TEMPOSYSTEM est une énergie"
+        intro="Une énergie produite par le temps partagé, synchronisée par les intelligences et éclairée par les décisions."
       >
         <div className="grid gap-5 lg:grid-cols-3">
           {[
-            "Transformer les conversations en décisions traçables.",
-            "Préserver la mémoire comme actif stratégique.",
-            "Permettre à plusieurs applications de s'appuyer sur un même protocole de coopération.",
+            "Transformer les conversations en impulsions de décision traçables.",
+            "Préserver la mémoire pour que l'énergie collective ne se disperse pas.",
+            "Permettre à plusieurs applications de s'alimenter au même protocole de coopération.",
           ].map((item) => (
             <article
               key={item}

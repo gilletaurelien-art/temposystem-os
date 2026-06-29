@@ -14,8 +14,8 @@ export function ArchitecturePage() {
     <main>
       <Section
         eyebrow="Architecture"
-        title="Une architecture de coopération, pas un simple assistant"
-        intro="Le système sépare les fonctions permanentes, les implémentations IA, la mémoire durable et les applications construites dessus."
+        title="Une architecture pour faire circuler l'énergie"
+        intro="Le système sépare les fonctions permanentes, les implémentations IA, la mémoire durable et les applications afin que l'énergie collective reste lisible et gouvernable."
       >
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {layers.map((layer) => (
@@ -25,8 +25,8 @@ export function ArchitecturePage() {
             >
               <h3 className="text-xl font-semibold text-slate-50">{layer}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                Couche stable de TEMPOSYSTEM OS, documentée dans le journal de
-                bord et extensible sans connexion externe dans le MVP.
+                Couche stable de TEMPOSYSTEM OS : elle capte, oriente ou
+                mémorise une part de l'énergie produite par la coopération.
               </p>
             </article>
           ))}

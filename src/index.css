@@ -49,6 +49,29 @@ input {
   animation: pulse-cortex 7.8s ease-in-out infinite;
 }
 
+.cognitive-space {
+  animation: cognitive-space-breathe 18s ease-in-out infinite;
+}
+
+.energy-orbit-ring {
+  transform-box: view-box;
+  transform-origin: 450px 320px;
+}
+
+.energy-nebula-line {
+  animation: nebula-impulse 14s ease-in-out infinite;
+  stroke-dasharray: 12 52;
+}
+
+.energy-nebula-line-2 {
+  animation-delay: 4.8s;
+}
+
+.cognitive-system-orbit {
+  transform-box: view-box;
+  transform-origin: 450px 320px;
+}
+
 .core-scale,
 .core-overdrive,
 .core-pulsar {
@@ -57,7 +80,7 @@ input {
 }
 
 .core-scale {
-  transform: scale(1.62);
+  transform: scale(0.81);
 }
 
 .core-pulsar {
@@ -209,10 +232,48 @@ input {
 
 .cortex-node {
   animation: cortex-breathe 4.4s ease-in-out infinite;
+  cursor: pointer;
+  transition: opacity 220ms ease, filter 220ms ease;
 }
 
 .cortex-node-future {
   opacity: 0.72;
+}
+
+.cortex-node-active {
+  filter: drop-shadow(0 0 18px currentColor);
+  opacity: 1;
+}
+
+.cortex-node-dimmed {
+  opacity: 0.46;
+}
+
+.agent-orbit-aura {
+  animation: agent-orbit-aura 8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.cortex-node-active .agent-orbit-aura {
+  animation-duration: 2.4s;
+  stroke-opacity: 0.72;
+  stroke-width: 2;
+}
+
+.cortex-is-focused .core-overdrive {
+  animation-duration: 8.8s;
+}
+
+.cortex-is-focused .core-solar-aura {
+  opacity: 0.78;
+}
+
+.cortex-converge-flow {
+  animation: cortex-converge-flow 1.25s ease-in-out infinite;
+  opacity: 0;
+  stroke-dasharray: 18 66;
+  stroke-dashoffset: 90;
 }
 
 .cortex-label {
@@ -241,6 +302,30 @@ input {
 
   68% {
     opacity: 0.86;
+  }
+}
+
+@keyframes cognitive-space-breathe {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes nebula-impulse {
+  0%,
+  100% {
+    opacity: 0.28;
+    stroke-dashoffset: 80;
+  }
+
+  46% {
+    opacity: 0.92;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -382,6 +467,22 @@ input {
   93% {
     filter: brightness(1.14) saturate(1.04) drop-shadow(0 0 8px rgb(250 204 21 / 0.22));
     transform: scale(1.12);
+  }
+}
+
+@keyframes cortex-converge-flow {
+  0% {
+    opacity: 0.18;
+    stroke-dashoffset: 96;
+  }
+
+  38% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0.18;
+    stroke-dashoffset: 0;
   }
 }
 
@@ -600,10 +701,27 @@ input {
   }
 }
 
+@keyframes agent-orbit-aura {
+  0%,
+  100% {
+    opacity: 0.56;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cortex-flow,
   .cortex-photon,
   .cortex-atmosphere,
+  .cognitive-space,
+  .energy-orbit-ring,
+  .energy-nebula-line,
+  .cognitive-system-orbit,
   .core-pulsar,
   .core-overdrive,
   .core-self-rotor,
@@ -618,7 +736,9 @@ input {
   .solar-spark,
   .core-filaments line,
   .cortex-spark,
-  .cortex-node {
+  .cortex-node,
+  .agent-orbit-aura,
+  .cortex-converge-flow {
     animation: none;
   }
 
