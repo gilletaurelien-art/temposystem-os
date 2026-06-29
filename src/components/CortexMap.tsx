@@ -32,6 +32,21 @@ type SynapsePath = {
   duration: number;
 };
 
+type OrbitEnergyPath = {
+  id: string;
+  agentId: string;
+  d: string;
+  color: string;
+  delay: number;
+  duration: number;
+  width: number;
+};
+
+const CORE_CENTER = {
+  x: 450,
+  y: 320,
+};
+
 const cortexVisuals: Record<string, CortexVisual> = {
   captain: {
     x: 450,
@@ -231,6 +246,30 @@ const makePath = (
   return `M ${from.x} ${from.y} C ${midX} ${midY}, ${pullX} ${pullY}, ${to.x} ${to.y}`;
 };
 
+const makeOrbitEnergyPath = (
+  agent: CortexNode,
+  offset: number,
+  bend: number,
+) => {
+  const dx = CORE_CENTER.x - agent.x;
+  const dy = CORE_CENTER.y - agent.y;
+  const length = Math.max(Math.hypot(dx, dy), 1);
+  const unitX = dx / length;
+  const unitY = dy / length;
+  const normalX = -unitY * offset;
+  const normalY = unitX * offset;
+  const startX = agent.x + unitX * 62 + normalX;
+  const startY = agent.y + unitY * 62 + normalY;
+  const endX = CORE_CENTER.x - unitX * 52 + normalX * 0.16;
+  const endY = CORE_CENTER.y - unitY * 52 + normalY * 0.16;
+  const control1X = agent.x + unitX * length * 0.38 + normalX * 1.8 + unitY * bend;
+  const control1Y = agent.y + unitY * length * 0.38 + normalY * 1.8 - unitX * bend;
+  const control2X = agent.x + unitX * length * 0.74 - normalX * 0.62 - unitY * bend * 0.4;
+  const control2Y = agent.y + unitY * length * 0.74 - normalY * 0.62 + unitX * bend * 0.4;
+
+  return `M ${startX} ${startY} C ${control1X} ${control1Y}, ${control2X} ${control2Y}, ${endX} ${endY}`;
+};
+
 const synapsePaths: SynapsePath[] = cortexLinks.flatMap((link, linkIndex) => {
   const from = nodeById.get(link.from);
   const to = nodeById.get(link.to);
@@ -261,6 +300,24 @@ const synapsePaths: SynapsePath[] = cortexLinks.flatMap((link, linkIndex) => {
     };
   });
 });
+
+const orbitEnergyOffsets = [-22, -8, 8, 22];
+
+const orbitEnergyPaths: OrbitEnergyPath[] = cortexNodes.flatMap((agent, agentIndex) =>
+  orbitEnergyOffsets.map((offset, laneIndex) => ({
+    id: `orbit-feed-${agent.id}-${laneIndex}`,
+    agentId: agent.id,
+    d: makeOrbitEnergyPath(
+      agent,
+      offset,
+      (agentIndex % 2 === 0 ? 1 : -1) * (12 + laneIndex * 4),
+    ),
+    color: agent.color,
+    delay: (agentIndex * 1.37 + laneIndex * 0.43) % 6.4,
+    duration: 0.82 + ((agentIndex + laneIndex) % 4) * 0.18,
+    width: laneIndex % 2 === 0 ? 1.4 : 0.95,
+  })),
+);
 
 const statusLabel = (agent: Agent) =>
   agent.status === "active"
@@ -746,6 +803,126 @@ export function CortexMap() {
                     ))}
                   </g>
                 ) : null}
+                </g>
+
+                <g
+                  className="orbit-energy-system"
+                  filter="url(#cortex-photon-glow)"
+                  aria-hidden="true"
+                >
+                  <g className="orbit-feed-threads">
+                    {orbitEnergyPaths.map((feed) => (
+                      <path
+                        key={`${feed.id}-thread`}
+                        d={feed.d}
+                        fill="none"
+                        stroke={feed.color}
+                        strokeLinecap="round"
+                        strokeOpacity="0.11"
+                        strokeWidth="0.72"
+                      />
+                    ))}
+                  </g>
+
+                  <g className="orbit-feed-independent">
+                    {orbitEnergyPaths.map((feed, index) => (
+                      <path
+                        key={`${feed.id}-wave`}
+                        d={feed.d}
+                        fill="none"
+                        stroke="#f8fafc"
+                        strokeLinecap="round"
+                        strokeWidth={feed.width}
+                        className={`orbit-feed-wave orbit-feed-wave-${index % 3}`}
+                        style={{
+                          animationDelay: `${feed.delay}s`,
+                          animationDuration: `${feed.duration}s`,
+                        }}
+                      />
+                    ))}
+                  </g>
+
+                  <g className="orbit-feed-bursts">
+                    {orbitEnergyPaths.map((feed, index) => (
+                      <path
+                        key={`${feed.id}-burst`}
+                        d={feed.d}
+                        fill="none"
+                        stroke={index % 2 === 0 ? "#ffffff" : "#fff7cc"}
+                        strokeLinecap="round"
+                        strokeWidth={index % 2 === 0 ? 4.2 : 2.8}
+                        className="orbit-feed-burst"
+                        style={{ animationDelay: `${(index % 4) * 0.025}s` }}
+                      />
+                    ))}
+                  </g>
+
+                  <g className="orbit-feed-particles">
+                    {orbitEnergyPaths.flatMap((feed, index) =>
+                      [0, 1].map((packet) => {
+                        const duration = feed.duration + packet * 0.24;
+                        const begin = feed.delay + packet * 0.31 + (index % 3) * 0.08;
+
+                        return (
+                          <circle
+                            key={`${feed.id}-particle-${packet}`}
+                            className="orbit-feed-particle"
+                            r={packet === 0 ? 2.2 : 1.35}
+                            fill={packet === 0 ? "#ffffff" : "#fff7cc"}
+                          >
+                            <animateMotion
+                              dur={`${duration}s`}
+                              begin={`${begin}s`}
+                              repeatCount="indefinite"
+                              path={feed.d}
+                            />
+                            <animate
+                              attributeName="opacity"
+                              values="0;0.92;0.28;0"
+                              keyTimes="0;0.18;0.62;1"
+                              dur={`${duration}s`}
+                              begin={`${begin}s`}
+                              repeatCount="indefinite"
+                            />
+                          </circle>
+                        );
+                      }),
+                    )}
+                  </g>
+
+                  <g className="orbit-feed-burst-particles">
+                    {orbitEnergyPaths.map((feed, index) => (
+                      <circle
+                        key={`${feed.id}-burst-particle`}
+                        className="orbit-feed-burst-particle"
+                        r={index % 2 === 0 ? 2.8 : 2.1}
+                        fill="#ffffff"
+                      >
+                        <animateMotion
+                          dur="11.9s"
+                          repeatCount="indefinite"
+                          path={feed.d}
+                          keyPoints="0;0;1;1"
+                          keyTimes="0;0.7;0.82;1"
+                          calcMode="linear"
+                        />
+                        <animate
+                          attributeName="opacity"
+                          values="0;0;1;0.72;0"
+                          keyTimes="0;0.68;0.73;0.82;1"
+                          dur="11.9s"
+                          repeatCount="indefinite"
+                        />
+                        <animate
+                          attributeName="r"
+                          values="1;1;3.4;2.2;1"
+                          keyTimes="0;0.68;0.73;0.82;1"
+                          dur="11.9s"
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+                    ))}
+                  </g>
                 </g>
 
                 <g className="core-scale">

@@ -276,6 +276,44 @@ input {
   stroke-dashoffset: 90;
 }
 
+.orbit-feed-wave {
+  animation-name: orbit-feed-wave;
+  animation-timing-function: cubic-bezier(0.12, 0.72, 0.18, 1);
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.86));
+  opacity: 0;
+  stroke-dasharray: 0.5 34 18 118;
+  stroke-dashoffset: 178;
+}
+
+.orbit-feed-wave-1 {
+  stroke-dasharray: 0.5 22 12 96;
+}
+
+.orbit-feed-wave-2 {
+  stroke-dasharray: 0.5 42 24 132;
+}
+
+.orbit-feed-burst {
+  animation: orbit-feed-burst 11.9s cubic-bezier(0.18, 0.78, 0.16, 1) infinite;
+  filter: drop-shadow(0 0 12px rgb(255 255 255 / 0.94))
+    drop-shadow(0 0 24px rgb(250 204 21 / 0.62));
+  opacity: 0;
+  stroke-dasharray: 3 18 18 34 28 84;
+  stroke-dashoffset: 228;
+}
+
+.orbit-feed-particle {
+  filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.92));
+  opacity: 0;
+}
+
+.orbit-feed-burst-particle {
+  filter: drop-shadow(0 0 10px rgb(255 255 255 / 1))
+    drop-shadow(0 0 22px rgb(250 204 21 / 0.82));
+  opacity: 0;
+}
+
 .cortex-label {
   filter: drop-shadow(0 2px 8px rgb(2 6 23 / 0.94));
 }
@@ -483,6 +521,59 @@ input {
   100% {
     opacity: 0.18;
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes orbit-feed-wave {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 188;
+  }
+
+  12% {
+    opacity: 0.9;
+  }
+
+  46% {
+    opacity: 0.66;
+  }
+
+  74% {
+    opacity: 0.18;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes orbit-feed-burst {
+  0%,
+  68%,
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 250;
+  }
+
+  70% {
+    opacity: 0.22;
+    stroke-dashoffset: 218;
+  }
+
+  73% {
+    opacity: 1;
+    stroke-dashoffset: 132;
+  }
+
+  78% {
+    opacity: 0.96;
+    stroke-dashoffset: 44;
+  }
+
+  84% {
+    opacity: 0.34;
+    stroke-dashoffset: -18;
   }
 }
 
@@ -738,12 +829,16 @@ input {
   .cortex-spark,
   .cortex-node,
   .agent-orbit-aura,
-  .cortex-converge-flow {
+  .cortex-converge-flow,
+  .orbit-feed-wave,
+  .orbit-feed-burst {
     animation: none;
   }
 
   .cortex-photon,
-  .cortex-spark {
+  .cortex-spark,
+  .orbit-feed-particle,
+  .orbit-feed-burst-particle {
     display: none;
   }
 }
