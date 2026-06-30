@@ -28,15 +28,13 @@ export function Section({
       >
         <div className="mb-8 max-w-3xl">
           {eyebrow ? (
-            <p className="text-sm font-semibold uppercase text-[#d6b46a]">
-              {eyebrow}
-            </p>
+            <p className="os-eyebrow">{eyebrow}</p>
           ) : null}
-          <h2 className="mt-3 text-2xl font-semibold text-slate-50 sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-bold text-white/92 sm:text-3xl" style={{ fontFamily: "'Philosopher', serif" }}>
             {title}
           </h2>
           {intro ? (
-            <p className="mt-4 text-base leading-7 text-slate-300">{intro}</p>
+            <p className="mt-4 text-sm leading-7 text-slate-400">{intro}</p>
           ) : null}
         </div>
         {children}
