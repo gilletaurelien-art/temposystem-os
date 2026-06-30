@@ -27,7 +27,12 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
 
       {/* Header */}
       <header className="os-header">
-        <a href="#/" className="os-brand">
+        <a href="#/" className="os-brand flex items-center gap-3">
+          <img
+            src="/assets/temposystem-butterfly.png"
+            alt="TEMPOSYSTEM"
+            style={{ width: 32, height: 32, objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(139,92,246,0.7))' }}
+          />
           TEMPOSYSTEM OS
         </a>
         <nav className="flex flex-wrap gap-1">
