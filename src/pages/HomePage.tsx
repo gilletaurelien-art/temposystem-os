@@ -28,15 +28,7 @@ const boardRoles = boardRoleIds
 export function HomePage() {
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-white/10">
-        <img
-          src="/assets/temposystem-hero.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#050914]/55" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050914_0%,rgba(5,9,20,0.82)_38%,rgba(5,9,20,0.22)_100%)]" />
+      <section className="relative border-b border-white/10">
 
         <div className="relative mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl items-center px-5 py-20 sm:px-8 lg:px-10">
           <div className="max-w-4xl">
@@ -80,17 +72,6 @@ export function HomePage() {
       </section>
 
       <Section
-        id="cortex-vivant"
-        eyebrow="TEMPOSYSTEM IS ENERGY"
-        title="Le cœur énergétique de l'intelligence collective"
-        intro="Le Conseil n'est plus un tableau de bord. Il devient un système solaire cognitif : un cœur vivant alimenté par les échanges, la mémoire, les signaux et les consensus."
-        className="bg-[#030711]"
-        wide
-      >
-        <CortexMap />
-      </Section>
-
-      <Section
         id="pourquoi"
         eyebrow="Pourquoi TEMPOSYSTEM ?"
         title="Transformer le temps partagé en énergie collective"
@@ -112,6 +93,17 @@ export function HomePage() {
             intelligences artificielles.
           </p>
         </div>
+      </Section>
+
+      <Section
+        id="cortex-vivant"
+        eyebrow="TEMPOSYSTEM IS ENERGY"
+        title="Le cœur énergétique de l'intelligence collective"
+        intro="Le Conseil n'est plus un tableau de bord. Il devient un système solaire cognitif : un cœur vivant alimenté par les échanges, la mémoire, les signaux et les consensus."
+        className="bg-[#030711]"
+        wide
+      >
+        <CortexMap />
       </Section>
 
       <Section
