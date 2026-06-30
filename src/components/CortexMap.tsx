@@ -507,7 +507,22 @@ export function CortexMap() {
           </aside>
 
           <div className="order-1 min-w-0 lg:order-none">
-            <div className="relative min-h-[620px] overflow-hidden rounded-xl border border-white/10 bg-slate-950/25">
+            <div className="relative min-h-[620px] overflow-hidden rounded-xl border border-white/10 bg-[#030712]">
+              <img
+                src="/assets/temposystem-butterfly-transparent.png"
+                className="absolute inset-0 m-auto h-[88%] w-auto object-contain pointer-events-none select-none"
+                aria-hidden="true"
+                alt=""
+                style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  opacity: 0.42,
+                  filter:
+                    'drop-shadow(0 0 18px rgba(99,102,241,0.95)) drop-shadow(0 0 48px rgba(139,92,246,0.8)) drop-shadow(0 0 96px rgba(59,130,246,0.55)) drop-shadow(0 0 180px rgba(168,85,247,0.35))',
+                  animation: 'osButterfly 7s ease-in-out infinite',
+                }}
+              />
               <svg
                 className="absolute inset-0 h-full w-full"
                 viewBox="0 0 900 620"
@@ -578,7 +593,7 @@ export function CortexMap() {
                   </filter>
                 </defs>
 
-                <rect width="900" height="620" fill="#030712" />
+                <rect width="900" height="620" fill="#030712" opacity="0.55" />
                 <circle cx="450" cy="320" r="326" fill="url(#cortex-glow)" />
 
                 <g className="cognitive-space" aria-hidden="true">
