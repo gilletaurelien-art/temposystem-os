@@ -222,10 +222,6 @@ h1, h2, h3 {
   transform-origin: center;
 }
 
-.cortex-atmosphere {
-  animation: pulse-cortex 7.8s ease-in-out infinite;
-}
-
 .cognitive-space {
   animation: cognitive-space-breathe 18s ease-in-out infinite;
 }
@@ -233,15 +229,6 @@ h1, h2, h3 {
 .energy-orbit-ring {
   transform-box: view-box;
   transform-origin: 450px 320px;
-}
-
-.energy-nebula-line {
-  animation: nebula-impulse 14s ease-in-out infinite;
-  stroke-dasharray: 12 52;
-}
-
-.energy-nebula-line-2 {
-  animation-delay: 4.8s;
 }
 
 .cognitive-system-orbit {
@@ -505,21 +492,6 @@ h1, h2, h3 {
   }
 }
 
-@keyframes pulse-cortex {
-  0%,
-  100% {
-    opacity: 0.72;
-  }
-
-  42% {
-    opacity: 1;
-  }
-
-  68% {
-    opacity: 0.86;
-  }
-}
-
 @keyframes cognitive-space-breathe {
   0%,
   100% {
@@ -528,19 +500,6 @@ h1, h2, h3 {
 
   50% {
     opacity: 1;
-  }
-}
-
-@keyframes nebula-impulse {
-  0%,
-  100% {
-    opacity: 0.28;
-    stroke-dashoffset: 80;
-  }
-
-  46% {
-    opacity: 0.92;
-    stroke-dashoffset: 0;
   }
 }
 
@@ -985,10 +944,8 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   .cortex-flow,
   .cortex-photon,
-  .cortex-atmosphere,
   .cognitive-space,
   .energy-orbit-ring,
-  .energy-nebula-line,
   .cognitive-system-orbit,
   .core-pulsar,
   .core-overdrive,
@@ -1003,7 +960,6 @@ h1, h2, h3 {
   .solar-spiral,
   .solar-spark,
   .core-filaments line,
-  .cortex-spark,
   .cortex-node,
   .agent-orbit-aura,
   .cortex-converge-flow,
@@ -1013,7 +969,6 @@ h1, h2, h3 {
   }
 
   .cortex-photon,
-  .cortex-spark,
   .orbit-feed-particle,
   .orbit-feed-burst-particle {
     display: none;

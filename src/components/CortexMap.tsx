@@ -6,8 +6,20 @@ type CortexVisual = {
   x: number;
   y: number;
   color: string;
-  glyph: "vision" | "anchor" | "structure" | "shield" | "prism";
+  glyph:
+    | "vision"
+    | "helm"
+    | "structure"
+    | "shield"
+    | "prism"
+    | "map"
+    | "horizon"
+    | "ethics"
+    | "message";
   labelY: number;
+  roleLabel: string;
+  crewLabel: string;
+  mission: string;
   subtitle: string;
 };
 
@@ -50,64 +62,139 @@ const CORE_CENTER = {
 const cortexVisuals: Record<string, CortexVisual> = {
   captain: {
     x: 450,
-    y: 64,
+    y: 74,
     color: "#818cf8",
     glyph: "vision",
-    labelY: 68,
-    subtitle: "Vision & arbitrage",
+    labelY: 78,
+    roleLabel: "Vision",
+    crewLabel: "Capitaine",
+    mission: "Porte la vision et fixe le cap.",
+    subtitle: "Capitaine",
+  },
+  helmsman: {
+    x: 649,
+    y: 132,
+    color: "#5eead4",
+    glyph: "helm",
+    labelY: 74,
+    roleLabel: "Cohérence",
+    crewLabel: "Timonnier",
+    mission:
+      "Veille à la cohérence de l'ensemble et aide à garder le cap malgré les tempêtes.",
+    subtitle: "Timonnier",
   },
   "master-illuminator": {
-    x: 704,
-    y: 250,
+    x: 755,
+    y: 277,
     color: "#7dd3fc",
     glyph: "prism",
-    labelY: 70,
-    subtitle: "Perception & expérience",
+    labelY: 74,
+    roleLabel: "Graphisme",
+    crewLabel: "Enlumineur",
+    mission:
+      "Donne une identité visuelle au projet, rend les idées lisibles, inspirantes et accessibles.",
+    subtitle: "Enlumineur",
   },
-  quartermaster: {
-    x: 607,
-    y: 534,
-    color: "#f0a6d5",
-    glyph: "anchor",
-    labelY: -70,
-    subtitle: "Mémoire & cohérence",
-  },
-  "master-caulker": {
-    x: 293,
-    y: 534,
-    color: "#a78bfa",
-    glyph: "shield",
-    labelY: -70,
-    subtitle: "Sécurité & fiabilité",
+  ambassador: {
+    x: 718,
+    y: 443,
+    color: "#38bdf8",
+    glyph: "message",
+    labelY: -78,
+    roleLabel: "Communication",
+    crewLabel: "Messager",
+    mission:
+      "Fait circuler les idées, relie les intelligences et facilite le dialogue entre les humains, les territoires et les agents.",
+    subtitle: "Messager",
   },
   "master-carpenter": {
-    x: 196,
-    y: 250,
+    x: 556,
+    y: 551,
     color: "#c084fc",
     glyph: "structure",
-    labelY: 70,
-    subtitle: "Structure & code",
+    labelY: -78,
+    roleLabel: "Construction",
+    crewLabel: "Charpentier",
+    mission:
+      "Conçoit, construit et fait évoluer l'infrastructure pour qu'elle traverse les décennies.",
+    subtitle: "Charpentier",
+  },
+  "master-caulker": {
+    x: 344,
+    y: 551,
+    color: "#f59e0b",
+    glyph: "shield",
+    labelY: -78,
+    roleLabel: "Protection",
+    crewLabel: "Calfat",
+    mission:
+      "Protège, répare, audite et renforce le système avant que les failles n'apparaissent.",
+    subtitle: "Calfat",
+  },
+  chancellor: {
+    x: 182,
+    y: 443,
+    color: "#f472b6",
+    glyph: "ethics",
+    labelY: -78,
+    roleLabel: "Éthique",
+    crewLabel: "Gardien",
+    mission:
+      "Veille au respect des principes fondateurs et questionne les décisions pour préserver le sens du projet.",
+    subtitle: "Gardien",
+  },
+  cartographer: {
+    x: 145,
+    y: 277,
+    color: "#a3e635",
+    glyph: "map",
+    labelY: 74,
+    roleLabel: "Connaissance",
+    crewLabel: "Cartographe",
+    mission:
+      "Observe, documente et relie les connaissances afin de construire la mémoire du TempoSystem.",
+    subtitle: "Cartographe",
+  },
+  lookout: {
+    x: 251,
+    y: 132,
+    color: "#fb7185",
+    glyph: "horizon",
+    labelY: 74,
+    roleLabel: "Anticipation",
+    crewLabel: "Vigie",
+    mission:
+      "Observe l'horizon, détecte les évolutions, les risques et les opportunités.",
+    subtitle: "Vigie",
   },
 };
 
 const cortexLinks: CortexLink[] = [
-  { from: "captain", to: "quartermaster", strength: 11 },
-  { from: "quartermaster", to: "master-carpenter", strength: 11 },
-  { from: "master-carpenter", to: "master-illuminator", strength: 11 },
-  { from: "master-illuminator", to: "master-caulker", strength: 11 },
-  { from: "master-caulker", to: "captain", strength: 11 },
-  { from: "captain", to: "master-carpenter", strength: 10 },
-  { from: "captain", to: "master-illuminator", strength: 10 },
-  { from: "master-carpenter", to: "master-caulker", strength: 10 },
-  { from: "master-caulker", to: "quartermaster", strength: 10 },
-  { from: "quartermaster", to: "master-illuminator", strength: 10 },
+  { from: "captain", to: "helmsman", strength: 9 },
+  { from: "helmsman", to: "master-illuminator", strength: 9 },
+  { from: "master-illuminator", to: "ambassador", strength: 9 },
+  { from: "ambassador", to: "master-carpenter", strength: 9 },
+  { from: "master-carpenter", to: "master-caulker", strength: 9 },
+  { from: "master-caulker", to: "chancellor", strength: 9 },
+  { from: "chancellor", to: "cartographer", strength: 9 },
+  { from: "cartographer", to: "lookout", strength: 9 },
+  { from: "lookout", to: "captain", strength: 9 },
+  { from: "captain", to: "master-carpenter", strength: 7 },
+  { from: "captain", to: "chancellor", strength: 7 },
+  { from: "helmsman", to: "master-caulker", strength: 7 },
+  { from: "helmsman", to: "cartographer", strength: 7 },
+  { from: "master-illuminator", to: "cartographer", strength: 7 },
+  { from: "ambassador", to: "lookout", strength: 7 },
+  { from: "master-carpenter", to: "cartographer", strength: 7 },
+  { from: "master-caulker", to: "ambassador", strength: 7 },
+  { from: "chancellor", to: "ambassador", strength: 7 },
 ];
 
 const fluxEvents = [
   {
     color: "#5eead4",
-    label: "Timonier -> Capitaine",
-    detail: "Proposition de séquence",
+    label: "Timonnier -> Capitaine",
+    detail: "Cohérence du cap",
     time: "14:31:58",
   },
   {
@@ -117,9 +204,9 @@ const fluxEvents = [
     time: "14:31:56",
   },
   {
-    color: "#f0a6d5",
-    label: "Quartier-Maître -> Tous",
-    detail: "Rappel mémoire ADR-0009",
+    color: "#a3e635",
+    label: "Cartographe -> Tous",
+    detail: "Mémoire TempoSystem",
     time: "14:31:54",
   },
   {
@@ -153,9 +240,21 @@ const recentAdrs = [
 
 const networkStats = [
   ["Humains", "12"],
-  ["IA actives", "6"],
+  ["Orbites", "9"],
   ["Projets", "4"],
   ["Territoires", "2"],
+];
+
+const energyOrbitRings = [
+  { rx: 334, ry: 222, color: "#d6b46a" },
+  { rx: 310, ry: 206, color: "#5eead4" },
+  { rx: 286, ry: 190, color: "#7dd3fc" },
+  { rx: 262, ry: 174, color: "#38bdf8" },
+  { rx: 238, ry: 158, color: "#c084fc" },
+  { rx: 214, ry: 142, color: "#f59e0b" },
+  { rx: 190, ry: 126, color: "#f472b6" },
+  { rx: 166, ry: 110, color: "#a3e635" },
+  { rx: 142, ry: 94, color: "#fb7185" },
 ];
 
 const cortexAgentIds = Object.keys(cortexVisuals);
@@ -176,57 +275,26 @@ const cortexNodes = cortexAgentIds
   })
   .filter((node): node is CortexNode => Boolean(node));
 
+const cortexLegendOrder = [
+  "captain",
+  "helmsman",
+  "master-carpenter",
+  "master-caulker",
+  "master-illuminator",
+  "cartographer",
+  "lookout",
+  "chancellor",
+  "ambassador",
+];
+
+const cortexLegendRows = cortexLegendOrder
+  .map((id) => cortexNodes.find((node) => node.id === id))
+  .filter((node): node is CortexNode => Boolean(node));
+
 const nodeById = new Map(cortexNodes.map((node) => [node.id, node]));
 
 const bundleOffsets = [-72, -54, -38, -24, -12, 0, 12, 24, 38, 54, 72];
 const motionDurations = [1.2, 3.7, 0.8, 5.4, 2.6, 4.9, 1.6, 6.1, 2.1, 3.3, 0.95, 4.2];
-const pulseDurations = [6.8, 8.4, 5.6, 7.7, 9.1, 6.2];
-
-const tissuePaths = [
-  "M64 365 C138 148 302 78 448 108 S728 204 814 334 S640 546 424 520 S40 492 64 365",
-  "M132 136 C230 70 386 88 500 160 S698 188 752 302 S632 442 486 408 S268 474 172 354 S34 218 132 136",
-  "M118 408 C216 258 330 346 440 250 S676 132 786 256 S678 528 490 492 S232 540 118 408",
-  "M92 248 C192 88 330 212 458 172 S616 82 780 188 S716 388 548 344 S248 436 92 248",
-  "M196 96 C320 34 442 76 540 170 S692 338 572 434 S260 414 206 278 S94 148 196 96",
-  "M210 484 C298 374 406 436 500 350 S620 254 750 370 S594 550 408 526 S122 548 210 484",
-];
-
-const sparkColors = ["#818cf8", "#5eead4", "#7dd3fc", "#c084fc", "#f0a6d5", "#a78bfa"];
-
-const backgroundSynapses = Array.from({ length: 120 }, (_, index) => {
-  const startAngle = index * 1.714;
-  const endAngle = startAngle + 1.18 + (index % 5) * 0.23;
-  const startRadius = 72 + ((index * 37) % 308);
-  const endRadius = 88 + ((index * 53) % 286);
-  const startX = 450 + Math.cos(startAngle) * startRadius * 1.18;
-  const startY = 320 + Math.sin(startAngle) * startRadius * 0.72;
-  const endX = 450 + Math.cos(endAngle) * endRadius * 1.18;
-  const endY = 320 + Math.sin(endAngle) * endRadius * 0.72;
-  const controlX = 450 + Math.cos(startAngle + 0.72) * (120 + (index % 9) * 19);
-  const controlY = 320 + Math.sin(endAngle - 0.48) * (66 + (index % 7) * 15);
-
-  return {
-    d: `M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`,
-    color: sparkColors[index % sparkColors.length],
-    opacity: 0.045 + (index % 6) * 0.012,
-    width: index % 8 === 0 ? 0.74 : 0.42,
-  };
-});
-
-const cortexSparks = Array.from({ length: 260 }, (_, index) => {
-  const angle = index * 2.399963;
-  const radius = 52 + ((index * 29) % 286);
-  const stretch = index % 3 === 0 ? 1.34 : 1;
-
-  return {
-    x: 450 + Math.cos(angle) * radius * stretch,
-    y: 320 + Math.sin(angle) * radius * 0.72,
-    r: index % 9 === 0 ? 2 : index % 5 === 0 ? 1.45 : 0.9,
-    color: sparkColors[index % sparkColors.length],
-    opacity: 0.18 + (index % 7) * 0.055,
-  };
-});
-
 const makePath = (
   from: CortexNode,
   to: CortexNode,
@@ -278,7 +346,7 @@ const synapsePaths: SynapsePath[] = cortexLinks.flatMap((link, linkIndex) => {
     return [];
   }
 
-  const isFuture = from.status === "future" || to.status === "future";
+  const isFuture = false;
   const pathCount = Math.min(Math.max(link.strength, 6), bundleOffsets.length);
   const start = Math.floor((bundleOffsets.length - pathCount) / 2);
 
@@ -341,13 +409,13 @@ function CortexGlyph({ agent }: { agent: CortexNode }) {
     );
   }
 
-  if (agent.glyph === "anchor") {
+  if (agent.glyph === "helm") {
     return (
       <g stroke={agent.color} strokeWidth={1.5} opacity={opacity}>
-        <circle cx="0" cy="-18" r="5" fill="none" />
-        <path d="M 0 -13 V 17 M -15 -2 H 15" />
-        <path d="M -21 9 C -17 24 17 24 21 9" fill="none" />
-        <path d="M -21 9 L -14 8 M 21 9 L 14 8" />
+        <circle cx="0" cy="0" r="21" fill="none" />
+        <circle cx="0" cy="0" r="7" fill="none" opacity="0.72" />
+        <path d="M 0 -26 V -14 M 0 14 V 26 M -26 0 H -14 M 14 0 H 26" />
+        <path d="M -18 -18 L -10 -10 M 18 -18 L 10 -10 M -18 18 L -10 10 M 18 18 L 10 10" />
       </g>
     );
   }
@@ -381,6 +449,53 @@ function CortexGlyph({ agent }: { agent: CortexNode }) {
         <path d="M -16 -10 L 16 10 M -16 10 L 16 -10" />
         <path d="M -4 -17 L 4 17 M -23 0 H 23" opacity="0.58" />
         <circle cx="0" cy="0" r="4" fill="none" />
+      </g>
+    );
+  }
+
+  if (agent.glyph === "map") {
+    return (
+      <g stroke={agent.color} strokeWidth={1.5} opacity={opacity}>
+        <path d="M -24 -17 L -8 -22 L 8 -17 L 24 -22 V 17 L 8 22 L -8 17 L -24 22 Z" fill="none" />
+        <path d="M -8 -22 V 17 M 8 -17 V 22" />
+        <path d="M -18 -6 C -10 -11 -3 -10 5 -5 S17 0 21 -5" fill="none" opacity="0.72" />
+        <circle cx="-12" cy="8" r="2.8" fill={agent.color} opacity="0.9" />
+        <circle cx="13" cy="-8" r="2.2" fill="none" />
+      </g>
+    );
+  }
+
+  if (agent.glyph === "horizon") {
+    return (
+      <g stroke={agent.color} strokeWidth={1.5} opacity={opacity}>
+        <path d="M -25 9 C -12 1 12 1 25 9" fill="none" />
+        <path d="M -20 18 H 20 M -12 24 H 12" opacity="0.72" />
+        <path d="M 0 -23 V -8 M -14 -15 L -5 -7 M 14 -15 L 5 -7" />
+        <circle cx="0" cy="-3" r="5" fill="none" />
+        <path d="M -7 -3 H -23 M 7 -3 H 23" opacity="0.58" />
+      </g>
+    );
+  }
+
+  if (agent.glyph === "ethics") {
+    return (
+      <g stroke={agent.color} strokeWidth={1.5} opacity={opacity}>
+        <path d="M 0 -24 V 23 M -17 -13 H 17 M -12 23 H 12" />
+        <path d="M -17 -13 L -27 6 H -7 Z M 17 -13 L 7 6 H 27 Z" fill="none" />
+        <path d="M -24 8 C -20 13 -14 13 -10 8 M 10 8 C 14 13 20 13 24 8" fill="none" />
+        <circle cx="0" cy="-13" r="3.5" fill={agent.color} opacity="0.86" />
+      </g>
+    );
+  }
+
+  if (agent.glyph === "message") {
+    return (
+      <g stroke={agent.color} strokeWidth={1.5} opacity={opacity}>
+        <path d="M -24 -15 H 24 V 9 H 6 L -5 20 V 9 H -24 Z" fill="none" />
+        <path d="M -14 -5 H 14 M -14 3 H 7" />
+        <circle cx="-20" cy="20" r="2.8" fill={agent.color} opacity="0.88" />
+        <circle cx="0" cy="24" r="2.4" fill={agent.color} opacity="0.68" />
+        <circle cx="20" cy="20" r="2.8" fill={agent.color} opacity="0.88" />
       </g>
     );
   }
@@ -531,23 +646,11 @@ export function CortexMap() {
               >
                 <title id="cortex-title">Cortex vivant de TEMPOSYSTEM OS</title>
                 <desc id="cortex-description">
-                  Cartographie SVG dense des fonctions permanentes du Conseil,
-                  reliées par des faisceaux synaptiques et des influx lumineux.
+                  Cartographie SVG dense des neuf fonctions permanentes du
+                  Conseil, reliées par des faisceaux synaptiques et des influx
+                  lumineux.
                 </desc>
                 <defs>
-                  <radialGradient id="cortex-glow" cx="50%" cy="48%" r="66%">
-                    <stop offset="0%" stopColor="#172554" stopOpacity="0.76" />
-                    <stop offset="48%" stopColor="#07101d" stopOpacity="0.72" />
-                    <stop offset="100%" stopColor="#030712" stopOpacity="0" />
-                  </radialGradient>
-                  <filter id="cortex-soft-glow" x="-30%" y="-30%" width="160%" height="160%">
-                    <feGaussianBlur stdDeviation="26" result="blur" />
-                    <feColorMatrix
-                      in="blur"
-                      type="matrix"
-                      values="1 0 0 0 0 0 1 0 0 0.04 0 0 1 0 0.14 0 0 0 1 0"
-                    />
-                  </filter>
                   <filter id="cortex-node-glow" x="-80%" y="-80%" width="260%" height="260%">
                     <feGaussianBlur stdDeviation="6" result="blur" />
                     <feMerge>
@@ -593,113 +696,20 @@ export function CortexMap() {
                   </filter>
                 </defs>
 
-                <circle cx="450" cy="320" r="326" fill="url(#cortex-glow)" />
-
                 <g className="cognitive-space" aria-hidden="true">
-                  <ellipse
-                    className="energy-orbit-ring energy-orbit-ring-1"
-                    cx="450"
-                    cy="320"
-                    rx="322"
-                    ry="214"
-                    fill="none"
-                    stroke="#818cf8"
-                    strokeOpacity="0.13"
-                    strokeWidth="0.8"
-                  />
-                  <ellipse
-                    className="energy-orbit-ring energy-orbit-ring-2"
-                    cx="450"
-                    cy="320"
-                    rx="274"
-                    ry="182"
-                    fill="none"
-                    stroke="#7dd3fc"
-                    strokeOpacity="0.11"
-                    strokeWidth="0.7"
-                  />
-                  <ellipse
-                    className="energy-orbit-ring energy-orbit-ring-3"
-                    cx="450"
-                    cy="320"
-                    rx="224"
-                    ry="150"
-                    fill="none"
-                    stroke="#f0a6d5"
-                    strokeOpacity="0.1"
-                    strokeWidth="0.7"
-                  />
-                  <path
-                    className="energy-nebula-line"
-                    d="M118 392 C236 270 336 350 454 238 S666 128 792 262"
-                    fill="none"
-                    stroke="#fff7cc"
-                    strokeOpacity="0.09"
-                    strokeWidth="0.7"
-                  />
-                  <path
-                    className="energy-nebula-line energy-nebula-line-2"
-                    d="M98 240 C230 110 350 232 478 178 S656 84 806 188"
-                    fill="none"
-                    stroke="#5eead4"
-                    strokeOpacity="0.08"
-                    strokeWidth="0.6"
-                  />
-                </g>
-
-                <g className="cortex-atmosphere" filter="url(#cortex-soft-glow)" opacity="0.82">
-                  <path d="M64 365 C138 148 302 78 448 108 S728 204 814 334 S640 546 424 520 S40 492 64 365" fill="#1e40af" opacity="0.24" />
-                  <path d="M132 136 C230 70 386 88 500 160 S698 188 752 302 S632 442 486 408 S268 474 172 354 S34 218 132 136" fill="#06b6d4" opacity="0.18" />
-                  <path d="M276 394 C356 274 540 246 650 330 S558 500 410 468 S194 486 276 394" fill="#ec4899" opacity="0.18" />
-                  <path d="M320 86 C430 18 518 74 560 154 S408 220 332 176 S226 144 320 86" fill="#818cf8" opacity="0.2" />
-                </g>
-
-                <g opacity="0.44">
-                  {tissuePaths.map((path, index) => (
-                    <path
-                      key={path}
-                      d={path}
+                  {energyOrbitRings.map((ring, index) => (
+                    <ellipse
+                      key={`${ring.rx}-${ring.ry}`}
+                      className={`energy-orbit-ring energy-orbit-ring-${index + 1}`}
+                      cx="450"
+                      cy="320"
+                      rx={ring.rx}
+                      ry={ring.ry}
                       fill="none"
-                      stroke={index % 2 === 0 ? "#38bdf8" : "#818cf8"}
-                      strokeOpacity={index % 2 === 0 ? 0.12 : 0.1}
-                      strokeWidth={index % 2 === 0 ? 0.8 : 0.58}
+                      stroke={ring.color}
+                      strokeOpacity={0.15 - index * 0.008}
+                      strokeWidth={index < 3 ? 0.8 : 0.58}
                     />
-                  ))}
-                </g>
-
-                <g>
-                  {backgroundSynapses.map((synapse, index) => (
-                    <path
-                      key={`${synapse.d}-${index}`}
-                      d={synapse.d}
-                      fill="none"
-                      stroke={synapse.color}
-                      strokeLinecap="round"
-                      strokeOpacity={synapse.opacity}
-                      strokeWidth={synapse.width}
-                    />
-                  ))}
-                </g>
-
-                <g>
-                  {cortexSparks.map((spark, index) => (
-                    <circle
-                      key={`${spark.x}-${spark.y}-${index}`}
-                      className="cortex-spark"
-                      cx={spark.x}
-                      cy={spark.y}
-                      r={spark.r}
-                      fill={spark.color}
-                      opacity={spark.opacity}
-                    >
-                      <animate
-                        attributeName="opacity"
-                        values={`${spark.opacity};${Math.min(spark.opacity + 0.36, 0.86)};${spark.opacity}`}
-                        dur={`${pulseDurations[index % pulseDurations.length]}s`}
-                        begin={`${(index % 12) * 0.13}s`}
-                        repeatCount="indefinite"
-                      />
-                    </circle>
                   ))}
                 </g>
 
@@ -1081,12 +1091,12 @@ export function CortexMap() {
                     <g
                       key={agent.id}
                       transform={`translate(${agent.x} ${agent.y})`}
-                      className={`${agent.status === "future" ? "cortex-node-future" : "cortex-node"} ${
+                      className={`cortex-node ${
                         isActive ? "cortex-node-active" : ""
                       } ${isDimmed ? "cortex-node-dimmed" : ""}`}
-                      filter={agent.status === "future" ? undefined : "url(#cortex-node-glow)"}
+                      filter="url(#cortex-node-glow)"
                       role="img"
-                      aria-label={`${agent.name} : ${agent.subtitle}`}
+                      aria-label={`${agent.roleLabel} : ${agent.crewLabel}. ${agent.mission}`}
                       tabIndex={0}
                       onMouseEnter={() => setActiveAgentId(agent.id)}
                       onMouseLeave={() => setActiveAgentId(null)}
@@ -1095,26 +1105,26 @@ export function CortexMap() {
                     >
                     <circle
                       className="agent-orbit-aura"
-                      r={agent.status === "future" ? 42 : 68}
+                      r="68"
                       fill="none"
                       stroke={agent.color}
-                      strokeOpacity={agent.status === "future" ? 0.12 : 0.24}
-                      strokeWidth={agent.status === "future" ? 0.8 : 1.2}
+                      strokeOpacity="0.24"
+                      strokeWidth="1.2"
                     />
-                    <circle r={agent.status === "future" ? 34 : 56} fill={agent.color} opacity={agent.status === "future" ? 0.07 : 0.16} />
-                    <circle r={agent.status === "future" ? 25 : 39} fill="#030712" stroke={agent.color} strokeOpacity={agent.status === "future" ? 0.52 : 0.94} strokeWidth={agent.status === "future" ? 1.2 : 1.7} />
-                    <circle r={agent.status === "future" ? 16 : 23} fill="none" stroke={agent.color} strokeOpacity={agent.status === "future" ? 0.24 : 0.48} strokeWidth="0.8" strokeDasharray="3 5" />
+                    <circle r="56" fill={agent.color} opacity="0.16" />
+                    <circle r="39" fill="#030712" stroke={agent.color} strokeOpacity="0.94" strokeWidth="1.7" />
+                    <circle r="23" fill="none" stroke={agent.color} strokeOpacity="0.48" strokeWidth="0.8" strokeDasharray="3 5" />
                     <CortexGlyph agent={agent} />
                     <text
                       x="0"
                       y={agent.labelY}
                       textAnchor="middle"
-                      className="cortex-label fill-white text-[13px] font-bold uppercase tracking-[0.1em]"
+                      className="cortex-label fill-white text-[12px] font-bold uppercase"
                       stroke="#020617"
                       strokeWidth="3"
                       paintOrder="stroke"
                     >
-                      {agent.name}
+                      {agent.roleLabel}
                     </text>
                     <text
                       x="0"
@@ -1125,7 +1135,7 @@ export function CortexMap() {
                       strokeWidth="2.2"
                       paintOrder="stroke"
                     >
-                      {agent.subtitle}
+                      {agent.crewLabel}
                     </text>
                   </g>
                   );
@@ -1137,6 +1147,50 @@ export function CortexMap() {
                 TEMPOSYSTEM_IS_ENERGY // COGNITIVE_STAR
               </div>
 
+            </div>
+
+            <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-slate-950/55 backdrop-blur-xl">
+              <div className="overflow-x-auto">
+                <table className="min-w-[760px] w-full border-collapse text-left">
+                  <caption className="sr-only">
+                    Légende des neuf orbites TEMPOSYSTEM
+                  </caption>
+                  <thead>
+                    <tr className="border-b border-white/10 bg-white/[0.04] text-xs font-semibold uppercase text-slate-400">
+                      <th className="w-[150px] px-4 py-3">Rôle</th>
+                      <th className="px-4 py-3">Mission</th>
+                      <th className="w-[140px] px-4 py-3">Équipage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cortexLegendRows.map((agent) => (
+                      <tr
+                        key={`${agent.id}-legend`}
+                        className="border-b border-white/5 text-sm last:border-b-0"
+                      >
+                        <td className="px-4 py-3 font-semibold text-slate-50">
+                          <span className="flex items-center gap-2">
+                            <span
+                              className="h-2.5 w-2.5 rounded-full shadow-[0_0_12px_currentColor]"
+                              style={{
+                                color: agent.color,
+                                backgroundColor: agent.color,
+                              }}
+                            />
+                            {agent.roleLabel}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 leading-6 text-slate-300">
+                          {agent.mission}
+                        </td>
+                        <td className="px-4 py-3 font-medium text-slate-100">
+                          {agent.crewLabel}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
