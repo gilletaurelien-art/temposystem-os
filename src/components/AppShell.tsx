@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 
 interface AppShellProps {
@@ -7,6 +7,20 @@ interface AppShellProps {
 }
 
 export function AppShell({ activeRoute, children }: AppShellProps) {
+  const [butterflyOp, setButterflyOp] = useState(1);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // Fade to 0.06 as the first section scrolls into view
+      const first = document.querySelector("main > section:nth-child(2)");
+      if (!first) return;
+      const t = Math.max(0, Math.min(1, (first as HTMLElement).getBoundingClientRect().top / window.innerHeight));
+      setButterflyOp(0.06 + t * 0.94);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div
       className="relative min-h-screen text-slate-100"
@@ -25,13 +39,22 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         <div className="os-stars" />
       </div>
 
+      {/* Butterfly fixe bioluminescent */}
+      <img
+        src="/assets/temposystem-butterfly-transparent.png"
+        className="os-butterfly"
+        style={{ opacity: butterflyOp }}
+        aria-hidden="true"
+        alt=""
+      />
+
       {/* Header */}
       <header className="os-header">
         <a href="#/" className="os-brand flex items-center gap-3">
           <img
-            src="/assets/temposystem-butterfly.png"
+            src="/assets/temposystem-butterfly-transparent.png"
             alt="TEMPOSYSTEM"
-            style={{ width: 32, height: 32, objectFit: 'contain', filter: 'drop-shadow(0 0 8px rgba(139,92,246,0.7))' }}
+            style={{ width: 28, height: 28, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(129,140,248,0.8))" }}
           />
           TEMPOSYSTEM OS
         </a>
@@ -65,7 +88,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               s'appuie sur la mémoire du système et rayonne vers l'ensemble de
               la coopération.
             </p>
-            <p className="mt-2 text-xs font-medium font-mono uppercase text-slate-600">
+            <p className="mt-2 text-xs font-mono uppercase text-slate-600">
               Launch 000 · Premier déploiement public · 2026
             </p>
           </div>
@@ -74,7 +97,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               <a
                 key={item.route}
                 href={item.href}
-                className="text-sm font-mono text-slate-400 transition hover:text-[#d6b46a]"
+                className="os-footer-link"
               >
                 {item.label}
               </a>

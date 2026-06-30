@@ -51,7 +51,7 @@ const cortexVisuals: Record<string, CortexVisual> = {
   captain: {
     x: 450,
     y: 64,
-    color: "#d6b46a",
+    color: "#818cf8",
     glyph: "vision",
     labelY: 68,
     subtitle: "Vision & arbitrage",
@@ -75,7 +75,7 @@ const cortexVisuals: Record<string, CortexVisual> = {
   "master-caulker": {
     x: 293,
     y: 534,
-    color: "#f59e0b",
+    color: "#a78bfa",
     glyph: "shield",
     labelY: -70,
     subtitle: "Sécurité & fiabilité",
@@ -129,7 +129,7 @@ const fluxEvents = [
     time: "14:31:52",
   },
   {
-    color: "#d6b46a",
+    color: "#818cf8",
     label: "Capitaine -> Tous",
     detail: "Point de synchronisation",
     time: "14:31:50",
@@ -191,7 +191,7 @@ const tissuePaths = [
   "M210 484 C298 374 406 436 500 350 S620 254 750 370 S594 550 408 526 S122 548 210 484",
 ];
 
-const sparkColors = ["#d6b46a", "#5eead4", "#7dd3fc", "#c084fc", "#f0a6d5", "#f59e0b"];
+const sparkColors = ["#818cf8", "#5eead4", "#7dd3fc", "#c084fc", "#f0a6d5", "#a78bfa"];
 
 const backgroundSynapses = Array.from({ length: 120 }, (_, index) => {
   const startAngle = index * 1.714;
@@ -431,8 +431,8 @@ export function CortexMap() {
           <aside className="order-2 grid gap-3 lg:order-none">
             <HudPanel>
               <div className="flex items-start gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6b46a]/30 bg-[#d6b46a]/10">
-                  <span className="h-4 w-4 rounded-full border-2 border-[#d6b46a]" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#818cf8]/30 bg-[#818cf8]/10">
+                  <span className="h-4 w-4 rounded-full border-2 border-[#818cf8]" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold uppercase text-slate-50">
@@ -454,7 +454,7 @@ export function CortexMap() {
                 Ondes globales
               </p>
               <svg className="mt-4 h-24 w-full" viewBox="0 0 260 96" aria-hidden="true">
-                <path d="M0 50 C24 12 46 80 70 42 S116 22 140 52 S188 78 214 35 S246 46 260 26" fill="none" stroke="#d6b46a" strokeWidth="1.5" opacity="0.82" />
+                <path d="M0 50 C24 12 46 80 70 42 S116 22 140 52 S188 78 214 35 S246 46 260 26" fill="none" stroke="#818cf8" strokeWidth="1.5" opacity="0.82" />
                 <path d="M0 62 C28 42 44 20 74 54 S124 78 150 36 S196 18 218 58 S246 66 260 42" fill="none" stroke="#7dd3fc" strokeWidth="1.2" opacity="0.7" />
                 <path d="M0 36 C30 70 54 10 86 36 S130 66 160 38 S202 68 228 24 S250 34 260 30" fill="none" stroke="#c084fc" strokeWidth="1.1" opacity="0.62" />
                 <path d="M0 70 C26 62 56 78 92 52 S142 32 176 56 S224 74 260 50" fill="none" stroke="#5eead4" strokeWidth="1" opacity="0.66" />
@@ -471,7 +471,7 @@ export function CortexMap() {
                 </span>
               </div>
               <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[86%] rounded-full bg-gradient-to-r from-[#d6b46a] via-[#f59e0b] to-[#5eead4]" />
+                <div className="h-full w-[86%] rounded-full bg-gradient-to-r from-[#60a5fa] via-[#818cf8] to-[#5eead4]" />
               </div>
             </HudPanel>
 
@@ -549,7 +549,7 @@ export function CortexMap() {
                   </filter>
                   <radialGradient id="core-decision-wave" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stopColor="#f8fafc" stopOpacity="0.32" />
-                    <stop offset="42%" stopColor="#d6b46a" stopOpacity="0.22" />
+                    <stop offset="42%" stopColor="#818cf8" stopOpacity="0.22" />
                     <stop offset="100%" stopColor="#5eead4" stopOpacity="0" />
                   </radialGradient>
                   <radialGradient id="core-inner-light" cx="50%" cy="50%" r="50%">
@@ -562,7 +562,7 @@ export function CortexMap() {
                     <stop offset="0%" stopColor="#facc15" stopOpacity="1" />
                     <stop offset="36%" stopColor="#fff1a8" stopOpacity="0.92" />
                     <stop offset="70%" stopColor="#ffffff" stopOpacity="0.38" />
-                    <stop offset="100%" stopColor="#d6b46a" stopOpacity="0" />
+                    <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
                   </radialGradient>
                   <filter id="cortex-core-glow" x="-140%" y="-140%" width="380%" height="380%">
                     <feGaussianBlur stdDeviation="8" result="blur" />
@@ -589,7 +589,7 @@ export function CortexMap() {
                     rx="322"
                     ry="214"
                     fill="none"
-                    stroke="#d6b46a"
+                    stroke="#818cf8"
                     strokeOpacity="0.13"
                     strokeWidth="0.8"
                   />
@@ -637,7 +637,7 @@ export function CortexMap() {
                   <path d="M64 365 C138 148 302 78 448 108 S728 204 814 334 S640 546 424 520 S40 492 64 365" fill="#1e40af" opacity="0.24" />
                   <path d="M132 136 C230 70 386 88 500 160 S698 188 752 302 S632 442 486 408 S268 474 172 354 S34 218 132 136" fill="#06b6d4" opacity="0.18" />
                   <path d="M276 394 C356 274 540 246 650 330 S558 500 410 468 S194 486 276 394" fill="#ec4899" opacity="0.18" />
-                  <path d="M320 86 C430 18 518 74 560 154 S408 220 332 176 S226 144 320 86" fill="#d6b46a" opacity="0.2" />
+                  <path d="M320 86 C430 18 518 74 560 154 S408 220 332 176 S226 144 320 86" fill="#818cf8" opacity="0.2" />
                 </g>
 
                 <g opacity="0.44">
@@ -646,7 +646,7 @@ export function CortexMap() {
                       key={path}
                       d={path}
                       fill="none"
-                      stroke={index % 2 === 0 ? "#38bdf8" : "#d6b46a"}
+                      stroke={index % 2 === 0 ? "#38bdf8" : "#818cf8"}
                       strokeOpacity={index % 2 === 0 ? 0.12 : 0.1}
                       strokeWidth={index % 2 === 0 ? 0.8 : 0.58}
                     />
@@ -751,7 +751,7 @@ export function CortexMap() {
                       <circle
                         key={`${synapse.id}-reverse-photon`}
                         r={index % 3 === 0 ? 2.3 : 1.35}
-                        fill={index % 2 === 0 ? "#d6b46a" : synapse.color}
+                        fill={index % 2 === 0 ? "#818cf8" : synapse.color}
                         opacity={index % 5 === 0 ? 0.78 : 0.5}
                         className="cortex-photon"
                       >
@@ -953,7 +953,7 @@ export function CortexMap() {
                       <g
                         className="core-solar-rays"
                         fill="none"
-                        stroke="#f5d484"
+                        stroke="#c4b5fd"
                         strokeLinecap="round"
                       >
                         <path
@@ -1006,7 +1006,7 @@ export function CortexMap() {
                         cy="320"
                         r="48"
                         fill="url(#core-inner-light)"
-                        stroke="#d6b46a"
+                        stroke="#818cf8"
                         strokeOpacity="0.76"
                         strokeWidth="1.4"
                       />
@@ -1016,7 +1016,7 @@ export function CortexMap() {
                         cy="320"
                         r="34"
                         fill="none"
-                        stroke="#d6b46a"
+                        stroke="#818cf8"
                         strokeOpacity="0.78"
                         strokeWidth="1.2"
                         strokeDasharray="5 7"
@@ -1127,10 +1127,10 @@ export function CortexMap() {
           </div>
 
           <aside className="order-3 grid gap-3 lg:order-none">
-            <HudPanel className="border-[#d6b46a]/20 bg-slate-950/70">
+            <HudPanel className="border-[#818cf8]/20 bg-slate-950/70">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                  <p className="text-sm font-semibold uppercase text-[#818cf8]">
                     Impulsion en cours
                   </p>
                   <p className="mt-3 text-sm leading-6 text-slate-100">
@@ -1152,7 +1152,7 @@ export function CortexMap() {
                     key={option}
                     className={`grid grid-cols-[minmax(0,1fr)_44px] items-center gap-3 rounded-md border px-3 py-2 text-xs ${
                       option === "Ouverture"
-                        ? "border-[#d6b46a]/70 bg-[#d6b46a]/15 text-[#f5d484]"
+                        ? "border-[#818cf8]/70 bg-[#818cf8]/15 text-[#c4b5fd]"
                         : "border-white/10 bg-white/[0.04] text-slate-400"
                     }`}
                   >
@@ -1230,10 +1230,10 @@ export function CortexMap() {
               </div>
               <svg className="mt-4 h-28 w-full rounded-md bg-white/[0.025]" viewBox="0 0 260 112" aria-hidden="true">
                 <path d="M18 78 C58 34 92 96 132 56 S204 20 242 78" fill="none" stroke="#5eead4" strokeOpacity="0.3" />
-                <path d="M26 88 C74 58 96 40 128 72 S194 98 236 52" fill="none" stroke="#d6b46a" strokeOpacity="0.26" />
+                <path d="M26 88 C74 58 96 40 128 72 S194 98 236 52" fill="none" stroke="#818cf8" strokeOpacity="0.26" />
                 <circle cx="132" cy="64" r="12" fill="#5eead4" opacity="0.12" />
                 <circle cx="132" cy="64" r="4" fill="#5eead4" opacity="0.72" />
-                <circle cx="205" cy="40" r="3" fill="#d6b46a" opacity="0.7" />
+                <circle cx="205" cy="40" r="3" fill="#818cf8" opacity="0.7" />
                 <circle cx="58" cy="70" r="3" fill="#7dd3fc" opacity="0.68" />
               </svg>
             </HudPanel>

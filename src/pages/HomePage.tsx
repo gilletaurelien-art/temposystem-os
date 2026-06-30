@@ -40,7 +40,7 @@ export function HomePage() {
 
         <div className="relative mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl items-center px-5 py-20 sm:px-8 lg:px-10">
           <div className="max-w-4xl">
-            <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+            <p className="text-sm font-semibold uppercase text-[#a78bfa]">
               TEMPOSYSTEM IS ENERGY
             </p>
             <h1 className="mt-5 text-5xl font-semibold text-slate-50 sm:text-6xl lg:text-7xl">
@@ -64,7 +64,7 @@ export function HomePage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#/council"
-                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#d6b46a] px-6 text-sm font-semibold text-[#07101d] shadow-sm transition hover:bg-[#e4c77f]"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-6 text-sm font-semibold text-white shadow-lg transition hover:from-[#818cf8] hover:to-[#8b5cf6]"
               >
                 Entrer dans le Conseil de Bord
               </a>
@@ -152,7 +152,7 @@ export function HomePage() {
 
             <div className="mt-6 grid gap-5">
               <div>
-                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                <p className="text-sm font-semibold uppercase text-[#a78bfa]">
                   Question
                 </p>
                 <p className="mt-2 text-base leading-7 text-slate-200">
@@ -160,7 +160,7 @@ export function HomePage() {
                 </p>
               </div>
               <div>
-                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                <p className="text-sm font-semibold uppercase text-[#a78bfa]">
                   Consensus
                 </p>
                 <p className="mt-2 text-base leading-7 text-slate-300">
@@ -168,7 +168,7 @@ export function HomePage() {
                 </p>
               </div>
               <div>
-                <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+                <p className="text-sm font-semibold uppercase text-[#a78bfa]">
                   Décision du Capitaine
                 </p>
                 <p className="mt-2 text-base leading-7 text-slate-200">
@@ -177,7 +177,7 @@ export function HomePage() {
               </div>
               <a
                 href={cockpitCouncilSnapshot.adr.href}
-                className="inline-flex w-fit items-center rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#d6b46a]"
+                className="inline-flex w-fit items-center rounded-lg border border-white/15 bg-white/5 px-4 py-3 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#a78bfa]"
               >
                 {cockpitCouncilSnapshot.adr.label} ·{" "}
                 {cockpitCouncilSnapshot.adr.title}
@@ -186,7 +186,7 @@ export function HomePage() {
           </article>
 
           <aside className="rounded-lg border border-white/10 bg-[#07101d] p-5">
-            <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+            <p className="text-sm font-semibold uppercase text-[#a78bfa]">
               Fonctions consultées
             </p>
             <div className="mt-5 grid gap-3">
@@ -218,7 +218,7 @@ export function HomePage() {
         <article className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase text-[#d6b46a]">
+              <p className="text-sm font-semibold uppercase text-[#a78bfa]">
                 Décision mise en avant
               </p>
               <h3 className="mt-3 text-2xl font-semibold text-slate-50">
@@ -234,7 +234,7 @@ export function HomePage() {
             </div>
             <a
               href={featuredArchitectureDecision.href}
-              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-4 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#d6b46a]"
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-4 text-sm font-semibold text-slate-50 transition hover:bg-white/10 hover:text-[#a78bfa]"
             >
               Ouvrir le registre ADR
             </a>
