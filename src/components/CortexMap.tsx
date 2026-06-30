@@ -510,7 +510,7 @@ export function CortexMap() {
             <div className="relative min-h-[620px] overflow-hidden rounded-xl border border-white/10 bg-[#030712]">
               <img
                 src="/assets/temposystem-butterfly-transparent.png"
-                className="absolute inset-0 m-auto h-[88%] w-auto object-contain pointer-events-none select-none"
+                className="absolute h-[88%] w-auto object-contain pointer-events-none select-none"
                 aria-hidden="true"
                 alt=""
                 style={{
@@ -593,7 +593,6 @@ export function CortexMap() {
                   </filter>
                 </defs>
 
-                <rect width="900" height="620" fill="#030712" opacity="0.55" />
                 <circle cx="450" cy="320" r="326" fill="url(#cortex-glow)" />
 
                 <g className="cognitive-space" aria-hidden="true">
