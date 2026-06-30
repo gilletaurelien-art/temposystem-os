@@ -235,39 +235,6 @@ export function HomePage() {
       </Section>
 
       <Section
-        id="mana"
-        eyebrow="Première application"
-        title="MANA, premier terrain de l'énergie civique"
-        className="bg-white/[0.025]"
-      >
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
-            <p className="text-lg leading-8 text-slate-200">
-              MANA est la première application civique construite sur
-              TEMPOSYSTEM OS, dédiée à la reconnaissance du temps donné, de
-              l'entraide et de la coopération territoriale.
-            </p>
-            <p className="mt-5 text-sm leading-6 text-slate-400">
-              MANA sert de premier cas d'usage : transformer le temps donné,
-              l'entraide et les contributions locales en énergie visible,
-              mémorisée et gouvernable.
-            </p>
-          </div>
-          <div className="grid gap-3">
-            {publicDomains.map((domain) => (
-              <div
-                key={domain.domain}
-                className="rounded-lg border border-white/10 bg-[#07101d] p-4"
-              >
-                <p className="font-semibold text-slate-50">{domain.domain}</p>
-                <p className="mt-2 text-sm text-slate-400">{domain.purpose}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section
         id="livre-de-bord"
         eyebrow="Livre de Bord"
         title="L'énergie laisse une trace"
@@ -290,6 +257,52 @@ export function HomePage() {
               </p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section
+        id="mana"
+        eyebrow="Première application"
+        title="MANA, premier terrain de l'énergie civique"
+        className="bg-white/[0.025]"
+      >
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+            <p className="text-lg leading-8 text-slate-200">
+              MANA est la première application civique construite sur
+              TEMPOSYSTEM OS, dédiée à la reconnaissance du temps donné, de
+              l'entraide et de la coopération territoriale.
+            </p>
+            <p className="mt-5 text-sm leading-6 text-slate-400">
+              MANA sert de premier cas d'usage : transformer le temps donné,
+              l'entraide et les contributions locales en énergie visible,
+              mémorisée et gouvernable.
+            </p>
+            <a
+              href="https://manafrance.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-5 text-sm font-semibold text-white transition hover:from-[#818cf8] hover:to-[#8b5cf6]"
+            >
+              Découvrir MANA →
+            </a>
+          </div>
+          <div className="grid gap-3">
+            {publicDomains.map((domain) => (
+              <a
+                key={domain.domain}
+                href={`https://${domain.domain}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-lg border border-white/10 bg-[#07101d] p-4 transition hover:border-[#a78bfa]/30 hover:bg-white/[0.06]"
+              >
+                <p className="font-semibold text-slate-50 transition group-hover:text-[#a78bfa]">
+                  {domain.domain} ↗
+                </p>
+                <p className="mt-2 text-sm text-slate-400">{domain.purpose}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </Section>
     </main>

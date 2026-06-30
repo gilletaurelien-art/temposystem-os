@@ -20,6 +20,14 @@ export function ManaPage() {
             puissent transformer leur coopération en énergie mémorisée et
             gouvernable.
           </p>
+          <a
+            href="https://manafrance.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-5 text-sm font-semibold text-white transition hover:from-[#818cf8] hover:to-[#8b5cf6]"
+          >
+            Découvrir MANA →
+          </a>
         </div>
       </Section>
     </main>
