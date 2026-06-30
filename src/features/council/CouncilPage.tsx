@@ -137,18 +137,18 @@ export function CouncilPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-ink">
+    <main className="relative z-10 min-h-screen text-slate-100">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
-        <header className="flex flex-col gap-3 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between">
+        <header className="flex flex-col gap-3 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase text-harbor">
+            <p className="text-sm font-semibold uppercase text-[#a78bfa]">
               TEMPOSYSTEM OS
             </p>
-            <h1 className="mt-2 text-3xl font-semibold text-ink sm:text-4xl">
+            <h1 className="mt-2 font-['Philosopher',serif] text-3xl font-semibold text-white sm:text-4xl">
               Conseil de Bord
             </h1>
           </div>
-          <span className="w-fit rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+          <span className="w-fit rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs font-medium text-slate-300">
             {statusLabel[session.status]}
           </span>
         </header>
@@ -156,13 +156,13 @@ export function CouncilPage() {
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
           <div className="flex min-w-0 flex-col gap-6">
             <label className="flex flex-col gap-3">
-              <span className="text-sm font-semibold text-slate-800">
+              <span className="text-sm font-semibold text-slate-200">
                 Question du Capitaine
               </span>
               <textarea
                 value={session.question.text}
                 onChange={(event) => updateQuestion(event.target.value)}
-                className="min-h-40 resize-y rounded-lg border border-slate-300 bg-white px-4 py-3 text-base leading-7 shadow-sm outline-none transition focus:border-harbor focus:ring-4 focus:ring-teal-100"
+                className="min-h-40 resize-y rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-base leading-7 text-slate-100 placeholder:text-slate-500 outline-none transition backdrop-blur-sm focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/20"
                 placeholder="Quelle décision devons-nous éclairer aujourd'hui ?"
               />
             </label>
@@ -171,7 +171,7 @@ export function CouncilPage() {
               type="button"
               disabled={!canConsult}
               onClick={consultCouncil}
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-harbor px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-800 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-5 text-sm font-semibold text-white transition hover:from-[#818cf8] hover:to-[#8b5cf6] disabled:cursor-not-allowed disabled:bg-none disabled:bg-white/10 disabled:text-slate-500"
             >
               Consulter le Conseil
             </button>
@@ -181,10 +181,10 @@ export function CouncilPage() {
               className="flex flex-col gap-4"
             >
               <div className="flex items-center justify-between gap-3">
-                <h2 id="council-heading" className="text-xl font-semibold">
+                <h2 id="council-heading" className="text-xl font-semibold text-white">
                   Conseil de Bord
                 </h2>
-                <span className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                <span className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs font-medium text-slate-300">
                   Fonctions permanentes
                 </span>
               </div>
@@ -196,21 +196,21 @@ export function CouncilPage() {
                   return (
                     <article
                       key={agent.id}
-                      className="flex min-h-64 flex-col justify-between rounded-lg border border-slate-200 bg-white p-5 shadow-sm"
+                      className="flex min-h-64 flex-col justify-between rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm"
                     >
                       <div>
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <h3 className="text-lg font-semibold">
+                            <h3 className="text-lg font-semibold text-white">
                               <span aria-hidden="true">{agent.emoji}</span>{" "}
                               {agent.name}
                             </h3>
-                            <p className="mt-1 text-sm text-slate-600">
+                            <p className="mt-1 text-sm text-slate-400">
                               {agent.responsibilities.join(", ")}
                             </p>
                           </div>
                         </div>
-                        <p className="mt-4 text-sm leading-6 text-slate-700">
+                        <p className="mt-4 text-sm leading-6 text-slate-300">
                           {agent.description}
                         </p>
                         <p className="mt-3 text-xs font-medium text-slate-500">
@@ -219,12 +219,12 @@ export function CouncilPage() {
                         </p>
                       </div>
 
-                      <div className="mt-5 rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm text-slate-600">
+                      <div className="mt-5 rounded-md border border-dashed border-white/15 bg-white/[0.03] px-3 py-3 text-sm text-slate-400">
                         {response ? (
                           <div className="flex flex-col gap-3">
-                            <p className="leading-6">{response.summary}</p>
-                            <p>
-                              <span className="font-semibold">
+                            <p className="leading-6 text-slate-300">{response.summary}</p>
+                            <p className="text-slate-400">
+                              <span className="font-semibold text-slate-200">
                                 Recommandation :
                               </span>{" "}
                               {response.recommendation}
@@ -242,16 +242,16 @@ export function CouncilPage() {
 
             <section
               aria-labelledby="extended-crew-heading"
-              className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm"
+              className="flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm"
             >
               <div className="flex items-center justify-between gap-3">
                 <h2
                   id="extended-crew-heading"
-                  className="text-base font-semibold"
+                  className="text-base font-semibold text-white"
                 >
                   Équipage étendu
                 </h2>
-                <span className="rounded-full border border-slate-300 px-3 py-1 text-xs font-medium text-slate-600">
+                <span className="rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-slate-300">
                   Capacités 2042
                 </span>
               </div>
@@ -260,10 +260,10 @@ export function CouncilPage() {
                 {crew2042Agents.map((agent) => (
                   <div
                     key={agent.id}
-                    className="flex items-start justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2"
+                    className="flex items-start justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2"
                   >
                     <div className="min-w-0">
-                      <p className="text-sm font-medium leading-5 text-slate-800">
+                      <p className="text-sm font-medium leading-5 text-slate-200">
                         <span aria-hidden="true">{agent.emoji}</span>{" "}
                         {agent.name}
                       </p>
@@ -271,7 +271,7 @@ export function CouncilPage() {
                         {agent.responsibilities.slice(0, 3).join(", ")}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-white px-2 py-1 text-xs font-medium text-slate-600">
+                    <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.06] px-2 py-1 text-xs font-medium text-slate-400">
                       {agent.status === "future" ? "Non sollicité" : "Disponible"}
                     </span>
                   </div>
@@ -281,17 +281,17 @@ export function CouncilPage() {
           </div>
 
           <aside className="flex min-w-0 flex-col gap-5">
-            <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">Consensus du Conseil</h2>
-              <div className="mt-3 min-h-36 rounded-md border border-dashed border-slate-300 bg-slate-50 p-4 text-sm leading-6 text-slate-600">
+            <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
+              <h2 className="text-lg font-semibold text-white">Consensus du Conseil</h2>
+              <div className="mt-3 min-h-36 rounded-md border border-dashed border-white/15 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
                 {session.consensus ? (
                   <div className="flex flex-col gap-3">
-                    <p>{session.consensus.summary}</p>
+                    <p className="text-slate-300">{session.consensus.summary}</p>
                     <div>
-                      <p className="font-semibold text-slate-800">
+                      <p className="font-semibold text-slate-200">
                         Points d'attention
                       </p>
-                      <ul className="mt-2 list-disc space-y-1 pl-5">
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-400">
                         {session.consensus.openQuestions.map((question) => (
                           <li key={question}>{question}</li>
                         ))}
@@ -304,16 +304,16 @@ export function CouncilPage() {
               </div>
             </section>
 
-            <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+            <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
               <label className="flex flex-col gap-3">
-                <span className="text-lg font-semibold">
+                <span className="text-lg font-semibold text-white">
                   Décision du Capitaine
                 </span>
                 <textarea
                   value={decisionText}
                   onChange={(event) => setDecisionText(event.target.value)}
                   readOnly={session.status === "decided"}
-                  className="min-h-36 resize-y rounded-md border border-slate-300 bg-white px-4 py-3 text-sm leading-6 outline-none transition focus:border-harbor focus:ring-4 focus:ring-teal-100"
+                  className="min-h-36 resize-y rounded-md border border-white/12 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/20"
                   placeholder="Décision retenue, justification et prochain mouvement."
                 />
               </label>
@@ -321,12 +321,12 @@ export function CouncilPage() {
                 type="button"
                 disabled={!canValidate}
                 onClick={validateDecision}
-                className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-signal px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-600"
+                className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#3b82f6] to-[#6366f1] px-5 text-sm font-semibold text-white transition hover:from-[#60a5fa] hover:to-[#818cf8] disabled:cursor-not-allowed disabled:bg-none disabled:bg-white/10 disabled:text-slate-500"
               >
                 Valider la décision
               </button>
               {session.status === "decided" && session.decision ? (
-                <p className="mt-3 rounded-md bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-800">
+                <p className="mt-3 rounded-md bg-emerald-900/25 px-3 py-2 text-sm font-medium text-emerald-300">
                   Décision validée.
                 </p>
               ) : null}
@@ -335,7 +335,7 @@ export function CouncilPage() {
             <button
               type="button"
               disabled
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-slate-300 px-5 text-sm font-semibold text-slate-600 shadow-sm"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-slate-500"
             >
               Créer une issue GitHub
             </button>
