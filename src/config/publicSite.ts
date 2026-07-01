@@ -1,134 +1,184 @@
+// Contenu bilingue FR/EN. Les champs traduisibles sont { fr, en } ; route/href/date
+// restent neutres. Consommer via item.label[lang] ou pick(item.label, lang).
+
 export const publicNavigation = [
-  { label: "Accueil", route: "home", href: "#/" },
-  { label: "Conseil de Bord", route: "council", href: "#/council" },
-  { label: "Vision", route: "vision", href: "#/vision" },
-  { label: "Architecture", route: "architecture", href: "#/architecture" },
-  { label: "Décisions", route: "decisions", href: "#/decisions" },
-  { label: "MANA", route: "mana", href: "#/mana" },
+  { label: { fr: "Accueil", en: "Home" }, route: "home", href: "#/" },
+  { label: { fr: "Conseil de Bord", en: "Bridge Council" }, route: "council", href: "#/council" },
+  { label: { fr: "Vision", en: "Vision" }, route: "vision", href: "#/vision" },
+  { label: { fr: "Architecture", en: "Architecture" }, route: "architecture", href: "#/architecture" },
+  { label: { fr: "Décisions", en: "Decisions" }, route: "decisions", href: "#/decisions" },
+  { label: { fr: "MANA", en: "MANA" }, route: "mana", href: "#/mana" },
 ];
 
 export const cockpitStatusCards = [
   {
     signal: "🟢",
-    title: "Conseil de Bord",
-    value: "Opérationnel",
-    detail: "Dernière consultation : 29 juin 2026, 09:12.",
-    supportingDetail: "Les questions deviennent consensus, puis impulsions de décision.",
+    title: { fr: "Conseil de Bord", en: "Bridge Council" },
+    value: { fr: "Opérationnel", en: "Operational" },
+    detail: { fr: "Dernière consultation : 29 juin 2026, 09:12.", en: "Last consultation: June 29, 2026, 09:12." },
+    supportingDetail: {
+      fr: "Les questions deviennent consensus, puis impulsions de décision.",
+      en: "Questions become consensus, then decision impulses.",
+    },
   },
   {
     signal: "🟢",
-    title: "Mémoire",
-    value: "GitHub synchronisé",
-    detail: "ADR disponibles.",
-    supportingDetail: "La mémoire stabilise l'énergie des échanges.",
+    title: { fr: "Mémoire", en: "Memory" },
+    value: { fr: "GitHub synchronisé", en: "GitHub synced" },
+    detail: { fr: "ADR disponibles.", en: "ADRs available." },
+    supportingDetail: {
+      fr: "La mémoire stabilise l'énergie des échanges.",
+      en: "Memory stabilizes the energy of exchanges.",
+    },
   },
   {
     signal: "🟢",
-    title: "Gouvernance",
-    value: "Architecture documentée",
-    detail: "Décisions traçables.",
-    supportingDetail: "Le Capitaine oriente l'énergie collective.",
+    title: { fr: "Gouvernance", en: "Governance" },
+    value: { fr: "Architecture documentée", en: "Documented architecture" },
+    detail: { fr: "Décisions traçables.", en: "Traceable decisions." },
+    supportingDetail: {
+      fr: "Le Capitaine oriente l'énergie collective.",
+      en: "The Captain steers the collective energy.",
+    },
   },
   {
     signal: "🟢",
-    title: "Applications",
-    value: "MANA",
-    detail: "Première application active.",
-    supportingDetail: "Le temps donné devient énergie civique visible.",
+    title: { fr: "Applications", en: "Applications" },
+    value: { fr: "MANA", en: "MANA" },
+    detail: { fr: "Première application active.", en: "First active application." },
+    supportingDetail: {
+      fr: "Le temps donné devient énergie civique visible.",
+      en: "Given time becomes visible civic energy.",
+    },
   },
   {
     signal: "🟡",
-    title: "Timonier",
-    value: "Prototype",
-    detail: "Dispatch local.",
-    supportingDetail: "Les signaux préparent l'orchestration future.",
+    title: { fr: "Timonier", en: "Helmsman" },
+    value: { fr: "Prototype", en: "Prototype" },
+    detail: { fr: "Dispatch local.", en: "Local dispatch." },
+    supportingDetail: {
+      fr: "Les signaux préparent l'orchestration future.",
+      en: "Signals prepare future orchestration.",
+    },
   },
   {
     signal: "🟡",
-    title: "API IA",
-    value: "Non connectées",
-    detail: "Architecture prête.",
-    supportingDetail: "Aucun appel externe pendant la phase expérimentale.",
+    title: { fr: "API IA", en: "AI APIs" },
+    value: { fr: "Non connectées", en: "Not connected" },
+    detail: { fr: "Architecture prête.", en: "Architecture ready." },
+    supportingDetail: {
+      fr: "Aucun appel externe pendant la phase expérimentale.",
+      en: "No external calls during the experimental phase.",
+    },
   },
 ];
 
 export const cockpitCouncilSnapshot = {
-  lastConsultation: "29 juin 2026 · 09:12",
-  question:
-    "Comment montrer que TEMPOSYSTEM n'est pas une interface informatique, mais une énergie produite par l'intelligence collective ?",
-  consensus:
-    "Le Conseil recommande de présenter le cœur, les agents, les flux et la mémoire comme un organisme vivant plutôt que comme des modules logiciels.",
-  decision:
-    "Le Capitaine valide la vision : TEMPOSYSTEM est une énergie produite par le temps partagé, éclairée par les décisions et conservée par la mémoire.",
+  lastConsultation: { fr: "29 juin 2026 · 09:12", en: "June 29, 2026 · 09:12" },
+  question: {
+    fr: "Comment montrer que TEMPOSYSTEM n'est pas une interface informatique, mais une énergie produite par l'intelligence collective ?",
+    en: "How can we show that TEMPOSYSTEM is not a software interface, but an energy produced by collective intelligence?",
+  },
+  consensus: {
+    fr: "Le Conseil recommande de présenter le cœur, les agents, les flux et la mémoire comme un organisme vivant plutôt que comme des modules logiciels.",
+    en: "The Council recommends presenting the core, the agents, the flows and the memory as a living organism rather than software modules.",
+  },
+  decision: {
+    fr: "Le Capitaine valide la vision : TEMPOSYSTEM est une énergie produite par le temps partagé, éclairée par les décisions et conservée par la mémoire.",
+    en: "The Captain validates the vision: TEMPOSYSTEM is an energy produced by shared time, illuminated by decisions and preserved by memory.",
+  },
   adr: {
     label: "ADR-0007",
-    title: "Premier déploiement public",
+    title: { fr: "Premier déploiement public", en: "First public deployment" },
     href: "#/decisions",
   },
 };
 
 export const featuredArchitectureDecision = {
   number: "ADR-0007",
-  title: "Premier déploiement public",
+  title: { fr: "Premier déploiement public", en: "First public deployment" },
   date: "2026-06-28",
   href: "#/decisions",
-  summary:
-    "TEMPOSYSTEM OS est publié avant les connexions IA afin de rendre visible son énergie fondatrice : gouvernance, mémoire, Conseil de Bord et temps partagé.",
+  summary: {
+    fr: "TEMPOSYSTEM OS est publié avant les connexions IA afin de rendre visible son énergie fondatrice : gouvernance, mémoire, Conseil de Bord et temps partagé.",
+    en: "TEMPOSYSTEM OS is published before the AI connections in order to make visible its founding energy: governance, memory, Bridge Council and shared time.",
+  },
 };
 
 export const publicDomains = [
   {
     domain: "temposystem.fr",
-    purpose: "documentation et gouvernance françaises",
+    purpose: { fr: "documentation et gouvernance françaises", en: "French documentation and governance" },
   },
   {
     domain: "temposystem.eu",
-    purpose: "documentation et gouvernance internationales",
+    purpose: { fr: "documentation et gouvernance internationales", en: "International documentation and governance" },
   },
   {
     domain: "manafrance.org",
-    purpose: "première application civique",
+    purpose: { fr: "première application civique", en: "first civic application" },
   },
   {
     domain: "mana.bzh",
-    purpose: "territoire pilote et expérimentation",
+    purpose: { fr: "territoire pilote et expérimentation", en: "pilot territory and experimentation" },
   },
 ];
 
 export const narrativeMilestones = [
   {
     icon: "🏴",
-    title: "Launch 000",
-    detail: "TEMPOSYSTEM OS affirme publiquement son existence comme socle vivant.",
+    title: { fr: "Launch 000", en: "Launch 000" },
+    detail: {
+      fr: "TEMPOSYSTEM OS affirme publiquement son existence comme socle vivant.",
+      en: "TEMPOSYSTEM OS publicly affirms its existence as a living foundation.",
+    },
   },
   {
     icon: "⚓",
-    title: "Premier Conseil",
-    detail: "Le Conseil transforme les échanges en énergie de décision.",
+    title: { fr: "Premier Conseil", en: "First Council" },
+    detail: {
+      fr: "Le Conseil transforme les échanges en énergie de décision.",
+      en: "The Council turns exchanges into decision energy.",
+    },
   },
   {
     icon: "📜",
-    title: "Première ADR",
-    detail: "Les décisions quittent les conversations pour devenir mémoire durable.",
+    title: { fr: "Première ADR", en: "First ADR" },
+    detail: {
+      fr: "Les décisions quittent les conversations pour devenir mémoire durable.",
+      en: "Decisions leave conversations to become durable memory.",
+    },
   },
   {
     icon: "🧭",
-    title: "Gouvernance",
-    detail: "Les fonctions permanentes sont séparées des implémentations IA.",
+    title: { fr: "Gouvernance", en: "Governance" },
+    detail: {
+      fr: "Les fonctions permanentes sont séparées des implémentations IA.",
+      en: "Permanent functions are separated from AI implementations.",
+    },
   },
   {
     icon: "🌍",
-    title: "Premier domaine",
-    detail: "temposystem.fr et temposystem.eu préparent l'accueil public du système.",
+    title: { fr: "Premier domaine", en: "First domain" },
+    detail: {
+      fr: "temposystem.fr et temposystem.eu préparent l'accueil public du système.",
+      en: "temposystem.fr and temposystem.eu prepare the public reception of the system.",
+    },
   },
   {
     icon: "🚀",
-    title: "Première application",
-    detail: "MANA devient le premier terrain d'application civique.",
+    title: { fr: "Première application", en: "First application" },
+    detail: {
+      fr: "MANA devient le premier terrain d'application civique.",
+      en: "MANA becomes the first ground for civic application.",
+    },
   },
   {
     icon: "🧠",
-    title: "Étoile cognitive",
-    detail: "Le Conseil devient un cœur énergétique entouré d'agents en orbite.",
+    title: { fr: "Étoile cognitive", en: "Cognitive star" },
+    detail: {
+      fr: "Le Conseil devient un cœur énergétique entouré d'agents en orbite.",
+      en: "The Council becomes an energy core surrounded by orbiting agents.",
+    },
   },
 ];
