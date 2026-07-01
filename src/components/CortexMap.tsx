@@ -1,6 +1,35 @@
 import { crewAgents } from "../config/agents";
 import type { Agent } from "../types";
 import { useState, type ReactNode } from "react";
+import { useLang } from "../lib/lang";
+
+const cortexCopy = {
+  energyTitle: { fr: "Énergie du Conseil", en: "Council energy" },
+  sessionSince: { fr: "Session active · Depuis", en: "Active session · Since" },
+  consensusInProgress: { fr: "Consensus en cours", en: "Consensus in progress" },
+  globalWaves: { fr: "Ondes globales", en: "Global waves" },
+  energyFlow: { fr: "Flux d'énergie", en: "Energy flow" },
+  high: { fr: "Élevée", en: "High" },
+  luminousMemory: { fr: "Mémoire lumineuse", en: "Luminous memory" },
+  activeSynapses: { fr: "Synapses actives", en: "Active synapses" },
+  adrTraces: { fr: "Traces ADR", en: "ADR traces" },
+  legendCaption: { fr: "Légende des neuf orbites TEMPOSYSTEM", en: "Legend of the nine TEMPOSYSTEM orbits" },
+  thRole: { fr: "Rôle", en: "Role" },
+  thMission: { fr: "Mission", en: "Mission" },
+  thCrew: { fr: "Équipage", en: "Crew" },
+  impulseInProgress: { fr: "Impulsion en cours", en: "Current impulse" },
+  impulseQuestion: { fr: "Quelle priorité pour le prochain jalon système ?", en: "Which priority for the next system milestone?" },
+  photonsCirculating: { fr: "Photons en circulation", en: "Photons in circulation" },
+  energyState: { fr: "État énergétique", en: "Energy state" },
+  linkedConstellations: { fr: "Constellations reliées", en: "Linked constellations" },
+} as const;
+
+const impulseOptions = [
+  { label: { fr: "Performance", en: "Performance" }, score: "12%", highlight: false },
+  { label: { fr: "Gouvernance", en: "Governance" }, score: "18%", highlight: false },
+  { label: { fr: "Ouverture", en: "Openness" }, score: "82%", highlight: true },
+  { label: { fr: "Sécurité", en: "Security" }, score: "8%", highlight: false },
+];
 
 type CortexVisual = {
   x: number;
@@ -194,55 +223,55 @@ const fluxEvents = [
   {
     color: "#5eead4",
     label: "Timonnier -> Capitaine",
-    detail: "Cohérence du cap",
+    detail: { fr: "Cohérence du cap", en: "Course coherence" },
     time: "14:31:58",
   },
   {
     color: "#c084fc",
     label: "Charpentier -> Calfat",
-    detail: "Analyse d'impact",
+    detail: { fr: "Analyse d'impact", en: "Impact analysis" },
     time: "14:31:56",
   },
   {
     color: "#a3e635",
     label: "Cartographe -> Tous",
-    detail: "Mémoire TempoSystem",
+    detail: { fr: "Mémoire TempoSystem", en: "TempoSystem memory" },
     time: "14:31:54",
   },
   {
     color: "#7dd3fc",
     label: "Enlumineur -> Charpentier",
-    detail: "Signal UX structure",
+    detail: { fr: "Signal UX structure", en: "UX structure signal" },
     time: "14:31:52",
   },
   {
     color: "#818cf8",
     label: "Capitaine -> Tous",
-    detail: "Point de synchronisation",
+    detail: { fr: "Point de synchronisation", en: "Synchronization point" },
     time: "14:31:50",
   },
 ];
 
 const systemRows = [
-  ["Conseil de Bord", "Opérationnel", "#86efac"],
-  ["Mémoire", "Synchronisée", "#86efac"],
-  ["Gouvernance", "Active", "#86efac"],
-  ["Applications", "1 active", "#86efac"],
-  ["Timonier", "Prototype", "#facc15"],
-  ["API IA", "En attente", "#facc15"],
+  { label: { fr: "Conseil de Bord", en: "Bridge Council" }, state: { fr: "Opérationnel", en: "Operational" }, color: "#86efac" },
+  { label: { fr: "Mémoire", en: "Memory" }, state: { fr: "Synchronisée", en: "Synchronized" }, color: "#86efac" },
+  { label: { fr: "Gouvernance", en: "Governance" }, state: { fr: "Active", en: "Active" }, color: "#86efac" },
+  { label: { fr: "Applications", en: "Applications" }, state: { fr: "1 active", en: "1 active" }, color: "#86efac" },
+  { label: { fr: "Timonier", en: "Helmsman" }, state: { fr: "Prototype", en: "Prototype" }, color: "#facc15" },
+  { label: { fr: "API IA", en: "AI API" }, state: { fr: "En attente", en: "Pending" }, color: "#facc15" },
 ];
 
 const recentAdrs = [
-  ["ADR-0010", "TEMPOSYSTEM is energy", "29/06/2026"],
-  ["ADR-0009", "Cortex énergétique", "29/06/2026"],
-  ["ADR-0008", "Interface vivante", "29/06/2026"],
+  { id: "ADR-0010", title: { fr: "TEMPOSYSTEM is energy", en: "TEMPOSYSTEM is energy" }, date: "29/06/2026" },
+  { id: "ADR-0009", title: { fr: "Cortex énergétique", en: "Energy Cortex" }, date: "29/06/2026" },
+  { id: "ADR-0008", title: { fr: "Interface vivante", en: "Living interface" }, date: "29/06/2026" },
 ];
 
 const networkStats = [
-  ["Humains", "12"],
-  ["Orbites", "9"],
-  ["Projets", "4"],
-  ["Territoires", "2"],
+  { label: { fr: "Humains", en: "Humans" }, value: "12" },
+  { label: { fr: "Orbites", en: "Orbits" }, value: "9" },
+  { label: { fr: "Projets", en: "Projects" }, value: "4" },
+  { label: { fr: "Territoires", en: "Territories" }, value: "2" },
 ];
 
 const energyOrbitRings = [
@@ -524,6 +553,7 @@ function HudPanel({
 }
 
 export function CortexMap() {
+  const { lang } = useLang();
   const [activeAgentId, setActiveAgentId] = useState<string | null>(null);
   const activeSynapsePaths = activeAgentId
     ? synapsePaths.filter(
@@ -551,22 +581,22 @@ export function CortexMap() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold uppercase text-slate-50">
-                    Énergie du Conseil
+                    {cortexCopy.energyTitle[lang]}
                   </p>
                   <p className="mt-1 text-xs leading-5 text-slate-400">
-                    Session active · Depuis 00:28:47
+                    {cortexCopy.sessionSince[lang]} 00:28:47
                   </p>
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4 text-sm">
-                <span className="text-slate-400">Consensus en cours</span>
+                <span className="text-slate-400">{cortexCopy.consensusInProgress[lang]}</span>
                 <span className="font-semibold text-emerald-300">82%</span>
               </div>
             </HudPanel>
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Ondes globales
+                {cortexCopy.globalWaves[lang]}
               </p>
               <svg className="mt-4 h-24 w-full" viewBox="0 0 260 96" aria-hidden="true">
                 <path d="M0 50 C24 12 46 80 70 42 S116 22 140 52 S188 78 214 35 S246 46 260 26" fill="none" stroke="#818cf8" strokeWidth="1.5" opacity="0.82" />
@@ -579,10 +609,10 @@ export function CortexMap() {
             <HudPanel>
               <div className="flex items-center justify-between gap-4">
                 <p className="text-sm font-semibold uppercase text-slate-50">
-                  Flux d'énergie
+                  {cortexCopy.energyFlow[lang]}
                 </p>
                 <span className="text-xs font-semibold text-emerald-300">
-                  Élevée
+                  {cortexCopy.high[lang]}
                 </span>
               </div>
               <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
@@ -592,10 +622,10 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Mémoire lumineuse
+                {cortexCopy.luminousMemory[lang]}
               </p>
               <div className="mt-4 flex items-end justify-between">
-                <span className="text-sm text-slate-400">Synapses actives</span>
+                <span className="text-sm text-slate-400">{cortexCopy.activeSynapses[lang]}</span>
                 <span className="text-2xl font-semibold text-slate-50">
                   12,458
                 </span>
@@ -604,16 +634,16 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Traces ADR
+                {cortexCopy.adrTraces[lang]}
               </p>
               <div className="mt-4 grid gap-3">
-                {recentAdrs.map(([id, title, date]) => (
+                {recentAdrs.map(({ id, title, date }) => (
                   <div
                     key={id}
                     className="grid grid-cols-[72px_minmax(0,1fr)_72px] gap-2 text-xs leading-5"
                   >
                     <span className="text-slate-500">{id}</span>
-                    <span className="text-slate-300">{title}</span>
+                    <span className="text-slate-300">{title[lang]}</span>
                     <span className="text-right text-slate-500">{date}</span>
                   </div>
                 ))}
@@ -1153,13 +1183,13 @@ export function CortexMap() {
               <div className="overflow-x-auto">
                 <table className="min-w-[760px] w-full border-collapse text-left">
                   <caption className="sr-only">
-                    Légende des neuf orbites TEMPOSYSTEM
+                    {cortexCopy.legendCaption[lang]}
                   </caption>
                   <thead>
                     <tr className="border-b border-white/10 bg-white/[0.04] text-xs font-semibold uppercase text-slate-400">
-                      <th className="w-[150px] px-4 py-3">Rôle</th>
-                      <th className="px-4 py-3">Mission</th>
-                      <th className="w-[140px] px-4 py-3">Équipage</th>
+                      <th className="w-[150px] px-4 py-3">{cortexCopy.thRole[lang]}</th>
+                      <th className="px-4 py-3">{cortexCopy.thMission[lang]}</th>
+                      <th className="w-[140px] px-4 py-3">{cortexCopy.thCrew[lang]}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1199,10 +1229,10 @@ export function CortexMap() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-semibold uppercase text-[#818cf8]">
-                    Impulsion en cours
+                    {cortexCopy.impulseInProgress[lang]}
                   </p>
                   <p className="mt-3 text-sm leading-6 text-slate-100">
-                    Quelle priorité pour le prochain jalon système ?
+                    {cortexCopy.impulseQuestion[lang]}
                   </p>
                 </div>
                 <span className="shrink-0 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-2.5 py-1 text-xs font-semibold text-emerald-100">
@@ -1210,22 +1240,17 @@ export function CortexMap() {
                 </span>
               </div>
               <div className="mt-4 grid gap-2">
-                {[
-                  ["Performance", "12%"],
-                  ["Gouvernance", "18%"],
-                  ["Ouverture", "82%"],
-                  ["Sécurité", "8%"],
-                ].map(([option, score]) => (
+                {impulseOptions.map((option) => (
                   <div
-                    key={option}
+                    key={option.label.fr}
                     className={`grid grid-cols-[minmax(0,1fr)_44px] items-center gap-3 rounded-md border px-3 py-2 text-xs ${
-                      option === "Ouverture"
+                      option.highlight
                         ? "border-[#818cf8]/70 bg-[#818cf8]/15 text-[#c4b5fd]"
                         : "border-white/10 bg-white/[0.04] text-slate-400"
                     }`}
                   >
-                    <span>{option}</span>
-                    <span className="text-right font-semibold">{score}</span>
+                    <span>{option.label[lang]}</span>
+                    <span className="text-right font-semibold">{option.score}</span>
                   </div>
                 ))}
               </div>
@@ -1233,7 +1258,7 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Photons en circulation
+                {cortexCopy.photonsCirculating[lang]}
               </p>
               <div className="mt-4 grid gap-3">
                 {fluxEvents.map((event) => (
@@ -1250,7 +1275,7 @@ export function CortexMap() {
                         {event.label}
                       </p>
                       <p className="truncate text-xs text-slate-500">
-                        {event.detail}
+                        {event.detail[lang]}
                       </p>
                     </div>
                     <span className="text-right text-xs text-slate-500">
@@ -1263,21 +1288,21 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                État énergétique
+                {cortexCopy.energyState[lang]}
               </p>
               <div className="mt-4 grid gap-2">
-                {systemRows.map(([label, state, color]) => (
+                {systemRows.map(({ label, state, color }) => (
                   <div
-                    key={label}
+                    key={label.fr}
                     className="grid grid-cols-[14px_minmax(0,1fr)_96px] gap-2 text-sm"
                   >
                     <span
                       className="mt-1.5 h-2 w-2 rounded-full shadow-[0_0_12px_currentColor]"
                       style={{ color, backgroundColor: color }}
                     />
-                    <span className="text-slate-400">{label}</span>
+                    <span className="text-slate-400">{label[lang]}</span>
                     <span className="text-right font-medium" style={{ color }}>
-                      {state}
+                      {state[lang]}
                     </span>
                   </div>
                 ))}
@@ -1286,12 +1311,12 @@ export function CortexMap() {
 
             <HudPanel>
               <p className="text-sm font-semibold uppercase text-slate-50">
-                Constellations reliées
+                {cortexCopy.linkedConstellations[lang]}
               </p>
               <div className="mt-4 grid gap-2">
-                {networkStats.map(([label, value]) => (
-                  <div key={label} className="flex justify-between text-sm">
-                    <span className="text-slate-500">{label}</span>
+                {networkStats.map(({ label, value }) => (
+                  <div key={label.fr} className="flex justify-between text-sm">
+                    <span className="text-slate-500">{label[lang]}</span>
                     <span className="font-medium text-slate-200">{value}</span>
                   </div>
                 ))}
