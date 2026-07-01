@@ -29,7 +29,13 @@ const COMET = Array.from({ length: 18 }, (_, i) => {
  * Tout est positionné en % à l'intérieur d'une boîte au ratio du papillon (1066×992)
  * → le module scrolle avec la page, aucun élément en position: fixed.
  */
-export default function HeroTransferScene() {
+export default function HeroTransferScene({
+  giverLabel = "Donneur",
+  receiverLabel = "Receveur",
+}: {
+  giverLabel?: string;
+  receiverLabel?: string;
+} = {}) {
   const [elapsed, setElapsed] = useState(0);
   const moduleRef = useRef<HTMLDivElement>(null);
   const pointRef = useRef<SVGGElement>(null);
@@ -181,12 +187,12 @@ export default function HeroTransferScene() {
       {/* Couche 3 — Compteurs HTML, calés au cœur de chaque aile */}
       <div className="hts-counter hts-counter-left">
         <span className="hts-clock hts-amber">{fmt(remaining)}</span>
-        <span className="hts-mana"><span className="hts-role">Donneur</span>−{given}<span className="hts-unit-mana hts-unit-d">MANA</span></span>
+        <span className="hts-mana"><span className="hts-role">{giverLabel}</span>−{given}<span className="hts-unit-mana hts-unit-d">MANA</span></span>
       </div>
 
       <div className="hts-counter hts-counter-right">
         <span className="hts-clock hts-green">{fmt(given)}</span>
-        <span className="hts-mana"><span className="hts-role">Receveur</span>+{given}<span className="hts-unit-mana hts-unit-r">MANA</span></span>
+        <span className="hts-mana"><span className="hts-role">{receiverLabel}</span>+{given}<span className="hts-unit-mana hts-unit-r">MANA</span></span>
       </div>
     </div>
   );

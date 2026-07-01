@@ -41,6 +41,8 @@ const copy = {
     },
     eqTime: { fr: "1 seconde", en: "1 second" },
     eqMana: { fr: "1 mana", en: "1 mana" },
+    giver: { fr: "Donneur", en: "Giver" },
+    receiver: { fr: "Receveur", en: "Receiver" },
     eqAria: { fr: "1 seconde égale 1 mana", en: "1 second equals 1 mana" },
   },
   why: {
@@ -143,7 +145,7 @@ export function HomePage() {
           </p>
 
           {/* Module LULLABY — papillon-comète + compteurs de transfert */}
-          <HeroTransferScene />
+          <HeroTransferScene giverLabel={copy.hero.giver[lang]} receiverLabel={copy.hero.receiver[lang]} />
 
           <p className="max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
             {copy.hero.description[lang]}
