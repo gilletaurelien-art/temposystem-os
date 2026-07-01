@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { councilAgents, crew2042Agents } from "../../config/agents";
 import type { CouncilSession, CouncilSessionStatus } from "../../types";
+import { useLang } from "../../lib/lang";
 import {
   generateMockCouncilConsensus,
   generateMockCouncilResponses,
@@ -27,13 +28,49 @@ const createDraftSession = (): CouncilSession => {
   };
 };
 
-const statusLabel: Record<CouncilSessionStatus, string> = {
-  draft: "Brouillon",
-  consulted: "Conseil consulté",
-  decided: "Décision validée",
-};
+const copy = {
+  statusLabel: {
+    fr: {
+      draft: "Brouillon",
+      consulted: "Conseil consulté",
+      decided: "Décision validée",
+    },
+    en: {
+      draft: "Draft",
+      consulted: "Council consulted",
+      decided: "Decision validated",
+    },
+  } satisfies Record<"fr" | "en", Record<CouncilSessionStatus, string>>,
+  title: { fr: "Conseil de Bord", en: "Bridge Council" },
+  questionLabel: { fr: "Question du Capitaine", en: "Captain's Question" },
+  questionPlaceholder: {
+    fr: "Quelle décision devons-nous éclairer aujourd'hui ?",
+    en: "Which decision should we illuminate today?",
+  },
+  consult: { fr: "Consulter le Conseil", en: "Consult the Council" },
+  permanentFunctions: { fr: "Fonctions permanentes", en: "Permanent functions" },
+  currentImplementation: { fr: "Implémentation actuelle :", en: "Current implementation:" },
+  recommendation: { fr: "Recommandation :", en: "Recommendation:" },
+  awaitingConsultation: { fr: "En attente de consultation.", en: "Awaiting consultation." },
+  extendedCrew: { fr: "Équipage étendu", en: "Extended crew" },
+  capabilities2042: { fr: "Capacités 2042", en: "2042 capabilities" },
+  notCalled: { fr: "Non sollicité", en: "Not called" },
+  available: { fr: "Disponible", en: "Available" },
+  consensus: { fr: "Consensus du Conseil", en: "Council consensus" },
+  pointsOfAttention: { fr: "Points d'attention", en: "Points of attention" },
+  awaitingSynthesis: { fr: "En attente de synthèse.", en: "Awaiting synthesis." },
+  decisionLabel: { fr: "Décision du Capitaine", en: "Captain's Decision" },
+  decisionPlaceholder: {
+    fr: "Décision retenue, justification et prochain mouvement.",
+    en: "Chosen decision, rationale and next move.",
+  },
+  validate: { fr: "Valider la décision", en: "Validate the decision" },
+  decisionValidated: { fr: "Décision validée.", en: "Decision validated." },
+  createIssue: { fr: "Créer une issue GitHub", en: "Create a GitHub issue" },
+} as const;
 
 export function CouncilPage() {
+  const { lang } = useLang();
   const [session, setSession] = useState<CouncilSession>(() =>
     createDraftSession(),
   );
@@ -145,11 +182,11 @@ export function CouncilPage() {
               TEMPOSYSTEM OS
             </p>
             <h1 className="mt-2 font-['Philosopher',serif] text-3xl font-semibold text-white sm:text-4xl">
-              Conseil de Bord
+              {copy.title[lang]}
             </h1>
           </div>
           <span className="w-fit rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs font-medium text-slate-300">
-            {statusLabel[session.status]}
+            {copy.statusLabel[lang][session.status]}
           </span>
         </header>
 
@@ -157,13 +194,13 @@ export function CouncilPage() {
           <div className="flex min-w-0 flex-col gap-6">
             <label className="flex flex-col gap-3">
               <span className="text-sm font-semibold text-slate-200">
-                Question du Capitaine
+                {copy.questionLabel[lang]}
               </span>
               <textarea
                 value={session.question.text}
                 onChange={(event) => updateQuestion(event.target.value)}
                 className="min-h-40 resize-y rounded-lg border border-white/12 bg-white/[0.04] px-4 py-3 text-base leading-7 text-slate-100 placeholder:text-slate-500 outline-none transition backdrop-blur-sm focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/20"
-                placeholder="Quelle décision devons-nous éclairer aujourd'hui ?"
+                placeholder={copy.questionPlaceholder[lang]}
               />
             </label>
 
@@ -173,7 +210,7 @@ export function CouncilPage() {
               onClick={consultCouncil}
               className="inline-flex min-h-12 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-5 text-sm font-semibold text-white transition hover:from-[#818cf8] hover:to-[#8b5cf6] disabled:cursor-not-allowed disabled:bg-none disabled:bg-white/10 disabled:text-slate-500"
             >
-              Consulter le Conseil
+              {copy.consult[lang]}
             </button>
 
             <section
@@ -182,10 +219,10 @@ export function CouncilPage() {
             >
               <div className="flex items-center justify-between gap-3">
                 <h2 id="council-heading" className="text-xl font-semibold text-white">
-                  Conseil de Bord
+                  {copy.title[lang]}
                 </h2>
                 <span className="rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs font-medium text-slate-300">
-                  Fonctions permanentes
+                  {copy.permanentFunctions[lang]}
                 </span>
               </div>
 
@@ -214,7 +251,7 @@ export function CouncilPage() {
                           {agent.description}
                         </p>
                         <p className="mt-3 text-xs font-medium text-slate-500">
-                          Implémentation actuelle :{" "}
+                          {copy.currentImplementation[lang]}{" "}
                           {agent.implementation.name}
                         </p>
                       </div>
@@ -225,13 +262,13 @@ export function CouncilPage() {
                             <p className="leading-6 text-slate-300">{response.summary}</p>
                             <p className="text-slate-400">
                               <span className="font-semibold text-slate-200">
-                                Recommandation :
+                                {copy.recommendation[lang]}
                               </span>{" "}
                               {response.recommendation}
                             </p>
                           </div>
                         ) : (
-                          <p>En attente de consultation.</p>
+                          <p>{copy.awaitingConsultation[lang]}</p>
                         )}
                       </div>
                     </article>
@@ -249,10 +286,10 @@ export function CouncilPage() {
                   id="extended-crew-heading"
                   className="text-base font-semibold text-white"
                 >
-                  Équipage étendu
+                  {copy.extendedCrew[lang]}
                 </h2>
                 <span className="rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-slate-300">
-                  Capacités 2042
+                  {copy.capabilities2042[lang]}
                 </span>
               </div>
 
@@ -272,7 +309,7 @@ export function CouncilPage() {
                       </p>
                     </div>
                     <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.06] px-2 py-1 text-xs font-medium text-slate-400">
-                      {agent.status === "future" ? "Non sollicité" : "Disponible"}
+                      {agent.status === "future" ? copy.notCalled[lang] : copy.available[lang]}
                     </span>
                   </div>
                 ))}
@@ -282,14 +319,14 @@ export function CouncilPage() {
 
           <aside className="flex min-w-0 flex-col gap-5">
             <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
-              <h2 className="text-lg font-semibold text-white">Consensus du Conseil</h2>
+              <h2 className="text-lg font-semibold text-white">{copy.consensus[lang]}</h2>
               <div className="mt-3 min-h-36 rounded-md border border-dashed border-white/15 bg-white/[0.03] p-4 text-sm leading-6 text-slate-400">
                 {session.consensus ? (
                   <div className="flex flex-col gap-3">
                     <p className="text-slate-300">{session.consensus.summary}</p>
                     <div>
                       <p className="font-semibold text-slate-200">
-                        Points d'attention
+                        {copy.pointsOfAttention[lang]}
                       </p>
                       <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-400">
                         {session.consensus.openQuestions.map((question) => (
@@ -299,7 +336,7 @@ export function CouncilPage() {
                     </div>
                   </div>
                 ) : (
-                  <p className="text-slate-500">En attente de synthèse.</p>
+                  <p className="text-slate-500">{copy.awaitingSynthesis[lang]}</p>
                 )}
               </div>
             </section>
@@ -307,14 +344,14 @@ export function CouncilPage() {
             <section className="rounded-lg border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm">
               <label className="flex flex-col gap-3">
                 <span className="text-lg font-semibold text-white">
-                  Décision du Capitaine
+                  {copy.decisionLabel[lang]}
                 </span>
                 <textarea
                   value={decisionText}
                   onChange={(event) => setDecisionText(event.target.value)}
                   readOnly={session.status === "decided"}
                   className="min-h-36 resize-y rounded-md border border-white/12 bg-white/[0.04] px-4 py-3 text-sm leading-6 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/20"
-                  placeholder="Décision retenue, justification et prochain mouvement."
+                  placeholder={copy.decisionPlaceholder[lang]}
                 />
               </label>
               <button
@@ -323,11 +360,11 @@ export function CouncilPage() {
                 onClick={validateDecision}
                 className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#3b82f6] to-[#6366f1] px-5 text-sm font-semibold text-white transition hover:from-[#60a5fa] hover:to-[#818cf8] disabled:cursor-not-allowed disabled:bg-none disabled:bg-white/10 disabled:text-slate-500"
               >
-                Valider la décision
+                {copy.validate[lang]}
               </button>
               {session.status === "decided" && session.decision ? (
                 <p className="mt-3 rounded-md bg-emerald-900/25 px-3 py-2 text-sm font-medium text-emerald-300">
-                  Décision validée.
+                  {copy.decisionValidated[lang]}
                 </p>
               ) : null}
             </section>
@@ -337,7 +374,7 @@ export function CouncilPage() {
               disabled
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-slate-500"
             >
-              Créer une issue GitHub
+              {copy.createIssue[lang]}
             </button>
           </aside>
         </section>

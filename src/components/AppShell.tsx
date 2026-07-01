@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
+import { useLang, type Language } from "../lib/lang";
 
 interface AppShellProps {
   activeRoute: string;
@@ -7,6 +8,7 @@ interface AppShellProps {
 }
 
 export function AppShell({ activeRoute, children }: AppShellProps) {
+  const { lang, setLang } = useLang();
   const [butterflyOp, setButterflyOp] = useState(1);
 
   useEffect(() => {
@@ -39,14 +41,17 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         <div className="os-stars" />
       </div>
 
-      {/* Butterfly fixe bioluminescent */}
-      <img
-        src="/assets/temposystem-butterfly-transparent.png"
-        className="os-butterfly"
-        style={{ opacity: butterflyOp }}
-        aria-hidden="true"
-        alt=""
-      />
+      {/* Butterfly fixe bioluminescent — masqué sur l'accueil où le module LULLABY
+          (papillon-comète) prend le relais ; gardé en ambiance sur les autres pages. */}
+      {activeRoute !== "home" && (
+        <img
+          src="/assets/temposystem-butterfly-transparent.png"
+          className="os-butterfly"
+          style={{ opacity: butterflyOp }}
+          aria-hidden="true"
+          alt=""
+        />
+      )}
 
       {/* Header */}
       <header className="os-header">
@@ -58,17 +63,35 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           />
           TEMPOSYSTEM OS
         </a>
-        <nav className="flex flex-wrap gap-1">
-          {publicNavigation.map((item) => (
-            <a
-              key={item.route}
-              href={item.href}
-              className={`os-nav-link${activeRoute === item.route ? " os-nav-link-active" : ""}`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex flex-wrap items-center gap-3">
+          <nav className="flex flex-wrap gap-1">
+            {publicNavigation.map((item) => (
+              <a
+                key={item.route}
+                href={item.href}
+                className={`os-nav-link${activeRoute === item.route ? " os-nav-link-active" : ""}`}
+              >
+                {item.label[lang]}
+              </a>
+            ))}
+          </nav>
+          {/* Toggle langue FR / EN */}
+          <div className="flex items-center overflow-hidden rounded-lg border border-white/15">
+            {(["fr", "en"] as Language[]).map((l) => (
+              <button
+                key={l}
+                type="button"
+                onClick={() => setLang(l)}
+                aria-pressed={l === lang}
+                className={`px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest transition-colors ${
+                  l === lang ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-200"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
       </header>
 
       {/* Content */}
@@ -84,12 +107,14 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               TEMPOSYSTEM OS
             </p>
             <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
-              Chaque décision importante laisse une trace. Chaque évolution
-              s'appuie sur la mémoire du système et rayonne vers l'ensemble de
-              la coopération.
+              {lang === "fr"
+                ? "Chaque décision importante laisse une trace. Chaque évolution s'appuie sur la mémoire du système et rayonne vers l'ensemble de la coopération."
+                : "Every important decision leaves a trace. Every evolution builds on the system's memory and radiates across the whole cooperation."}
             </p>
             <p className="mt-2 text-xs font-mono uppercase text-slate-600">
-              Launch 000 · Premier déploiement public · 2026
+              {lang === "fr"
+                ? "Launch 000 · Premier déploiement public · 2026"
+                : "Launch 000 · First public deployment · 2026"}
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -99,7 +124,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
                 href={item.href}
                 className="os-footer-link"
               >
-                {item.label}
+                {item.label[lang]}
               </a>
             ))}
           </div>
