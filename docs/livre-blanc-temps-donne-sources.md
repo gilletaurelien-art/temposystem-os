@@ -61,6 +61,19 @@
 
 ---
 
+## Pilier C — Populations (dénominateurs de la trajectoire d'adoption)
+
+> Les **taux** d'adoption (1 %, 5 %) sont des **hypothèses illustratives, jamais des prévisions**. Seuls les dénominateurs (populations) sont sourcés.
+
+- **UE** : **450,4 M hab.** au 1ᵉʳ janv. 2025. ✅ (Eurostat / INSEE)
+- **France** : **69,1 M hab.** au 1ᵉʳ janv. 2026 (68,6 M en 2025). ✅ (INSEE, Bilan démographique 2025-2026)
+- **Bretagne** : **3,51 M hab.** au 1ᵉʳ janv. 2026. ✅ (INSEE Flash Bretagne)
+- **Monde** : **≈ 8,2 Md hab.** (2025). ✅ (ONU, ordre de grandeur)
+- Bassin local : **50 000** = valeur illustrative (intercommunalité type), non sourcée.
+- Sources : [vie-publique — populations 2025](https://www.vie-publique.fr/en-bref/296689-populations-de-reference-les-chiffres-pour-2025) · [INSEE Bilan démographique 2025](https://www.insee.fr/fr/statistiques/8719824) · [INSEE Flash Bretagne](https://www.insee.fr/fr/statistiques/8745220) · [INSEE — population UE](https://www.insee.fr/fr/statistiques/2381480)
+
+---
+
 ## À re-vérifier avant publication finale
 - [ ] Verbatim exact Kuznets 1934 depuis le primaire (FRASER bloqué en fetch — à ouvrir manuellement, p.7).
 - [ ] Chiffre OIT « 9 % du PIB mondial » depuis le rapport OIT 2018 lui-même (PDF non lisible en fetch).
