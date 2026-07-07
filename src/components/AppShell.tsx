@@ -34,6 +34,19 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           "linear-gradient(180deg,#020617 0%,#080B1A 46%,#030712 100%)",
       }}
     >
+      {/* Fond d'écran signature MANA */}
+      <div className="mana-wallpaper" aria-hidden="true">
+        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-one" />
+        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-two" />
+        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-three" />
+        <div className="mana-wallpaper-core">
+          <img src="/assets/Logo_MANA_Symbol_logo.png" alt="" className="mana-wallpaper-core-logo" />
+        </div>
+        <div className="mana-world-line mana-world-line-one" />
+        <div className="mana-world-line mana-world-line-two" />
+        <div className="mana-world-line mana-world-line-three" />
+      </div>
+
       {/* Ambient starfield */}
       <div className="os-ambient">
         <div className="os-nebula-one" />

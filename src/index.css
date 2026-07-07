@@ -1107,3 +1107,44 @@ h1, h2, h3 {
 /* Dimensionnement du module LULLABY dans le hero d'accueil os */
 .os-hero .hts-module { width: min(82vw, 540px); }
 .os-hero .source-equation { margin-top: 2px; }
+
+/* ============================================================
+   Fond d'écran signature MANA (référence : alliancemana.org)
+   Variante nuit pour TEMPOSYSTEM OS : orbites, cœur rayonnant
+   avec le logo qui pulse au même rythme, lignes de mondes.
+   ============================================================ */
+.mana-wallpaper { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  background:
+    radial-gradient(ellipse 700px 600px at 78% 8%, rgb(43 63 199 / 0.18), transparent 65%),
+    radial-gradient(ellipse 520px 420px at 88% 32%, rgb(192 64 232 / 0.12), transparent 60%),
+    linear-gradient(180deg, #020617 0%, #080B1A 46%, #030712 100%); }
+.mana-wallpaper::after { content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgb(237 241 246 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(237 241 246 / 0.04) 1px, transparent 1px);
+  background-size: 88px 88px;
+  -webkit-mask-image: radial-gradient(circle at 50% 45%, black, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 45%, black, transparent 72%); opacity: .5; }
+.mana-wallpaper-orbit, .mana-wallpaper-core, .mana-world-line {
+  position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); }
+.mana-wallpaper-orbit { border: 1px solid rgb(99 121 255 / 0.20); border-radius: 9999px;
+  box-shadow: 0 0 80px rgb(192 64 232 / 0.10); }
+.mana-wallpaper-orbit-one { width: min(72vw, 880px); height: min(34vw, 410px); animation: drift-orbit 42s ease-in-out infinite; }
+.mana-wallpaper-orbit-two { width: min(58vw, 690px); height: min(27vw, 320px); border-color: rgb(192 64 232 / 0.20); animation: drift-orbit 55s ease-in-out infinite reverse; }
+.mana-wallpaper-orbit-three { width: min(44vw, 520px); height: min(20vw, 235px); border-color: rgb(99 121 255 / 0.14); animation: breathe-orbit 18s ease-in-out infinite; }
+.mana-wallpaper-core { display: grid; place-items: center;
+  width: clamp(96px, 12vw, 160px); height: clamp(96px, 12vw, 160px);
+  border: 1px solid rgb(192 64 232 / 0.25); border-radius: 9999px;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.95) 0 10%, rgb(238 239 254 / 0.9) 11% 28%, rgb(192 64 232 / 0.10) 58%, transparent 72%), rgb(255 255 255 / 0.55);
+  box-shadow: 0 0 55px rgb(43 63 199 / 0.22), 0 0 120px rgb(192 64 232 / 0.18);
+  animation: pulse-core 7s ease-in-out infinite; }
+.mana-wallpaper-core-logo { width: 62%; height: 62%; object-fit: contain; opacity: .9;
+  filter: drop-shadow(0 0 16px rgb(192 64 232 / 0.4)) drop-shadow(0 0 34px rgb(43 63 199 / 0.28)); }
+.mana-world-line { width: min(74vw, 900px); height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(99 121 255 / 0.20), transparent); opacity: .42; }
+.mana-world-line-one { transform: translate(-50%, -50%) rotate(12deg); }
+.mana-world-line-two { transform: translate(-50%, -50%) rotate(-18deg); }
+.mana-world-line-three { transform: translate(-50%, -50%) rotate(38deg); }
+@keyframes drift-orbit { 0%,100% { transform: translate(-50%,-50%) rotate(-4deg) scale(1); } 50% { transform: translate(-50%,-50%) rotate(4deg) scale(1.03); } }
+@keyframes breathe-orbit { 0%,100% { opacity: .56; transform: translate(-50%,-50%) scale(.96); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.05); } }
+@keyframes pulse-core { 0%,100% { filter: brightness(.98); transform: translate(-50%,-50%) scale(.96); } 50% { filter: brightness(1.08); transform: translate(-50%,-50%) scale(1.04); } }
+@media (prefers-reduced-motion: reduce) { .mana-wallpaper-orbit, .mana-wallpaper-core { animation: none; } }
