@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le temps donné — le concept et son inscription · Livre blanc</title>
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ LE TEMPS DONNÉ — charte MANA (axe froid) ============ */
+  :root{
+    --bleu:#2B3FC7; --violet:#C040E8; --degrade-mi:#8B35D6;
+    --encre:#0B1220; --texte:#2c3550; --brume:#6B7280; --filet:#E3E6F0;
+    --ecume:#F7F8FA; --sous:#2234B0; --nuit:#0b0920;
+    --serif:'Philosopher','Iowan Old Style',Georgia,serif;
+    --sans:'Inter','Avenir Next',-apple-system,'Segoe UI',sans-serif;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--texte);font-size:10.2pt;line-height:1.62;
+    background:#e9ebf2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @media screen{.page{margin:6mm auto;box-shadow:0 2mm 8mm rgba(11,18,32,.14)}}
+
+  .page{width:210mm;min-height:297mm;padding:20mm 19mm 22mm;position:relative;
+    page-break-after:always;overflow:hidden;background:#fff}
+  .page:last-child{page-break-after:auto}
+
+  .pied{position:absolute;left:19mm;right:19mm;bottom:9mm;display:flex;justify-content:space-between;
+    font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#9aa0b5;
+    border-top:1px solid var(--filet);padding-top:2.4mm}
+  .pied .g b{color:var(--sous);font-weight:700}
+
+  .grad{background:linear-gradient(110deg,var(--bleu) 0%,var(--degrade-mi) 50%,var(--violet) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ============ COUVERTURE ============ */
+  .couv{display:flex;flex-direction:column;background:
+    radial-gradient(ellipse 120mm 90mm at 82% 6%, rgb(43 63 199 / .07), transparent 65%),
+    radial-gradient(ellipse 90mm 70mm at 90% 30%, rgb(192 64 232 / .05), transparent 60%),
+    linear-gradient(180deg,#fff 0%,var(--ecume) 100%)}
+  .couv .marque{display:flex;align-items:center;gap:5mm}
+  .couv .marque .sceau{width:17mm;height:17mm;flex:none}
+  .couv .marque .noms{font-family:var(--sans);font-weight:700;letter-spacing:.2em;font-size:10pt;color:var(--encre);line-height:1.5}
+  .couv .marque .noms span{color:var(--brume);font-weight:600}
+  .couv .centre{margin:auto 0;padding-top:14mm}
+  .couv .edition{font-size:9pt;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 6mm}
+  .couv .edition::before{content:"";display:inline-block;width:14mm;height:1.5px;background:linear-gradient(90deg,var(--bleu),var(--violet));vertical-align:middle;margin-right:4mm}
+  .couv h1{font-family:var(--serif);font-weight:400;font-size:33pt;line-height:1.12;color:var(--encre);margin:0 0 7mm;max-width:158mm}
+  .couv .soustitre{font-family:var(--serif);font-style:italic;font-size:14pt;color:var(--texte);margin:0 0 12mm;max-width:140mm;line-height:1.5}
+  .couv .version{font-size:10pt;color:var(--brume);margin:0}
+  .couv .version b{color:var(--encre)}
+  .couv .porteurs{margin-top:auto;border-top:1px solid var(--filet);padding-top:6mm}
+  .couv .porteurs .t{font-size:7.5pt;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 2.5mm}
+  .couv .porteurs p{margin:0;font-size:10pt;color:var(--encre)}
+  .couv .porteurs p b{font-weight:700}
+  .signature{display:inline-flex;align-items:center;gap:3mm;font-family:var(--sans);font-weight:700;
+    letter-spacing:.14em;font-size:11pt;color:var(--encre)}
+  .signature .x{color:var(--violet);font-weight:400;font-size:13pt}
+
+  /* ============ SOMMAIRE ============ */
+  .sommaire h2{margin-top:0}
+  .sommaire ol{list-style:none;margin:8mm 0 0;padding:0;counter-reset:som}
+  .sommaire li{counter-increment:som;display:flex;align-items:baseline;gap:4mm;
+    padding:3.2mm 0;border-bottom:1px solid var(--filet);font-family:var(--serif);font-size:13pt;color:var(--encre)}
+  .sommaire li::before{content:counter(som);font-family:var(--sans);font-weight:700;font-size:9pt;
+    color:#fff;background:linear-gradient(135deg,var(--bleu),var(--violet));border-radius:50%;
+    width:6.4mm;height:6.4mm;display:flex;align-items:center;justify-content:center;flex:none;transform:translateY(-.8mm)}
+  .sommaire li small{margin-left:auto;font-family:var(--sans);font-size:8pt;color:var(--brume);letter-spacing:.06em}
+
+  /* ============ SECTIONS ============ */
+  .sur{font-size:8pt;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 3mm}
+  .sur::before{content:"";display:inline-block;width:11mm;height:1.5px;background:linear-gradient(90deg,var(--bleu),var(--violet));vertical-align:middle;margin-right:3.5mm}
+  h2{font-family:var(--serif);font-weight:400;font-size:22pt;line-height:1.18;color:var(--encre);margin:0 0 6mm}
+  h3{font-family:var(--serif);font-weight:700;font-size:12.5pt;color:var(--encre);margin:6.5mm 0 2.2mm}
+  p{margin:0 0 3.4mm}
+  .lead{font-size:11.5pt;line-height:1.65;color:var(--encre)}
+  strong{color:var(--encre)}
+  ul,ol.liste{margin:0 0 3.4mm;padding-left:5.5mm}
+  li{margin-bottom:1.6mm}
+  li::marker{color:var(--violet)}
+  .src{color:var(--brume);font-style:italic;font-size:8.4pt}
+  .encadre{background:var(--ecume);border:1px solid var(--filet);border-left:3px solid;
+    border-image:linear-gradient(180deg,var(--bleu),var(--violet)) 1;border-radius:0 3mm 3mm 0;
+    padding:4.5mm 5.5mm;margin:4.5mm 0}
+  .encadre p:last-child{margin-bottom:0}
+  .encadre .et{font-size:8pt;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 2mm}
+  .citation{font-family:var(--serif);font-style:italic;font-size:12.5pt;color:var(--encre);
+    text-align:center;max-width:140mm;margin:7mm auto;line-height:1.55}
+  .citation b{color:var(--sous);font-style:normal}
+  .citation .att{display:block;font-family:var(--sans);font-style:normal;font-size:8pt;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--brume);margin-top:2.5mm}
+
+  /* ============ TABLEAUX ============ */
+  table{width:100%;border-collapse:collapse;margin:4mm 0 2mm;font-size:9.3pt}
+  caption{caption-side:bottom;text-align:left;font-size:8pt;color:var(--brume);padding-top:2mm;font-style:italic}
+  th{font-family:var(--sans);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    color:#fff;background:linear-gradient(110deg,var(--bleu),var(--degrade-mi) 70%,var(--violet));
+    padding:2.6mm 3.5mm;text-align:left}
+  td{padding:2.6mm 3.5mm;border-bottom:1px solid var(--filet);vertical-align:top;color:var(--texte)}
+  tr:nth-child(even) td{background:var(--ecume)}
+  td b{color:var(--encre)}
+
+  /* ============ L'ÎLOT DE NUIT — le diptyque (lullaby) ============ */
+  .nuit{background:radial-gradient(ellipse 80% 90% at 50% 40%, #1a1440 0%, var(--nuit) 70%);
+    border-radius:5mm;padding:8mm 6mm 7mm;margin:5mm 0;color:#e9e2f7;text-align:center}
+  .nuit .titre{font-family:var(--serif);font-style:italic;font-size:12pt;color:#fff;margin:0 0 5mm;
+    text-shadow:0 0 14px rgba(205,169,255,.55)}
+  .nuit svg{width:100%;max-width:150mm;height:auto;display:block;margin:0 auto}
+  .nuit .legende{display:flex;justify-content:center;gap:14mm;margin-top:5mm;
+    font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#a99cc9}
+  .nuit .legende b{color:#cda9ff;font-weight:700}
+
+  .diptyque{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin:5mm 0}
+  .diptyque .volet{background:var(--ecume);border:1px solid var(--filet);border-radius:3mm;padding:4.5mm 5mm}
+  .diptyque h3{margin-top:0}
+  .diptyque .astre{font-size:15pt;margin-bottom:1mm}
+
+  /* ============ SOURCES ============ */
+  .page.dense{padding-top:14mm}
+  .refs{font-size:8.6pt;line-height:1.5;color:var(--texte)}
+  .refs li{margin-bottom:2.2mm}
+  .refs b{color:var(--encre)}
+</style>
+</head>
+<body>
+
+<!-- ============================ COUVERTURE ============================ -->
+<section class="page couv">
+  <div class="marque">
+    <svg class="sceau" viewBox="0 0 64 64" role="img" aria-label="ManaTimeBank × TempoSystem">
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2B3FC7"/><stop offset=".5" stop-color="#8B35D6"/><stop offset="1" stop-color="#C040E8"/>
+        </linearGradient>
+      </defs>
+      <circle cx="32" cy="32" r="20" fill="none" stroke="url(#cg)" stroke-width="2.6"/>
+      <path d="M32 9v46M9 32h46" stroke="url(#cg)" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+      <path d="M20 32a12 12 0 0 1 24 0" fill="none" stroke="url(#cg)" stroke-width="2.4"/>
+      <path d="M44 32a12 12 0 0 1-24 0" fill="none" stroke="url(#cg)" stroke-width="2.4" opacity=".55"/>
+      <circle cx="32" cy="32" r="3.1" fill="url(#cg)"/>
+    </svg>
+    <div class="noms">MANATIMEBANK <span>× TEMPOSYSTEM</span><br><span>Le concept &amp; son inscription</span></div>
+  </div>
+
+  <div class="centre">
+    <p class="edition">Livre blanc · Le concept</p>
+    <h1>Le temps donné.<br><span class="grad">Le concept et son inscription.</span></h1>
+    <p class="soustitre">Donner au temps offert la permanence d'un registre — sans jamais le transformer en monnaie. Une première comptabilité de ce qui compte vraiment.</p>
+    <p class="version">Version <b>1.0</b> — Juillet 2026 · Édition française</p>
+  </div>
+
+  <div class="porteurs">
+    <p class="t">Un document commun de l'univers MANA</p>
+    <p class="signature">ManaTimeBank <span class="x">×</span> TempoSystem</p>
+    <p style="margin-top:2.5mm;color:var(--brume);font-size:9pt"><b style="color:var(--encre)">ManaTimeBank</b> — le concept international · <b style="color:var(--encre)">TempoSystem</b> — l'inscription · Sous la Constitution numérique de l'Alliance MANA</p>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0</span></div>
+</section>
+
+<!-- ============================ SOMMAIRE ============================ -->
+<section class="page sommaire">
+  <p class="sur">Sommaire</p>
+  <h2>Le chemin du document.</h2>
+  <ol>
+    <li>Ce que le PIB ne voit pas <small>p.3</small></li>
+    <li>Les banques de temps : la bonne intuition, la mauvaise unité <small>p.4</small></li>
+    <li>Le geste fondateur — inscrire le temps donné <small>p.6</small></li>
+    <li>Le soleil &amp; la lune — le diptyque <small>p.7</small></li>
+    <li>Une racine, plusieurs lectures <small>p.9</small></li>
+    <li>Un nouvel outil de lecture des sociétés <small>p.10</small></li>
+    <li>Tenir la promesse — l'inscription fidèle <small>p.12</small></li>
+    <li>Civiliser la valeur du temps <small>p.13</small></li>
+  </ol>
+  <div class="encadre" style="margin-top:9mm">
+    <p class="et">Deux signatures, une idée</p>
+    <p><strong>ManaTimeBank</strong> porte le <strong>concept</strong> — le pourquoi, la valeur du temps donné, sa lecture. <strong>TempoSystem</strong> porte l'<strong>inscription</strong> — le comment, le registre fidèle, ses gardiens. Ce livre blanc est leur socle commun. Le manifeste contemplatif vit ailleurs (<em>La Source</em>, temposystem.eu) ; la doctrine technique, dans le journal de bord interne.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0</span></div>
+</section>
+
+<!-- ============================ 1. CE QUE LE PIB NE VOIT PAS ============================ -->
+<section class="page">
+  <p class="sur">01 — Le point de départ</p>
+  <h2>Ce que le PIB ne voit pas.</h2>
+  <p class="lead">Chaque jour, des millions de gestes tiennent le monde debout : veiller un parent, écouter un voisin, transmettre un savoir, réparer, accompagner, consoler. Rien de tout cela n'apparaît dans les comptes d'une nation. Nous mesurons ce qui est facile à compter, pas ce qui fait qu'une vie vaut d'être vécue.</p>
+  <p>Ce n'est pas un détail technique. C'est un angle mort au cœur de la façon dont nos sociétés se regardent. Et il était connu dès l'origine.</p>
+
+  <h3>L'avertissement du créateur lui-même</h3>
+  <p><strong>Simon Kuznets</strong>, l'architecte de la comptabilité nationale moderne, prévenait déjà dans son rapport au Congrès américain de 1934 : <em>« le bien-être d'une nation ne peut guère se déduire d'une mesure du revenu national »</em>. Le père du PIB mettait en garde contre son usage comme boussole du bien-être. Nous l'avons ignoré pendant quatre-vingt-dix ans. <span class="src">— Kuznets, <em>National Income, 1929-1932</em>, rapport au Congrès US, 1934.</span></p>
+  <div class="citation">« Le produit national brut mesure tout, en somme, <b>sauf ce qui fait que la vie vaut la peine d'être vécue.</b> »
+    <span class="att">Robert F. Kennedy — Université du Kansas, 18 mars 1968</span></div>
+
+  <h3>Le soin : un continent invisible</h3>
+  <p>La partie la plus humaine de l'économie est aussi la moins comptée. Selon l'Organisation internationale du travail, le <strong>travail de soin non rémunéré représente environ 9 % du PIB mondial — près de 11 000 milliards de dollars</strong> — et jusqu'à <strong>10 à 39 % du PIB</strong> selon les pays. Les <strong>femmes en assurent 76,2 %</strong>. Marilyn Waring l'avait montré dès 1988 (<em>If Women Counted</em>) : ce que les comptes nationaux n'inscrivent pas, la société finit par ne plus le voir. <span class="src">— OIT, <em>Care work and care jobs</em>, 2018 ; M. Waring, 1988.</span></p>
+  <p>La question de ce livre blanc est simple : <strong>et si l'on apprenait, enfin, à inscrire ce qui compte ?</strong></p>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.3</span></div>
+</section>
+
+<!-- ============================ 2. BANQUES DE TEMPS ============================ -->
+<section class="page">
+  <p class="sur">02 — L'héritage</p>
+  <h2>Les banques de temps : la bonne intuition, la mauvaise unité.</h2>
+  <p class="lead">Une intuition juste existe déjà, et elle a un nom. Dans les années 1980, le juriste américain <strong>Edgar Cahn</strong> invente le <em>time banking</em> : et si le temps de chacun valait autant que celui de tout autre ? Une heure donnée à aider, écouter, accompagner vaut une heure — <strong>quelle que soit la tâche, quel que soit le donneur</strong>. <span class="src">— E. Cahn, « Time Dollars », 1992 (avec J. Rowe).</span></p>
+  <p>C'est une idée d'égale dignité, magnifique : elle reconnaît que <em>presque tout le monde a quelque chose dont la communauté a besoin</em>. Elle a nourri la « core economy » — l'économie du lien, de la famille, du voisinage — et le principe de <strong>co-production</strong> : transformer les bénéficiaires en contributeurs.</p>
+
+  <h3>Ce que les banques de temps ont vu juste</h3>
+  <ul>
+    <li>Le <strong>temps comme valeur</strong>, indépendamment du marché.</li>
+    <li>L'<strong>égalité de l'heure</strong> : celle du retraité vaut celle du médecin.</li>
+    <li>Une reconnaissance qui <strong>inclut</strong> plutôt qu'elle ne trie.</li>
+  </ul>
+  <p>Les études rapportent des effets réels — bien-être, sentiment d'utilité, capital social, inclusion. Par honnêteté, il faut dire aussi que <strong>cette base de preuves reste fragile</strong> : surtout qualitative, peu de mesures objectives, peu de suivi dans le temps. La promesse est belle ; sa démonstration reste à consolider. <span class="src">— Revues systématiques sur les monnaies-temps et la santé publique, 2018-2025.</span></p>
+
+  <h3>Là où le modèle bute : le chèque-heure</h3>
+  <p>Mais les banques de temps gardent une unité qui les trahit : le <strong>chèque-heure</strong>. Tu donnes une heure, tu détiens une créance d'une heure. C'est du <strong>crédit</strong> — une monnaie complémentaire déguisée. Et cette logique porte ses propres limites, largement documentées :</p>
+  <table>
+    <tr><th style="width:46mm">Limite</th><th>Ce qu'elle produit</th></tr>
+    <tr><td><b>Hyperlocalité</b></td><td>Cercles petits, peu de membres → peu de services → difficulté à croître.</td></tr>
+    <tr><td><b>Double coïncidence des besoins</b></td><td>Il faut que l'offre rencontre exactement le besoin, au bon moment.</td></tr>
+    <tr><td><b>Dépendance à l'intendance</b></td><td>Coûts administratifs, besoin d'un animateur (« broker ») et de financements.</td></tr>
+    <tr><td><b>Confusion</b></td><td>Souvent perçu comme du bénévolat ; le sens propre se dilue.</td></tr>
+    <tr><td><b>Distorsion</b></td><td>Le crédit-temps recrée des effets de marché (prédit par F. Fisher, MIT, années 1980).</td></tr>
+  </table>
+  <caption>Limites récurrentes du modèle « chèque-heure ». Sources : SSIR ; études Inde 2024, revues 2025.</caption>
+  <div class="encadre">
+    <p class="et">Notre point de bascule</p>
+    <p>Nous gardons l'intuition — <strong>le temps comme valeur, l'égale dignité de l'heure</strong> — et nous <strong>cassons l'unité</strong>. Le temps donné ne sera pas une créance à dépenser. Il sera une <strong>trace</strong> à honorer.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.4</span></div>
+</section>
+
+<!-- ============================ 3. LE GESTE FONDATEUR ============================ -->
+<section class="page">
+  <p class="sur">03 — Le geste fondateur</p>
+  <h2>Inscrire le temps donné.</h2>
+  <p class="lead">Voici l'acte au cœur de tout : <strong>donner au temps offert la permanence d'un registre — sans lui donner la logique de l'argent.</strong> C'est le paradoxe que résout notre approche, et c'est ce qui la sépare aussi bien de la banque de temps que de la monnaie.</p>
+
+  <div class="diptyque">
+    <div class="volet">
+      <h3>La créance</h3>
+      <p style="margin:0">Tournée vers l'<strong>avenir</strong> : « on me doit ». Je détiens un solde, je peux le dépenser. La valeur, c'est ce que je <em>garde</em>. C'est la logique du chèque-heure et de la monnaie.</p>
+    </div>
+    <div class="volet">
+      <h3>La trace</h3>
+      <p style="margin:0">Tournée vers le <strong>passé</strong> : « ceci a eu lieu, cela a compté ». Le registre n'est pas un portefeuille, c'est un <strong>témoignage</strong>. La valeur, c'est ce que j'ai <em>donné</em>.</p>
+    </div>
+  </div>
+
+  <p>Une banque de temps classique compte une <strong>dette réciproque</strong>. TempoSystem grave une <strong>preuve de contribution</strong> — visible, durable, transmissible. La base de données n'est pas un compte en banque : c'est une <strong>mémoire</strong>. On n'y lit pas un dû ; on y lit une histoire.</p>
+  <div class="encadre">
+    <p class="et">Le fil de l'univers MANA</p>
+    <p>Cette inscription rend le soin <strong>visible</strong> (il existe dans le registre), <strong>durable</strong> (il ne s'efface pas avec la conversation) et <strong>transmissible</strong> (il se lègue). Rendre visible, durable et transmissible ce qui, sans cela, disparaît : c'est la grammaire commune à tous les mondes de MANA.</p>
+  </div>
+  <p>Reste une question, la plus délicate : si le temps inscrit n'est pas une créance, <strong>qu'autorise-t-il ?</strong> La réponse tient en deux astres.</p>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.6</span></div>
+</section>
+
+<!-- ============================ 4. LE DIPTYQUE SOLEIL/LUNE ============================ -->
+<section class="page">
+  <p class="sur">04 — Le diptyque</p>
+  <h2>Le soleil &amp; la lune.</h2>
+  <p class="lead">Deux gestes, deux astres. Le <strong>soleil</strong> dit comment le temps se donne. La <strong>lune</strong> dit comment il se lit. Ni l'un ni l'autre n'accumule — et c'est exactement pour cela que ce n'est pas une monnaie.</p>
+
+  <div class="nuit">
+    <p class="titre">« Le soleil donne, donne, donne — sans jamais présenter de facture. »</p>
+    <svg viewBox="0 0 600 190" role="img" aria-label="Le temps qui circule, du donneur au receveur">
+      <defs>
+        <linearGradient id="ng" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#7c4dff"/><stop offset=".5" stop-color="#cda9ff"/><stop offset="1" stop-color="#C040E8"/>
+        </linearGradient>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#cda9ff" stop-opacity=".9"/><stop offset="1" stop-color="#cda9ff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- soleil (le don) -->
+      <circle cx="70" cy="95" r="40" fill="url(#glow)"/>
+      <circle cx="70" cy="95" r="19" fill="none" stroke="url(#ng)" stroke-width="2.4"/>
+      <g stroke="url(#ng)" stroke-width="2" stroke-linecap="round">
+        <path d="M70 60v-13M70 130v13M35 95H22M118 95h13M46 71 37 62M94 119l9 9M94 71l9-9M46 119l-9 9"/>
+      </g>
+      <!-- lemniscate ∞ (la circulation — lullaby) -->
+      <path d="M210 95 C210 55 270 55 300 95 C330 135 390 135 390 95 C390 55 330 55 300 95 C270 135 210 135 210 95 Z"
+            fill="none" stroke="url(#ng)" stroke-width="2.6"/>
+      <circle cx="232" cy="95" r="6.5" fill="#7c4dff"/>
+      <text x="232" y="99" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff">−</text>
+      <circle cx="368" cy="95" r="6.5" fill="#C040E8"/>
+      <text x="368" y="99" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff">+</text>
+      <!-- lune (la lecture) -->
+      <circle cx="530" cy="95" r="40" fill="url(#glow)"/>
+      <path d="M545 66a34 34 0 1 0 0 58 27 27 0 0 1 0-58z" fill="none" stroke="url(#ng)" stroke-width="2.4"/>
+    </svg>
+    <div class="legende"><span>Le soleil — <b>le don</b></span><span>Donneur <b>−</b> · Receveur <b>+</b></span><span>La lune — <b>la lecture</b></span></div>
+  </div>
+
+  <div class="diptyque">
+    <div class="volet">
+      <p class="astre">☀️</p>
+      <h3>Le soleil — le don</h3>
+      <p>Le soleil ne tient pas de registre de dettes contre toi. Il rayonne. Le temps se transfère bien, réellement (le receveur est réchauffé), mais le don ne grave pas une créance — il grave une <strong>radiance</strong>. Le don ne crée pas une dette : il crée un <strong>lien</strong> et une <strong>place</strong> dans la communauté.</p>
+      <p style="margin:0"><strong>Savoir donner est la récompense.</strong> Non pas un crédit à encaisser, mais la capacité même de donner, une place parmi les siens, et une personne qui grandit. La boucle du don ne remplit pas un compte : elle <strong>développe l'humain</strong>.</p>
+    </div>
+    <div class="volet">
+      <p class="astre">🌙</p>
+      <h3>La lune — la lecture</h3>
+      <p>On ne lit pas un solde ; on lit des <strong>phases</strong>. Comme la lune, l'état du don croît et décroît, respire, revient. Dans mana.bzh, on ne regarde pas un nombre de mana : on regarde <strong>où en est la lumière</strong>.</p>
+      <p style="margin:0">Une lune, comme un soleil, <strong>n'accumule pas</strong>. Une monnaie est un stock qu'on thésaurise ; un astre est un flux qu'on contemple. Le nombre reste l'outil du geste — <strong>jamais le miroir de la personne</strong>.</p>
+    </div>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.7</span></div>
+</section>
+
+<!-- ============================ 5. UNE RACINE, PLUSIEURS LECTURES ============================ -->
+<section class="page">
+  <p class="sur">05 — Un socle, des sens</p>
+  <h2>Une racine, plusieurs lectures.</h2>
+  <p class="lead">Le temps inscrit est un <strong>fait neutre et vrai</strong> : telle personne a donné tant de temps, tel jour, à telle autre. Sur ce socle unique, chaque monde de MANA fait pousser un <strong>sens différent</strong>. C'est la force de l'écosystème : un seul registre, plusieurs façons de l'honorer.</p>
+  <table>
+    <tr><th style="width:44mm">Le monde</th><th>Sa lecture du temps inscrit</th></tr>
+    <tr><td><b>ManaTimeBank</b><br><span class="src">le concept international</span></td><td>Le modèle : la valeur du temps donné, énoncée pour tous, exportable au-delà d'un pays.</td></tr>
+    <tr><td><b>MANA France</b><br><span class="src">le monde civique</span></td><td>La <b>reconnaissance qui circule</b> : générosité et lien citoyen ; tu n'es pas ton solde.</td></tr>
+    <tr><td><b>Mana Family</b><br><span class="src">les cercles familiaux</span></td><td>La <b>présence &amp; la mémoire</b> : qui a pris soin, ce qui fait vivre et ce qui fait durer.</td></tr>
+    <tr><td><b>TempoSystem</b><br><span class="src">l'inscription</span></td><td>Le registre lui-même : fidèle, lisible, durable — le socle que les autres interprètent.</td></tr>
+  </table>
+  <div class="encadre">
+    <p class="et">Pourquoi la banque de temps classique ne pouvait pas faire ça</p>
+    <p>Parce qu'elle enferme le temps dans <strong>une seule lecture</strong> — la créance. En séparant le <strong>fait</strong> (l'inscription) de son <strong>sens</strong> (l'interprétation), MANA libère le temps donné d'un unique usage. Le même geste peut être générosité ici, mémoire là, modèle ailleurs.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.9</span></div>
+</section>
+
+<!-- ============================ 6. NOUVEL OUTIL DE LECTURE ============================ -->
+<section class="page">
+  <p class="sur">06 — L'horizon</p>
+  <h2>Un nouvel outil de lecture des sociétés.</h2>
+  <p class="lead">Si le temps donné s'inscrit, alors on peut enfin <strong>lire une société par ce qu'elle prend soin</strong> — et non par ce qu'elle produit. C'est l'ambition ultime : offrir, à côté du PIB, une lecture du <strong>développement des personnes et des territoires</strong>.</p>
+  <p>Nous ne sommes pas seuls sur ce chemin. Depuis un demi-siècle, une lignée cherche à voir « au-delà du PIB » :</p>
+  <table>
+    <tr><th style="width:52mm">Tentative</th><th>Ce qu'elle apporte</th></tr>
+    <tr><td><b>IDH</b> — Indice de dév. humain <span class="src">(ul-Haq, PNUD, 1990)</span></td><td>Santé, éducation, niveau de vie ; ancré dans les capabilités d'Amartya Sen.</td></tr>
+    <tr><td><b>Commission Stiglitz-Sen-Fitoussi</b> <span class="src">(2009)</span></td><td>Déplacer l'accent : de la production vers le bien-être et la soutenabilité.</td></tr>
+    <tr><td><b>Genuine Progress Indicator</b></td><td>Corrige le PIB en soustrayant ses coûts (pollution, dégâts sociaux).</td></tr>
+    <tr><td><b>OECD Better Life Index</b> <span class="src">(2011)</span></td><td>Onze dimensions du bien-être, comparables entre pays.</td></tr>
+    <tr><td><b>Doughnut</b> <span class="src">(K. Raworth, 2012/2017)</span></td><td>Un plancher social, un plafond écologique.</td></tr>
+    <tr><td><b>Bonheur National Brut</b> <span class="src">(Bhoutan, années 1970)</span></td><td>« Le BNB est plus important que le PIB » ; neuf domaines.</td></tr>
+  </table>
+
+  <h3>Notre position : lire, pas scorer</h3>
+  <p>Tous ces outils partagent une tentation : produire <strong>un nouveau nombre à maximiser</strong>. Or, si TempoSystem devenait « le PIB du soin », on recréerait le piège — un score à gonfler, un soin optimisé au lieu d'être vécu.</p>
+  <p>Notre sortie, c'est le diptyque. <strong>Le soleil inscrit fidèlement</strong> — la comptabilité, la vérité de ce qui a été donné. <strong>La lune se lit en phases</strong> — la circulation, la densité des liens, le rythme d'un territoire — <strong>sans devenir un classement.</strong> TempoSystem <em>compte</em> pour se souvenir ; il <em>donne à lire</em> pour comprendre. Il ne range pas les gens.</p>
+  <div class="citation">La richesse d'un territoire ne se lit pas seulement à ce qu'il produit,<br>mais à <b>la façon dont le soin y circule.</b></div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.10</span></div>
+</section>
+
+<!-- ============================ 7. TENIR LA PROMESSE (les moyens) ============================ -->
+<section class="page">
+  <p class="sur">07 — Les moyens</p>
+  <h2>Tenir la promesse : l'inscription fidèle.</h2>
+  <p class="lead">Une philosophie ne vaut que si l'inscription est <strong>fidèle</strong>. C'est le rôle de TempoSystem : garantir que le temps donné soit gravé avec justesse, conservé lisiblement, et gouverné par des humains. Les moyens sont au service de la fin — jamais l'inverse.</p>
+
+  <h3>Une mémoire, pas un solde</h3>
+  <p>Le registre conserve les <strong>traces durables</strong> — qui a donné, quand, à qui, reconnu par qui. Cette mémoire prime sur l'éphémère. Elle doit rester <strong>lisible par un humain</strong> : pas de boîte noire, on peut toujours revenir comprendre ce qui a eu lieu.</p>
+
+  <h3>Le Conseil de Bord — la gouvernance</h3>
+  <p>Pour que le système évolue sans trahir ses principes, TempoSystem s'appuie sur un <strong>Conseil de Bord</strong> : des fonctions permanentes — éventuellement tenues par des intelligences artificielles — qui <strong>éclairent</strong> les décisions, tandis qu'une personne, le Capitaine, <strong>tranche toujours</strong>. L'IA est ici un moyen d'augmenter la qualité des choix humains, pas de les remplacer.</p>
+  <div class="encadre">
+    <p class="et">Trois garde-fous</p>
+    <p>• <strong>La décision reste humaine</strong> — la machine éclaire, elle ne commande pas.<br>
+       • <strong>Le rôle survit à l'outil</strong> — on change d'implémentation sans renommer les fonctions ni casser la mémoire.<br>
+       • <strong>Toute décision structurante laisse une trace</strong> — la gouvernance elle-même est inscrite.</p>
+  </div>
+  <p class="src">La doctrine complète de l'inscription et de la gouvernance est détaillée dans le journal de bord interne de TempoSystem OS.</p>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.12</span></div>
+</section>
+
+<!-- ============================ 8. CLÔTURE ============================ -->
+<section class="page">
+  <p class="sur">08 — L'horizon</p>
+  <h2>Civiliser la valeur du temps.</h2>
+  <p class="lead">Au fond, ce livre blanc décrit un geste de civilisation : apprendre à <strong>inscrire ce qui compte</strong>. Prendre la chose la plus humaine — le temps donné aux autres — et lui accorder enfin une existence durable, sans la corrompre en monnaie.</p>
+  <p>Les banques de temps avaient vu la valeur du temps, mais l'avaient enfermée dans une créance. Le PIB avait donné une comptabilité au monde, mais aveugle à ce qui le fait tenir. Entre les deux, il y avait une place vide — celle d'une comptabilité <strong>de ce qui compte vraiment</strong>, qui n'est ni un crédit, ni un score.</p>
+  <p>Cette place, <strong>ManaTimeBank</strong> la nomme et <strong>TempoSystem</strong> la grave. Le soleil donne, la lune se lit. Et à chaque heure offerte, une société apprend un peu mieux à voir sa propre richesse.</p>
+  <div class="citation">« Le temps donné ne disparaît pas.<br><b>Nous apprenons, enfin, à en garder la trace.</b> »</div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0 — p.13</span></div>
+</section>
+
+<!-- ============================ SOURCES ============================ -->
+<section class="page dense">
+  <p class="sur">Références</p>
+  <h2>Sources &amp; références.</h2>
+  <p class="lead">Toute affirmation chiffrée de ce document est traçable. Références principales :</p>
+  <ol class="refs">
+    <li><b>S. Kuznets</b>, <em>National Income, 1929-1932</em>, rapport au Congrès des États-Unis, 1934 — mise en garde sur le revenu national comme mesure du bien-être.</li>
+    <li><b>R. F. Kennedy</b>, discours à l'Université du Kansas, 18 mars 1968 — critique du PNB (« … except that which makes life worthwhile »).</li>
+    <li><b>OIT (Organisation internationale du travail)</b>, <em>Care work and care jobs for the future of decent work</em>, 2018 — travail de soin non rémunéré ≈ 9 % du PIB mondial (~11 000 Md USD), 10-39 % selon les pays ; femmes 76,2 %.</li>
+    <li><b>M. Waring</b>, <em>If Women Counted</em>, 1988 — invisibilité du soin dans les comptes nationaux.</li>
+    <li><b>E. Cahn &amp; J. Rowe</b>, <em>Time Dollars</em>, 1992 ; principe « une heure = une heure » et co-production.</li>
+    <li>Revues systématiques sur les monnaies-temps et la santé publique / le bien-être, 2018-2025 — effets positifs constatés, base de preuves méthodologiquement fragile.</li>
+    <li><b>PNUD</b>, Indice de développement humain (M. ul-Haq, 1990), fondé sur les capabilités d'A. Sen.</li>
+    <li><b>Commission Stiglitz-Sen-Fitoussi</b>, <em>Rapport sur la mesure des performances économiques et du progrès social</em>, 2009.</li>
+    <li><b>K. Raworth</b>, <em>Doughnut Economics</em>, 2012 (Oxfam) / 2017 ; <b>OECD</b> Better Life Index, 2011 ; <b>Bhoutan</b>, Bonheur National Brut (années 1970) ; Genuine Progress Indicator.</li>
+  </ol>
+  <div class="encadre" style="margin-top:6mm">
+    <p class="et">Note de méthode</p>
+    <p>Trois références restent à confirmer sur leur source primaire avant diffusion large (verbatim exact de Kuznets 1934 ; part « 9 % du PIB mondial » depuis le rapport OIT ; attribution nominale de F. Fisher). Les faits sont établis par recoupement d'au moins deux sources fiables ; le dossier de sourcing complet accompagne ce document.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Le temps donné</b> · ManaTimeBank × TempoSystem</span><span>Livre blanc · v1.0</span></div>
+</section>
+
+</body>
+</html>
