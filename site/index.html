@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#F7F8FA" />
+<meta name="description" content="TEMPOSYSTEM.fr — Le Cortex : l'inscription du temps donné. MANA est une énergie ; TempoSystem la quantifie. Une première comptabilité de ce qui compte vraiment." />
+<meta name="robots" content="index, follow" />
+<title>TEMPOSYSTEM.fr — Le Cortex</title>
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TEMPOSYSTEM.fr — Le Cortex" />
+<meta property="og:description" content="MANA est une énergie ; TempoSystem la quantifie. Inscrire le temps donné comme une trace, pas une créance." />
+<meta property="og:site_name" content="TEMPOSYSTEM.fr" />
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bleu:#2B3FC7; --violet:#C040E8; --degrade-mi:#8B35D6;
+    --ecume:#F7F8FA; --carte:#FFFFFF;
+    --encre:#0B1220; --texte:#2c3550; --brume:#6B7280; --filet:#E8EAF0;
+    --serif:'Philosopher','Iowan Old Style',Georgia,serif;
+    --sans:'Inter','Avenir Next',-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--texte);line-height:1.7;background:var(--ecume)}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  .grad{background:linear-gradient(110deg,var(--bleu) 0%,var(--degrade-mi) 50%,var(--violet) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+    background:rgba(247,248,250,.82);border-bottom:1px solid var(--filet)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .mark{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .mark img{width:26px;height:26px}
+  .mark-lines{display:flex;flex-direction:column;line-height:1.15}
+  .mark-name{font-size:12px;letter-spacing:.2em;font-weight:700;text-transform:uppercase;color:var(--encre)}
+  .mark-sub{font-size:10.5px;letter-spacing:.14em;color:var(--brume)}
+  .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+  .nav ul a{text-decoration:none;color:var(--brume);font-size:14px;transition:color .15s}
+  .nav ul a:hover{color:var(--encre)}
+  @media(max-width:680px){.nav ul{display:none}}
+
+  /* hero */
+  .hero{text-align:center;padding:6rem 0 4rem;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(43,63,199,.09), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 80% 20%, rgba(192,64,232,.07), transparent 70%)}
+  .hero .sur{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--bleu);margin-bottom:1.2rem}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,7vw,4.4rem);line-height:1.05;color:var(--encre);margin:0}
+  .hero h1 .cortex{display:block;font-size:.66em}
+  .hero .tagline{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.55rem);color:var(--texte);margin:1.4rem auto 0;max-width:620px}
+  .hero .equation{margin:1.6rem auto 0;max-width:640px;font-size:1.02rem;color:var(--texte)}
+  .hero .equation b{color:var(--encre)}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
+  .btn{display:inline-block;padding:.8rem 1.7rem;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;
+    background:linear-gradient(110deg,var(--bleu),var(--violet));color:#fff;
+    box-shadow:0 8px 22px rgba(90,60,230,.24);transition:filter .2s,transform .2s}
+  .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn.ghost{background:none;color:var(--bleu);border:1px solid var(--bleu);box-shadow:none}
+
+  /* sections */
+  section{padding:4.5rem 0;border-top:1px solid var(--filet)}
+  .sur-s{font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--bleu);display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+  .sur-s::before{content:"";width:34px;height:1.5px;background:linear-gradient(90deg,var(--bleu),var(--violet))}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--encre);margin:0 0 1rem}
+  .lead{font-size:1.08rem;color:var(--texte);max-width:720px}
+
+  /* concept cards */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:2.2rem}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--carte);border:1px solid var(--filet);border-radius:18px;padding:1.6rem 1.5rem;
+    transition:border-color .2s,transform .2s,box-shadow .2s}
+  .card:hover{border-color:var(--violet);transform:translateY(-2px);box-shadow:0 12px 30px rgba(90,60,230,.08)}
+  .card .ic{width:34px;height:34px;margin-bottom:.9rem;color:var(--degrade-mi)}
+  .card h3{font-family:var(--serif);font-weight:700;font-size:1.2rem;color:var(--encre);margin:0 0 .4rem}
+  .card p{margin:0;font-size:.95rem;color:var(--texte)}
+
+  /* livre blanc feature */
+  .lb{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center;
+    background:linear-gradient(160deg,#fff,var(--ecume));border:1px solid var(--filet);border-radius:26px;padding:2.4rem;margin-top:2.2rem}
+  @media(max-width:760px){.lb{grid-template-columns:1fr;text-align:center}}
+  .lb h3{font-family:var(--serif);font-weight:400;font-size:1.7rem;color:var(--encre);margin:.2rem 0 .8rem}
+  .lb p{color:var(--texte);margin:0 0 1.4rem}
+  .lb .meta{font-size:.82rem;letter-spacing:.04em;color:var(--brume);margin-bottom:1.2rem}
+  .lb-visual{aspect-ratio:1/1.414;background:#fff;border:1px solid var(--filet);border-radius:12px;
+    box-shadow:0 18px 44px rgba(90,60,230,.16);display:flex;flex-direction:column;justify-content:center;align-items:center;
+    padding:8% 10%;text-align:center;max-width:230px;margin:0 auto;justify-self:center}
+  .lb-visual .cadre{font-size:9px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--bleu);margin-bottom:14%}
+  .lb-visual .t{font-family:var(--serif);font-size:1.15rem;line-height:1.2;color:var(--encre)}
+  .lb-visual .sceau{width:34px;height:34px;margin-top:14%}
+
+  /* écosystème */
+  .eco{text-align:center}
+  .eco-mere{display:inline-flex;align-items:center;gap:16px;text-align:left;text-decoration:none;background:var(--carte);
+    border:1px solid var(--filet);border-radius:20px;padding:15px 24px 15px 16px;box-shadow:0 14px 40px rgba(90,60,230,.13);max-width:460px;
+    transition:border-color .2s,transform .2s}
+  .eco-mere:hover{border-color:var(--violet);transform:translateY(-2px)}
+  .eco-mere .face{width:52px;height:52px;flex:none;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--bleu),var(--violet));box-shadow:0 0 18px rgba(124,77,255,.3)}
+  .eco-mere .nom{font-weight:700;font-size:1rem;letter-spacing:.14em;color:var(--encre)}
+  .eco-mere .tag{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#7c3aed;margin-left:.5rem}
+  .eco-mere .dev{display:block;margin-top:.2rem;font-style:italic;font-size:.86rem;line-height:1.5;
+    background:linear-gradient(110deg,var(--bleu),var(--degrade-mi),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .eco-fleche{font-size:1.2rem;color:var(--violet);opacity:.55;margin:.5rem 0}
+  .eco-cadre{border:1px dashed rgba(43,63,199,.32);border-radius:20px;padding:1.7rem 1rem 1rem;position:relative;background:rgba(43,63,199,.02)}
+  .eco-cadre-t{position:absolute;top:-.75rem;left:50%;transform:translateX(-50%);background:var(--ecume);padding:0 .9rem;
+    font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#7c3aed;white-space:nowrap}
+  .eco-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem}
+  .eco-carte{display:block;text-decoration:none;background:var(--carte);border:1px solid var(--filet);border-radius:14px;padding:.9rem .7rem;transition:border-color .2s,transform .2s}
+  .eco-carte:hover{border-color:var(--violet);transform:translateY(-2px)}
+  .eco-carte .i{display:flex;justify-content:center;margin-bottom:.4rem}
+  .eco-carte .i svg{width:20px;height:20px;stroke:var(--degrade-mi);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .eco-carte .n{display:block;font-weight:700;font-size:.82rem;letter-spacing:.1em;color:var(--encre)}
+  .eco-carte .r{display:block;font-size:.76rem;color:var(--brume);margin-top:.15rem}
+
+  footer{border-top:1px solid var(--filet);padding:2.4rem 0 3rem;text-align:center;color:var(--brume);font-size:.85rem}
+  footer a{color:var(--bleu);text-decoration:none}
+  footer .devise{font-family:var(--serif);font-style:italic;margin-top:.5rem;color:var(--texte)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="mark" href="#">
+      <img src="/favicon.svg" alt="TEMPOSYSTEM" />
+      <span class="mark-lines"><span class="mark-name">TEMPOSYSTEM</span><span class="mark-sub">Le Cortex · l'inscription</span></span>
+    </a>
+    <ul>
+      <li><a href="#concept">Le concept</a></li>
+      <li><a href="#livre-blanc">Livre blanc</a></li>
+      <li><a href="#ecosysteme">L'écosystème</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="border-top:none">
+  <div class="wrap">
+    <p class="sur">Le Cortex de l'univers MANA</p>
+    <h1>TEMPOSYSTEM<span class="cortex grad">Le Cortex.</span></h1>
+    <p class="tagline">L'inscription du temps donné.</p>
+    <p class="equation"><b>MANA est une énergie</b> — celle du temps donné. <b>TempoSystem la quantifie</b> : il l'inscrit dans un registre durable, comme une <b>trace</b>, non comme une créance.</p>
+    <div class="cta">
+      <a class="btn" href="#livre-blanc">Lire le livre blanc →</a>
+      <a class="btn ghost" href="#concept">Le concept</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept">
+  <div class="wrap">
+    <p class="sur-s">Le concept</p>
+    <h2>Une comptabilité de ce qui compte — ni monnaie, ni score.</h2>
+    <p class="lead">Le temps donné — soin, présence, transmission — est une valeur réelle mais invisible. TempoSystem est l'instrument qui la mesure, sans jamais la corrompre en monnaie.</p>
+    <div class="cards">
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="9"/></svg>
+        <h3>Une trace, pas une créance</h3>
+        <p>Le registre n'est pas un portefeuille : c'est un témoignage. On n'y lit pas un dû, on y lit une histoire — ce qui a été donné, et a compté.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Lire, pas scorer</h3>
+        <p>Le soleil inscrit fidèlement ; la lune se lit en phases. On compte pour se souvenir, on donne à lire pour comprendre — jamais un classement à maximiser.</p>
+      </div>
+      <div class="card">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22v-6"/><path d="m4.9 7 4.2 2.4"/><path d="m14.9 14.6 4.2 2.4"/><path d="m4.9 17 4.2-2.4"/><path d="m14.9 9.4 4.2-2.4"/></svg>
+        <h3>Une racine, plusieurs lectures</h3>
+        <p>Un seul registre neutre ; des sens multiples. MANA France y lit la générosité, Mana Family la mémoire, ManaTimeBank le modèle international.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRE BLANC -->
+<section id="livre-blanc">
+  <div class="wrap">
+    <p class="sur-s">Le texte de référence</p>
+    <h2>Le livre blanc.</h2>
+    <div class="lb">
+      <div>
+        <p class="meta">ManaTimeBank × TempoSystem · v1.1 · Édition française</p>
+        <h3 class="grad">Le temps donné — le concept et son inscription</h3>
+        <p>Le document fondateur : ce que le PIB ne voit pas, la trace plutôt que la créance, le diptyque du soleil et de la lune, un nouvel outil de lecture des sociétés — et comment on l'inscrit, concrètement. Gratuit, sourcé, faisable.</p>
+        <div class="cta" style="justify-content:flex-start;margin-top:0">
+          <a class="btn" href="/livre-blanc.html">Lire en ligne →</a>
+          <a class="btn ghost" href="/Le-temps-donne-Livre-blanc-v1.1.pdf">Télécharger le PDF</a>
+        </div>
+      </div>
+      <div class="lb-visual">
+        <span class="cadre">Livre blanc</span>
+        <span class="t">Le temps donné.</span>
+        <svg class="sceau" viewBox="0 0 64 64" aria-hidden="true">
+          <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B3FC7"/><stop offset=".5" stop-color="#8B35D6"/><stop offset="1" stop-color="#C040E8"/></linearGradient></defs>
+          <circle cx="32" cy="32" r="20" fill="none" stroke="url(#lg)" stroke-width="2.6"/>
+          <path d="M20 32a12 12 0 0 1 24 0" fill="none" stroke="url(#lg)" stroke-width="2.4"/>
+          <path d="M44 32a12 12 0 0 1-24 0" fill="none" stroke="url(#lg)" stroke-width="2.4" opacity=".55"/>
+          <circle cx="32" cy="32" r="3.1" fill="url(#lg)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉCOSYSTÈME -->
+<section id="ecosysteme">
+  <div class="wrap eco">
+    <p class="sur-s" style="justify-content:center">L'univers MANA</p>
+    <h2>Une famille de mondes, une même Constitution.</h2>
+    <div style="height:1.6rem"></div>
+    <a class="eco-mere" href="https://manahome.org">
+      <span class="face">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>
+      </span>
+      <span>
+        <span><span class="nom">MANAHOME.org</span><span class="tag">L'assistance</span></span>
+        <span class="dev">«&nbsp;Rendre le soin visible, durable et transmissible.&nbsp;»</span>
+      </span>
+    </a>
+    <div class="eco-fleche">▼</div>
+    <div class="eco-cadre">
+      <span class="eco-cadre-t">Écosystème TEMPOSYSTEM</span>
+      <div class="eco-grille">
+        <a class="eco-carte" href="https://temposystem.eu"><span class="i"><svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span><span class="n">TEMPOSYSTEM.eu</span><span class="r">Le cœur</span></a>
+        <a class="eco-carte" href="https://temposystem.fr"><span class="i"><svg viewBox="0 0 24 24"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span><span class="n">TEMPOSYSTEM.fr</span><span class="r">L'orchestre</span></a>
+        <a class="eco-carte" href="https://manatimebank.org"><span class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span><span class="n">ManaTimeBank.org</span><span class="r">Le concept international</span></a>
+        <a class="eco-carte" href="https://mana.bzh"><span class="i"><svg viewBox="0 0 24 24"><path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/></svg></span><span class="n">Mana.bzh</span><span class="r">Le laboratoire breton</span></a>
+        <a class="eco-carte" href="https://manafamily.org"><span class="i"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="n">ManaFamily.org</span><span class="r">Les cercles familiaux</span></a>
+        <a class="eco-carte" href="https://alliancemana.org"><span class="i"><svg viewBox="0 0 24 24"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="n">AllianceMANA.org</span><span class="r">Gouvernance &amp; principes</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 TEMPOSYSTEM · Le Cortex de l'univers MANA · <a href="https://manahome.org">MANAHOME.org</a> · <a href="https://constitution.manahome.org">Constitution</a>
+    <div class="devise">« MANA est une énergie ; TempoSystem la quantifie. »</div>
+  </div>
+</footer>
+
+</body>
+</html>
