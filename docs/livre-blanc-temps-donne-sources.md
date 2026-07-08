@@ -74,7 +74,7 @@
 
 ---
 
-## À re-vérifier avant publication finale
-- [ ] Verbatim exact Kuznets 1934 depuis le primaire (FRASER bloqué en fetch — à ouvrir manuellement, p.7).
-- [ ] Chiffre OIT « 9 % du PIB mondial » depuis le rapport OIT 2018 lui-même (PDF non lisible en fetch).
-- [ ] Frank Fisher (MIT) « market distortion » — source primaire si on le nomme.
+## Vérifications finales — RÉSOLUES (08/07/2026)
+- [x] **Kuznets 1934** ✅ verbatim + citation confirmés : « the welfare of a nation can scarcely be inferred from a measurement of national income » — **Senate Document nº 124, 73ᵉ Congrès, 2ᵉ session, 1934**. Repris tel quel par la Commission européenne ([ec.europa.eu](https://ec.europa.eu/newsroom/env/items/33780/en)) et [Wikiquote](https://en.wikiquote.org/wiki/Simon_Kuznets).
+- [x] **OIT 9 %** ✅ tracé au primaire : *Care work and care jobs for the future of decent work* (2018) — **16,4 Md heures/jour** = **9 % du PIB mondial / 11 000 Md USD (PPA 2011, valeur 2016)** ; femmes 76,2 % (3,2×). [ILO exec. summary (PDF wcms_633166)](https://www.ilo.org/sites/default/files/wcmsp5/groups/public/@dgreports/@dcomm/@publ/documents/publication/wcms_633166.pdf) · [rapport (PDF wcms_65231)](https://www.ilo.org/media/65231/download).
+- [x] **F. Fisher (MIT)** ❌ NON étayable (confusion Irving / Franklin M. Fisher ; aucun lien au time banking trouvé) → **attribution RETIRÉE** du livre blanc (v1.1), remplacée par une formulation générique.
