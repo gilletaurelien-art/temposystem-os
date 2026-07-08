@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Given Time — the concept and its inscription · White paper</title>
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ GIVEN TIME — MANA charter (cold axis) ============ */
+  :root{
+    --bleu:#2B3FC7; --violet:#C040E8; --degrade-mi:#8B35D6;
+    --encre:#0B1220; --texte:#2c3550; --brume:#6B7280; --filet:#E3E6F0;
+    --ecume:#F7F8FA; --sous:#2234B0; --nuit:#0b0920;
+    --serif:'Philosopher','Iowan Old Style',Georgia,serif;
+    --sans:'Inter','Avenir Next',-apple-system,'Segoe UI',sans-serif;
+  }
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--texte);font-size:10.2pt;line-height:1.62;
+    background:#e9ebf2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @media screen{.page{margin:6mm auto;box-shadow:0 2mm 8mm rgba(11,18,32,.14)}}
+
+  .page{width:210mm;min-height:297mm;padding:19mm 19mm 20mm;position:relative;
+    page-break-after:always;overflow:hidden;background:#fff}
+  .page:last-child{page-break-after:auto}
+
+  .pied{position:absolute;left:19mm;right:19mm;bottom:9mm;display:flex;justify-content:space-between;
+    font-size:7pt;letter-spacing:.14em;text-transform:uppercase;color:#9aa0b5;
+    border-top:1px solid var(--filet);padding-top:2.4mm}
+  .pied .g b{color:var(--sous);font-weight:700}
+
+  .grad{background:linear-gradient(110deg,var(--bleu) 0%,var(--degrade-mi) 50%,var(--violet) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .couv{display:flex;flex-direction:column;background:
+    radial-gradient(ellipse 120mm 90mm at 82% 6%, rgb(43 63 199 / .07), transparent 65%),
+    radial-gradient(ellipse 90mm 70mm at 90% 30%, rgb(192 64 232 / .05), transparent 60%),
+    linear-gradient(180deg,#fff 0%,var(--ecume) 100%)}
+  .couv .marque{display:flex;align-items:center;gap:5mm}
+  .couv .marque .sceau{width:17mm;height:17mm;flex:none}
+  .couv .marque .noms{font-family:var(--sans);font-weight:700;letter-spacing:.2em;font-size:10pt;color:var(--encre);line-height:1.5}
+  .couv .marque .noms span{color:var(--brume);font-weight:600}
+  .couv .centre{margin:auto 0;padding-top:12mm}
+  .couv .edition{font-size:9pt;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 6mm}
+  .couv .edition::before{content:"";display:inline-block;width:14mm;height:1.5px;background:linear-gradient(90deg,var(--bleu),var(--violet));vertical-align:middle;margin-right:4mm}
+  .couv h1{font-family:var(--serif);font-weight:400;font-size:33pt;line-height:1.12;color:var(--encre);margin:0 0 7mm;max-width:158mm}
+  .couv .soustitre{font-family:var(--serif);font-style:italic;font-size:14pt;color:var(--texte);margin:0 0 12mm;max-width:140mm;line-height:1.5}
+  .couv .version{font-size:10pt;color:var(--brume);margin:0}
+  .couv .version b{color:var(--encre)}
+  .couv .porteurs{margin-top:auto;border-top:1px solid var(--filet);padding-top:6mm}
+  .couv .porteurs .t{font-size:7.5pt;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 2.5mm}
+  .couv .porteurs p{margin:0;font-size:10pt;color:var(--encre)}
+  .signature{display:inline-flex;align-items:center;gap:3mm;font-family:var(--sans);font-weight:700;letter-spacing:.14em;font-size:11pt;color:var(--encre)}
+  .signature .x{color:var(--violet);font-weight:400;font-size:13pt}
+
+  .sommaire h2{margin-top:0}
+  .sommaire ol{list-style:none;margin:7mm 0 0;padding:0;counter-reset:som}
+  .sommaire li{counter-increment:som;display:flex;align-items:baseline;gap:4mm;
+    padding:2.7mm 0;border-bottom:1px solid var(--filet);font-family:var(--serif);font-size:12.5pt;color:var(--encre)}
+  .sommaire li::before{content:counter(som);font-family:var(--sans);font-weight:700;font-size:9pt;
+    color:#fff;background:linear-gradient(135deg,var(--bleu),var(--violet));border-radius:50%;
+    width:6.4mm;height:6.4mm;display:flex;align-items:center;justify-content:center;flex:none;transform:translateY(-.8mm)}
+
+  .sur{font-size:8pt;letter-spacing:.26em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 3mm}
+  .sur::before{content:"";display:inline-block;width:11mm;height:1.5px;background:linear-gradient(90deg,var(--bleu),var(--violet));vertical-align:middle;margin-right:3.5mm}
+  h2{font-family:var(--serif);font-weight:400;font-size:21pt;line-height:1.18;color:var(--encre);margin:0 0 5mm}
+  h3{font-family:var(--serif);font-weight:700;font-size:12pt;color:var(--encre);margin:5.5mm 0 2mm}
+  p{margin:0 0 3.2mm}
+  .lead{font-size:11.3pt;line-height:1.6;color:var(--encre)}
+  strong{color:var(--encre)}
+  ul,ol.liste{margin:0 0 3.2mm;padding-left:5.5mm}
+  li{margin-bottom:1.4mm}
+  li::marker{color:var(--violet)}
+  .src{color:var(--brume);font-style:italic;font-size:8.3pt}
+  .encadre{background:var(--ecume);border:1px solid var(--filet);border-left:3px solid;
+    border-image:linear-gradient(180deg,var(--bleu),var(--violet)) 1;border-radius:0 3mm 3mm 0;padding:4mm 5mm;margin:4mm 0}
+  .encadre p:last-child{margin-bottom:0}
+  .encadre .et{font-size:8pt;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sous);margin:0 0 2mm}
+  .citation{font-family:var(--serif);font-style:italic;font-size:12.5pt;color:var(--encre);text-align:center;max-width:140mm;margin:6mm auto;line-height:1.55}
+  .citation b{color:var(--sous);font-style:normal}
+  .citation .att{display:block;font-family:var(--sans);font-style:normal;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--brume);margin-top:2.5mm}
+
+  .these{background:linear-gradient(180deg,#fff,var(--ecume));border:1px solid var(--filet);border-radius:4mm;padding:6mm 6.5mm;margin:5mm 0}
+  .these dl{margin:0}
+  .these dt{font-family:var(--sans);font-weight:700;font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--sous);margin:0 0 1mm}
+  .these dd{margin:0 0 4mm;font-size:10.4pt;line-height:1.55;color:var(--texte)}
+  .these dd:last-child{margin-bottom:0}
+  .these dd b{color:var(--encre)}
+
+  table{width:100%;border-collapse:collapse;margin:3.5mm 0 2mm;font-size:9.2pt}
+  caption{caption-side:bottom;text-align:left;font-size:7.8pt;color:var(--brume);padding-top:2mm;font-style:italic}
+  th{font-family:var(--sans);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#fff;
+    background:linear-gradient(110deg,var(--bleu),var(--degrade-mi) 70%,var(--violet));padding:2.4mm 3.2mm;text-align:left}
+  td{padding:2.4mm 3.2mm;border-bottom:1px solid var(--filet);vertical-align:top;color:var(--texte)}
+  tr:nth-child(even) td{background:var(--ecume)}
+  td b{color:var(--encre)}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  .nuit{background:radial-gradient(ellipse 80% 90% at 50% 40%, #1a1440 0%, var(--nuit) 70%);border-radius:5mm;padding:7mm 6mm 6mm;margin:4mm 0;color:#e9e2f7;text-align:center}
+  .nuit .titre{font-family:var(--serif);font-style:italic;font-size:12pt;color:#fff;margin:0 0 4mm;text-shadow:0 0 14px rgba(205,169,255,.55)}
+  .nuit svg{width:100%;max-width:150mm;height:auto;display:block;margin:0 auto}
+  .nuit .legende{display:flex;justify-content:center;gap:12mm;margin-top:4mm;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:#a99cc9}
+  .nuit .legende b{color:#cda9ff;font-weight:700}
+  .diptyque{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin:4mm 0}
+  .diptyque .volet{background:var(--ecume);border:1px solid var(--filet);border-radius:3mm;padding:4mm 4.5mm}
+  .diptyque h3{margin-top:0}
+  .diptyque .astre{font-size:14pt;margin-bottom:1mm}
+
+  .quadrants{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin:4mm 0 2mm}
+  .q{border:1px solid var(--filet);border-radius:3mm;padding:4mm 4.2mm;min-height:33mm;background:#fff}
+  .q .coord{display:block;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--brume);margin-bottom:1.5mm}
+  .q .t{font-family:var(--serif);font-weight:700;font-size:12pt;color:var(--encre);margin:0 0 1.5mm}
+  .q p{margin:0;font-size:8.7pt;line-height:1.45}
+  .q.ideal{background:linear-gradient(135deg,rgba(43,63,199,.09),rgba(192,64,232,.09));border-color:transparent;box-shadow:inset 0 0 0 1.4px rgba(139,53,214,.4)}
+  .q.ideal .t{color:var(--sous)}
+  .matrice-cle{font-size:9.4pt;color:var(--encre);background:var(--ecume);border-radius:2.5mm;padding:3mm 4mm;margin-top:2mm}
+  .matrice-cle b{color:var(--sous)}
+
+  .cap{margin:4mm 0 3mm;position:relative;padding-left:9mm}
+  .cap::before{content:"";position:absolute;left:2.4mm;top:2mm;bottom:3mm;width:1.6px;background:linear-gradient(180deg,var(--bleu),var(--violet))}
+  .cap .phase{position:relative;margin-bottom:4mm}
+  .cap .phase:last-child{margin-bottom:0}
+  .cap .phase::before{content:"";position:absolute;left:-8.9mm;top:.6mm;width:5mm;height:5mm;border-radius:50%;background:linear-gradient(135deg,var(--bleu),var(--violet));box-shadow:0 0 0 2px #fff}
+  .cap .horizon{font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--sous)}
+  .cap .phase h3{margin:.3mm 0 1mm;font-size:11.5pt}
+  .cap .phase p{margin:0;font-size:9pt}
+
+  .page.dense{padding-top:13mm}
+  .refs{font-size:8.5pt;line-height:1.5;color:var(--texte)}
+  .refs li{margin-bottom:2mm}
+  .refs b{color:var(--encre)}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page couv">
+  <div class="marque">
+    <svg class="sceau" viewBox="0 0 64 64" role="img" aria-label="ManaTimeBank × TempoSystem">
+      <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B3FC7"/><stop offset=".5" stop-color="#8B35D6"/><stop offset="1" stop-color="#C040E8"/></linearGradient></defs>
+      <circle cx="32" cy="32" r="20" fill="none" stroke="url(#cg)" stroke-width="2.6"/>
+      <path d="M32 9v46M9 32h46" stroke="url(#cg)" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+      <path d="M20 32a12 12 0 0 1 24 0" fill="none" stroke="url(#cg)" stroke-width="2.4"/>
+      <path d="M44 32a12 12 0 0 1-24 0" fill="none" stroke="url(#cg)" stroke-width="2.4" opacity=".55"/>
+      <circle cx="32" cy="32" r="3.1" fill="url(#cg)"/>
+    </svg>
+    <div class="noms">MANATIMEBANK <span>× TEMPOSYSTEM</span><br><span>The concept &amp; its inscription</span></div>
+  </div>
+  <div class="centre">
+    <p class="edition">White paper · The concept</p>
+    <h1>Given time.<br><span class="grad">The concept and its inscription.</span></h1>
+    <p class="soustitre">MANA is an energy — the energy of given time. TempoSystem quantifies it. A first accounting of what truly matters, without ever turning it into money.</p>
+    <p class="version">Version <b>1.1</b> — July 2026 · English edition</p>
+  </div>
+  <div class="porteurs">
+    <p class="t">A shared document of the MANA universe</p>
+    <p class="signature">ManaTimeBank <span class="x">×</span> TempoSystem</p>
+    <p style="margin-top:2.5mm;color:var(--brume);font-size:9pt"><b style="color:var(--encre)">ManaTimeBank</b> — the international concept · <b style="color:var(--encre)">TempoSystem</b> — the inscription · Under the digital Constitution of the MANA Alliance</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- CONTENTS -->
+<section class="page sommaire">
+  <p class="sur">Contents</p>
+  <h2>The path of this document.</h2>
+  <ol>
+    <li>The concept in one page</li>
+    <li>What GDP cannot see</li>
+    <li>Time banks: the right intuition, the wrong unit</li>
+    <li>MANA is an energy — TempoSystem quantifies it</li>
+    <li>The sun &amp; the moon — the diptych, and the honest objection</li>
+    <li>One root, many readings</li>
+    <li>A new way to read societies</li>
+    <li>Concretely — the inscription, the seriousness, the feasibility</li>
+    <li>The course — deployment &amp; scale</li>
+    <li>Civilising the value of time</li>
+  </ol>
+  <div class="encadre" style="margin-top:8mm">
+    <p class="et">Two signatures, one idea</p>
+    <p><strong>ManaTimeBank</strong> carries the <strong>concept</strong> — the why, the energy of given time, its reading. <strong>TempoSystem</strong> carries the <strong>inscription</strong> — the how, the faithful measure, its guardians. This white paper is their common ground. The contemplative manifesto lives elsewhere (<em>The European Source</em>, temposystem.eu); the technical doctrine, in the internal logbook.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 1. IN ONE PAGE -->
+<section class="page">
+  <p class="sur">01 — In brief</p>
+  <h2>The concept in one page.</h2>
+  <p class="lead">For the reader in a hurry — or the sceptic — here is the whole argument, in plain words, before any image.</p>
+  <div class="these">
+    <dl>
+      <dt>The observation</dt>
+      <dd>Given time — care, presence, transmission — is a <b>real yet invisible value</b>. GDP does not count it; our societies end up no longer seeing it.</dd>
+      <dt>The idea</dt>
+      <dd>MANA treats given time as an <b>energy</b>. <b>TempoSystem quantifies it</b>: it inscribes it in a durable record — as a <b>trace</b> (a testimony), not as a <b>claim</b> (a debt).</dd>
+      <dt>The distinction</dt>
+      <dd>Neither a time bank (the "hour-for-hour" credit) nor money (a stock to accumulate). A record you <b>read</b>, not a balance you spend.</dd>
+      <dt>The outcome</dt>
+      <dd>A <b>new reading of development</b> — of people and of territories — beyond GDP. We read the circulation of care; we do not rank it.</dd>
+      <dt>The means</dt>
+      <dd>A faithful record, <b>governed by humans</b>. <b>Free</b> for people and for associations.</dd>
+    </dl>
+  </div>
+  <p>The rest of the document unfolds each of these lines — and shows why it is <strong>serious</strong>, <strong>feasible</strong>, and <strong>already under way</strong>.</p>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 2. WHAT GDP CANNOT SEE -->
+<section class="page">
+  <p class="sur">02 — The starting point</p>
+  <h2>What GDP cannot see.</h2>
+  <p class="lead">Every day, millions of gestures hold the world up: sitting with an ageing parent, listening to a neighbour, passing on a skill, accompanying, consoling. None of it appears in a nation's accounts. We measure what is easy to count, not what makes a life worth living.</p>
+  <p>This is no technical detail: it is a blind spot at the heart of how our societies see themselves. And it was known from the very start.</p>
+  <h3>The creator's own warning</h3>
+  <p><strong>Simon Kuznets</strong>, the architect of modern national accounting, warned in his 1934 report to the U.S. Congress: <em>"the welfare of a nation can scarcely be inferred from a measurement of national income."</em> The father of GDP cautioned against using it as a compass for well-being. We ignored him for ninety years. <span class="src">— Kuznets, <em>National Income, 1929-1932</em>, U.S. Senate, Document No. 124, 73rd Congress, 1934.</span></p>
+  <div class="citation">"Gross national product measures everything, in short, <b>except that which makes life worthwhile.</b>"
+    <span class="att">Robert F. Kennedy — University of Kansas, 18 March 1968</span></div>
+  <h3>Care: an invisible continent</h3>
+  <p>The most human part of the economy is the least counted. According to the International Labour Organization, <strong>unpaid care work amounts to about 9% of global GDP — nearly US$11 trillion</strong> — and up to <strong>10 to 39% of GDP</strong> depending on the country. <strong>Women perform 76.2% of it.</strong> Marilyn Waring showed it back in 1988: what the accounts do not inscribe, society ceases to see. <span class="src">— ILO, <em>Care work and care jobs</em>, 2018; M. Waring, <em>If Women Counted</em>, 1988.</span></p>
+  <p>The question of this white paper is simple: <strong>what if we finally learned to inscribe what matters?</strong></p>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 3. TIME BANKS -->
+<section class="page">
+  <p class="sur">03 — The legacy</p>
+  <h2>Time banks: the right intuition, the wrong unit.</h2>
+  <p class="lead">A sound intuition already exists. In the 1980s, the American jurist <strong>Edgar Cahn</strong> invented time banking: what if everyone's time were worth as much as anyone else's? An hour given is worth an hour — <strong>whatever the task, whoever the giver</strong>. <span class="src">— E. Cahn &amp; J. Rowe, "Time Dollars", 1992.</span></p>
+  <p>An idea of equal dignity, and a beautiful one: <em>almost everyone has something the community needs</em>. It nourished the "core economy" — the economy of bonds — and <strong>co-production</strong>: turning beneficiaries into contributors.</p>
+  <h3>What they saw rightly, and their fragility</h3>
+  <p>The reported effects are real: well-being, a sense of usefulness, social capital, inclusion. In fairness, it must also be said: <strong>this evidence base remains fragile</strong> — mostly qualitative, with few objective measures and little follow-up over time. The promise is beautiful; its demonstration is still to be consolidated. <span class="src">— Systematic reviews on time currencies &amp; public health, 2018-2025.</span></p>
+  <h3>Where the model falters: the hour-cheque</h3>
+  <p>Time banks keep a unit that betrays them: the <strong>hour-cheque</strong>. You give an hour, you hold a one-hour claim. That is <strong>credit</strong> — a complementary currency in disguise. And that logic carries its own well-documented limits:</p>
+  <table>
+    <tr><th style="width:46mm">Limit</th><th>What it produces</th></tr>
+    <tr><td><b>Hyper-locality</b></td><td>Small circles, few members → few services → hard to grow.</td></tr>
+    <tr><td><b>Double coincidence of wants</b></td><td>Supply must meet exactly the need, at the right moment.</td></tr>
+    <tr><td><b>Dependence on stewardship</b></td><td>Administrative costs, a need for a broker and for funding.</td></tr>
+    <tr><td><b>Distortion</b></td><td>Time-credit can recreate market effects (scarcity, queues) that pure giving ignores.</td></tr>
+  </table>
+  <caption>Recurring limits of the "hour-cheque" model. Sources: SSIR; India study 2024; review 2025.</caption>
+  <div class="encadre">
+    <p class="et">Our turning point</p>
+    <p>We keep the intuition — <strong>time as value, the equal dignity of the hour</strong> — and we <strong>break the unit</strong>. Given time will not be a claim to spend, but an <strong>energy to inscribe</strong>.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 4. MANA IS AN ENERGY -->
+<section class="page">
+  <p class="sur">04 — The heart of the concept</p>
+  <h2>MANA is an energy. TempoSystem quantifies it.</h2>
+  <p class="lead"><strong>MANA is not a currency. MANA is an energy</strong> — the energy of given time. Just as solar energy is born of fusion and radiates while expecting nothing in return, the energy of MANA is born of the gift: care, presence, mutual aid. A human energy, real, that circulates from one person to another.</p>
+  <p>To treat given time as an energy is not a metaphor: it is a <strong>modelling choice</strong> — the one that finally makes it measurable. Heat existed before the thermometer; yet it remained impossible to compare or track, as long as no unit inscribed it.</p>
+  <div class="encadre">
+    <p class="et">The division of labour</p>
+    <p><strong>MANA is the energy; TempoSystem is its measure.</strong> One is the substance, the other the instrument. MANA is to energy what TempoSystem is to the thermometer: without it, the warmth of the gift would stay invisible, incomparable, forgotten.</p>
+  </div>
+  <p>And this measure has a precise nature — it is a <strong>trace</strong>, not a <strong>claim</strong>:</p>
+  <div class="diptyque">
+    <div class="volet">
+      <h3>The claim</h3>
+      <p style="margin:0">Turned toward the <strong>future</strong>: "I am owed." A balance to spend. Its value is what I <em>keep</em>. The logic of the hour-cheque and of money.</p>
+    </div>
+    <div class="volet">
+      <h3>The trace</h3>
+      <p style="margin:0">Turned toward the <strong>past</strong>: "this happened, this mattered." A testimony. Its value is what I <em>gave</em>. The record is a memory, not a wallet.</p>
+    </div>
+  </div>
+  <p>To make care <strong>visible</strong> (it exists in the record), <strong>lasting</strong> (it does not fade) and <strong>transmissible</strong> (it can be passed on): this is the grammar common to all the worlds of MANA. There remains the most delicate question — if the inscribed energy is not a claim, what does it grant? The answer holds in two celestial bodies.</p>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 5. THE DIPTYCH + OBJECTION -->
+<section class="page">
+  <p class="sur">05 — The diptych</p>
+  <h2>The sun &amp; the moon.</h2>
+  <p class="lead">Two gestures, two bodies. The <strong>sun</strong> tells how the energy is given. The <strong>moon</strong> tells how it is read. Neither accumulates — and that is precisely why this is not a currency.</p>
+  <div class="nuit">
+    <p class="titre">"The sun gives, gives, gives — and never sends an invoice."</p>
+    <svg viewBox="0 0 600 176" role="img" aria-label="The energy circulating, from giver to receiver">
+      <defs>
+        <linearGradient id="ng" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c4dff"/><stop offset=".5" stop-color="#cda9ff"/><stop offset="1" stop-color="#C040E8"/></linearGradient>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#cda9ff" stop-opacity=".9"/><stop offset="1" stop-color="#cda9ff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <circle cx="70" cy="88" r="40" fill="url(#glow)"/>
+      <circle cx="70" cy="88" r="19" fill="none" stroke="url(#ng)" stroke-width="2.4"/>
+      <g stroke="url(#ng)" stroke-width="2" stroke-linecap="round"><path d="M70 53v-13M70 123v13M35 88H22M118 88h13M46 64 37 55M94 112l9 9M94 64l9-9M46 112l-9 9"/></g>
+      <path d="M210 88 C210 48 270 48 300 88 C330 128 390 128 390 88 C390 48 330 48 300 88 C270 128 210 128 210 88 Z" fill="none" stroke="url(#ng)" stroke-width="2.6"/>
+      <circle cx="232" cy="88" r="6.5" fill="#7c4dff"/><text x="232" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff">−</text>
+      <circle cx="368" cy="88" r="6.5" fill="#C040E8"/><text x="368" y="92" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#fff">+</text>
+      <circle cx="530" cy="88" r="40" fill="url(#glow)"/>
+      <path d="M545 59a34 34 0 1 0 0 58 27 27 0 0 1 0-58z" fill="none" stroke="url(#ng)" stroke-width="2.4"/>
+    </svg>
+    <div class="legende"><span>The sun — <b>the gift</b></span><span>Giver <b>−</b> · Receiver <b>+</b></span><span>The moon — <b>the reading</b></span></div>
+  </div>
+  <div class="diptyque">
+    <div class="volet">
+      <p class="astre">☀️</p>
+      <h3>The sun — the gift</h3>
+      <p style="margin:0 0 2mm">The sun keeps no ledger of debts against you: it radiates. The gift does not engrave a claim, it engraves a <strong>radiance</strong>. It creates no debt — it creates a <strong>bond</strong> and a <strong>place</strong>. <strong>Knowing how to give is the reward</strong>: not a credit to cash in, but the capacity to give, and a person who grows.</p>
+    </div>
+    <div class="volet">
+      <p class="astre">🌙</p>
+      <h3>The moon — the reading</h3>
+      <p style="margin:0 0 2mm">We read no balance; we read <strong>phases</strong>. Like the moon, the state of giving waxes, wanes, returns. In mana.bzh, we do not look at a number: we look at <strong>where the light stands</strong>. A moon does not accumulate: the number stays a tool of the gesture, <strong>never a mirror of the person</strong>.</p>
+    </div>
+  </div>
+  <div class="encadre">
+    <p class="et">The honest objection — what about black holes?</p>
+    <p>"If giving grants no right, who receives? What prevents the free rider?" In the universe too there are <strong>black holes</strong> — which absorb energy without radiating it. Where does it go? It is not lost: it is conserved, transformed, sometimes returned. Four sober answers: <strong>(1)</strong> the record inscribes reality — a black hole is visible, nothing is hidden; <strong>(2)</strong> the sun does not go out because a dark body absorbs it: generosity does not depend on the receiver's reciprocity; <strong>(3)</strong> there is no balance to loot — you cannot steal a claim that does not exist; <strong>(4)</strong> status is earned by <em>giving</em>: a black hole accrues no prestige, it stays dark. The free rider is not a flaw — it is a phase. And the absorbed energy may, one day, shine out again.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 6. ONE ROOT, MANY READINGS -->
+<section class="page">
+  <p class="sur">06 — One ground, many meanings</p>
+  <h2>One root, many readings.</h2>
+  <p class="lead">The inscribed time is a <strong>neutral, true fact</strong>: this person gave so much time, on such a day, to that other. On this single ground, each world of MANA grows a <strong>different meaning</strong>. One record, many ways to honour it.</p>
+  <table>
+    <tr><th style="width:44mm">The world</th><th>Its reading of the inscribed energy</th></tr>
+    <tr><td><b>ManaTimeBank</b><br><span class="src">the international concept</span></td><td>The model: the value of given time, stated for all, exportable beyond any one country.</td></tr>
+    <tr><td><b>MANA France</b><br><span class="src">the civic world</span></td><td><b>Recognition that circulates</b>: generosity and civic bond; you are not your balance.</td></tr>
+    <tr><td><b>Mana Family</b><br><span class="src">the family circles</span></td><td><b>Presence &amp; memory</b>: who took care, what keeps a family alive and what makes it last.</td></tr>
+    <tr><td><b>TempoSystem</b><br><span class="src">the inscription</span></td><td>The record itself: faithful, legible, durable — the ground the others interpret.</td></tr>
+  </table>
+  <div class="encadre">
+    <p class="et">Why the classic time bank could not do this</p>
+    <p>Because it locks time into <strong>a single reading</strong> — the claim. By separating the <strong>fact</strong> (the inscription) from its <strong>meaning</strong> (the interpretation), MANA frees given time from one sole use. The same gesture can be generosity here, memory there, a model elsewhere.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 7. A NEW WAY TO READ SOCIETIES -->
+<section class="page">
+  <p class="sur">07 — The horizon</p>
+  <h2>A new way to read societies.</h2>
+  <p class="lead">If the energy of given time is inscribed, we can at last <strong>read a society by what it cares for</strong> — not by what it produces. Here is the simplest demonstration: two territories with the <strong>same GDP</strong> can be opposite worlds.</p>
+  <div class="quadrants">
+    <div class="q"><span class="coord">Low GDP · high mutual aid</span><p class="t">Poor and connected</p><p>Little monetary output, but a dense fabric of care. GDP calls it poor; reality knows it rich in bonds. Life holds.</p></div>
+    <div class="q ideal"><span class="coord">High GDP · high mutual aid</span><p class="t">Flourishing ✦</p><p>Prosperity <em>and</em> bonds. The goal: material wealth that has not sacrificed care.</p></div>
+    <div class="q"><span class="coord">Low GDP · low mutual aid</span><p class="t">Fragile</p><p>Double jeopardy: neither resources nor human safety net. The absolute priority for support.</p></div>
+    <div class="q"><span class="coord">High GDP · low mutual aid</span><p class="t">Rich and alone</p><p>GDP applauds; isolation grows, the bond frays. Prosperity that protects from nothing.</p></div>
+  </div>
+  <p class="matrice-cle">GDP cannot tell "<b>Rich and alone</b>" from "<b>Flourishing</b>": same figure, opposite societies. <b>TempoSystem reveals the vertical axis GDP is blind to: mutual aid.</b></p>
+  <h3>Our stance: to read, not to score</h3>
+  <p>Every "beyond GDP" index — HDI (1990), the Stiglitz-Sen-Fitoussi Commission (2009), the OECD Better Life Index (2011), the Doughnut (Raworth), Bhutan's Gross National Happiness — shares one temptation: to produce <strong>a new number to maximise</strong>. But "the GDP of care" would recreate the trap. Our way out is the diptych: <strong>the sun inscribes faithfully</strong>, <strong>the moon is read in phases</strong> — without becoming a ranking. We <em>count</em> to remember; we <em>give to read</em> to understand. <span class="src">— HDI: UNDP/ul-Haq, Sen's capabilities. SSF: 2009. Doughnut: Raworth, 2012/2017.</span></p>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 8. CONCRETELY -->
+<section class="page">
+  <p class="sur">08 — Proof by the real</p>
+  <h2>Concretely: the inscription, the seriousness, the feasibility.</h2>
+  <p class="lead">A philosophy is worth only what it becomes. Here is how an hour is inscribed, where the project stands, and why it is feasible.</p>
+  <h3>How an hour is inscribed</h3>
+  <p>One person offers time to another — helping, listening, passing on. Both <strong>acknowledge</strong> it. The exchange joins the record: who, when, how much, acknowledged by whom. From then on, each world of MANA reads it in its own way. Nothing heavier than a database and a community.</p>
+  <h3>The seriousness: a living ecosystem already</h3>
+  <p>This is no concept on paper. The ecosystem exists, in a <strong>pilot phase</strong>: a live application (<strong>mana.bzh</strong>), a civic world (<strong>manafrance.org</strong>), an assistant, a <strong>digital Constitution</strong> signed on arrival, and first "basins" in Brittany — the laboratory. The concept is tested in the field, not only on the page.</p>
+  <h3>The guardians</h3>
+  <p>To evolve without betraying its principles, TempoSystem relies on a <strong>Council of the Bridge</strong>: permanent functions — sometimes held by artificial intelligences — that <strong>illuminate</strong> decisions; a person <strong>always decides</strong>. AI augments human judgement, it does not replace it. Every structural decision leaves a trace.</p>
+  <div class="encadre">
+    <p class="et">Free, on principle — and feasible, by sobriety</p>
+    <p><strong>MANA costs nothing.</strong> Free for people, free for associations. The model levies no toll on people's time: you never pay to give, nor to be recognised — value first, always. And it is <strong>feasible</strong> because light: software, a record, a community. Near-zero marginal cost per member. What limits it is not the technology — it is <strong>trust</strong>, built territory by territory.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 9. THE COURSE -->
+<section class="page dense">
+  <p class="sur">09 — The course</p>
+  <h2>Deployment &amp; scale: from the basin to the world.</h2>
+  <p class="lead">Free, light, already begun: adoption meets no toll. Here is the course — the heading, not a contract — and the order of magnitude of what even modest adoption would make visible.</p>
+  <div class="cap">
+    <div class="phase"><span class="horizon">Today</span><h3>The Breton laboratory</h3><p>mana.bzh online, first basins, the assistant, the Constitution. We test the language and the practices in the field.</p></div>
+    <div class="phase"><span class="horizon">Short term</span><h3>Spread the basins</h3><p>Open to other territories and associations; the shared record; the first local readings of how care circulates.</p></div>
+    <div class="phase"><span class="horizon">Mid term</span><h3>National scale — MANA France</h3><p>Interconnecting the basins; first territorial maps of care, presented alongside GDP figures.</p></div>
+    <div class="phase"><span class="horizon">Horizon</span><h3>European &amp; global — ManaTimeBank</h3><p>The concept as an open standard, adoptable everywhere, free. The English edition and international opening.</p></div>
+  </div>
+  <h3>The adoption path, in orders of magnitude</h3>
+  <table>
+    <tr><th>Scale</th><th class="num">Population (≈)</th><th class="num">If 1% join</th><th class="num">If 5% join</th></tr>
+    <tr><td>Local basin</td><td class="num">50,000</td><td class="num">500</td><td class="num">2,500</td></tr>
+    <tr><td>Brittany</td><td class="num">3.5 M</td><td class="num">35,000</td><td class="num">175,000</td></tr>
+    <tr><td>France</td><td class="num">69 M</td><td class="num">690,000</td><td class="num">3.45 M</td></tr>
+    <tr><td>European Union</td><td class="num">450 M</td><td class="num">4.5 M</td><td class="num">22.5 M</td></tr>
+    <tr><td>World</td><td class="num">8.2 bn</td><td class="num">82 M</td><td class="num">410 M</td></tr>
+  </table>
+  <caption>Illustrative hypothesis — <b>not a forecast</b>. Populations: INSEE &amp; Eurostat 2025-2026; UN 2025. The rates (1%, 5%) make the ambition tangible: even modest adoption inscribes a continent of care today invisible.</caption>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- 10. CLOSING -->
+<section class="page">
+  <p class="sur">10 — The call</p>
+  <h2>Civilising the value of time.</h2>
+  <p class="lead">At heart, this document describes a gesture of civilisation: learning to <strong>inscribe what matters</strong>. Taking the most human thing — time given to others — and granting it, at last, a lasting existence, without corrupting it into money.</p>
+  <p>Time banks had seen the value of time, but locked it into a claim. GDP had given the world an accounting, yet blind to what holds it together. Between the two lay an empty place: that of an accounting <strong>of what truly matters</strong>, which is neither a credit nor a score.</p>
+  <p>That place, <strong>ManaTimeBank</strong> names and <strong>TempoSystem</strong> engraves. MANA is the energy; TempoSystem the measure. The sun gives, the moon is read. And because it is free, light and already begun, only one thing is missing: hands to give, and eyes to look differently.</p>
+  <div class="citation">"Given time does not disappear.<br><b>We are learning, at last, to keep its trace.</b>"</div>
+  <p style="text-align:center;font-family:var(--serif);font-size:12pt;color:var(--sous)">Joining is simple, and it is free. <strong>Just begin to give.</strong></p>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+<!-- REFERENCES -->
+<section class="page dense">
+  <p class="sur">References</p>
+  <h2>Sources &amp; references.</h2>
+  <p class="lead">Every quantified claim in this document is traceable. Main references:</p>
+  <ol class="refs">
+    <li><b>S. Kuznets</b>, <em>National Income, 1929-1932</em>, U.S. Senate, Document No. 124, 73rd Congress, 2nd session, 1934 — "the welfare of a nation can scarcely be inferred from a measurement of national income".</li>
+    <li><b>R. F. Kennedy</b>, address at the University of Kansas, 18 March 1968 — critique of GNP.</li>
+    <li><b>ILO</b>, <em>Care work and care jobs for the future of decent work</em>, 2018 — 16.4 bn hours/day of unpaid care work = 9% of global GDP (~US$11 trillion, 2011 PPP); women 76.2% (3.2× men).</li>
+    <li><b>M. Waring</b>, <em>If Women Counted</em>, 1988 — the invisibility of care in national accounts.</li>
+    <li><b>E. Cahn &amp; J. Rowe</b>, <em>Time Dollars</em>, 1992 — "one hour = one hour" and co-production.</li>
+    <li>Systematic reviews on time currencies &amp; public health / well-being, 2018-2025 — positive effects observed, methodologically fragile evidence base.</li>
+    <li><b>UNDP</b>, Human Development Index (M. ul-Haq, 1990), grounded in A. Sen's capabilities; <b>Stiglitz-Sen-Fitoussi Commission</b>, 2009; <b>OECD</b> Better Life Index, 2011; <b>K. Raworth</b>, <em>Doughnut Economics</em>, 2012/2017; <b>Bhutan</b>, Gross National Happiness (1970s); Genuine Progress Indicator.</li>
+    <li><b>Populations</b> (adoption path, orders of magnitude): INSEE — Demographic report 2025-2026 (France ≈ 69 M; Brittany ≈ 3.5 M); Eurostat — EU ≈ 450 M (1 Jan 2025); UN — world ≈ 8.2 bn (2025).</li>
+  </ol>
+  <div class="encadre" style="margin-top:5mm">
+    <p class="et">Method note</p>
+    <p>The <strong>adoption rates</strong> (1%, 5%) are illustrative hypotheses, never forecasts. Every quantified claim has been traced to a primary or institutional source (Kuznets 1934, ILO 2018, INSEE/Eurostat/UN); the one unverifiable attribution (a prediction said to be "by F. Fisher") has been <strong>removed</strong>. The full sourcing dossier accompanies this document.</p>
+  </div>
+  <div class="pied"><span class="g"><b>Given time</b> · ManaTimeBank × TempoSystem</span><span>White paper · v1.1</span></div>
+</section>
+
+</body>
+</html>
