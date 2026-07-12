@@ -1086,7 +1086,8 @@ h1, h2, h3 {
   margin: 0 auto;
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: space-between;
+  width: min(90vw, 620px);
   gap: 0.5em;
   font-family: 'Philosopher', serif;
   font-weight: 700;
@@ -1102,7 +1103,8 @@ h1, h2, h3 {
 }
 .eq-time { background-image: linear-gradient(100deg, #8FD3F4 0%, #7B7FD6 100%); filter: drop-shadow(0 0 16px rgba(120, 150, 230, 0.45)); }
 .eq-mana { background-image: linear-gradient(100deg, #9A7FD8 0%, #C77DF0 100%); filter: drop-shadow(0 0 16px rgba(190, 125, 235, 0.45)); }
-.eq-sign { color: rgba(255, 255, 255, 0.9); font-weight: 400; font-size: 0.86em; text-shadow: 0 0 22px rgba(216, 200, 255, 0.55); }
+/* Le « = » est masqué : l'orbe centrale fait le lien visuel (l'aria-label garde « égale »). */
+.eq-sign { display: none; }
 
 /* Dimensionnement du module LULLABY dans le hero d'accueil os */
 .os-hero .hts-module { width: min(82vw, 540px); }
