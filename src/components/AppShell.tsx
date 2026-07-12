@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 import { useLang, type Language } from "../lib/lang";
+import { ManaConnect } from "../mana/ManaConnect";
 
 interface AppShellProps {
   activeRoute: string;
@@ -104,6 +105,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               </button>
             ))}
           </div>
+          <ManaConnect lang={lang} />
         </div>
       </header>
 
