@@ -21,5 +21,5 @@ export function ManaPage() { const { lang } = useLang(); return <main><Section
   title={lang === "fr" ? "Commencer par un problème réel" : "Start with one real problem"}
   intro={lang === "fr" ? "Chaque TEMPOSYSTEM est configuré autour d'un périmètre clair, d'acteurs identifiés et d'un premier résultat observable." : "Each TEMPOSYSTEM is configured around a clear scope, identified actors and a first observable outcome."}>
   <div className="civic-card-grid civic-card-grid--two">{uses[lang].map(([title, body]) => <article key={title} className="civic-card"><h3>{title}</h3><p>{body}</p></article>)}</div>
-  <div className="civic-actions"><a href="https://manatimebank.org/creer" className="civic-button civic-button--primary">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a><a href="mailto:contact@manahome.org?subject=TEMPOSYSTEM" className="civic-button civic-button--secondary">{lang === "fr" ? "Parler de mon territoire" : "Discuss my community"}</a></div>
+  <div className="civic-actions"><a href="#/creer" className="civic-button civic-button--primary">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a><a href="mailto:contact@manahome.org?subject=TEMPOSYSTEM" className="civic-button civic-button--secondary">{lang === "fr" ? "Parler de mon territoire" : "Discuss my community"}</a></div>
   </Section></main>; }

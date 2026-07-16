@@ -5,10 +5,11 @@ import { DecisionsPage } from "./pages/DecisionsPage";
 import { HomePage } from "./pages/HomePage";
 import { ManaPage } from "./pages/ManaPage";
 import { PricingPage } from "./pages/PricingPage";
+import { CreateTempoPage } from "./pages/CreateTempoPage";
 import { VisionPage } from "./pages/VisionPage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "creer";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
@@ -19,7 +20,7 @@ const LEGACY: Record<string, Route> = {
 };
 
 const routeFromHash = (): Route => {
-  const hash = window.location.hash.replace("#/", "");
+  const hash = window.location.hash.replace("#/", "").split("?")[0];
 
   if (hash in LEGACY) return LEGACY[hash];
   if (
@@ -28,6 +29,7 @@ const routeFromHash = (): Route => {
     hash === "memoire" ||
     hash === "applications"
     || hash === "tarifs"
+    || hash === "creer"
   ) {
     return hash;
   }
@@ -52,6 +54,7 @@ export default function App() {
     memoire: <DecisionsPage />,
     applications: <ManaPage />,
     tarifs: <PricingPage />,
+    creer: <CreateTempoPage />,
   }[route];
 
   return (

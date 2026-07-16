@@ -83,7 +83,7 @@ export function TempoHero() {
         </div>
       </div>
       <div className="selector-hero__actions">
-        <a className="editorial-button editorial-button--primary" href="https://manatimebank.org/creer">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
+        <a className="editorial-button editorial-button--primary" href={result ? `#/creer?offre=${result.slug}` : "#/creer"}>{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
         <a className="editorial-button editorial-button--secondary" href="#produit">{lang === "fr" ? "Découvrir le fonctionnement" : "Discover how it works"}</a>
       </div>
     </div>
