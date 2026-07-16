@@ -1,9 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "installCommand": "echo no-install",
-  "buildCommand": "mkdir -p site/assets && cp public/assets/temposystem-butterfly-transparent.png site/assets/temposystem-butterfly-transparent.png && echo static-site-with-existing-butterfly",
-  "outputDirectory": "site",
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false
 }

@@ -1,0 +1,61 @@
+/**
+ * TEMPOSYSTEM — hiérarchie typographique (charte §9-§10).
+ * Trois voix : principale (Space Grotesk) · pixel (Departure Mono/Silkscreen) · système (IBM Plex Mono).
+ */
+
+body {
+  font-family: var(--ts-font-main);
+  color: var(--ts-ink);
+}
+
+/* Titre manifeste — très grand, peu de mots */
+.t-manifesto {
+  font-family: var(--ts-font-main);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--ts-ink);
+}
+
+/* Titre de section — éditorial, 4 à 8 mots */
+.t-section {
+  font-family: var(--ts-font-main);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+  line-height: 1.15;
+  color: var(--ts-ink);
+}
+
+/* Label système — petites capitales, espacement généreux */
+.t-label {
+  font-family: var(--ts-font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ts-ink-faint);
+}
+
+/* Donnée énergétique — voix pixel */
+.t-data {
+  font-family: var(--ts-font-pixel);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+
+/* Corps de texte — largeur contenue (60-70 caractères) */
+.t-body {
+  font-family: var(--ts-font-main);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 68ch;
+  color: var(--ts-ink-muted);
+}
+
+/* Voix système — ADR, code, horodatages */
+.t-system {
+  font-family: var(--ts-font-system);
+  font-size: 13px;
+  line-height: 1.6;
+}

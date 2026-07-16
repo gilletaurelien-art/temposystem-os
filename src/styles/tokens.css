@@ -1,0 +1,67 @@
+/**
+ * TEMPOSYSTEM — tokens Cognitive Pixel Music.
+ * Source de vérité unique (charte §6-§8, §11, §13, §15).
+ * Aucune couleur en dur ailleurs ; le rouge est réservé aux incidents réels (§20).
+ */
+
+:root {
+  /* ---- Fonds (§6) ---- */
+  --ts-deep-space: #030510;
+  --ts-midnight: #070b1d;
+  --ts-orbital: #0d132b;
+  --ts-signal-grid: #1b2850;
+
+  /* ---- Couleurs énergétiques (§7) — chaque couleur CODE une fonction ---- */
+  --ts-cyan: #24d8ff;    /* transmission */
+  --ts-blue: #527bff;    /* mémoire */
+  --ts-violet: #8b5cff;  /* cohérence */
+  --ts-magenta: #f044c8; /* impulsion humaine */
+  --ts-orange: #ff8a24;  /* décision */
+  --ts-yellow: #ffd84a;  /* anticipation */
+  --ts-green: #50e3a4;   /* validation */
+  --ts-white: #f2f5ff;   /* synchronisation complète */
+
+  /* ---- Encres ---- */
+  --ts-ink: var(--ts-white);
+  --ts-ink-muted: rgba(242, 245, 255, 0.64);
+  --ts-ink-faint: rgba(242, 245, 255, 0.4);
+
+  /* ---- Dégradés à signification (§8) ---- */
+  /* contribution → synchronisation → mémoire */
+  --ts-grad-contribution: linear-gradient(135deg, var(--ts-magenta), var(--ts-violet), var(--ts-blue));
+  /* cohérence → décision */
+  --ts-grad-decision: linear-gradient(135deg, var(--ts-violet), var(--ts-orange));
+
+  /* ---- Pixel (§13) ---- */
+  --ts-px-micro: 2px;
+  --ts-px-signal: 4px;
+  --ts-px-symbol: 12px;
+
+  /* ---- Rythme (§15) ---- */
+  --ts-beat: 4s;
+  --ts-transmit: 900ms;
+  --ts-sync: 3s;
+  --ts-ease-pulse: cubic-bezier(0.45, 0, 0.55, 1);
+  --ts-ease-signal: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Grille (§11) ---- */
+  --ts-content-max: 1440px;
+  --ts-gutter: clamp(20px, 4vw, 64px);
+  --ts-space-unit: 8px;
+
+  /* ---- Voix typographiques (§9) ----
+     Departure Mono (idéal court terme) sera auto-hébergée dans public/fonts/ ;
+     Silkscreen (Google) assure la voix pixel en attendant — la pile bascule seule. */
+  --ts-font-main: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --ts-font-pixel: "Departure Mono", "Silkscreen", "IBM Plex Mono", monospace;
+  --ts-font-system: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+/* Niveau 0 — statique (charte §16) : coupe toute animation déclarée par le système */
+html[data-motion="0"] *,
+html[data-motion="0"] *::before,
+html[data-motion="0"] *::after {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+}
