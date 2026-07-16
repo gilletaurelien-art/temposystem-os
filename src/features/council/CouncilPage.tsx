@@ -176,6 +176,9 @@ export function CouncilPage() {
 
   return (
     <main className="relative z-10 min-h-screen text-slate-100">
+      {/* Fond fixe (moonrise) — le pendant nuit du sunrise d'accueil */}
+      <div className="tempo-wallpaper tempo-wallpaper--moon" aria-hidden="true" />
+
       {/* Modules déplacés du HERO (16/07/2026) : le briefing « jour » ouvre le Conseil. */}
       <div className="mx-auto w-full max-w-6xl px-5 pt-8 sm:px-8 lg:px-10">
         <TempoBriefing />

@@ -3,43 +3,39 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TEMPOSYSTEM — Le Temps Vivant · planche de style (jour)</title>
+<title>TEMPOSYSTEM — Le Temps Vivant · charte (jour / île)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    /* ---- Ciel pixel (arrière-plan vivant) ---- */
-    --ciel-1: #8CCBEE;  /* haut */
-    --ciel-2: #A0D5F1;
-    --ciel-3: #B3DEF4;
-    --ciel-4: #C6E8F7;  /* horizon */
-    --nuage:  #FEFFFF;
-    --nuage-ombre: #C7DEEF;
-
-    /* ---- Matière (encre & surfaces) ---- */
+    /* ── Base claire (jour) ── */
+    --parchemin:   #F4EDE0;   /* base claire — surfaces de lecture */
+    --lumiere:     #FBF6EE;   /* information clé, surface la plus claire */
     --encre:       #2A2620;   /* texte — brun d'encre chaud */
     --encre-douce: rgba(42,38,32,.66);
     --encre-tenue: rgba(42,38,32,.42);
-    --parchemin:   #FBFAF5;   /* cartes / surfaces */
-    --parchemin-2: #F3EFE4;   /* surface alt */
     --lisiere:     rgba(42,38,32,.14);
 
-    /* ---- Lumière & matière (accents — le cycle du jour) ---- */
-    --soleil:      #F2A73B;   /* soleil — énergie donnée, décision */
-    --miel:        #E7B441;   /* anticipation, horizon */
-    --terre-cuite: #D6704A;   /* présence humaine, matière */
-    --seve:        #7E9A4F;   /* croissance, validation */
-    --maree:       #3E8F86;   /* flux, transmission */
-    --crepuscule:  #5B6BA6;   /* mémoire, trace, nuit */
+    /* ── Le monde : la mer (AJOUT) ── */
+    --mer:         #1E9BDE;   /* bleu de la mer — l'environnement, l'horizon commun */
+    --mer-profonde:#0E6FB0;   /* profondeur */
+    --ecume:       #7FD3F0;   /* écume, bas-fonds */
 
-    --grad-soleil: linear-gradient(135deg, var(--terre-cuite), var(--soleil), var(--miel));
-    --grad-cycle:  linear-gradient(90deg, var(--soleil) 0%, var(--maree) 55%, var(--crepuscule) 100%);
+    /* ── Le cycle du jour (accents — chaque couleur CODE une fonction) ── */
+    --aube:        #F2A73B;   /* énergie · décision */
+    --miel:        #EAC873;   /* anticipation · horizon */
+    --terre-cuite: #D6704A;   /* présence humaine */
+    --seve:        #8FA85C;   /* croissance · validation */
+    --maree:       #57998F;   /* flux · transmission */
+    --crepuscule:  #6E7BB0;   /* mémoire · trace */
+
+    --grad-soleil: linear-gradient(135deg, var(--terre-cuite), var(--aube), var(--miel));
+    --grad-cycle:  linear-gradient(90deg, var(--aube) 0%, var(--maree) 50%, var(--crepuscule) 100%);
+    --grad-mer:    linear-gradient(180deg, var(--ecume), var(--mer) 42%, var(--mer-profonde));
 
     --souffle: 5.2s;
-    --derive-1: 90s; --derive-2: 130s; --derive-3: 68s;
     --ease-vivant: cubic-bezier(.37,0,.24,1);
-
     --max: 1180px;
     --font-titre: "Fraunces", Georgia, serif;
     --font-corps: "Instrument Sans", system-ui, -apple-system, sans-serif;
@@ -50,308 +46,274 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0; color: var(--encre);
+    background: var(--parchemin);
     font-family: var(--font-corps); line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* ============ CIEL PIXEL — arrière-plan fixe ============ */
-  .ciel {
-    position: fixed; inset: 0; z-index: -2; overflow: hidden;
-    /* bandes dures = ciel pixel/rétro */
-    background: linear-gradient(
-      var(--ciel-1) 0 22%, var(--ciel-2) 22% 44%,
-      var(--ciel-3) 44% 68%, var(--ciel-4) 68% 100%);
-  }
-  .ciel svg.cloud { position: absolute; image-rendering: pixelated; }
-  .cloud .w { fill: var(--nuage); }
-  .cloud .s { fill: var(--nuage-ombre); }
-
-  /* 3 nuages, 3 tailles, 3 vitesses — dérive lente + léger flottement */
-  .c1 { width: 300px; top: 12%;  left: -20%; animation: derive var(--derive-1) linear infinite, flotte 11s ease-in-out infinite; }
-  .c2 { width: 190px; top: 30%;  left: -14%; animation: derive var(--derive-2) linear infinite, flotte 9s  ease-in-out infinite; animation-delay: -30s, 0s; }
-  .c3 { width: 130px; top: 52%;  left: -10%; animation: derive var(--derive-3) linear infinite, flotte 7s  ease-in-out infinite; animation-delay: -50s, 0s; }
-  @keyframes derive { from { transform: translateX(0); } to { transform: translateX(160vw); } }
-  @keyframes flotte { 0%,100% { margin-top: 0; } 50% { margin-top: 8px; } }
-
-  /* voile de lumière pour asseoir le texte sur le ciel */
-  .voile { position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background: linear-gradient(180deg, rgba(251,250,245,0) 0%, rgba(251,250,245,.35) 60%, rgba(251,250,245,.6) 100%); }
-
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
-  /* ---------- langage ---------- */
   .eyebrow { font-family: var(--font-sys); font-size: .72rem; letter-spacing: .26em;
     text-transform: uppercase; color: var(--encre-tenue); margin: 0 0 1.1em; }
   h1,h2,h3 { font-family: var(--font-titre); font-weight: 380; letter-spacing: -.01em; }
-  section { padding: clamp(60px, 8vw, 120px) 0; }
-  .panel { background: rgba(251,250,245,.82); backdrop-filter: blur(3px);
-    border: 1px solid var(--lisiere); border-radius: 26px; padding: clamp(30px,5vw,60px);
-    box-shadow: 0 18px 50px -30px rgba(42,38,32,.5); }
+  section { padding: clamp(56px, 8vw, 116px) 0; border-top: 1px solid var(--lisiere); }
   .section-title { font-size: clamp(1.7rem, 3.4vw, 2.7rem); margin: 0 0 .25em; }
   .lede { color: var(--encre-douce); max-width: 62ch; font-size: 1.06rem; }
+  em.k { font-style: italic; font-variation-settings:"SOFT" 50,"WONK" 1; color: var(--terre-cuite); }
 
-  /* ---------- HERO ---------- */
-  .hero { min-height: 92vh; display: grid; place-items: center; text-align: center; padding: 40px 0; }
-  .concept-name { font-family: var(--font-titre); font-optical-sizing: auto; font-weight: 340;
-    font-size: clamp(2.6rem, 8vw, 5.6rem); line-height: .98; margin: .35em 0 .28em; letter-spacing: -.02em; }
-  .concept-name em { font-style: italic; font-variation-settings: "SOFT" 40, "WONK" 1; color: var(--terre-cuite); }
-  .signature { font-family: var(--font-sys); letter-spacing: .28em; text-transform: uppercase;
-    font-size: .76rem; color: var(--encre-douce); }
-  .equation { margin-top: 2em; font-family: var(--font-sys); font-size: .8rem; color: var(--encre-tenue); letter-spacing: .03em; }
+  /* ── HERO — l'île sur la mer ── */
+  .hero { position: relative; color: var(--lumiere); background: var(--grad-mer); overflow: hidden; border-top: 0; }
+  .hero__isle { display:block; width: 100%; height: auto; }
+  .hero__inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: clamp(22px, 5vw, 72px);
+    background: linear-gradient(0deg, rgba(6,28,52,.72) 0%, rgba(6,28,52,.18) 34%, transparent 60%); }
+  .signature { font-family: var(--font-sys); letter-spacing: .28em; text-transform: uppercase; font-size: .74rem; color: rgba(251,246,238,.82); }
+  .concept-name { font-family: var(--font-titre); font-weight: 340; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .98; margin: .12em 0 .18em; letter-spacing: -.02em; text-shadow: 0 2px 24px rgba(0,0,0,.4); }
+  .concept-name em { font-style: italic; font-variation-settings:"SOFT" 40,"WONK" 1; color: var(--miel); }
 
-  /* soleil pixel + anneaux */
-  .soleil-wrap { display: grid; place-items: center; }
-  .soleil-wrap svg { width: min(38vh, 300px); image-rendering: pixelated; }
-  @keyframes souffle { 0%,100% { transform: scale(1); } 50% { transform: scale(1.04); } }
-  .sun-core { transform-origin: center; animation: souffle var(--souffle) var(--ease-vivant) infinite; }
-  .halo { transform-origin: center; animation: souffle calc(var(--souffle) * 1.4) var(--ease-vivant) infinite; }
+  .panel { background: var(--lumiere); border: 1px solid var(--lisiere); border-radius: 22px;
+    padding: clamp(26px,4vw,52px); box-shadow: 0 20px 50px -38px rgba(42,38,32,.5); }
 
-  /* ---------- palette ---------- */
-  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 14px; margin-top: 34px; }
+  /* ── Palette ── */
+  .grp { font-family: var(--font-sys); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--encre-tenue); margin: 30px 0 6px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 14px; }
   .sw { border-radius: 14px; overflow: hidden; border: 1px solid var(--lisiere); background: #fff; }
-  .sw .chip { height: 82px; } .sw .meta { padding: 11px 13px 14px; }
-  .sw .name { font-weight: 600; font-size: .9rem; } .sw .role { color: var(--encre-douce); font-size: .76rem; }
+  .sw .chip { height: 84px; }
+  .sw .meta { padding: 11px 13px 14px; }
+  .sw .name { font-weight: 600; font-size: .92rem; }
+  .sw .role { color: var(--encre-douce); font-size: .77rem; }
   .sw .hex { font-family: var(--font-sys); font-size: .7rem; color: var(--encre-tenue); margin-top: 5px; }
-  .grp { font-family: var(--font-sys); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--encre-tenue); margin: 30px 0 4px; }
-  .band { height: 40px; border-radius: 10px; margin-top: 22px; background: var(--grad-cycle); }
+  .band { height: 44px; border-radius: 12px; margin-top: 26px; }
+  .band.cycle { background: var(--grad-cycle); }
+  .band.mer { background: var(--grad-mer); margin-top: 12px; }
   .band-label { display:flex; justify-content: space-between; font-family: var(--font-sys); font-size:.68rem; color: var(--encre-tenue); letter-spacing:.12em; text-transform: uppercase; margin-top: 9px; }
 
-  /* ---------- typo ---------- */
-  .type-grid { display: grid; gap: 22px; margin-top: 34px; }
-  .spec { border: 1px solid var(--lisiere); border-radius: 16px; padding: 26px 28px; background: var(--parchemin-2); }
-  .spec .tag { font-family: var(--font-sys); font-size: .7rem; letter-spacing:.18em; text-transform: uppercase; color: var(--encre-tenue); }
-  .spec .voix-titre { font-family: var(--font-titre); font-weight: 350; font-size: clamp(1.9rem,5vw,3rem); line-height: 1.03; margin: .18em 0; }
-  .spec .voix-titre em { font-style: italic; font-variation-settings:"SOFT" 50,"WONK" 1; color: var(--terre-cuite); }
-  .spec .voix-corps { font-family: var(--font-corps); font-size: 1.02rem; color: var(--encre-douce); max-width: 60ch; }
-  .spec .voix-sys { font-family: var(--font-sys); font-size: .9rem; color: var(--maree); }
+  /* ── Rôles couleur ── */
+  .roles { display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top: 34px; }
+  .role { border:1px solid var(--lisiere); border-radius:14px; padding:18px 20px; background:#fff; }
+  .role .dot { width:14px; height:14px; border-radius:4px; display:inline-block; margin-right:8px; vertical-align:-1px; }
+  .role .rn { font-weight:600; } .role .rr { color:var(--encre-douce); font-size:.86rem; margin-top:.2em; }
 
-  /* ---------- formes ---------- */
-  .forms { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 14px; margin-top: 34px; }
-  .form { border:1px solid var(--lisiere); border-radius: 16px; padding: 22px 18px 16px; text-align: center; background: #fff; }
-  .form svg { width: 60px; height: 60px; }
-  .form .fname { font-weight: 600; margin-top: 12px; } .form .frole { font-size:.76rem; color: var(--encre-douce); }
-  .stroke { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke: var(--soleil); }
-  .stroke.b { stroke: var(--maree); } .stroke.c { stroke: var(--terre-cuite); } .stroke.d { stroke: var(--seve); } .stroke.e { stroke: var(--crepuscule); }
+  /* ── Typo ── */
+  .type-grid { display:grid; gap:22px; margin-top:34px; }
+  .spec { border:1px solid var(--lisiere); border-radius:16px; padding:26px 28px; background: var(--parchemin); }
+  .spec .tag { font-family:var(--font-sys); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--encre-tenue); }
+  .spec .voix-titre { font-family:var(--font-titre); font-weight:350; font-size:clamp(1.9rem,5vw,3rem); line-height:1.03; margin:.18em 0; }
+  .spec .voix-corps { font-family:var(--font-corps); font-size:1.02rem; color:var(--encre-douce); max-width:60ch; }
+  .spec .voix-sys { font-family:var(--font-sys); font-size:.9rem; color:var(--maree); }
 
-  /* ---------- mouvement ---------- */
-  .moves { display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:34px; }
-  .move { border:1px solid var(--lisiere); border-radius:14px; padding:20px 22px 22px; background:#fff; }
-  .move .mt { font-family: var(--font-titre); font-size:1.2rem; }
-  .move .md { color: var(--encre-douce); font-size:.9rem; margin-top:.3em; }
-  .move .mv { font-family: var(--font-sys); font-size:.7rem; color: var(--maree); margin-top:.7em; letter-spacing:.05em; }
+  /* ── Formes ── */
+  .forms { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-top:34px; }
+  .form { border:1px solid var(--lisiere); border-radius:16px; padding:22px 18px 16px; text-align:center; background:#fff; }
+  .form svg { width:58px; height:58px; }
+  .form .fname { font-weight:600; margin-top:12px; } .form .frole { font-size:.76rem; color:var(--encre-douce); }
+  .stroke { fill:none; stroke-width:2.4; stroke-linecap:round; stroke:var(--aube); }
+  .stroke.b{stroke:var(--maree);} .stroke.c{stroke:var(--terre-cuite);} .stroke.d{stroke:var(--seve);} .stroke.e{stroke:var(--crepuscule);} .stroke.m{stroke:var(--mer);}
 
-  /* ---------- comparatif ---------- */
-  .cmp { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:34px; }
-  .cmp > div { border:1px solid var(--lisiere); border-radius:16px; padding:24px 26px; background: var(--parchemin-2); }
-  .cmp .avant { opacity:.6; }
-  .cmp h4 { margin:0 0 .5em; font-family:var(--font-sys); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--encre-tenue); }
-  .cmp ul { margin:0; padding-left:1.1em; color:var(--encre-douce); font-size:.92rem; } .cmp li { margin:.3em 0; }
+  /* ── incarnation ── */
+  .incarne { display:grid; grid-template-columns: 1.2fr .9fr; gap:26px; align-items:center; margin-top:34px; }
+  .incarne img { width:100%; height:auto; border-radius:16px; border:1px solid var(--lisiere); display:block; }
+  .maps { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .maps li { display:flex; gap:12px; align-items:flex-start; font-size:.94rem; color:var(--encre-douce); }
+  .maps .dot { width:14px; height:14px; border-radius:4px; margin-top:3px; flex:0 0 auto; }
+  @media (max-width:760px){ .incarne{ grid-template-columns:1fr; } }
 
-  /* ---------- mock ---------- */
-  .mock { border:1px solid var(--lisiere); border-radius: 22px; overflow:hidden; margin-top:34px;
-    background: linear-gradient(var(--ciel-2), var(--ciel-4)); position: relative; }
-  .mock .mock-cloud { position:absolute; image-rendering: pixelated; opacity:.9; }
-  .mock .bar { position:relative; z-index:2; display:flex; align-items:center; gap:20px; padding:16px 26px;
-    border-bottom:1px solid rgba(255,255,255,.5); font-family:var(--font-sys); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--encre-douce); }
-  .mock .bar .logo { display:flex; align-items:center; gap:9px; color: var(--encre); font-weight:600; }
-  .mock .body { position:relative; z-index:2; display:grid; grid-template-columns: 1.1fr .9fr; gap: 22px; padding: clamp(28px,5vw,56px); align-items:center; }
-  .mock h3 { font-size: clamp(1.7rem,4vw,2.8rem); margin:0 0 .3em; font-weight:340; }
-  .mock h3 em { font-style:italic; color: var(--terre-cuite); font-variation-settings:"SOFT" 50,"WONK" 1; }
-  .mock p { color:var(--encre); max-width:44ch; }
-  .btn { display:inline-flex; align-items:center; gap:.5em; margin-top:1.5em; padding:.78em 1.35em; border-radius:999px;
+  /* ── Cadre « visage système » (nuit) — aperçu de hero, autonome ── */
+  .mock { margin-top: 30px; border-radius: 22px; overflow: hidden;
+    background: radial-gradient(120% 90% at 18% -10%, #2a1e12, #171310);
+    border: 1px solid rgba(255,255,255,.08); color: #f2ede3; }
+  .mock .bar { display:flex; align-items:center; gap:20px; padding:16px 26px;
+    border-bottom:1px solid rgba(255,255,255,.08); font-family:var(--font-sys);
+    font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(242,237,227,.7); }
+  .mock .bar .logo { display:flex; align-items:center; gap:9px; color:#f7f2e9; font-weight:600; }
+  .mock .bar .nav { margin-left:auto; display:flex; gap:18px; }
+  .mock .body { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; padding:clamp(28px,5vw,56px); align-items:center; }
+  .mock h3 { font-family:var(--font-titre); font-weight:340; font-size:clamp(1.7rem,4vw,2.8rem); line-height:1.04; margin:0 0 .3em; color:#f7f2e9; }
+  .mock h3 em { font-style:italic; font-variation-settings:"SOFT" 50,"WONK" 1; color:var(--miel); }
+  .mock p { color:rgba(242,237,227,.68); max-width:44ch; margin:0; }
+  .mock .btns { margin-top:1.6em; display:flex; gap:12px; flex-wrap:wrap; }
+  .mock .btn { display:inline-flex; align-items:center; gap:.5em; padding:.78em 1.35em; border-radius:999px;
     background: var(--grad-soleil); color:#241605; font-weight:600; font-size:.9rem; text-decoration:none; border:0; }
-  .btn.ghost { background:rgba(255,255,255,.6); color:var(--encre); border:1px solid var(--lisiere); margin-left:10px; }
+  .mock .btn.ghost { background:rgba(255,255,255,.06); color:#f2ede3; border:1px solid rgba(255,255,255,.16); }
   .mock .visual { justify-self:center; }
-  @media (max-width: 760px){ .cmp,.mock .body { grid-template-columns:1fr; } }
+  .mock .visual svg { width:100%; max-width:240px; height:auto; }
+  @media (max-width:640px){ .mock .body{ grid-template-columns:1fr; } .mock .bar .nav{ display:none; } }
 
-  footer { padding: 50px 0 90px; color: var(--encre-tenue); font-family:var(--font-sys); font-size:.76rem; letter-spacing:.05em; text-align:center; }
-  @media (prefers-reduced-motion: reduce){ * { animation:none !important; } }
+  footer { padding: 52px 0 90px; color: var(--encre-tenue); font-family:var(--font-sys); font-size:.76rem; letter-spacing:.05em; text-align:center; }
 </style>
 </head>
 <body>
 
-<!-- ciel pixel fixe + 3 nuages -->
-<div class="ciel" aria-hidden="true">
-  <svg class="cloud c1" viewBox="0 0 48 24" shape-rendering="crispEdges">
-    <rect class="w" x="8"  y="8"  width="32" height="10"/><rect class="w" x="14" y="4" width="20" height="6"/>
-    <rect class="w" x="20" y="2" width="10" height="4"/><rect class="w" x="2"  y="12" width="10" height="6"/>
-    <rect class="w" x="36" y="11" width="10" height="7"/><rect class="w" x="30" y="6" width="10" height="6"/>
-    <rect class="s" x="4"  y="16" width="40" height="2"/><rect class="s" x="2" y="16" width="10" height="2"/><rect class="s" x="36" y="17" width="10" height="1"/>
-  </svg>
-  <svg class="cloud c2" viewBox="0 0 48 24" shape-rendering="crispEdges">
-    <rect class="w" x="8"  y="8"  width="32" height="10"/><rect class="w" x="14" y="4" width="20" height="6"/>
-    <rect class="w" x="20" y="2" width="10" height="4"/><rect class="w" x="2"  y="12" width="10" height="6"/>
-    <rect class="w" x="36" y="11" width="10" height="7"/><rect class="w" x="30" y="6" width="10" height="6"/>
-    <rect class="s" x="4"  y="16" width="40" height="2"/><rect class="s" x="2" y="16" width="10" height="2"/><rect class="s" x="36" y="17" width="10" height="1"/>
-  </svg>
-  <svg class="cloud c3" viewBox="0 0 48 24" shape-rendering="crispEdges">
-    <rect class="w" x="8"  y="8"  width="32" height="10"/><rect class="w" x="14" y="4" width="20" height="6"/>
-    <rect class="w" x="20" y="2" width="10" height="4"/><rect class="w" x="2"  y="12" width="10" height="6"/>
-    <rect class="w" x="36" y="11" width="10" height="7"/><rect class="w" x="30" y="6" width="10" height="6"/>
-    <rect class="s" x="4"  y="16" width="40" height="2"/><rect class="s" x="2" y="16" width="10" height="2"/><rect class="s" x="36" y="17" width="10" height="1"/>
-  </svg>
-</div>
-<div class="voile" aria-hidden="true"></div>
-
-<!-- ============ HERO ============ -->
+<!-- ══ HERO — l'île sur la mer ══ -->
 <header class="hero">
-  <div class="hero-inner wrap">
-    <div class="soleil-wrap" aria-hidden="true">
-      <svg viewBox="0 0 120 120" shape-rendering="crispEdges">
-        <!-- halo / anneaux -->
-        <circle class="halo" cx="60" cy="60" r="52" fill="none" stroke="#F2A73B" stroke-width="2" opacity=".28"/>
-        <circle class="halo" cx="60" cy="60" r="44" fill="none" stroke="#F2A73B" stroke-width="2" opacity=".4"/>
-        <!-- rayons pixel -->
-        <g class="sun-core" fill="#F2A73B">
-          <rect x="56" y="6"  width="8" height="10"/><rect x="56" y="104" width="8" height="10"/>
-          <rect x="6"  y="56" width="10" height="8"/><rect x="104" y="56" width="10" height="8"/>
-          <rect x="22" y="22" width="9" height="9"/><rect x="89" y="22" width="9" height="9"/>
-          <rect x="22" y="89" width="9" height="9"/><rect x="89" y="89" width="9" height="9"/>
-        </g>
-        <!-- disque solaire pixel (octogone de blocs) -->
-        <g class="sun-core">
-          <rect x="44" y="30" width="32" height="60" fill="#F2A73B"/>
-          <rect x="30" y="44" width="60" height="32" fill="#F2A73B"/>
-          <rect x="38" y="36" width="44" height="48" fill="#F7BE55"/>
-          <rect x="36" y="44" width="48" height="32" fill="#F7BE55"/>
-          <rect x="46" y="40" width="28" height="40" fill="#F9CE72"/>
-        </g>
-      </svg>
-    </div>
-    <p class="signature">Temposystem — refonte de la charte graphique</p>
+  <img class="hero__isle" src="island-day.jpg" alt="L'île TEMPOSYSTEM de jour : foyers reliés par des chemins, place centrale avec un arbre, mairie, phare — la coopération vue d'en haut." />
+  <div class="hero__inner wrap">
+    <p class="signature">Temposystem — charte graphique · mode jour</p>
     <h1 class="concept-name">Le Temps <em>Vivant</em></h1>
     <p class="signature">Le système d'exploitation du temps donné</p>
-    <p class="equation">une seconde partagée — un nuage qui passe — · une trace, pas une créance</p>
   </div>
 </header>
 
-<!-- ============ IDÉE DIRECTRICE ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">01 · Idée directrice</p>
-  <h2 class="section-title">Le temps n'est pas une donnée qui clignote — c'est un ciel qui passe.</h2>
-  <p class="lede">On quitte le pixel-néon (froid, geek, daté) pour un pixel art <strong>tendre et vivant</strong> :
-    un ciel bleu clair, des nuages qui dérivent lentement. Le temps donné se comporte comme le vivant —
-    il <em>respire</em>, il <em>coule</em> (les nuages passent), il <em>revient</em> (le cycle du jour).
-    Le cœur d'énergie devient un <strong>soleil</strong>. La coopération n'est plus une décharge électrique : c'est une lumière.</p>
-</div></div></section>
+<!-- ══ 01 · IDÉE DIRECTRICE ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">01 · Idée directrice</p>
+    <h2 class="section-title">Le temps donné dessine une île habitée.</h2>
+    <p class="lede">L'identité TEMPOSYSTEM est un <strong>monde de jour</strong> : une île vivante posée sur la mer, où
+      chaque foyer, chaque chemin lumineux, chaque personne réunie sur la place raconte le <em class="k">temps partagé</em>.
+      On quitte le sombre-néon : la coopération est claire, chaude, lisible. Le <strong>bleu de la mer</strong> porte l'ensemble
+      (l'environnement, l'horizon commun) ; le <strong>cycle du jour</strong> code les fonctions ; le <strong>parchemin</strong> accueille la lecture.</p>
 
-<!-- ============ SYMBOLE ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">02 · Le symbole — le soleil &amp; le ciel</p>
-  <h2 class="section-title">Un soleil pixel dans un ciel qui dérive.</h2>
-  <p class="lede">Fini la spirale-galaxie, la batterie et la grille de data. Le symbole devient un <strong>soleil en pixel art</strong>
-    (l'énergie donnée, l'aube) qui respire doucement, posé dans un <strong>ciel bleu clair</strong> traversé de trois nuages —
-    le temps qui passe. Le pixel reste notre grammaire, mais il dessine la nature, pas des chiffres.</p>
-  <div class="cmp">
-    <div class="avant"><h4>Avant — Cognitive Pixel Music</h4>
-      <ul><li>Spirale / batterie / grille de pixels-data</li><li>Fond bleu-noir spatial, néons cyan-violet</li><li>Data qui clignote, tempo « machine »</li><li>Sombre, technique, geek</li></ul></div>
-    <div><h4>Après — Le Temps Vivant</h4>
-      <ul><li>Soleil pixel + ciel &amp; nuages qui dérivent</li><li>Ciel bleu clair, lumière de jour</li><li>Le temps respire, coule, revient</li><li>Tendre, lumineux, humain</li></ul></div>
-  </div>
-</div></div></section>
-
-<!-- ============ PALETTE ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">03 · Palette — le ciel &amp; le cycle du jour</p>
-  <h2 class="section-title">Le ciel porte, la lumière se donne.</h2>
-  <p class="lede">L'arrière-plan est un <strong>ciel bleu clair</strong> en bandes pixel. Les accents viennent du <strong>cycle d'un jour</strong> :
-    le soleil doré (énergie donnée), la marée (le temps qui coule), le crépuscule (la mémoire), la sève (la croissance).</p>
-
-  <div class="grp">Ciel &amp; matière</div>
-  <div class="swatches">
-    <div class="sw"><div class="chip" style="background:#8CCBEE"></div><div class="meta"><div class="name">Ciel haut</div><div class="role">fond, en haut</div><div class="hex">#8CCBEE</div></div></div>
-    <div class="sw"><div class="chip" style="background:#C6E8F7"></div><div class="meta"><div class="name">Ciel horizon</div><div class="role">fond, en bas</div><div class="hex">#C6E8F7</div></div></div>
-    <div class="sw"><div class="chip" style="background:#FEFFFF;border-bottom:6px solid #C7DEEF"></div><div class="meta"><div class="name">Nuage</div><div class="role">blanc + ombre</div><div class="hex">#FEFFFF</div></div></div>
-    <div class="sw"><div class="chip" style="background:#FBFAF5"></div><div class="meta"><div class="name">Parchemin</div><div class="role">cartes / surfaces</div><div class="hex">#FBFAF5</div></div></div>
-    <div class="sw"><div class="chip" style="background:#2A2620"></div><div class="meta"><div class="name">Encre</div><div class="role">texte</div><div class="hex">#2A2620</div></div></div>
-  </div>
-
-  <div class="grp">Le cycle du jour (accents)</div>
-  <div class="swatches">
-    <div class="sw"><div class="chip" style="background:#F2A73B"></div><div class="meta"><div class="name">Soleil</div><div class="role">énergie · décision</div><div class="hex">#F2A73B</div></div></div>
-    <div class="sw"><div class="chip" style="background:#E7B441"></div><div class="meta"><div class="name">Miel</div><div class="role">anticipation</div><div class="hex">#E7B441</div></div></div>
-    <div class="sw"><div class="chip" style="background:#D6704A"></div><div class="meta"><div class="name">Terre cuite</div><div class="role">présence humaine</div><div class="hex">#D6704A</div></div></div>
-    <div class="sw"><div class="chip" style="background:#7E9A4F"></div><div class="meta"><div class="name">Sève</div><div class="role">croissance</div><div class="hex">#7E9A4F</div></div></div>
-    <div class="sw"><div class="chip" style="background:#3E8F86"></div><div class="meta"><div class="name">Marée</div><div class="role">flux · transmission</div><div class="hex">#3E8F86</div></div></div>
-    <div class="sw"><div class="chip" style="background:#5B6BA6"></div><div class="meta"><div class="name">Crépuscule</div><div class="role">mémoire · trace</div><div class="hex">#5B6BA6</div></div></div>
-  </div>
-
-  <div class="band"></div>
-  <div class="band-label"><span>Aube — le temps se donne</span><span>Marée — il coule</span><span>Crépuscule — il devient mémoire</span></div>
-</div></div></section>
-
-<!-- ============ TYPO ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">04 · Typographie — trois voix, plus chaudes</p>
-  <h2 class="section-title">Une serif vivante remplace la voix pixel-texte.</h2>
-  <p class="lede">Le pixel reste dans l'<em>image</em> (le ciel, le soleil, les icônes) — mais plus dans le texte.
-    La voix manifeste devient une <strong>serif organique</strong> aux axes optiques doux, humaine et intemporelle.</p>
-  <div class="type-grid">
-    <div class="spec"><div class="tag">Voix manifeste — Fraunces (organique, axes SOFT/WONK)</div>
-      <div class="voix-titre">Le temps donné devient une <em>trace vivante</em>.</div>
-      <div class="voix-corps">Titres, manifeste, émotion. Chaleur, matière, souffle.</div></div>
-    <div class="spec"><div class="tag">Voix courante — Instrument Sans (humaniste)</div>
-      <div class="voix-corps" style="font-size:1.1rem;color:var(--encre)">Textes, navigation, descriptions, boutons. Lisible, contemporaine, chaleureuse — un grotesque humaniste plutôt qu'une géométrique froide. Lecture contenue à 62–68 caractères.</div></div>
-    <div class="spec"><div class="tag">Voix système — IBM Plex Mono (conservée)</div>
-      <div class="voix-sys">ADR-0011 · 2026-07-16 · une seconde = un nuage · SYNCHRONISÉ · +1 (symbolique)</div></div>
-  </div>
-</div></div></section>
-
-<!-- ============ FORMES ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">05 · Vocabulaire de formes</p>
-  <h2 class="section-title">Le ciel, l'onde et le soleil remplacent la grille.</h2>
-  <p class="lede">Des formes issues du ciel, de l'eau et du vivant. Le pixel les dessine ; chaque forme porte une fonction.</p>
-  <div class="forms">
-    <div class="form"><svg viewBox="0 0 64 64" shape-rendering="crispEdges"><g class="stroke" style="stroke:none;fill:#F2A73B"><rect x="26" y="14" width="12" height="36"/><rect x="14" y="26" width="36" height="12"/><rect x="20" y="20" width="24" height="24"/></g></svg><div class="fname">Soleil</div><div class="frole">énergie donnée</div></div>
-    <div class="form"><svg viewBox="0 0 64 64" shape-rendering="crispEdges"><g style="fill:#fff;stroke:none"><rect x="14" y="30" width="36" height="12"/><rect x="20" y="24" width="24" height="8"/><rect x="10" y="36" width="12" height="8"/><rect x="42" y="36" width="14" height="8"/></g><rect x="12" y="41" width="42" height="2" fill="#C7DEEF"/></svg><div class="fname">Nuage</div><div class="frole">temps qui passe</div></div>
-    <div class="form"><svg viewBox="0 0 64 64"><path class="stroke b" d="M4 40 Q16 24 28 40 T52 40 T76 40"/><path class="stroke b" d="M4 30 Q16 14 28 30 T52 30" opacity=".55"/></svg><div class="fname">Onde</div><div class="frole">rythme, propagation</div></div>
-    <div class="form"><svg viewBox="0 0 64 64"><path class="stroke b" d="M6 44 C 20 24 44 24 58 44"/><path class="stroke b" d="M6 44 C 20 20 44 20 58 44 L58 52 L6 52 Z" opacity=".4"/></svg><div class="fname">Marée</div><div class="frole">flux, transmission</div></div>
-    <div class="form"><svg viewBox="0 0 64 64"><path class="stroke d" d="M32 54 C 18 44 18 24 32 10 C 46 24 46 44 32 54 Z"/><path class="stroke d" d="M32 54 L32 20" opacity=".6"/></svg><div class="fname">Graine</div><div class="frole">présence, potentiel</div></div>
-    <div class="form"><svg viewBox="0 0 64 64"><path class="stroke e" d="M6 22 Q32 14 58 22"/><path class="stroke e" d="M6 34 Q32 26 58 34" opacity=".7"/><path class="stroke e" d="M6 46 Q32 38 58 46" opacity=".45"/></svg><div class="fname">Strates</div><div class="frole">traces, ADR</div></div>
-  </div>
-</div></div></section>
-
-<!-- ============ MOUVEMENT ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">06 · Mouvement — respirer, dériver, revenir</p>
-  <h2 class="section-title">Le mouvement imite le ciel, jamais la machine.</h2>
-  <div class="moves">
-    <div class="move"><div class="mt">Dérive</div><div class="md">Les nuages traversent le ciel très lentement, en arrière-plan fixe.</div><div class="mv">68 – 130 s · 3 vitesses</div></div>
-    <div class="move"><div class="mt">Souffle</div><div class="md">Le soleil inspire/expire doucement. La page respire.</div><div class="mv">cycle ≈ 5,2 s · ease organique</div></div>
-    <div class="move"><div class="mt">Flottement</div><div class="md">Un léger bob vertical : rien n'est parfaitement immobile.</div><div class="mv">± 8 px · 7 – 11 s</div></div>
-    <div class="move"><div class="mt">Trois intensités</div><div class="md">Statique (reduced-motion) · Respiration (défaut) · Dérive (immersif).</div><div class="mv">data-motion 0 / 1 / 2</div></div>
-  </div>
-</div></div></section>
-
-<!-- ============ MOCK ============ -->
-<section><div class="wrap"><div class="panel">
-  <p class="eyebrow">07 · Tout ensemble — aperçu de hero</p>
-  <h2 class="section-title">Ce que ça donne à l'écran.</h2>
-  <div class="mock">
-    <svg class="mock-cloud" style="width:120px;top:14px;right:40px" viewBox="0 0 48 24" shape-rendering="crispEdges"><rect x="8" y="8" width="32" height="10" fill="#fff"/><rect x="14" y="4" width="20" height="6" fill="#fff"/><rect x="2" y="12" width="10" height="6" fill="#fff"/><rect x="36" y="11" width="10" height="7" fill="#fff"/><rect x="4" y="16" width="40" height="2" fill="#C7DEEF"/></svg>
-    <div class="bar">
-      <span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="9" y="4" width="6" height="16" fill="#F2A73B"/><rect x="4" y="9" width="16" height="6" fill="#F2A73B"/><rect x="7" y="7" width="10" height="10" fill="#F7BE55"/></svg> Temposystem</span>
-      <span style="margin-left:auto">Moteur</span><span>Mémoire</span><span>Conseil</span><span>Écosystème</span>
-    </div>
-    <div class="body">
-      <div>
-        <h3>Le temps donné devient une <em>trace vivante</em>.</h3>
-        <p>Temposystem enregistre chaque seconde partagée comme un nuage de plus qui passe dans le ciel : une mémoire qui avance sans se perdre. Une trace, jamais une créance.</p>
-        <a href="#" class="btn">Entrer dans le système →</a><a href="#" class="btn ghost">Écouter</a>
+    <div class="grp">Aperçu — le visage système (nuit)</div>
+    <div class="mock">
+      <div class="bar">
+        <span class="logo">
+          <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="#F2A73B"/><circle cx="12" cy="12" r="8" fill="none" stroke="#D6704A" stroke-width="1.4"/><circle cx="12" cy="12" r="11" fill="none" stroke="#57998F" stroke-width="1" opacity=".6"/></svg>
+          Temposystem
+        </span>
+        <span class="nav"><span>Moteur</span><span>Mémoire</span><span>Conseil</span><span>Écosystème</span></span>
       </div>
-      <div class="visual" aria-hidden="true">
-        <svg width="200" height="200" viewBox="0 0 120 120" shape-rendering="crispEdges">
-          <circle cx="60" cy="60" r="50" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
-          <g fill="#F2A73B"><rect x="56" y="8" width="8" height="8"/><rect x="56" y="104" width="8" height="8"/><rect x="8" y="56" width="8" height="8"/><rect x="104" y="56" width="8" height="8"/></g>
-          <rect x="44" y="30" width="32" height="60" fill="#F2A73B"/><rect x="30" y="44" width="60" height="32" fill="#F2A73B"/><rect x="38" y="38" width="44" height="44" fill="#F9CE72"/>
-        </svg>
+      <div class="body">
+        <div>
+          <h3>Le temps donné devient une <em>trace vivante</em>.</h3>
+          <p>Temposystem enregistre chaque seconde partagée comme un anneau de plus : une mémoire qui grandit sans perdre son centre. Une trace, jamais une créance.</p>
+          <div class="btns">
+            <a href="#" class="btn">Entrer dans le système →</a>
+            <a href="#" class="btn ghost">Écouter</a>
+          </div>
+        </div>
+        <div class="visual" aria-hidden="true">
+          <svg viewBox="0 0 240 240">
+            <circle cx="120" cy="120" r="100" fill="none" stroke="#3a2e22" stroke-width="1"/>
+            <circle cx="120" cy="120" r="80" fill="none" stroke="#6e7bb0" stroke-width="1.3" opacity=".7"/>
+            <circle cx="120" cy="120" r="60" fill="none" stroke="#57998f" stroke-width="1.6" opacity=".85"/>
+            <circle cx="120" cy="120" r="40" fill="none" stroke="#d6704a" stroke-width="2"/>
+            <circle cx="120" cy="120" r="14" fill="#f2a73b"/>
+          </svg>
+        </div>
       </div>
     </div>
-  </div>
-</div></div></section>
+  </div></div>
+</section>
 
-<footer>TEMPOSYSTEM · planche de style « Le Temps Vivant » (version jour) · proposition de refonte — 16/07/2026</footer>
+<!-- ══ 02 · LA MER & L'ÎLE ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">02 · La mer &amp; l'île — le monde</p>
+    <h2 class="section-title">La mer est l'élément qui relie et entoure.</h2>
+    <p class="lede">Le bleu de la mer est la couleur ajoutée à la charte : c'est le <strong>milieu</strong> dans lequel tout se passe —
+      l'environnement partagé, la distance qu'on traverse, l'horizon. L'île est la communauté ; les chemins colorés sont les
+      contributions qui circulent d'un foyer à l'autre ; la place centrale et son arbre sont la <em class="k">présence</em> réunie.</p>
+    <div class="band mer"></div>
+    <div class="band-label"><span>Écume — bas-fonds</span><span>Mer — le milieu</span><span>Mer profonde — la distance</span></div>
+  </div></div>
+</section>
+
+<!-- ══ 03 · PALETTE ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">03 · Palette — le jour, la mer &amp; la matière</p>
+    <h2 class="section-title">Neuf couleurs : le monde, la base, le cycle du jour.</h2>
+
+    <div class="grp">Base claire (jour)</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F4EDE0"></div><div class="meta"><div class="name">Parchemin</div><div class="role">base claire (jour)</div><div class="hex">#F4EDE0</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FBF6EE;border-bottom:6px solid #EFE7D8"></div><div class="meta"><div class="name">Lumière</div><div class="role">information clé</div><div class="hex">#FBF6EE</div></div></div>
+    </div>
+
+    <div class="grp">Le monde — la mer (ajout)</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#7FD3F0"></div><div class="meta"><div class="name">Écume</div><div class="role">bas-fonds, éclats</div><div class="hex">#7FD3F0</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1E9BDE"></div><div class="meta"><div class="name">Mer</div><div class="role">environnement · horizon</div><div class="hex">#1E9BDE</div></div></div>
+      <div class="sw"><div class="chip" style="background:#0E6FB0"></div><div class="meta"><div class="name">Mer profonde</div><div class="role">distance · immersion</div><div class="hex">#0E6FB0</div></div></div>
+    </div>
+
+    <div class="grp">Le cycle du jour (accents — chaque couleur code une fonction)</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F2A73B"></div><div class="meta"><div class="name">Aube</div><div class="role">énergie · décision</div><div class="hex">#F2A73B</div></div></div>
+      <div class="sw"><div class="chip" style="background:#EAC873"></div><div class="meta"><div class="name">Miel</div><div class="role">anticipation · horizon</div><div class="hex">#EAC873</div></div></div>
+      <div class="sw"><div class="chip" style="background:#D6704A"></div><div class="meta"><div class="name">Terre cuite</div><div class="role">présence humaine</div><div class="hex">#D6704A</div></div></div>
+      <div class="sw"><div class="chip" style="background:#8FA85C"></div><div class="meta"><div class="name">Sève</div><div class="role">croissance · validation</div><div class="hex">#8FA85C</div></div></div>
+      <div class="sw"><div class="chip" style="background:#57998F"></div><div class="meta"><div class="name">Marée</div><div class="role">flux · transmission</div><div class="hex">#57998F</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6E7BB0"></div><div class="meta"><div class="name">Crépuscule</div><div class="role">mémoire · trace</div><div class="hex">#6E7BB0</div></div></div>
+    </div>
+
+    <div class="band cycle"></div>
+    <div class="band-label"><span>Aube — le temps se donne</span><span>Marée — il coule</span><span>Crépuscule — il devient mémoire</span></div>
+  </div></div>
+</section>
+
+<!-- ══ 04 · RÔLES ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">04 · Règles de couleur — une couleur, une fonction</p>
+    <h2 class="section-title">Le bleu porte, les accents signalent.</h2>
+    <p class="lede">La mer est le fond du monde ; le parchemin porte le texte ; une section n'utilise jamais tout le cycle à la fois —
+      une dominante + une impulsion + l'encre. Le rouge reste réservé aux incidents réels.</p>
+    <div class="roles">
+      <div class="role"><span class="dot" style="background:#1E9BDE"></span><span class="rn">Mer</span><div class="rr">l'environnement, l'horizon commun, l'immersion</div></div>
+      <div class="role"><span class="dot" style="background:#F2A73B"></span><span class="rn">Aube</span><div class="rr">énergie donnée, décision, source</div></div>
+      <div class="role"><span class="dot" style="background:#EAC873"></span><span class="rn">Miel</span><div class="rr">anticipation, horizon, signal faible</div></div>
+      <div class="role"><span class="dot" style="background:#D6704A"></span><span class="rn">Terre cuite</span><div class="rr">présence humaine, contribution, chaleur</div></div>
+      <div class="role"><span class="dot" style="background:#8FA85C"></span><span class="rn">Sève</span><div class="rr">croissance, validation, état opérationnel</div></div>
+      <div class="role"><span class="dot" style="background:#57998F"></span><span class="rn">Marée</span><div class="rr">flux, transmission, circulation</div></div>
+      <div class="role"><span class="dot" style="background:#6E7BB0"></span><span class="rn">Crépuscule</span><div class="rr">mémoire, trace, archivage</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ══ 05 · TYPO ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">05 · Typographie — trois voix</p>
+    <h2 class="section-title">Une serif vivante, une humaniste, une mono.</h2>
+    <div class="type-grid">
+      <div class="spec"><div class="tag">Voix manifeste — Fraunces (organique, axes SOFT/WONK)</div>
+        <div class="voix-titre">Le temps donné devient une <em class="k">trace vivante</em>.</div>
+        <div class="voix-corps">Titres, manifeste, émotion. L'italique colore un mot-clé, souvent en terre cuite.</div></div>
+      <div class="spec"><div class="tag">Voix courante — Instrument Sans (humaniste)</div>
+        <div class="voix-corps" style="font-size:1.1rem;color:var(--encre)">Textes, navigation, descriptions, boutons. Lisible et chaleureuse — un grotesque humaniste, jamais froid.</div></div>
+      <div class="spec"><div class="tag">Voix système — IBM Plex Mono</div>
+        <div class="voix-sys">ADR-0012 · 2026-07-16 · une seconde = une trace · SYNCHRONISÉ · +1 (symbolique)</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ══ 06 · FORMES ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">06 · Vocabulaire de formes</p>
+    <h2 class="section-title">L'île, la mer, le chemin, le soleil.</h2>
+    <div class="forms">
+      <div class="form"><svg viewBox="0 0 64 64"><path class="stroke m" d="M6 44 Q18 34 32 44 T58 44"/><path class="stroke m" d="M6 52 Q18 42 32 52 T58 52" opacity=".55"/></svg><div class="fname">Mer</div><div class="frole">milieu, horizon</div></div>
+      <div class="form"><svg viewBox="0 0 64 64"><path class="stroke d" d="M10 46 Q22 20 44 26 Q56 30 52 44 Q40 52 10 46 Z"/></svg><div class="fname">Île</div><div class="frole">communauté</div></div>
+      <div class="form"><svg viewBox="0 0 64 64"><path class="stroke c" stroke-dasharray="4 4" d="M8 40 C 24 40 26 22 40 22 S 56 30 58 24"/><circle cx="8" cy="40" r="3" class="stroke c"/><circle cx="58" cy="24" r="3" class="stroke c"/></svg><div class="fname">Chemin</div><div class="frole">contribution qui circule</div></div>
+      <div class="form"><svg viewBox="0 0 64 64" shape-rendering="crispEdges"><g fill="#F2A73B"><rect x="26" y="14" width="12" height="36"/><rect x="14" y="26" width="36" height="12"/><rect x="20" y="20" width="24" height="24"/></g></svg><div class="fname">Soleil</div><div class="frole">énergie donnée</div></div>
+      <div class="form"><svg viewBox="0 0 64 64"><path class="stroke d" d="M32 54 C 18 44 18 24 32 10 C 46 24 46 44 32 54 Z"/><path class="stroke d" d="M32 54 L32 20" opacity=".6"/></svg><div class="fname">Arbre / graine</div><div class="frole">présence, mémoire</div></div>
+      <div class="form"><svg viewBox="0 0 64 64"><path class="stroke e" d="M6 22 Q32 14 58 22"/><path class="stroke e" d="M6 34 Q32 26 58 34" opacity=".7"/><path class="stroke e" d="M6 46 Q32 38 58 46" opacity=".45"/></svg><div class="fname">Strates</div><div class="frole">traces, ADR</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ══ 07 · INCARNATION ══ -->
+<section>
+  <div class="wrap"><div class="panel">
+    <p class="eyebrow">07 · Le header incarne la charte</p>
+    <h2 class="section-title">Comment l'île porte la palette.</h2>
+    <div class="incarne">
+      <img src="island-day.jpg" alt="L'île TEMPOSYSTEM de jour." />
+      <ul class="maps">
+        <li><span class="dot" style="background:#1E9BDE"></span><span><strong>Mer</strong> — tout autour, le monde et l'horizon.</span></li>
+        <li><span class="dot" style="background:#D6704A"></span><span><strong>Terre cuite</strong> — les personnes réunies sur la place.</span></li>
+        <li><span class="dot" style="background:#F2A73B"></span><span><strong>Aube</strong> — les chemins d'énergie, la décision.</span></li>
+        <li><span class="dot" style="background:#8FA85C"></span><span><strong>Sève</strong> — l'île verdoyante, la validation (le sceau ✓).</span></li>
+        <li><span class="dot" style="background:#57998F"></span><span><strong>Marée</strong> — les flux qui relient les foyers.</span></li>
+        <li><span class="dot" style="background:#6E7BB0"></span><span><strong>Crépuscule</strong> — la version nuit, la mémoire du jour.</span></li>
+      </ul>
+    </div>
+  </div></div>
+</section>
+
+<footer>TEMPOSYSTEM · charte « Le Temps Vivant » (mode jour, île &amp; mer) · 16/07/2026</footer>
 
 </body>
 </html>
