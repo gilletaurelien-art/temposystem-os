@@ -1,42 +1,25 @@
 import { Section } from "../components/Section";
 import { useLang } from "../lib/lang";
 
-const copy = {
-  eyebrow: { fr: "MANA", en: "MANA" },
-  title: { fr: "La première application de l'énergie civique", en: "The first application of civic energy" },
-  intro: {
-    fr: "MANA reconnaît le temps donné, l'entraide et la coopération territoriale comme une énergie commune.",
-    en: "MANA recognizes given time, mutual aid and territorial cooperation as a common energy.",
-  },
-  p1: {
-    fr: "MANA permet de mettre TEMPOSYSTEM OS à l'épreuve d'un terrain réel : coopération civique, territoires pilotes, reconnaissance des contributions et gouvernance humaine. Le temps partagé devient un signal visible.",
-    en: "MANA puts TEMPOSYSTEM OS to the test of a real field: civic cooperation, pilot territories, recognition of contributions and human governance. Shared time becomes a visible signal.",
-  },
-  p2: {
-    fr: "Le socle reste volontairement générique pour que d'autres domaines puissent transformer leur coopération en énergie mémorisée et gouvernable.",
-    en: "The foundation stays deliberately generic so that other fields can turn their cooperation into remembered and governable energy.",
-  },
-  discover: { fr: "Découvrir MANA →", en: "Discover MANA →" },
+const uses = {
+  fr: [
+    ["Solidarité territoriale", "Relier un CCAS, des associations, des établissements et des bénévoles autour des besoins du territoire."],
+    ["Soin et présence", "Coordonner professionnels, familles, aidants et partenaires sans remplacer les outils de soin."],
+    ["Vie associative", "Organiser les missions, coopérer entre structures et reconnaître le temps bénévole."],
+    ["Réseaux et fédérations", "Partager un cadre et une mémoire communs tout en maintenant l'autonomie locale."],
+  ],
+  en: [
+    ["Local solidarity", "Connect social services, non-profits, institutions and volunteers around local needs."],
+    ["Care and presence", "Coordinate professionals, families, caregivers and partners without replacing care tools."],
+    ["Non-profit action", "Organise missions, cooperate across organisations and recognise volunteer time."],
+    ["Networks and federations", "Share a common framework and memory while preserving local autonomy."],
+  ],
 } as const;
 
-export function ManaPage() {
-  const { lang } = useLang();
-  return (
-    <main>
-      <Section eyebrow={copy.eyebrow[lang]} title={copy.title[lang]} intro={copy.intro[lang]}>
-        <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
-          <p className="text-lg leading-8 text-slate-200">{copy.p1[lang]}</p>
-          <p className="mt-5 text-sm leading-6 text-slate-400">{copy.p2[lang]}</p>
-          <a
-            href="https://manafrance.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-gradient-to-r from-[#6366f1] to-[#7c3aed] px-5 text-sm font-semibold text-white transition hover:from-[#818cf8] hover:to-[#8b5cf6]"
-          >
-            {copy.discover[lang]}
-          </a>
-        </div>
-      </Section>
-    </main>
-  );
-}
+export function ManaPage() { const { lang } = useLang(); return <main><Section
+  eyebrow={lang === "fr" ? "Usages" : "Use cases"}
+  title={lang === "fr" ? "Commencer par un problème réel" : "Start with one real problem"}
+  intro={lang === "fr" ? "Chaque TEMPOSYSTEM est configuré autour d'un périmètre clair, d'acteurs identifiés et d'un premier résultat observable." : "Each TEMPOSYSTEM is configured around a clear scope, identified actors and a first observable outcome."}>
+  <div className="grid gap-4 md:grid-cols-2">{uses[lang].map(([title, body]) => <article key={title} className="rounded-lg border border-white/10 bg-white/[0.04] p-6"><h3 className="text-xl font-semibold text-slate-50">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{body}</p></article>)}</div>
+  <div className="mt-8 flex flex-wrap gap-3"><a href="https://manatimebank.org/creer" className="inline-flex min-h-11 items-center rounded-lg bg-amber-300 px-5 text-sm font-bold text-stone-900">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a><a href="mailto:contact@manahome.org?subject=TEMPOSYSTEM" className="inline-flex min-h-11 items-center rounded-lg border border-white/15 px-5 text-sm font-semibold text-white">{lang === "fr" ? "Parler de mon territoire" : "Discuss my community"}</a></div>
+  </Section></main>; }
