@@ -20,21 +20,21 @@ export function Section({
   wide = false,
 }: SectionProps) {
   return (
-    <section id={id} className={`py-14 sm:py-18 ${className}`}>
+    <section id={id} className={`civic-page-section ${className}`}>
       <div
         className={`mx-auto w-full px-5 sm:px-8 lg:px-10 ${
           wide ? "max-w-[96rem]" : "max-w-6xl"
         }`}
       >
-        <div className="mb-8 max-w-3xl">
+        <div className="civic-page-heading">
           {eyebrow ? (
             <p className="os-eyebrow">{eyebrow}</p>
           ) : null}
-          <h2 className="mt-2 text-2xl font-bold text-white/92 sm:text-3xl" style={{ fontFamily: "'Philosopher', serif" }}>
+          <h1>
             {title}
-          </h2>
+          </h1>
           {intro ? (
-            <p className="mt-4 text-sm leading-7 text-slate-400">{intro}</p>
+            <p>{intro}</p>
           ) : null}
         </div>
         {children}
