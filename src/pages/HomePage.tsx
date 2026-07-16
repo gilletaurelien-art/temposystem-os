@@ -94,7 +94,7 @@ export function HomePage() {
             <p>{lang === "fr" ? "Chaque TEMPOSYSTEM active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOSYSTEM activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
           </header>
           <div className="editorial-offers__grid">
-            {tempoOffers.map((offer) => <a className="editorial-offer" href={`#/tarifs#${offer.slug}`} key={offer.slug}>
+            {tempoOffers.map((offer) => <a className="editorial-offer" href={offer.slug === "care" || offer.slug === "civic" ? `#/offres/${offer.slug}` : `#/creer?offre=${offer.slug}`} key={offer.slug}>
               <span>TEMPOSYSTEM</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
             </a>)}
           </div>

@@ -23,7 +23,7 @@ export function PricingPage() {
         <p>{offer.promise[lang]}</p>
         <ul>{offer.uses[lang].map((use) => <li key={use}>{use}</li>)}</ul>
         <div className="pricing-card__price"><span>{lang === "fr" ? "Tarif" : "Price"}</span><strong>{lang === "fr" ? "Sur devis" : "Custom quote"}</strong></div>
-        <a className="civic-button civic-button--primary" href={`#/creer?offre=${offer.slug}`}>{lang === "fr" ? "Étudier mon besoin" : "Discuss my needs"}</a>
+        <a className="civic-button civic-button--primary" href={offer.slug === "care" || offer.slug === "civic" ? `#/offres/${offer.slug}` : `#/creer?offre=${offer.slug}`}>{lang === "fr" ? (offer.slug === "care" || offer.slug === "civic" ? "Découvrir l'offre" : "Étudier mon besoin") : (offer.slug === "care" || offer.slug === "civic" ? "Explore the offer" : "Discuss my needs")}</a>
       </article>)}
     </div>
     <aside className="civic-note"><strong>{lang === "fr" ? "Ce que le devis rend visible : " : "What the quote makes clear: "}</strong>{lang === "fr" ? "mise en place, accompagnement, hébergement, maintenance, options et conditions d'évolution. Aucun participant ni bénéficiaire n'est monétisé comme un produit." : "setup, support, hosting, maintenance, options and scaling conditions. No participant or beneficiary is monetised as a product."}</aside>
