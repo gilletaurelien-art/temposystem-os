@@ -141,6 +141,21 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
       {/* Bloc écosystème — MANAHOME + les 6 mondes */}
       <EcosystemBlock lang={lang} />
 
+      {/* L'île quitte le hero et devient une conclusion visuelle. */}
+      <section className="island-footer" aria-label={lang === "fr" ? "Le temps partagé laisse une trace" : "Shared time leaves a trace"}>
+        <div className="island-footer__frames" aria-hidden="true">
+          <img className="island-footer__frame island-footer__frame--1" src="/islands/island-01-coordination-1400.jpg" alt="" loading="lazy" />
+          <img className="island-footer__frame island-footer__frame--2" src="/islands/island-02-decision-1400.jpg" alt="" loading="lazy" />
+          <img className="island-footer__frame island-footer__frame--3" src="/islands/island-03-memoire-1400.jpg" alt="" loading="lazy" />
+        </div>
+        <div className="island-footer__veil" />
+        <div className="island-footer__copy">
+          <span>TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
+          <strong>{lang === "fr" ? "Le temps partagé laisse une trace." : "Shared time leaves a trace."}</strong>
+          <p>{lang === "fr" ? "Les besoins deviennent des actions. Les actions deviennent une mémoire commune." : "Needs become actions. Actions become a shared memory."}</p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="os-footer relative z-10">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">

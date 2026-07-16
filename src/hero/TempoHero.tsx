@@ -46,9 +46,10 @@ export function TempoHero() {
     <div className="selector-hero__wrap">
       <div className="selector-hero__intro">
         <p className="editorial-kicker">TEMPOSYSTEM</p>
-        <h1 id="selector-hero-title">{lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."}</h1>
+        <h1 id="selector-hero-title">{lang === "fr" ? <>L'infrastructure d'orchestration de l'<em>action collective.</em></> : <>The orchestration infrastructure for <em>collective action.</em></>}</h1>
         <p>{lang === "fr" ? "Reliez les besoins, les personnes, les organisations et les décisions dans un même espace de coordination." : "Connect needs, people, organisations and decisions in one coordination space."}</p>
       </div>
+      <div className="selector-hero__rings" aria-hidden="true"><i /><i /><i /><b /></div>
 
       <div className="selector-pipe" aria-label={lang === "fr" ? "Trouver mon TEMPOSYSTEM" : "Find my TEMPOSYSTEM"}>
         <div className="selector-pipe__step">
