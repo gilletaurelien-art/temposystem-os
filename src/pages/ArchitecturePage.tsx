@@ -1,37 +1,36 @@
 import { Section } from "../components/Section";
 import { useLang } from "../lib/lang";
 
-const copy = {
-  eyebrow: { fr: "Architecture", en: "Architecture" },
-  title: { fr: "Une architecture pour faire circuler l'énergie", en: "An architecture to circulate the energy" },
-  intro: {
-    fr: "Le système sépare les fonctions permanentes, les implémentations IA, la mémoire durable et les applications afin que l'énergie collective reste lisible et gouvernable.",
-    en: "The system separates permanent functions, AI implementations, durable memory and applications so the collective energy stays readable and governable.",
+const content = {
+  fr: {
+    eyebrow: "Fonctionnement", title: "Du besoin à l'action, sans perdre le fil.",
+    intro: "TEMPOSYSTEM ne remplace pas les organisations ni leurs outils métiers. Il crée une continuité commune entre ce qui doit être compris, coordonné, réalisé et mémorisé.",
+    steps: [
+      ["Signaler", "Un besoin, une ressource ou une question entre dans un espace partagé."],
+      ["Coordonner", "Les acteurs utiles accèdent au même contexte et définissent les responsabilités."],
+      ["Agir", "L'action est attribuée, suivie et documentée jusqu'à son aboutissement."],
+      ["Reconnaître", "Le temps utile laisse une trace visible, sans devenir une dette ou une monnaie spéculative."],
+      ["Décider", "Une personne ou une instance humaine valide les arbitrages engageants."],
+      ["Mémoriser", "Les résultats et enseignements restent disponibles pour les décisions futures."],
+    ],
   },
-  layers: {
-    fr: ["Capitaine", "Conseil de Bord", "Timonier", "Équipage 2042", "Mémoire Git + ADR", "Applications"],
-    en: ["Captain", "Bridge Council", "Helmsman", "Crew 2042", "Git Memory + ADR", "Applications"],
-  },
-  layerText: {
-    fr: "Couche stable de TEMPOSYSTEM OS : elle capte, oriente ou mémorise une part de l'énergie produite par la coopération.",
-    en: "A stable layer of TEMPOSYSTEM OS: it captures, steers or stores a share of the energy produced by cooperation.",
+  en: {
+    eyebrow: "How it works", title: "From need to action, without losing the thread.",
+    intro: "TEMPOSYSTEM does not replace organisations or their business tools. It creates shared continuity between what must be understood, coordinated, delivered and remembered.",
+    steps: [
+      ["Signal", "A need, resource or question enters a shared space."],
+      ["Coordinate", "Relevant actors access the same context and define responsibilities."],
+      ["Act", "The action is assigned, monitored and documented through completion."],
+      ["Recognise", "Useful time leaves a visible trace without becoming debt or a speculative currency."],
+      ["Decide", "A person or human body validates binding decisions."],
+      ["Remember", "Outcomes and learning remain available for future decisions."],
+    ],
   },
 } as const;
 
 export function ArchitecturePage() {
-  const { lang } = useLang();
-  return (
-    <main>
-      <Section eyebrow={copy.eyebrow[lang]} title={copy.title[lang]} intro={copy.intro[lang]}>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {copy.layers[lang].map((layer) => (
-            <article key={layer} className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
-              <h3 className="text-xl font-semibold text-slate-50">{layer}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">{copy.layerText[lang]}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-    </main>
-  );
+  const { lang } = useLang(); const c = content[lang];
+  return <main><Section eyebrow={c.eyebrow} title={c.title} intro={c.intro}>
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{c.steps.map(([title, body], i) => <article key={title} className="rounded-lg border border-white/10 bg-white/[0.04] p-6"><p className="text-xs font-bold text-amber-300/70">0{i + 1}</p><h3 className="mt-3 text-xl font-semibold text-slate-50">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{body}</p></article>)}</div>
+  </Section></main>;
 }
