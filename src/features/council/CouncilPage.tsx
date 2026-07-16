@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { councilAgents, crew2042Agents } from "../../config/agents";
 import type { CouncilSession, CouncilSessionStatus } from "../../types";
 import { useLang } from "../../lib/lang";
+import { TempoBriefing } from "../../hero/TempoBriefing";
 import {
   generateMockCouncilConsensus,
   generateMockCouncilResponses,
@@ -175,6 +176,10 @@ export function CouncilPage() {
 
   return (
     <main className="relative z-10 min-h-screen text-slate-100">
+      {/* Modules déplacés du HERO (16/07/2026) : le briefing « jour » ouvre le Conseil. */}
+      <div className="mx-auto w-full max-w-6xl px-5 pt-8 sm:px-8 lg:px-10">
+        <TempoBriefing />
+      </div>
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
         <header className="flex flex-col gap-3 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
           <div>

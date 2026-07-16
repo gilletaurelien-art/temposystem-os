@@ -1,61 +1,204 @@
 /**
- * TEMPOSYSTEM — HERO « Cognitive Pixel Music », reconstruit en code léger.
- * Brief HERO V2 (16/07/2026). Contraintes de coque :
- *   · aucune image de fond, aucun WebGL/Canvas/RAF, aucun listener ;
- *   · les animations ne touchent QUE transform / opacity ;
- *   · 4 animations globales maximum : cœur, graphe, ECG, signal +1 MANA.
- * Les couleurs viennent des tokens du site ; les alias --tempo-* restent locaux
- * au HERO (§22) et n'ajoutent pas de 3ᵉ police (§7).
+ * TEMPOSYSTEM — HERO « Le Temps Vivant » (charte docs/refonte/00-charte-temps-vivant.md).
+ * Décor : ciel bleu clair pixel (fixe) + 3 nuages qui dérivent + soleil pixel qui respire.
+ * Contraintes de coque conservées : aucune image raster, aucun WebGL/Canvas/RAF, aucun
+ * listener ; les animations ne touchent que transform / opacity ; mouvement = souffle & dérive.
+ * Les couleurs viennent des tokens « cycle du jour » (--ts-*). Les alias --tempo-* restent
+ * locaux au HERO et mappent vers ces tokens (une seule source de vérité).
  */
 
 .tempo-hero {
-  /* Voix typographiques (§7) — on réutilise la police pixel DÉJÀ chargée */
-  --font-pixel: var(--ts-font-pixel, "Departure Mono", "Silkscreen", "IBM Plex Mono", monospace);
-  --font-mono: "SFMono-Regular", "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+  /* Voix : titre en Fraunces (manifeste), labels/données en mono système (§8) */
+  --font-titre: var(--ts-font-titre, "Fraunces", Georgia, serif);
+  --font-pixel: var(--ts-font-system, "IBM Plex Mono", ui-monospace, monospace);
+  --font-mono: var(--ts-font-main, "Instrument Sans", system-ui, sans-serif);
 
-  /* Palette (§22) */
-  --tempo-bg: #030510;
-  --tempo-white: #f4f6ff;
-  --tempo-muted: #9299b5;
-  --tempo-line: rgba(82, 123, 255, 0.28);
-  --tempo-cyan: #24d8ff;
-  --tempo-blue: #527bff;
-  --tempo-violet: #8b5cff;
-  --tempo-magenta: #f044c8;
-  --tempo-pink: #ff3b8d;
-  --tempo-orange: #ff8a24;
-  --tempo-yellow: #ffd84a;
-  --tempo-green: #50e3a4;
+  /* Palette locale → cycle du jour (§6) */
+  --tempo-white: var(--ts-encre, #2a2620);        /* texte principal (encre) */
+  --tempo-muted: var(--ts-encre-muted, rgba(42, 38, 32, 0.66));
+  --tempo-faint: var(--ts-encre-faint, rgba(42, 38, 32, 0.42));
+  --tempo-line: var(--ts-hairline, rgba(42, 38, 32, 0.14));
+  --tempo-card: rgba(251, 250, 245, 0.82);        /* parchemin translucide */
+  --tempo-cyan: var(--ts-tide, #3e8f86);
+  --tempo-blue: var(--ts-dusk, #5b6ba6);
+  --tempo-violet: var(--ts-dusk, #5b6ba6);
+  --tempo-magenta: var(--ts-terracotta, #d6704a);
+  --tempo-pink: var(--ts-terracotta, #d6704a);
+  --tempo-orange: var(--ts-sun, #f2a73b);
+  --tempo-yellow: var(--ts-honey, #e7b441);
+  --tempo-green: var(--ts-sap, #7e9a4f);
 
-  --tempo-beat-duration: 1s; /* 60 BPM (§6) */
+  --tempo-beat-duration: 1s; /* 60 BPM (§13) */
   --tempo-header-h: 58px;
 
   position: relative;
-  min-height: calc(100svh - var(--tempo-header-h));
+  width: 100%;
+  aspect-ratio: 16 / 9;            /* conteneur 16:9 — réserve l'espace, aucun déplacement de layout */
   overflow: hidden;
   color: var(--tempo-white);
   font-family: var(--font-mono);
-  background:
-    radial-gradient(circle at 57% 47%, rgba(255, 138, 36, 0.075), transparent 20%),
-    radial-gradient(circle at 52% 48%, rgba(240, 68, 200, 0.055), transparent 38%),
-    radial-gradient(circle at 44% 48%, rgba(36, 216, 255, 0.04), transparent 50%),
-    var(--tempo-bg);
+  background: #1a5f97;             /* océan de secours derrière object-fit: contain */
 }
 
-/* Grille statique très légère (§14) — aucune animation */
-.tempo-hero::before {
-  content: "";
+/* ── Bannière : boucle lente de 3 illustrations (fondus opacity, sans JS) ──── */
+.tempo-island {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+.tempo-island__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;            /* île entièrement visible */
+  opacity: 0;
+  animation: tempo-island-cycle 9s linear infinite;
+  will-change: opacity;
+}
+/* ordre 01 → 02 → 03 (visible ~3 s chacune, longs fondus) — cycle ~9 s */
+.tempo-island__frame--1 { animation-delay: 0s; }   /* 01 coordination */
+.tempo-island__frame--2 { animation-delay: -6s; }  /* 02 décision */
+.tempo-island__frame--3 { animation-delay: -3s; }  /* 03 mémoire nocturne */
+
+@keyframes tempo-island-cycle {
+  0%   { opacity: 1; }
+  27%  { opacity: 1; }
+  35%  { opacity: 0; }
+  92%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ── Ciel pixel — arrière-plan FIXE (§3) ─────────────────────────────────
+   Dans le wrapper de contenu (.relative.z-10 de l'AppShell) : la couche fixe
+   s'affiche au-dessus du fond racine, derrière le contenu du hero. */
+.tempo-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
   pointer-events: none;
-  opacity: 0.22;
-  background-image:
-    linear-gradient(rgba(82, 123, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(82, 123, 255, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  -webkit-mask-image: radial-gradient(ellipse at 55% 48%, black, transparent 76%);
-  mask-image: radial-gradient(ellipse at 55% 48%, black, transparent 76%);
+  background: var(--ts-sky,
+    linear-gradient(#8ccbee 0 15%, #a0d5f1 43% 57%, #c6e8f7 85% 100%));
+}
+.tempo-sky__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--ts-veil,
+    linear-gradient(180deg, rgba(251, 250, 245, 0) 0%, rgba(251, 250, 245, 0.32) 60%, rgba(251, 250, 245, 0.55) 100%));
+}
+.tempo-sky__cloud {
+  position: absolute;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+/* Quatre tons pour le volume des cumulonimbus (§3) */
+.tempo-sky__hi { fill: #ffffff; }    /* lumière — sommet ensoleillé */
+.tempo-sky__w { fill: #eef5fc; }     /* corps */
+.tempo-sky__swirl { fill: #d6e5f2; } /* volute — brassage interne */
+.tempo-sky__s { fill: #bfd6e9; }     /* ombre — base */
+
+/* Le soleil pixel, POSÉ DANS LE CIEL (premier enfant → derrière les nuages) (§4) */
+.tempo-sky__sun {
+  position: absolute;
+  top: clamp(48px, 15vh, 150px);
+  left: 56%;
+  transform: translateX(-50%);
+  width: min(42vw, 380px);
+  max-width: 380px;
+}
+.tempo-sky__sun svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 14px 34px rgba(242, 167, 59, 0.4));
+}
+@media (max-width: 820px) {
+  .tempo-sky__sun { left: 50%; top: clamp(40px, 12vh, 110px); width: min(58vw, 300px); }
+}
+
+/* ── Arbre à droite — tronc mi-visible + 2 branches, FIXE dans le ciel (§10) ── */
+.tempo-tree {
+  position: absolute;
+  top: 0;
+  right: -30px;            /* la moitié droite du tronc sort du cadre */
+  height: 100%;
+  pointer-events: none;
+}
+.tempo-tree svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  overflow: visible;
+  image-rendering: pixelated;
+  filter: drop-shadow(-6px 8px 12px rgba(42, 38, 32, 0.16));
+}
+/* les branches oscillent autour de leur attache au tronc (rythme décalé) */
+.tempo-tree__b1 {
+  transform-box: view-box;
+  transform-origin: 508px 330px;
+  animation: tempo-sway 8s ease-in-out infinite;
+}
+.tempo-tree__b2 {
+  transform-box: view-box;
+  transform-origin: 512px 516px;
+  animation: tempo-sway 10.5s ease-in-out infinite;
+  animation-delay: -3.2s;
+}
+@media (max-width: 820px) {
+  .tempo-tree { right: -60px; opacity: 0.92; }
+}
+
+.tempo-sky__cloud--1 { width: 300px; top: 11%; left: -24%;
+  animation: tempo-derive var(--ts-derive-1, 90s) linear infinite, tempo-flotte 11s ease-in-out infinite; }
+.tempo-sky__cloud--2 { width: 250px; top: 32%; left: -18%;
+  animation: tempo-derive var(--ts-derive-2, 130s) linear infinite, tempo-flotte 9s ease-in-out infinite;
+  animation-delay: -34s, 0s; }
+.tempo-sky__cloud--3 { width: 165px; top: 56%; left: -12%;
+  animation: tempo-derive var(--ts-derive-3, 68s) linear infinite, tempo-flotte 7s ease-in-out infinite;
+  animation-delay: -52s, 0s; }
+
+@keyframes tempo-derive { from { transform: translateX(0); } to { transform: translateX(150vw); } }
+@keyframes tempo-flotte { 0%, 100% { margin-top: 0; } 50% { margin-top: 8px; } }
+
+/* ── Feuillage d'avant-plan — deux branches qui oscillent (§10-§11) ───────── */
+.tempo-foliage {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* avant-plan DU CIEL : devant soleil/nuages, derrière le texte (§10) */
+  overflow: hidden;
+  pointer-events: none;
+}
+.tempo-branch {
+  position: absolute;
+  top: -18px;
+  width: min(31vw, 320px);
+  will-change: transform;
+}
+.tempo-branch svg { display: block; width: 100%; height: auto; overflow: visible; image-rendering: pixelated;
+  filter: drop-shadow(0 6px 10px rgba(42, 38, 32, 0.16)); }
+
+.tempo-branch--left {
+  left: -10px;
+  width: min(15.5vw, 160px); /* deux fois plus petite que la droite */
+  transform-origin: 8% 2%;
+  animation: tempo-sway 8s ease-in-out infinite;
+}
+.tempo-branch--right {
+  right: -16px;
+  transform-origin: 94% 2%;
+  animation: tempo-sway 9.6s ease-in-out infinite;
+  animation-delay: -3.4s; /* rythme décalé */
+}
+.tempo-branch--right svg { transform: scaleX(-1); } /* miroir de la branche gauche */
+
+@keyframes tempo-sway {
+  0%, 100% { transform: rotate(-1.7deg); }
+  50% { transform: rotate(1.5deg); }
 }
 
 /* Texte réel masqué visuellement — pour Google et les lecteurs d'écran */
@@ -71,18 +214,87 @@
   border: 0;
 }
 
-/* ── Grille principale (§5) ─────────────────────────────────────────────── */
+/* ── Grille principale (§9) ──────────────────────────────────────────────── */
 .tempo-hero__layout {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(300px, 0.9fr) minmax(440px, 1.35fr) minmax(240px, 0.62fr);
+  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.25fr) minmax(240px, 0.66fr);
   gap: clamp(20px, 3vw, 48px);
   align-items: start;
-  max-width: var(--ts-content-max, 1440px);
+  max-width: var(--ts-content-max, 1180px);
   margin: 0 auto;
-  padding: clamp(28px, 4vw, 56px) var(--ts-gutter, clamp(20px, 4vw, 64px)) clamp(40px, 5vw, 72px);
+  padding: clamp(28px, 4vw, 56px) var(--ts-gutter, clamp(20px, 4vw, 56px)) clamp(40px, 5vw, 72px);
   min-height: inherit;
+}
+
+/* ── Titre en incrustation sur la bannière (texte conservé dans le DOM) ───── */
+.tempo-hero__layout--scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  max-width: none;
+  padding: clamp(18px, 3.5vw, 52px);
+  /* voile de lisibilité (élément séparé — les images ne sont pas modifiées) */
+  background: linear-gradient(0deg, rgba(8, 16, 32, 0.6) 0%, rgba(8, 16, 32, 0.14) 24%, transparent 46%);
+  pointer-events: none;
+}
+.tempo-hero__layout--scene .tempo-hero__title-brand {
+  color: rgba(255, 255, 255, 0.82);
+}
+.tempo-hero__layout--scene .tempo-hero__title-concept {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+.tempo-hero__layout--scene .tempo-hero__title-concept em {
+  color: var(--ts-honey, #e7b441);
+}
+
+/* prefers-reduced-motion : pas de boucle, on fige l'île « décision validée » (02) */
+@media (prefers-reduced-motion: reduce) {
+  .tempo-island__frame { animation: none !important; opacity: 0 !important; }
+  .tempo-island__frame--2 { opacity: 1 !important; }
+}
+
+/* ── Briefing « jour » — modules déplacés du hero vers la page Conseil ────── */
+.tempo-briefing {
+  /* Voix + palette « cycle du jour » (reprises de .tempo-hero) */
+  --font-titre: var(--ts-font-titre, "Fraunces", Georgia, serif);
+  --font-pixel: var(--ts-font-system, "IBM Plex Mono", ui-monospace, monospace);
+  --font-mono: var(--ts-font-main, "Instrument Sans", system-ui, sans-serif);
+  --tempo-white: var(--ts-encre, #2a2620);
+  --tempo-muted: var(--ts-encre-muted, rgba(42, 38, 32, 0.66));
+  --tempo-faint: var(--ts-encre-faint, rgba(42, 38, 32, 0.42));
+  --tempo-line: var(--ts-hairline, rgba(42, 38, 32, 0.14));
+  --tempo-card: rgba(255, 255, 255, 0.72);
+  --tempo-cyan: var(--ts-tide, #3e8f86);
+  --tempo-blue: var(--ts-dusk, #5b6ba6);
+  --tempo-violet: var(--ts-dusk, #5b6ba6);
+  --tempo-magenta: var(--ts-terracotta, #d6704a);
+  --tempo-pink: var(--ts-terracotta, #d6704a);
+  --tempo-orange: var(--ts-sun, #f2a73b);
+  --tempo-yellow: var(--ts-honey, #e7b441);
+  --tempo-green: var(--ts-sap, #7e9a4f);
+
+  color: var(--tempo-white);
+  font-family: var(--font-mono);
+  padding: clamp(24px, 4vw, 48px);
+  background: linear-gradient(180deg, #e9f4fb 0%, #f6fbfd 55%, #eef5fc 100%);
+  border: 1px solid var(--ts-hairline, rgba(42, 38, 32, 0.14));
+  border-radius: 26px;
+  box-shadow: 0 24px 60px -42px rgba(42, 38, 32, 0.55);
+}
+.tempo-briefing__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.8fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .tempo-briefing__grid { grid-template-columns: 1fr; }
 }
 
 /* ── Colonne éditoriale ─────────────────────────────────────────────────── */
@@ -95,43 +307,47 @@
 .tempo-hero__title {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
   margin: 0;
+}
+
+.tempo-hero__title-brand {
   font-family: var(--font-pixel);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: 0.01em;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: var(--tempo-muted);
 }
 
-.tempo-hero__title-mono {
-  font-size: clamp(2.3rem, 5.4vw, 4rem);
+.tempo-hero__title-concept {
+  font-family: var(--font-titre);
+  font-optical-sizing: auto;
+  font-weight: 360;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
   color: var(--tempo-white);
-  text-shadow: 0 0 18px rgba(139, 92, 255, 0.28);
 }
-
-.tempo-hero__title-energy {
-  font-size: clamp(2.3rem, 5.4vw, 4rem);
-  background: linear-gradient(90deg, var(--tempo-violet), var(--tempo-magenta), var(--tempo-orange));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.tempo-hero__title-concept em {
+  font-style: italic;
+  font-variation-settings: "SOFT" 40, "WONK" 1;
+  color: var(--tempo-magenta); /* terre cuite */
 }
 
 .tempo-hero__sub {
-  margin: -8px 0 0;
+  margin: -6px 0 0;
   font-family: var(--font-pixel);
   font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--tempo-blue);
+  color: var(--tempo-cyan);
 }
 
 .tempo-hero__intro {
   margin: 0;
-  max-width: 42ch;
-  font-size: 0.98rem;
-  line-height: 1.55;
+  max-width: 46ch;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--tempo-muted);
 }
 
@@ -142,7 +358,8 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.95rem;
+  font-family: var(--font-titre);
+  font-size: 1.2rem;
   color: var(--tempo-white);
 }
 
@@ -157,13 +374,14 @@
   font-size: 0.9rem;
 }
 
-/* Équation (§6) */
+/* Équation (§5) */
 .tempo-equation {
   margin-top: 4px;
   padding: 16px 20px;
   border: 1px solid var(--tempo-line);
-  border-radius: 12px;
-  background: rgba(6, 10, 27, 0.7);
+  border-radius: 16px;
+  background: var(--tempo-card);
+  backdrop-filter: blur(3px);
 }
 
 .tempo-equation__row {
@@ -177,7 +395,7 @@
 }
 
 .tempo-equation__time { color: var(--tempo-white); }
-.tempo-equation__sign { color: var(--tempo-muted); }
+.tempo-equation__sign { color: var(--tempo-faint); }
 .tempo-equation__mana { color: var(--tempo-orange); }
 
 .tempo-equation__legend {
@@ -189,7 +407,7 @@
   color: var(--tempo-muted);
 }
 
-/* Boutons (§6) */
+/* Boutons (§15) */
 .tempo-hero__cta {
   display: flex;
   flex-wrap: wrap;
@@ -203,13 +421,13 @@
   gap: 8px;
   min-height: 46px;
   padding: 0 22px;
-  border-radius: 8px;
-  font-family: var(--font-pixel);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  transition: opacity 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+  transition: box-shadow 160ms ease, transform 160ms ease;
 }
 
 .tempo-hero__cta a:focus-visible {
@@ -218,31 +436,34 @@
 }
 
 .tempo-hero__cta-primary {
-  color: #fff;
-  background: linear-gradient(90deg, var(--tempo-violet), var(--tempo-magenta), var(--tempo-orange));
+  color: #241605;
+  background: var(--ts-grad-sun,
+    linear-gradient(135deg, #d6704a, #f2a73b, #e7b441));
 }
 .tempo-hero__cta-primary:hover {
-  box-shadow: 0 0 24px rgba(240, 68, 200, 0.45);
+  box-shadow: 0 10px 24px -8px rgba(214, 112, 74, 0.6);
   transform: translateY(-1px);
 }
 
 .tempo-hero__cta-secondary {
   color: var(--tempo-white);
   border: 1px solid var(--tempo-line);
-  background: rgba(5, 9, 24, 0.7);
+  background: var(--tempo-card);
+  backdrop-filter: blur(3px);
 }
 .tempo-hero__cta-secondary:hover {
-  box-shadow: 0 0 18px rgba(36, 216, 255, 0.35);
+  box-shadow: 0 8px 18px -8px rgba(42, 38, 32, 0.3);
   transform: translateY(-1px);
 }
 
-/* Battement du système (§6, §12) */
+/* Battement du système (§13) */
 .tempo-beat {
   margin-top: 8px;
   padding: 14px 18px;
   border: 1px solid var(--tempo-line);
-  border-radius: 12px;
-  background: rgba(6, 10, 27, 0.6);
+  border-radius: 16px;
+  background: var(--tempo-card);
+  backdrop-filter: blur(3px);
 }
 
 .tempo-beat__head {
@@ -290,7 +511,7 @@
   color: var(--tempo-green);
 }
 
-/* ── Scène centrale (§5, §8-§13) ────────────────────────────────────────── */
+/* ── Scène centrale — le soleil pixel (§4) ───────────────────────────────── */
 .tempo-hero__stage {
   position: relative;
   align-self: stretch;
@@ -309,66 +530,69 @@
   min-height: 460px;
 }
 
-/* décor statique : croix + lignes + nœuds */
-.tempo-scene {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.tempo-scene__cross {
-  stroke: var(--tempo-line);
-  stroke-width: 0.35;
-}
-
-.tempo-scene__link {
-  stroke-width: 0.3;
-  opacity: 0.5;
-}
-
-.tempo-scene__node {
-  opacity: 0.9;
-}
-
-/* Batterie pixel art (V3 étape 1 : cadrage seul — aucun effet, aucune animation) */
-.tempo-drum-kit {
+.tempo-sun {
   position: relative;
   z-index: 1;
   display: grid;
   place-items: center;
-  width: min(100%, 520px);
-  aspect-ratio: 640 / 520;
-  margin-inline: auto;
+  width: min(100%, 340px);
 }
 
-.tempo-drum-kit__svg {
+.tempo-sun__svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 12px 30px rgba(242, 167, 59, 0.35));
+}
+
+/* Le soleil respire (§13) — transform/opacity uniquement */
+.tempo-sun__core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tempo-souffle var(--ts-souffle, 5.2s) var(--ts-ease-vivant, cubic-bezier(0.37, 0, 0.24, 1)) infinite;
+  will-change: transform;
+}
+.tempo-sun__halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tempo-souffle calc(var(--ts-souffle, 5.2s) * 1.4) var(--ts-ease-vivant, ease-in-out) infinite;
+  will-change: transform, opacity;
+}
+@keyframes tempo-souffle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+/* Rayonnement — les faisceaux tournent très lentement autour du centre (§4) */
+.tempo-sun__rays {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tempo-rays 60s linear infinite;
+  will-change: transform;
+}
+@keyframes tempo-rays {
+  to { transform: rotate(360deg); }
 }
 
 /* Signal +1 MANA (§13) */
 .tempo-mana-signal {
   position: relative;
   z-index: 1;
-  margin: 18px 0 0;
+  margin: 22px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
   text-align: center;
   will-change: transform, opacity;
-  animation: tempo-mana-signal var(--tempo-beat-duration) ease-in-out infinite;
+  animation: tempo-mana-signal var(--ts-souffle, 5.2s) ease-in-out infinite;
 }
 
 .tempo-mana-signal__value {
   font-family: var(--font-pixel);
   font-size: 1.35rem;
   color: var(--tempo-orange);
-  text-shadow: 0 0 14px rgba(255, 138, 36, 0.5);
 }
 
 .tempo-mana-signal__each {
@@ -379,7 +603,7 @@
   color: var(--tempo-muted);
 }
 
-/* ── Colonne de données (§16-§17) ───────────────────────────────────────── */
+/* ── Colonne de données (§15-§16) ────────────────────────────────────────── */
 .tempo-hero__aside {
   display: flex;
   flex-direction: column;
@@ -388,10 +612,11 @@
 
 .tempo-data-card {
   padding: 14px 16px;
-  border: 1px solid rgba(82, 123, 255, 0.28);
-  border-radius: 12px;
-  background: rgba(6, 10, 27, 0.92);
-  box-shadow: 0 0 18px rgba(82, 123, 255, 0.05);
+  border: 1px solid var(--tempo-line);
+  border-radius: 16px;
+  background: var(--tempo-card);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 14px 40px -28px rgba(42, 38, 32, 0.5);
 }
 
 .tempo-card-head {
@@ -448,7 +673,7 @@
   will-change: transform, opacity;
 }
 
-/* respiration lente du GROUPE — 2ᵉ animation */
+/* respiration lente du GROUPE */
 .tempo-signal-graph__group {
   transform-origin: center;
   animation: tempo-signal-breathe 5s ease-in-out infinite;
@@ -486,12 +711,12 @@
 }
 
 .tempo-impulse__route {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--tempo-white);
 }
 
 .tempo-impulse__reason {
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   color: var(--tempo-muted);
 }
 
@@ -517,7 +742,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
 }
 
 .tempo-status-row__key {
@@ -570,12 +795,10 @@
   color: var(--tempo-muted);
 }
 
-/* ── Animations du HERO (transform + opacity uniquement) ─────────────────────
-   Note V3 : la batterie (symbole central) est STATIQUE à cette étape — son
-   rythme viendra plus tard. Restent le graphe, l'ECG et le signal +1 MANA. */
+/* ── Animations (transform + opacity uniquement) ─────────────────────────── */
 @keyframes tempo-signal-breathe {
-  0%, 100% { transform: scaleX(0.985); opacity: 0.7; }
-  50% { transform: scaleX(1); opacity: 0.9; }
+  0%, 100% { transform: scaleX(0.985); opacity: 0.8; }
+  50% { transform: scaleX(1); opacity: 1; }
 }
 
 @keyframes tempo-ecg-shift {
@@ -605,11 +828,9 @@
   .tempo-constellation-grid { max-width: 460px; }
 }
 
-/* ── Mobile / PWA (§19) — recomposé, pas réduit ──────────────────────────── */
+/* ── Mobile / PWA (§19) — recomposé, pas réduit : une fenêtre sur le ciel ─── */
 @media (max-width: 820px) {
-  .tempo-hero {
-    min-height: auto;
-  }
+  .tempo-hero { min-height: auto; }
   .tempo-hero__layout {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -619,22 +840,31 @@
   .tempo-hero__aside {
     grid-column: 1;
   }
-  .tempo-hero__visual { min-height: 340px; }
-  .tempo-drum-kit { width: min(92vw, 440px); }
+  .tempo-hero__visual { min-height: 300px; }
+  .tempo-sun { width: min(70vw, 300px); }
   .tempo-hero__intro { max-width: none; }
   .tempo-hero__cta a { flex: 1 1 auto; justify-content: center; }
+  /* Mobile : un seul nuage visible (§19) */
+  .tempo-sky__cloud--2,
+  .tempo-sky__cloud--3 { display: none; }
 }
 
 @media (max-width: 400px) {
   .tempo-hero__layout { padding-left: 18px; padding-right: 18px; }
-  .tempo-drum-kit { width: min(94vw, 380px); }
 }
 
-/* ── Mouvement réduit (§20) — le HERO reste complet, figé ────────────────── */
+/* ── Mouvement réduit (§20) — le HERO reste complet, le ciel se pose ──────── */
 @media (prefers-reduced-motion: reduce) {
+  .tempo-sky__cloud,
+  .tempo-sun__core,
+  .tempo-sun__halo,
+  .tempo-sun__rays,
+  .tempo-branch--left,
+  .tempo-branch--right,
   .tempo-signal-graph__group,
   .tempo-ecg-track,
   .tempo-mana-signal {
     animation: none !important;
   }
+  .tempo-branch--right svg { transform: scaleX(-1); }
 }

@@ -1,63 +1,112 @@
 /**
- * TEMPOSYSTEM — tokens Cognitive Pixel Music.
- * Source de vérité unique (charte §6-§8, §11, §13, §15).
- * Aucune couleur en dur ailleurs ; le rouge est réservé aux incidents réels (§20).
+ * TEMPOSYSTEM — tokens « Le Temps Vivant ».
+ * Source de vérité unique (charte docs/refonte/00-charte-temps-vivant.md).
+ * Le pixel dessine la nature (ciel, soleil, nuages) ; le rouge est réservé aux incidents réels (§16).
+ *
+ * MIGRATION : les tokens « — Pont hérité (legacy) — » plus bas reproduisent l'ancienne
+ * identité « Cognitive Pixel Music » pour que les 11 mouvements existants continuent de
+ * s'afficher pendant leur reprise. Ils sont à retirer au fur et à mesure de la migration.
  */
 
 :root {
-  /* ---- Fonds (§6) ---- */
-  --ts-deep-space: #030510;
-  --ts-midnight: #070b1d;
-  --ts-orbital: #0d132b;
-  --ts-signal-grid: #1b2850;
+  /* ======== LE TEMPS VIVANT — source de vérité ======== */
 
-  /* ---- Couleurs énergétiques (§7) — chaque couleur CODE une fonction ---- */
-  --ts-cyan: #24d8ff;    /* transmission */
-  --ts-blue: #527bff;    /* mémoire */
-  --ts-violet: #8b5cff;  /* cohérence */
-  --ts-magenta: #f044c8; /* impulsion humaine */
-  --ts-orange: #ff8a24;  /* décision */
-  --ts-yellow: #ffd84a;  /* anticipation */
-  --ts-green: #50e3a4;   /* validation */
-  --ts-white: #f2f5ff;   /* synchronisation complète */
+  /* ---- Ciel (arrière-plan vivant, charte §3/§6) ---- */
+  --ts-sky-1: #8ccbee;          /* haut */
+  --ts-sky-2: #a0d5f1;
+  --ts-sky-3: #b3def4;
+  --ts-sky-4: #c6e8f7;          /* horizon */
+  /* Bandes dures et nombreuses = ciel « gros pixels » (§11) */
+  --ts-sky: linear-gradient(
+    #8ccbee 0 15%, #93cfef 15% 29%, #a0d5f1 29% 43%, #aadaf2 43% 57%,
+    #b3def4 57% 71%, #bce3f5 71% 85%, #c6e8f7 85% 100%);
+  --ts-cloud: #feffff;          /* nuages, points de lumière */
+  --ts-cloud-shadow: #c7deef;   /* face inférieure (pixel-shading) */
 
-  /* ---- Encres ---- */
-  --ts-ink: var(--ts-white);
-  --ts-ink-muted: rgba(242, 245, 255, 0.64);
-  --ts-ink-faint: rgba(242, 245, 255, 0.4);
+  /* ---- Matière (surfaces & encre, charte §6) ---- */
+  --ts-parchment: #fbfaf5;      /* cartes, panneaux, surfaces de lecture */
+  --ts-parchment-2: #f3efe4;    /* surfaces secondaires */
+  --ts-encre: #2a2620;          /* texte — brun d'encre chaud, jamais noir pur */
+  --ts-encre-muted: rgba(42, 38, 32, 0.66);
+  --ts-encre-faint: rgba(42, 38, 32, 0.42);
+  --ts-hairline: rgba(42, 38, 32, 0.14);
 
-  /* ---- Dégradés à signification (§8) ---- */
-  /* contribution → synchronisation → mémoire */
-  --ts-grad-contribution: linear-gradient(135deg, var(--ts-magenta), var(--ts-violet), var(--ts-blue));
-  /* cohérence → décision */
-  --ts-grad-decision: linear-gradient(135deg, var(--ts-violet), var(--ts-orange));
+  /* ---- Le cycle du jour (accents — chaque couleur CODE une fonction, §6/§7) ---- */
+  --ts-sun: #f2a73b;            /* énergie donnée, décision, aube, source */
+  --ts-honey: #e7b441;          /* anticipation, horizon, signal faible */
+  --ts-terracotta: #d6704a;     /* présence humaine, contribution, matière */
+  --ts-sap: #7e9a4f;            /* croissance, validation, opérationnel */
+  --ts-tide: #3e8f86;           /* flux, transmission, circulation */
+  --ts-dusk: #5b6ba6;           /* mémoire, trace, archivage, nuit */
 
-  /* ---- Pixel (§13) ---- */
+  /* ---- Nuit tiède (espaces système / immersifs — §6) ---- */
+  --ts-night: #171310;          /* remplace l'ancien bleu-noir spatial */
+  --ts-night-panel: #241c15;
+
+  /* ---- Dégradés à signification (§7) ---- */
+  /* contribution → énergie → horizon */
+  --ts-grad-sun: linear-gradient(135deg, var(--ts-terracotta), var(--ts-sun), var(--ts-honey));
+  /* aube → écoulement → mémoire */
+  --ts-grad-cycle: linear-gradient(90deg, var(--ts-sun) 0%, var(--ts-tide) 55%, var(--ts-dusk) 100%);
+
+  /* ---- Voile de lumière (assied le texte sur le ciel, §3) ---- */
+  --ts-veil: linear-gradient(180deg, rgba(251, 250, 245, 0) 0%,
+                             rgba(251, 250, 245, 0.35) 60%, rgba(251, 250, 245, 0.6) 100%);
+
+  /* ---- Pixel (§11) ---- */
   --ts-px-micro: 2px;
   --ts-px-signal: 4px;
   --ts-px-symbol: 12px;
 
-  /* ---- Rythme (§15) ---- */
-  --ts-beat: 4s;
-  --ts-transmit: 900ms;
-  --ts-sync: 3s;
-  --ts-ease-pulse: cubic-bezier(0.45, 0, 0.55, 1);
-  --ts-ease-signal: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ---- Rythme — respirer, dériver, revenir (§13) ---- */
+  --ts-souffle: 5.2s;           /* pulsation du soleil (plus lent, plus organique) */
+  --ts-derive-1: 90s;           /* dérive des nuages — 3 vitesses */
+  --ts-derive-2: 130s;
+  --ts-derive-3: 68s;
+  --ts-flotte: 9s;              /* léger bob vertical */
+  --ts-ease-vivant: cubic-bezier(0.37, 0, 0.24, 1);
 
-  /* ---- Grille (§11) ---- */
-  --ts-content-max: 1440px;
-  --ts-gutter: clamp(20px, 4vw, 64px);
+  /* ---- Grille (§9) ---- */
+  --ts-content-max: 1180px;
+  --ts-content-wide: 1440px;
+  --ts-gutter: clamp(20px, 5vw, 56px);
   --ts-space-unit: 8px;
 
-  /* ---- Voix typographiques (§9) ----
-     Departure Mono (idéal court terme) sera auto-hébergée dans public/fonts/ ;
-     Silkscreen (Google) assure la voix pixel en attendant — la pile bascule seule. */
-  --ts-font-main: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --ts-font-pixel: "Departure Mono", "Silkscreen", "IBM Plex Mono", monospace;
-  --ts-font-system: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  /* ---- Voix typographiques (§8) ---- */
+  --ts-font-titre: "Fraunces", Georgia, "Times New Roman", serif;         /* manifeste */
+  --ts-font-main: "Instrument Sans", system-ui, -apple-system, sans-serif; /* courante */
+  --ts-font-system: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;   /* système/data */
+
+  /* ======== Pont hérité (legacy « Cognitive Pixel Music ») — À MIGRER ========
+     Reproduit l'ancienne identité pour ne pas casser les 11 mouvements pendant leur
+     reprise. Chaque référence migrée vers un token « Le Temps Vivant » ci-dessus doit
+     permettre de supprimer la ligne correspondante ici. */
+  --ts-deep-space: var(--ts-night);
+  --ts-midnight: var(--ts-night-panel);
+  --ts-orbital: #2c2219;
+  --ts-signal-grid: rgba(255, 255, 255, 0.12);
+  --ts-cyan: var(--ts-tide);
+  --ts-blue: var(--ts-dusk);
+  --ts-violet: var(--ts-dusk);
+  --ts-magenta: var(--ts-terracotta);
+  --ts-orange: var(--ts-sun);
+  --ts-yellow: var(--ts-honey);
+  --ts-green: var(--ts-sap);
+  --ts-white: #f2f0ea;
+  --ts-ink: var(--ts-white);              /* legacy = encre claire (sur fond sombre) */
+  --ts-ink-muted: rgba(242, 240, 234, 0.64);
+  --ts-ink-faint: rgba(242, 240, 234, 0.4);
+  --ts-grad-contribution: var(--ts-grad-cycle);
+  --ts-grad-decision: var(--ts-grad-sun);
+  --ts-beat: var(--ts-souffle);
+  --ts-transmit: 900ms;
+  --ts-sync: 3s;
+  --ts-ease-pulse: var(--ts-ease-vivant);
+  --ts-ease-signal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ts-font-pixel: var(--ts-font-system); /* la voix pixel-texte est abandonnée (§8) */
 }
 
-/* Niveau 0 — statique (charte §16) : coupe toute animation déclarée par le système */
+/* Niveau 0 — statique (charte §13) : coupe toute animation déclarée par le système */
 html[data-motion="0"] *,
 html[data-motion="0"] *::before,
 html[data-motion="0"] *::after {
