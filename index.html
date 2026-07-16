@@ -16,8 +16,16 @@
       content="L'énergie du temps partagé, de la mémoire et des décisions collectives."
     />
     <meta property="og:site_name" content="TEMPOSYSTEM OS" />
-    <meta property="og:image" content="" />
+    <meta property="og:url" content="https://temposystem.fr/" />
+    <meta property="og:image" content="https://temposystem.fr/assets/temposystem-is-energy.png" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta
+      property="og:image:alt"
+      content="TEMPOSYSTEM IS ENERGY — le cœur énergétique pixelisé du système d'exploitation de l'énergie collective."
+    />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://temposystem.fr/assets/temposystem-is-energy.png" />
     <meta name="twitter:title" content="TEMPOSYSTEM OS" />
     <meta
       name="twitter:description"
@@ -25,7 +33,37 @@
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
+    <!-- Les trois voix typographiques (charte Cognitive Pixel Music §9) :
+         Space Grotesk (principale) · Silkscreen (pixel, intérim avant Departure Mono) · IBM Plex Mono (système) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&family=Silkscreen&display=swap"
+      rel="stylesheet"
+    />
+    <!-- HERO reconstruit en code léger (Cognitive Pixel Music) : plus d'image
+         principale à précharger. L'illustration reste la carte de partage (og:image). -->
     <title>TEMPOSYSTEM OS — L'énergie du temps partagé</title>
+    <!-- Référencement de l'œuvre HERO (Google Images / résultats enrichis) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "TEMPOSYSTEM IS ENERGY — The Energy Operating System",
+        "url": "https://temposystem.fr/",
+        "inLanguage": "fr",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "contentUrl": "https://temposystem.fr/assets/temposystem-is-energy.png",
+          "url": "https://temposystem.fr/assets/temposystem-is-energy.png",
+          "width": 1536,
+          "height": 1024,
+          "name": "TEMPOSYSTEM IS ENERGY",
+          "caption": "Le cœur énergétique pixelisé de TEMPOSYSTEM : une seconde de temps partagé devient une unité d'énergie collective — 1 seconde = 1 MANA.",
+          "representativeOfPage": true
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

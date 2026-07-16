@@ -131,7 +131,7 @@ h1, h2, h3 {
 .os-header {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 70;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -144,7 +144,8 @@ h1, h2, h3 {
 }
 
 .os-brand {
-  font-family: 'Philosopher', serif;
+  /* Voix principale de la charte Cognitive Pixel Music (Philosopher reste à MANA) */
+  font-family: var(--ts-font-main, 'Space Grotesk', sans-serif);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -182,6 +183,96 @@ h1, h2, h3 {
   transition: color 160ms;
 }
 .os-footer-link:hover { color: #a78bfa; }
+
+/* ---- HAMBURGER (mobile / PWA) ---- */
+.os-burger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  transition: background 160ms, border-color 160ms;
+  -webkit-tap-highlight-color: transparent;
+}
+.os-burger:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(129, 140, 248, 0.4); }
+
+.os-burger-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 14px;
+}
+.os-burger-bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  background: rgba(226, 232, 240, 0.9);
+  transition: transform 220ms ease, opacity 180ms ease;
+}
+.os-burger-box.is-open .os-burger-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.os-burger-box.is-open .os-burger-bar:nth-child(2) { opacity: 0; }
+.os-burger-box.is-open .os-burger-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---- OVERLAY MENU (mobile / PWA) ---- */
+.os-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(2, 6, 23, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: os-menu-fade 200ms ease;
+}
+@keyframes os-menu-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.os-menu-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(84vw, 340px);
+  height: 100%;
+  padding: 92px 22px 28px;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.16), transparent 55%),
+    rgba(3, 7, 18, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: -30px 0 60px rgba(0, 0, 0, 0.5);
+  animation: os-menu-slide 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes os-menu-slide { from { transform: translateX(24px); opacity: 0.4; } to { transform: translateX(0); opacity: 1; } }
+
+.os-menu-link {
+  padding: 13px 14px;
+  border-radius: 12px;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: rgba(226, 232, 240, 0.72);
+  text-decoration: none;
+  transition: color 160ms, background 160ms;
+}
+.os-menu-link:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+.os-menu-link-active {
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  color: #a78bfa;
+}
+.os-menu-sep {
+  height: 1px;
+  margin: 12px 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
 
 /* ---- EYEBROW ---- */
 .os-eyebrow {

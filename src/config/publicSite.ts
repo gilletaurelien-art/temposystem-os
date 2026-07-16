@@ -3,11 +3,11 @@
 
 export const publicNavigation = [
   { label: { fr: "Accueil", en: "Home" }, route: "home", href: "#/" },
-  { label: { fr: "Conseil de Bord", en: "Bridge Council" }, route: "council", href: "#/council" },
-  { label: { fr: "Vision", en: "Vision" }, route: "vision", href: "#/vision" },
-  { label: { fr: "Architecture", en: "Architecture" }, route: "architecture", href: "#/architecture" },
-  { label: { fr: "Décisions", en: "Decisions" }, route: "decisions", href: "#/decisions" },
-  { label: { fr: "MANA", en: "MANA" }, route: "mana", href: "#/mana" },
+  { label: { fr: "Conseil", en: "Council" }, route: "conseil", href: "#/conseil" },
+  { label: { fr: "Mémoire", en: "Memory" }, route: "memoire", href: "#/memoire" },
+  { label: { fr: "Moteur", en: "Engine" }, route: "moteur", href: "#/moteur" },
+  { label: { fr: "Applications", en: "Applications" }, route: "applications", href: "#/applications" },
+  { label: { fr: "Manifeste", en: "Manifesto" }, route: "manifeste", href: "#/manifeste" },
 ];
 
 export const cockpitStatusCards = [

@@ -1,0 +1,67 @@
+/* EnergyButton — charte §19. L'impulsion traverse le bouton primaire au survol. */
+
+.ts-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 26px;
+  border-radius: 4px;
+  font-family: var(--ts-font-main);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color var(--ts-transmit) var(--ts-ease-signal), background 200ms;
+}
+
+.ts-btn:focus-visible {
+  outline: 2px solid var(--ts-cyan);
+  outline-offset: 3px;
+}
+
+.ts-btn-primary {
+  color: var(--ts-deep-space);
+  background: var(--ts-white);
+  border: 1px solid var(--ts-white);
+}
+
+.ts-btn-secondary {
+  color: var(--ts-ink);
+  background: transparent;
+  border: 1px solid var(--ts-signal-grid);
+}
+.ts-btn-secondary:hover,
+.ts-btn-secondary:focus-visible {
+  border-color: var(--ts-violet);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--ts-violet) 25%, transparent);
+}
+
+.ts-btn-label { position: relative; z-index: 1; }
+
+/* L'impulsion : une fine ligne d'énergie qui traverse au survol */
+.ts-btn-impulse {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  left: -40px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ts-cyan) 55%, transparent), transparent);
+  transform: skewX(-18deg);
+}
+.ts-btn-primary:hover .ts-btn-impulse {
+  animation: ts-btn-cross var(--ts-transmit) var(--ts-ease-signal);
+}
+@keyframes ts-btn-cross {
+  from { left: -40px; }
+  to { left: calc(100% + 8px); }
+}
+
+/* Pixels d'attente des IllustrationSlot */
+@keyframes ts-slot-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.85; }
+}

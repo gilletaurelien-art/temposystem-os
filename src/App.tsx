@@ -6,18 +6,29 @@ import { DecisionsPage } from "./pages/DecisionsPage";
 import { HomePage } from "./pages/HomePage";
 import { ManaPage } from "./pages/ManaPage";
 import { VisionPage } from "./pages/VisionPage";
+import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "council" | "vision" | "architecture" | "decisions" | "mana";
+type Route = "home" | "conseil" | "manifeste" | "moteur" | "memoire" | "applications";
+
+/** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
+const LEGACY: Record<string, Route> = {
+  council: "conseil",
+  vision: "manifeste",
+  architecture: "moteur",
+  decisions: "memoire",
+  mana: "applications",
+};
 
 const routeFromHash = (): Route => {
   const hash = window.location.hash.replace("#/", "");
 
+  if (hash in LEGACY) return LEGACY[hash];
   if (
-    hash === "council" ||
-    hash === "vision" ||
-    hash === "architecture" ||
-    hash === "decisions" ||
-    hash === "mana"
+    hash === "conseil" ||
+    hash === "manifeste" ||
+    hash === "moteur" ||
+    hash === "memoire" ||
+    hash === "applications"
   ) {
     return hash;
   }
@@ -37,12 +48,16 @@ export default function App() {
 
   const page = {
     home: <HomePage />,
-    council: <CouncilPage />,
-    vision: <VisionPage />,
-    architecture: <ArchitecturePage />,
-    decisions: <DecisionsPage />,
-    mana: <ManaPage />,
+    conseil: <CouncilPage />,
+    manifeste: <VisionPage />,
+    moteur: <ArchitecturePage />,
+    memoire: <DecisionsPage />,
+    applications: <ManaPage />,
   }[route];
 
-  return <AppShell activeRoute={route}>{page}</AppShell>;
+  return (
+    <MotionProvider>
+      <AppShell activeRoute={route}>{page}</AppShell>
+    </MotionProvider>
+  );
 }

@@ -2,15 +2,38 @@ import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 import { useLang, type Language } from "../lib/lang";
 import { ManaConnect } from "../mana/ManaConnect";
+import EcosystemBlock from "./EcosystemBlock";
 
 interface AppShellProps {
   activeRoute: string;
   children: ReactNode;
 }
 
+/** Toggle langue FR / EN — réutilisé dans le header desktop et le menu mobile. */
+function LangToggle({ lang, setLang }: { lang: Language; setLang: (l: Language) => void }) {
+  return (
+    <div className="flex items-center overflow-hidden rounded-lg border border-white/15">
+      {(["fr", "en"] as Language[]).map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLang(l)}
+          aria-pressed={l === lang}
+          className={`px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest transition-colors ${
+            l === lang ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-200"
+          }`}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function AppShell({ activeRoute, children }: AppShellProps) {
   const { lang, setLang } = useLang();
   const [butterflyOp, setButterflyOp] = useState(1);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -24,29 +47,32 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Menu mobile : fermeture à Échap + verrou du défilement du corps.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
+
   return (
     <div
-      className="relative min-h-screen text-slate-100"
+      className="relative min-h-screen"
       style={{
+        color: "var(--ts-ink)",
         background:
-          "radial-gradient(circle at 50% 18%, rgba(124,58,237,0.12), transparent 28%)," +
-          "radial-gradient(circle at 20% 35%, rgba(34,211,238,0.07), transparent 28%)," +
-          "radial-gradient(circle at 80% 50%, rgba(217,70,239,0.07), transparent 30%)," +
-          "linear-gradient(180deg,#020617 0%,#080B1A 46%,#030712 100%)",
+          "radial-gradient(circle at 50% 12%, color-mix(in srgb, var(--ts-violet) 7%, transparent), transparent 32%)," +
+          "linear-gradient(180deg, var(--ts-deep-space) 0%, var(--ts-midnight) 50%, var(--ts-deep-space) 100%)",
       }}
     >
-      {/* Fond d'écran signature MANA */}
-      <div className="mana-wallpaper" aria-hidden="true">
-        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-one" />
-        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-two" />
-        <div className="mana-wallpaper-orbit mana-wallpaper-orbit-three" />
-        <div className="mana-wallpaper-core">
-          <img src="/assets/Logo_MANA_Symbol_logo.png" alt="" className="mana-wallpaper-core-logo" />
-        </div>
-        <div className="mana-world-line mana-world-line-one" />
-        <div className="mana-world-line mana-world-line-two" />
-        <div className="mana-world-line mana-world-line-three" />
-      </div>
+      {/* Le wallpaper MANA est retiré : TEMPOSYSTEM a sa propre identité
+          (Cognitive Pixel Music). Son fond propre (PixelField) viendra avec les
+          illustrations ; l'ambiance étoilée discrète reste en attendant. */}
 
       {/* Ambient starfield */}
       <div className="os-ambient">
@@ -69,7 +95,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
 
       {/* Header */}
       <header className="os-header">
-        <a href="#/" className="os-brand flex items-center gap-3">
+        <a href="#/" className="os-brand flex items-center gap-3" onClick={() => setMenuOpen(false)}>
           <img
             src="/assets/temposystem-butterfly-transparent.png"
             alt="TEMPOSYSTEM"
@@ -77,8 +103,10 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           />
           TEMPOSYSTEM OS
         </a>
-        <div className="flex flex-wrap items-center gap-3">
-          <nav className="flex flex-wrap gap-1">
+
+        {/* Navigation en ligne — grand écran (≥ lg) */}
+        <div className="hidden lg:flex items-center gap-3">
+          <nav className="flex gap-1">
             {publicNavigation.map((item) => (
               <a
                 key={item.route}
@@ -89,30 +117,64 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               </a>
             ))}
           </nav>
-          {/* Toggle langue FR / EN */}
-          <div className="flex items-center overflow-hidden rounded-lg border border-white/15">
-            {(["fr", "en"] as Language[]).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                aria-pressed={l === lang}
-                className={`px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest transition-colors ${
-                  l === lang ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
+          <LangToggle lang={lang} setLang={setLang} />
           <ManaConnect lang={lang} />
         </div>
+
+        {/* Bouton hamburger — mobile / PWA / tablette (< lg) */}
+        <button
+          type="button"
+          className="os-burger lg:hidden"
+          aria-label={menuOpen ? (lang === "fr" ? "Fermer le menu" : "Close menu") : (lang === "fr" ? "Ouvrir le menu" : "Open menu")}
+          aria-expanded={menuOpen}
+          aria-controls="os-mobile-menu"
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          <span className={`os-burger-box${menuOpen ? " is-open" : ""}`}>
+            <span className="os-burger-bar" />
+            <span className="os-burger-bar" />
+            <span className="os-burger-bar" />
+          </span>
+        </button>
       </header>
+
+      {/* Overlay menu mobile / PWA */}
+      {menuOpen && (
+        <div
+          id="os-mobile-menu"
+          className="os-menu-overlay lg:hidden"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setMenuOpen(false)}
+        >
+          <nav className="os-menu-panel" onClick={(e) => e.stopPropagation()}>
+            {publicNavigation.map((item) => (
+              <a
+                key={item.route}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={activeRoute === item.route ? "page" : undefined}
+                className={`os-menu-link${activeRoute === item.route ? " os-menu-link-active" : ""}`}
+              >
+                {item.label[lang]}
+              </a>
+            ))}
+            <div className="os-menu-sep" />
+            <div className="flex items-center justify-between gap-3">
+              <LangToggle lang={lang} setLang={setLang} />
+              <ManaConnect lang={lang} />
+            </div>
+          </nav>
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10">
         {children}
       </div>
+
+      {/* Bloc écosystème — MANAHOME + les 6 mondes */}
+      <EcosystemBlock lang={lang} />
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-white/[0.07] bg-black/20 backdrop-blur-sm">
