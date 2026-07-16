@@ -1,12 +1,11 @@
 /**
- * HomePage — la composition (refonte Cognitive Pixel Music, Étape 4 : squelette).
+ * HomePage — la composition (refonte « Le Temps Vivant »).
  *
- * Onze mouvements, comme une pièce musicale (docs/refonte/01-audit-et-architecture.md §2.4).
- * Densités : INT · SIL · RYT · INT · RYT · INT · RYT · RYT · INT · RYT · SIL
- * — jamais deux INTENSITÉ consécutives (charte §23).
- *
- * Les illustrations (familles A-G) sont des emplacements déclarés (IllustrationSlot),
- * composés ensemble un par un — HERO d'abord.
+ * Structure d'accueil :
+ *   · fond FIXE (sunrise) posé derrière tout — on le découvre en scrollant ;
+ *   · HERO = île en boucle (M01Signal), opaque, qui masque le fond au départ ;
+ *   · bande de révélation transparente → laisse voir le sunrise fixe (parallaxe) ;
+ *   · les onze mouvements, enveloppés dans un fond sombre (lisibilité).
  */
 
 import { M01Signal } from "../movements/M01Signal";
@@ -20,21 +19,39 @@ import { M08Moteur } from "../movements/M08Moteur";
 import { M09Ecosysteme } from "../movements/M09Ecosysteme";
 import { M10Portes } from "../movements/M10Portes";
 import { M11Battement } from "../movements/M11Battement";
+import { useLang } from "../lib/lang";
 
 export function HomePage() {
+  const { lang } = useLang();
+  const revealLine =
+    lang === "fr" ? "Le temps donné revient toujours." : "Given time always returns.";
+
   return (
     <main>
+      {/* Fond fixe (sunrise) — derrière le hero, découvert au scroll */}
+      <div className="tempo-wallpaper" aria-hidden="true" />
+
+      {/* HERO — île en boucle (opaque) */}
       <M01Signal />
-      <M02Equation />
-      <M03Physique />
-      <M04Rythme />
-      <M05Fonctions />
-      <M06Conseil />
-      <M07Memoire />
-      <M08Moteur />
-      <M09Ecosysteme />
-      <M10Portes />
-      <M11Battement />
+
+      {/* Bande de révélation — transparente : on voit le fond fixe */}
+      <section className="tempo-reveal" aria-hidden="true">
+        <p className="tempo-reveal__line">{revealLine}</p>
+      </section>
+
+      {/* Les onze mouvements — enveloppés dans un fond sombre (lisibilité) */}
+      <div className="tempo-movements">
+        <M02Equation />
+        <M03Physique />
+        <M04Rythme />
+        <M05Fonctions />
+        <M06Conseil />
+        <M07Memoire />
+        <M08Moteur />
+        <M09Ecosysteme />
+        <M10Portes />
+        <M11Battement />
+      </div>
     </main>
   );
 }
