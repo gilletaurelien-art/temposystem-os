@@ -119,6 +119,9 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           </nav>
           <LangToggle lang={lang} setLang={setLang} />
           <ManaConnect lang={lang} />
+          <a className="os-create-link" href="https://manatimebank.org/creer">
+            {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
+          </a>
         </div>
 
         {/* Bouton hamburger — mobile / PWA / tablette (< lg) */}
@@ -164,6 +167,9 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               <LangToggle lang={lang} setLang={setLang} />
               <ManaConnect lang={lang} />
             </div>
+            <a className="os-create-link os-create-link--mobile" href="https://manatimebank.org/creer" onClick={() => setMenuOpen(false)}>
+              {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
+            </a>
           </nav>
         </div>
       )}
