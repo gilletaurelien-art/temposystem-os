@@ -136,7 +136,7 @@ export function HomePage() {
           <h2>{lang === "fr" ? "Commencez par un usage réel." : "Start with one real use case."}</h2>
           <p>{lang === "fr" ? "Décrivez votre organisation, votre territoire et le premier besoin que vous souhaitez mieux coordonner. Votre espace sera préparé sur l'infrastructure MANAtimebank." : "Tell us about your organisation, community and the first need you want to coordinate better. Your space will be prepared on the MANAtimebank infrastructure."}</p>
           <div className="editorial-actions editorial-actions--center">
-            <a className="editorial-button editorial-button--primary" href="https://manatimebank.org/creer">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
+            <a className="editorial-button editorial-button--primary" href="#/creer">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
             <a className="editorial-button editorial-button--secondary" href="mailto:contact@manahome.org?subject=TEMPOSYSTEM">{lang === "fr" ? "Contacter l'équipe" : "Contact the team"}</a>
           </div>
         </div>
