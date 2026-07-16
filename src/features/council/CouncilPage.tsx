@@ -184,6 +184,12 @@ export function CouncilPage() {
         <TempoBriefing />
       </div>
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 sm:px-8 lg:px-10">
+        <aside className="rounded-lg border border-amber-300/30 bg-amber-300/10 px-4 py-3 text-sm leading-6 text-amber-100" role="status">
+          <strong>{lang === "fr" ? "PROTOTYPE PUBLIC" : "PUBLIC PROTOTYPE"}</strong>
+          {lang === "fr"
+            ? " · Réponses simulées localement. Aucune IA externe n'est appelée et aucune décision n'est enregistrée."
+            : " · Responses are simulated locally. No external AI is called and no decision is recorded."}
+        </aside>
         <header className="flex flex-col gap-3 border-b border-white/10 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase text-[#a78bfa]">
