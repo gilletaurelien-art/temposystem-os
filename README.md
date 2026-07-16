@@ -1,8 +1,8 @@
 # TEMPOSYSTEM OS
 
-TEMPOSYSTEM OS n'est pas une application. C'est un système d'exploitation de la coopération entre humains et intelligences artificielles.
+TEMPOSYSTEM est une infrastructure d'orchestration de l'action collective. Elle relie les besoins, les personnes, les organisations, les actions et les décisions dans une mémoire commune.
 
-TEMPOSYSTEM est une énergie : une énergie produite par le temps partagé, la mémoire, les décisions et l'intelligence collective. Son interface publique doit donner la sensation d'observer le cœur vivant de cette coopération.
+Sa signature publique est « L'énergie collective en action ». Les technologies d'assistance facilitent la coordination ; les humains conservent la décision finale.
 
 Le Conseil de Bord est le premier composant de cette architecture. Il permet à des fonctions permanentes d'éclairer une question, de produire un consensus et de laisser au Capitaine la décision finale.
 
