@@ -46,18 +46,12 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
   }, [menuOpen]);
 
   return (
-    <div className={`os-shell min-h-screen ${activeRoute === "conseil" ? "os-shell--night" : "os-shell--day"}`}>
+    <div className="os-shell os-shell--day min-h-screen">
       {/* Le wallpaper MANA est retiré : TEMPOSYSTEM a sa propre identité
           (Cognitive Pixel Music). Son fond propre (PixelField) viendra avec les
           illustrations ; l'ambiance étoilée discrète reste en attendant. */}
 
       {/* Ambient starfield */}
-      {activeRoute === "conseil" && <div className="os-ambient">
-        <div className="os-nebula-one" />
-        <div className="os-nebula-two" />
-        <div className="os-stars" />
-      </div>}
-
       {/* Header */}
       <header className="os-header">
         <a href="#/" className="os-brand flex items-center gap-3" onClick={() => setMenuOpen(false)}>

@@ -6,14 +6,12 @@ export function VisionPage() {
   const resources = lang === "fr" ? [
     ["Le manifeste", "Comprendre la vision du temps partagé et de l'action collective.", "https://temposystem.eu"],
     ["Le livre blanc", "Approfondir le modèle du temps donné, ses principes et ses limites.", "/livre-blanc.html"],
-    ["Le Conseil de Bord", "Explorer le prototype public de préparation et de documentation d'une décision.", "#/conseil"],
     ["Le registre des décisions", "Lire les ADR qui conservent les choix structurants de TEMPOSYSTEM.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs/captains-log/decisions"],
     ["La documentation", "Consulter l'architecture, le journal du Capitaine et la feuille de route.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs"],
     ["MANAtimebank", "Découvrir l'infrastructure logicielle qui permet de configurer un espace temps.", "https://manatimebank.org"],
   ] : [
     ["Manifesto", "Understand the vision for shared time and collective action.", "https://temposystem.eu"],
     ["White paper", "Explore the given-time model, its principles and boundaries.", "/livre-blanc-en.html"],
-    ["Bridge Council", "Explore the public prototype for preparing and documenting a decision.", "#/conseil"],
     ["Decision register", "Read the ADRs preserving TEMPOSYSTEM's structural choices.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs/captains-log/decisions"],
     ["Documentation", "Browse the architecture, Captain's log and roadmap.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs"],
     ["MANAtimebank", "Discover the software infrastructure used to configure a time space.", "https://manatimebank.org"],

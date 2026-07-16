@@ -347,6 +347,20 @@ h1, h2, h3 {
 .civic-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 20px; border: 1px solid var(--ts-hairline); border-radius: 8px; color: var(--ts-encre); background: rgba(255,255,255,.64); font-weight: 750; text-decoration: none; }
 .civic-button--primary { border-color: var(--ts-encre); color: #fff; background: var(--ts-encre); box-shadow: 0 10px 28px rgba(42,38,32,.15); }
 .civic-note { margin-top: 28px; padding: 24px 26px; border: 1px solid var(--ts-hairline); border-left: 4px solid var(--ts-sun); border-radius: 14px; color: var(--ts-encre-muted); background: var(--ts-parchment-2); line-height: 1.65; }
+.pricing-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-bottom: 42px; overflow: hidden; border: 1px solid var(--ts-hairline); border-radius: 16px; background: var(--ts-hairline); }
+.pricing-principles div { padding: 24px; background: var(--ts-parchment-2); }
+.pricing-principles strong, .pricing-principles span { display: block; }
+.pricing-principles strong { color: var(--ts-encre); }
+.pricing-principles span { margin-top: 8px; color: var(--ts-encre-muted); line-height: 1.55; }
+.pricing-card { display: flex; flex-direction: column; }
+.pricing-card h2 { margin: 12px 0 8px; color: var(--ts-encre); font-size: 2rem; }
+.pricing-card > strong { color: var(--ts-encre); font-size: .92rem; }
+.pricing-card ul { margin: 18px 0 24px; padding: 0; list-style: none; color: var(--ts-encre-muted); }
+.pricing-card li { padding: 7px 0; border-bottom: 1px solid var(--ts-hairline); }
+.pricing-card li::before { content: "■"; margin-right: 9px; color: var(--ts-tide); font-size: 7px; vertical-align: 2px; }
+.pricing-card__price { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-top: auto; padding: 18px 0; border-top: 1px solid var(--ts-hairline); }
+.pricing-card__price span { color: var(--ts-encre-muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+.pricing-card__price strong { color: var(--ts-encre); font-size: 1.15rem; }
 
 /* ---- MANA ECOSYSTEM ---- */
 .ecosystem { position: relative; z-index: 1; padding: clamp(72px, 9vw, 112px) 0; border-top: 1px solid var(--ts-hairline); background: #eee9dc; }
@@ -365,6 +379,7 @@ h1, h2, h3 {
 
 @media (max-width: 900px) {
   .civic-card-grid--three, .ecosystem__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pricing-principles { grid-template-columns: 1fr; }
   .ecosystem__heading { grid-template-columns: 1fr; }
 }
 @media (max-width: 620px) {
