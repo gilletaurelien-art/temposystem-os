@@ -332,46 +332,22 @@
   opacity: 0.9;
 }
 
-/* Cœur pixelisé (§8-§10) */
-.tempo-heart-wrapper {
+/* Batterie pixel art (V3 étape 1 : cadrage seul — aucun effet, aucune animation) */
+.tempo-drum-kit {
   position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  width: min(100%, 520px);
+  aspect-ratio: 640 / 520;
+  margin-inline: auto;
 }
 
-.tempo-heart-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 6%;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 246, 205, 0.32) 0%,
-    rgba(255, 138, 36, 0.19) 24%,
-    rgba(240, 68, 200, 0.11) 48%,
-    transparent 72%
-  );
-}
-
-.tempo-pixel-heart {
+.tempo-drum-kit__svg {
   display: block;
-  width: min(34vw, 360px);
+  width: 100%;
   height: auto;
-  transform-origin: center;
-  /* filtre STATIQUE (§10) — un seul, sur le groupe complet */
-  filter:
-    drop-shadow(0 0 6px rgba(255, 255, 255, 0.54))
-    drop-shadow(0 0 18px rgba(255, 138, 36, 0.32))
-    drop-shadow(0 0 32px rgba(240, 68, 200, 0.18));
-}
-
-.tempo-pixel-heart__group {
-  transform-origin: center;
-  will-change: transform, opacity;
-  animation: tempo-heart-pulse var(--tempo-beat-duration) cubic-bezier(0.22, 0.7, 0.25, 1) infinite;
+  overflow: visible;
 }
 
 /* Signal +1 MANA (§13) */
@@ -594,14 +570,9 @@
   color: var(--tempo-muted);
 }
 
-/* ── Les 4 animations (transform + opacity uniquement) ───────────────────── */
-@keyframes tempo-heart-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  12% { transform: scale(0.97); opacity: 0.94; }
-  22% { transform: scale(1.055); opacity: 1; }
-  36% { transform: scale(1); opacity: 0.94; }
-}
-
+/* ── Animations du HERO (transform + opacity uniquement) ─────────────────────
+   Note V3 : la batterie (symbole central) est STATIQUE à cette étape — son
+   rythme viendra plus tard. Restent le graphe, l'ECG et le signal +1 MANA. */
 @keyframes tempo-signal-breathe {
   0%, 100% { transform: scaleX(0.985); opacity: 0.7; }
   50% { transform: scaleX(1); opacity: 0.9; }
@@ -649,19 +620,18 @@
     grid-column: 1;
   }
   .tempo-hero__visual { min-height: 340px; }
-  .tempo-pixel-heart { width: min(68vw, 280px); }
+  .tempo-drum-kit { width: min(92vw, 440px); }
   .tempo-hero__intro { max-width: none; }
   .tempo-hero__cta a { flex: 1 1 auto; justify-content: center; }
 }
 
 @media (max-width: 400px) {
   .tempo-hero__layout { padding-left: 18px; padding-right: 18px; }
-  .tempo-pixel-heart { width: min(74vw, 240px); }
+  .tempo-drum-kit { width: min(94vw, 380px); }
 }
 
 /* ── Mouvement réduit (§20) — le HERO reste complet, figé ────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .tempo-pixel-heart__group,
   .tempo-signal-graph__group,
   .tempo-ecg-track,
   .tempo-mana-signal {

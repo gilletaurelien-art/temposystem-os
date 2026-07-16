@@ -9,7 +9,7 @@
  */
 
 import { SCENE_NODES, TEMPO_PALETTE } from "./tempoHeroData";
-import { TempoPixelHeart } from "./TempoPixelHeart";
+import { TempoPixelDrumKit } from "./TempoPixelDrumKit";
 import { useLang } from "../lib/lang";
 
 const copy = {
@@ -56,8 +56,8 @@ export function TempoHeroVisual() {
         ))}
       </svg>
 
-      {/* Le cœur */}
-      <TempoPixelHeart />
+      {/* La batterie (symbole central V3) */}
+      <TempoPixelDrumKit />
 
       {/* Signal symbolique (§13) — jamais un vrai compteur */}
       <p className="tempo-mana-signal">
