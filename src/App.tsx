@@ -6,10 +6,11 @@ import { HomePage } from "./pages/HomePage";
 import { ManaPage } from "./pages/ManaPage";
 import { PricingPage } from "./pages/PricingPage";
 import { CreateTempoPage } from "./pages/CreateTempoPage";
+import { OfferDetailPage } from "./pages/OfferDetailPage";
 import { VisionPage } from "./pages/VisionPage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "creer";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "creer" | "offre";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
@@ -21,6 +22,8 @@ const LEGACY: Record<string, Route> = {
 
 const routeFromHash = (): Route => {
   const hash = window.location.hash.replace("#/", "").split("?")[0];
+
+  if (hash.startsWith("offres/")) return "offre";
 
   if (hash in LEGACY) return LEGACY[hash];
   if (
@@ -55,6 +58,7 @@ export default function App() {
     applications: <ManaPage />,
     tarifs: <PricingPage />,
     creer: <CreateTempoPage />,
+    offre: <OfferDetailPage />,
   }[route];
 
   return (
