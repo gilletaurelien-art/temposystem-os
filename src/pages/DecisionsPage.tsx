@@ -1,57 +1,22 @@
 import { Section } from "../components/Section";
 import { useLang } from "../lib/lang";
 
-const copy = {
-  eyebrow: { fr: "Décisions d'Architecture (ADR)", en: "Architecture Decisions (ADR)" },
-  title: { fr: "Les décisions transforment l'énergie en mémoire", en: "Decisions turn energy into memory" },
-  intro: {
-    fr: "Les Architecture Decision Records conservent le contexte, les alternatives et les conséquences des choix structurants, afin que l'énergie des échanges ne disparaisse pas.",
-    en: "Architecture Decision Records keep the context, the alternatives and the consequences of structuring choices, so the energy of exchanges does not vanish.",
-  },
-  cardText: {
-    fr: "Décision conservée dans le registre ADR : une trace durable de l'énergie de décision.",
-    en: "Decision kept in the ADR register: a durable trace of the decision energy.",
-  },
-  decisions: {
-    fr: [
-      "ADR-0001 - Naissance de TEMPOSYSTEM OS",
-      "ADR-0002 - Architecture des rôles",
-      "ADR-0003 - La mémoire comme actif stratégique",
-      "ADR-0005 - Équipage 2042",
-      "ADR-0006 - Interface publique vivante",
-      "ADR-0007 - Premier déploiement public",
-      "ADR-0008 - Interface principale vivante",
-      "ADR-0009 - Cortex vivant et énergie du Conseil",
-      "ADR-0010 - TEMPOSYSTEM is energy",
-    ],
-    en: [
-      "ADR-0001 - Birth of TEMPOSYSTEM OS",
-      "ADR-0002 - Role architecture",
-      "ADR-0003 - Memory as a strategic asset",
-      "ADR-0005 - Crew 2042",
-      "ADR-0006 - Living public interface",
-      "ADR-0007 - First public deployment",
-      "ADR-0008 - Living main interface",
-      "ADR-0009 - Living Cortex and Council energy",
-      "ADR-0010 - TEMPOSYSTEM is energy",
-    ],
-  },
-} as const;
-
 export function DecisionsPage() {
   const { lang } = useLang();
-  return (
-    <main>
-      <Section eyebrow={copy.eyebrow[lang]} title={copy.title[lang]} intro={copy.intro[lang]}>
-        <div className="grid gap-4">
-          {copy.decisions[lang].map((decision) => (
-            <article key={decision} className="rounded-lg border border-white/10 bg-white/[0.04] p-5">
-              <h3 className="text-lg font-semibold text-slate-50">{decision}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-400">{copy.cardText[lang]}</p>
-            </article>
-          ))}
-        </div>
-      </Section>
-    </main>
-  );
+  const principles = lang === "fr" ? [
+    ["Décision humaine", "La technologie peut préparer et synthétiser. Une personne ou une instance identifiée valide toute décision engageante."],
+    ["Fonctions durables", "Les responsabilités demeurent même lorsque les fournisseurs, modèles d'IA ou outils techniques changent."],
+    ["Mémoire explicable", "Chaque décision structurante conserve son contexte, ses alternatives et ses conséquences."],
+    ["Participants protégés", "Citoyens, bénévoles et bénéficiaires ne sont ni des produits, ni des audiences publicitaires."],
+    ["Déploiement progressif", "Un TEMPOSYSTEM commence par un périmètre limité, observable et réversible."],
+    ["Transparence", "Les éléments réels, simulés, expérimentaux et prévus doivent toujours être distingués."],
+  ] : [
+    ["Human decision", "Technology may prepare and summarise. An identified person or human body validates every binding decision."],
+    ["Durable functions", "Responsibilities remain even when providers, AI models or technical tools change."],
+    ["Explainable memory", "Every major decision preserves its context, alternatives and consequences."],
+    ["Protected participants", "Citizens, volunteers and beneficiaries are neither products nor advertising audiences."],
+    ["Progressive deployment", "A TEMPOSYSTEM starts with a limited, observable and reversible scope."],
+    ["Transparency", "Real, simulated, experimental and planned elements must always be distinguished."],
+  ];
+  return <main><Section eyebrow={lang === "fr" ? "Confiance" : "Trust"} title={lang === "fr" ? "La coopération a besoin de règles visibles." : "Cooperation needs visible rules."} intro={lang === "fr" ? "La confiance ne repose pas sur une promesse d'intelligence artificielle. Elle repose sur des responsabilités, des limites et une mémoire que chacun peut comprendre." : "Trust does not rest on a promise of artificial intelligence. It rests on responsibilities, boundaries and memory everyone can understand."}><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{principles.map(([title, body]) => <article key={title} className="rounded-lg border border-white/10 bg-white/[0.04] p-6"><h3 className="text-xl font-semibold text-slate-50">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{body}</p></article>)}</div><p className="mt-8 text-sm leading-7 text-slate-400">{lang === "fr" ? "Le registre des décisions d'architecture reste accessible dans la documentation publique du projet." : "The architecture decision register remains available in the project's public documentation."} <a className="text-amber-300" href="https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs/captains-log/decisions">{lang === "fr" ? "Consulter les ADR" : "Browse ADRs"} ↗</a></p></Section></main>;
 }
