@@ -15,8 +15,8 @@ import "./tempoHero.css";
 
 const copy = {
   sub: {
-    fr: "Le système d'exploitation du temps donné",
-    en: "The operating system of given time",
+    fr: "L'infrastructure d'orchestration de l'action collective",
+    en: "The orchestration infrastructure for collective action",
   },
   intro: {
     fr: "Chaque seconde partagée devient une trace vivante — une mémoire qui avance sans se perdre. Une trace, jamais une créance.",
