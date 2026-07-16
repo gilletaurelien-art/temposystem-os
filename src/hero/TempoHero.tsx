@@ -1,65 +1,91 @@
-/**
- * TempoHero — le HERO (« header ») de TEMPOSYSTEM OS, charte « Le Temps Vivant ».
- *
- * Bannière 16:9 : boucle lente de trois illustrations de l'île TEMPOSYSTEM,
- * enchaînées en FONDUS CSS (opacity uniquement, ~24 s, aucun JavaScript, ni vidéo
- * ni GIF) — 01 coordination en cours → 02 décision validée → 03 mémoire nocturne.
- * Les images ne sont pas modifiées graphiquement (object-fit: contain, île entière).
- * Le titre reste du vrai texte dans le DOM (SEO/a11y). prefers-reduced-motion : 02 seule.
- */
-
+import { useMemo, useState } from "react";
+import { tempoOffers } from "../config/offers";
 import { useLang } from "../lib/lang";
-import "./tempoHero.css";
+import "./tempoSelector.css";
 
-const copy = {
-  // Description accessible de la bannière décorative (§20).
-  sceneDesc: {
-    fr: "L'île TEMPOSYSTEM : les habitants se coordonnent, une décision se valide, la nuit garde la mémoire — le temps donné qui passe et revient.",
-    en: "The TEMPOSYSTEM island: people coordinate, a decision is validated, night keeps the memory — given time that passes and returns.",
-  },
+const organisations = {
+  fr: [
+    ["", "Choisissez votre organisation"], ["civic", "Collectivité, CCAS ou CIAS"], ["asso", "Association ou fédération"],
+    ["care", "Établissement social ou médico-social"], ["territories", "Opérateur ou alliance territoriale"],
+    ["impact", "Fondation ou financeur"], ["rse", "Entreprise"],
+  ],
+  en: [
+    ["", "Choose your organisation"], ["civic", "Local authority or social service"], ["asso", "Non-profit or federation"],
+    ["care", "Social or care institution"], ["territories", "Territorial operator or alliance"],
+    ["impact", "Foundation or funder"], ["rse", "Company"],
+  ],
 } as const;
 
-// Les trois plans de la boucle (assets optimisés dans public/islands/).
-const FRAMES = [
-  { n: 1, base: "island-01-coordination" },
-  { n: 2, base: "island-02-decision" },
-  { n: 3, base: "island-03-memoire" },
-] as const;
+const needs = {
+  fr: [
+    ["", "Choisissez votre priorité"], ["coordinate", "Coordonner plusieurs acteurs"], ["volunteers", "Mobiliser des contributeurs ou bénévoles"],
+    ["care", "Organiser un parcours d'accompagnement"], ["impact", "Suivre les actions et leur impact"], ["engagement", "Engager les équipes de l'entreprise"],
+  ],
+  en: [
+    ["", "Choose your priority"], ["coordinate", "Coordinate multiple stakeholders"], ["volunteers", "Mobilise contributors or volunteers"],
+    ["care", "Organise a support pathway"], ["impact", "Track actions and their impact"], ["engagement", "Engage company teams"],
+  ],
+} as const;
+
+function recommend(organisation: string, need: string) {
+  if (need === "care") return "care";
+  if (need === "engagement" || organisation === "rse") return "rse";
+  if (need === "impact" && organisation !== "civic") return "impact";
+  if (need === "volunteers" && organisation !== "civic") return "asso";
+  if (need === "coordinate" && organisation === "territories") return "territories";
+  return organisation;
+}
 
 export function TempoHero() {
   const { lang } = useLang();
+  const [organisation, setOrganisation] = useState("");
+  const [need, setNeed] = useState("");
+  const result = useMemo(() => tempoOffers.find((offer) => offer.slug === recommend(organisation, need)), [organisation, need]);
 
-  return (
-    <section id="m01-signal" className="tempo-hero" aria-labelledby="tempo-hero-title">
-      {/* Boucle lente d'illustrations (16:9) — fondus CSS opacity, ~24 s, sans JS */}
-      <div className="tempo-island" aria-hidden="true">
-        {FRAMES.map((f) => (
-          <img
-            key={f.n}
-            className={`tempo-island__frame tempo-island__frame--${f.n}`}
-            src={`/islands/${f.base}-1400.jpg`}
-            srcSet={`/islands/${f.base}-840.jpg 840w, /islands/${f.base}-1400.jpg 1400w`}
-            sizes="100vw"
-            width={1672}
-            height={941}
-            alt=""
-            loading={f.n === 1 ? "eager" : "lazy"}
-            decoding="async"
-            draggable={false}
-          />
-        ))}
+  return <section className="selector-hero" aria-labelledby="selector-hero-title">
+    <div className="selector-hero__wrap">
+      <div className="selector-hero__intro">
+        <p className="editorial-kicker">TEMPOSYSTEM</p>
+        <h1 id="selector-hero-title">{lang === "fr" ? <>L'infrastructure d'orchestration de l'<em>action collective.</em></> : <>The orchestration infrastructure for <em>collective action.</em></>}</h1>
+        <p>{lang === "fr" ? "Reliez les besoins, les personnes, les organisations et les décisions dans un même espace de coordination." : "Connect needs, people, organisations and decisions in one coordination space."}</p>
       </div>
+      <div className="selector-hero__rings" aria-hidden="true"><i /><i /><i /><b /></div>
 
-      {/* Titre — vrai texte dans le DOM, incrusté sur la bannière */}
-      <div className="tempo-hero__layout tempo-hero__layout--scene">
-        <h1 id="tempo-hero-title" className="tempo-hero__title">
-          <span className="tempo-hero__title-brand">TEMPOSYSTEM</span>
-          <span className="tempo-hero__title-concept">
-            Le temps <em>vivant</em>
-          </span>
-        </h1>
-        <p className="tempo-sr-only">{copy.sceneDesc[lang]}</p>
+      <div className="selector-pipe" aria-label={lang === "fr" ? "Trouver mon TEMPOSYSTEM" : "Find my TEMPOSYSTEM"}>
+        <div className="selector-pipe__step">
+          <span className="selector-pipe__number">01</span>
+          <label htmlFor="tempo-organisation">{lang === "fr" ? "Votre organisation" : "Your organisation"}</label>
+          <select id="tempo-organisation" value={organisation} onChange={(event) => setOrganisation(event.target.value)}>
+            {organisations[lang].map(([value, label]) => <option value={value} key={value}>{label}</option>)}
+          </select>
+        </div>
+        <span className="selector-pipe__link" aria-hidden="true" />
+        <div className="selector-pipe__step">
+          <span className="selector-pipe__number">02</span>
+          <label htmlFor="tempo-need">{lang === "fr" ? "Votre priorité" : "Your priority"}</label>
+          <select id="tempo-need" value={need} onChange={(event) => setNeed(event.target.value)}>
+            {needs[lang].map(([value, label]) => <option value={value} key={value}>{label}</option>)}
+          </select>
+        </div>
+        <span className="selector-pipe__link" aria-hidden="true" />
+        <div className={`selector-pipe__result${result ? " is-ready" : ""}`} aria-live="polite">
+          <span className="selector-pipe__number">03</span>
+          {result ? <>
+            <small>{lang === "fr" ? "Votre point de départ" : "Your starting point"}</small>
+            <strong>TEMPOSYSTEM <b>{result.name}</b></strong>
+            <p>{result.promise[lang]}</p>
+            <a href={`#/tarifs#${result.slug}`}>{lang === "fr" ? "Voir l'offre et son périmètre" : "See the offer and scope"} →</a>
+          </> : <>
+            <small>{lang === "fr" ? "Votre recommandation" : "Your recommendation"}</small>
+            <strong>{lang === "fr" ? "À préciser" : "To be determined"}</strong>
+            <p>{lang === "fr" ? "Sélectionnez votre organisation pour identifier le bon point de départ." : "Select your organisation to identify the right starting point."}</p>
+          </>}
+        </div>
       </div>
-    </section>
-  );
+      <div className="selector-hero__actions">
+        <a className="editorial-button editorial-button--primary" href="https://manatimebank.org/creer">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
+        <a className="editorial-button editorial-button--secondary" href="#produit">{lang === "fr" ? "Découvrir le fonctionnement" : "Discover how it works"}</a>
+      </div>
+    </div>
+  </section>;
 }

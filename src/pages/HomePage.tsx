@@ -1,5 +1,6 @@
 import { TempoHero } from "../hero/TempoHero";
 import { useLang } from "../lib/lang";
+import { tempoOffers } from "../config/offers";
 import "./homeEditorial.css";
 
 const capabilities = {
@@ -56,37 +57,6 @@ export function HomePage() {
     <main className="editorial-home">
       <TempoHero />
 
-      <section className="editorial-intro" aria-labelledby="editorial-intro-title">
-        <div className="editorial-wrap editorial-intro__grid">
-          <div>
-            <p className="editorial-kicker">TEMPOSYSTEM</p>
-            <h1 id="editorial-intro-title">
-              {lang === "fr"
-                ? "L'infrastructure d'orchestration de l'action collective."
-                : "The orchestration infrastructure for collective action."}
-            </h1>
-            <p className="editorial-lead">
-              {lang === "fr"
-                ? "TEMPOSYSTEM aide les collectivités, associations et établissements à coordonner des besoins, des personnes, des actions et des décisions dans une mémoire commune."
-                : "TEMPOSYSTEM helps local authorities, non-profits and institutions coordinate needs, people, actions and decisions in a shared memory."}
-            </p>
-            <div className="editorial-actions">
-              <a className="editorial-button editorial-button--primary" href="https://manatimebank.org/creer">
-                {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
-              </a>
-              <a className="editorial-button editorial-button--secondary" href="#exemple">
-                {lang === "fr" ? "Voir un exemple" : "See an example"}
-              </a>
-            </div>
-          </div>
-          <div className="editorial-promise" aria-label={lang === "fr" ? "Principes" : "Principles"}>
-            <p>{lang === "fr" ? "La technologie facilite la coordination." : "Technology supports coordination."}</p>
-            <strong>{lang === "fr" ? "Les humains gardent la décision." : "People keep the final decision."}</strong>
-            <span>{lang === "fr" ? "Participants et bénéficiaires — jamais produits." : "Participants and beneficiaries — never products."}</span>
-          </div>
-        </div>
-      </section>
-
       <section className="editorial-section" id="produit">
         <div className="editorial-wrap">
           <header className="editorial-heading">
@@ -116,6 +86,22 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="editorial-section editorial-offers" id="offres">
+        <div className="editorial-wrap">
+          <header className="editorial-heading">
+            <p className="editorial-kicker">{lang === "fr" ? "Les déclinaisons" : "Solutions"}</p>
+            <h2>{lang === "fr" ? "Un même socle, adapté à chaque terrain d'action" : "One foundation, adapted to every field of action"}</h2>
+            <p>{lang === "fr" ? "Chaque TEMPOSYSTEM active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOSYSTEM activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
+          </header>
+          <div className="editorial-offers__grid">
+            {tempoOffers.map((offer) => <a className="editorial-offer" href={`#/tarifs#${offer.slug}`} key={offer.slug}>
+              <span>TEMPOSYSTEM</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
+            </a>)}
+          </div>
+          <div className="editorial-actions"><a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Comparer les offres et les tarifs" : "Compare offers and pricing"}</a></div>
+        </div>
+      </section>
+
       <section className="editorial-section" id="exemple">
         <div className="editorial-wrap">
           <header className="editorial-heading">
@@ -136,8 +122,8 @@ export function HomePage() {
             <h2>{lang === "fr" ? "La technologie éclaire. Elle ne gouverne pas." : "Technology informs. It does not govern."}</h2>
           </div>
           <div className="editorial-trust__points">
-            <p>{lang === "fr" ? "Les fonctions d'assistance peuvent préparer, synthétiser, signaler et documenter." : "Assistance functions may prepare, summarise, flag and document."}</p>
-            <p>{lang === "fr" ? "Les fournisseurs d'IA sont remplaçables. Les responsabilités, les règles et la mémoire demeurent." : "AI providers are replaceable. Responsibilities, rules and memory remain."}</p>
+            <p>{lang === "fr" ? "Les outils peuvent préparer, synthétiser, signaler et documenter." : "Tools may prepare, summarise, flag and document."}</p>
+            <p>{lang === "fr" ? "Les outils peuvent changer. Les responsabilités, les règles et la mémoire demeurent." : "Tools may change. Responsibilities, rules and memory remain."}</p>
             <p><strong>{lang === "fr" ? "Toute décision engageante est validée par une personne ou une instance humaine identifiée." : "Every binding decision is validated by an identified person or human body."}</strong></p>
             <a href="#/memoire">{lang === "fr" ? "Découvrir la gouvernance et la mémoire" : "Explore governance and memory"} →</a>
           </div>

@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { AppShell } from "./components/AppShell";
-import { CouncilPage } from "./features/council/CouncilPage";
 import { ArchitecturePage } from "./pages/ArchitecturePage";
 import { DecisionsPage } from "./pages/DecisionsPage";
 import { HomePage } from "./pages/HomePage";
 import { ManaPage } from "./pages/ManaPage";
+import { PricingPage } from "./pages/PricingPage";
 import { VisionPage } from "./pages/VisionPage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "conseil" | "manifeste" | "moteur" | "memoire" | "applications";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
-  council: "conseil",
   vision: "manifeste",
   architecture: "moteur",
   decisions: "memoire",
@@ -24,11 +23,11 @@ const routeFromHash = (): Route => {
 
   if (hash in LEGACY) return LEGACY[hash];
   if (
-    hash === "conseil" ||
     hash === "manifeste" ||
     hash === "moteur" ||
     hash === "memoire" ||
     hash === "applications"
+    || hash === "tarifs"
   ) {
     return hash;
   }
@@ -48,11 +47,11 @@ export default function App() {
 
   const page = {
     home: <HomePage />,
-    conseil: <CouncilPage />,
     manifeste: <VisionPage />,
     moteur: <ArchitecturePage />,
     memoire: <DecisionsPage />,
     applications: <ManaPage />,
+    tarifs: <PricingPage />,
   }[route];
 
   return (

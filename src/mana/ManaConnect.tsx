@@ -14,12 +14,12 @@ const btn: CSSProperties = {
   gap: 8,
   padding: '7px 14px',
   borderRadius: 999,
-  border: 'none',
+  border: '1px solid rgba(92, 146, 137, .38)',
   cursor: 'pointer',
   fontWeight: 600,
   fontSize: 12,
-  color: '#fff',
-  background: 'linear-gradient(to right, #234E97, #B060D2)',
+  color: '#286b64',
+  background: 'rgba(255, 255, 255, .64)',
   whiteSpace: 'nowrap',
 };
 const chip: CSSProperties = {
@@ -30,9 +30,9 @@ const chip: CSSProperties = {
   borderRadius: 999,
   fontSize: 12,
   fontWeight: 600,
-  color: '#c9a6ff',
-  border: '1px solid rgba(176,96,210,0.45)',
-  background: 'rgba(176,96,210,0.12)',
+  color: '#286b64',
+  border: '1px solid rgba(92,146,137,.38)',
+  background: 'rgba(92,146,137,.1)',
   whiteSpace: 'nowrap',
 };
 

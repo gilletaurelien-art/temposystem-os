@@ -107,12 +107,10 @@ export interface SystemState {
 }
 
 export const SYSTEM_STATES: readonly SystemState[] = [
-  { fr: "Conseil de bord", en: "Bridge council", valueFr: "Opérationnel", valueEn: "Operational", color: "green" },
   { fr: "Mémoire", en: "Memory", valueFr: "Synchronisée", valueEn: "Synchronised", color: "green" },
   { fr: "Gouvernance", en: "Governance", valueFr: "Active", valueEn: "Active", color: "green" },
   { fr: "Applications", en: "Applications", valueFr: "1 active", valueEn: "1 active", color: "green" },
-  { fr: "Timonier", en: "Helmsman", valueFr: "Prototype", valueEn: "Prototype", color: "yellow" },
-  { fr: "API IA", en: "AI API", valueFr: "En attente", valueEn: "Standby", color: "orange" },
+  { fr: "Coordination", en: "Coordination", valueFr: "Disponible", valueEn: "Available", color: "yellow" },
 ];
 
 /** Constellations reliées — comptes structurels modestes (pas de métrique gonflée). */

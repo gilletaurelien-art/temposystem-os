@@ -12,16 +12,14 @@ interface AppShellProps {
 /** Toggle langue FR / EN — réutilisé dans le header desktop et le menu mobile. */
 function LangToggle({ lang, setLang }: { lang: Language; setLang: (l: Language) => void }) {
   return (
-    <div className="flex items-center overflow-hidden rounded-lg border border-white/15">
+    <div className="os-lang-toggle">
       {(["fr", "en"] as Language[]).map((l) => (
         <button
           key={l}
           type="button"
           onClick={() => setLang(l)}
           aria-pressed={l === lang}
-          className={`px-2.5 py-1 text-[11px] font-bold uppercase tracking-widest transition-colors ${
-            l === lang ? "bg-white/15 text-white" : "text-slate-400 hover:text-slate-200"
-          }`}
+          className={l === lang ? "is-active" : ""}
         >
           {l}
         </button>
@@ -32,20 +30,7 @@ function LangToggle({ lang, setLang }: { lang: Language; setLang: (l: Language) 
 
 export function AppShell({ activeRoute, children }: AppShellProps) {
   const { lang, setLang } = useLang();
-  const [butterflyOp, setButterflyOp] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      // Fade to 0.06 as the first section scrolls into view
-      const first = document.querySelector("main > section:nth-child(2)");
-      if (!first) return;
-      const t = Math.max(0, Math.min(1, (first as HTMLElement).getBoundingClientRect().top / window.innerHeight));
-      setButterflyOp(0.06 + t * 0.94);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Menu mobile : fermeture à Échap + verrou du défilement du corps.
   useEffect(() => {
@@ -61,47 +46,21 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
   }, [menuOpen]);
 
   return (
-    <div
-      className="relative min-h-screen"
-      style={{
-        color: "var(--ts-ink)",
-        background:
-          "radial-gradient(circle at 50% 12%, color-mix(in srgb, var(--ts-violet) 7%, transparent), transparent 32%)," +
-          "linear-gradient(180deg, var(--ts-deep-space) 0%, var(--ts-midnight) 50%, var(--ts-deep-space) 100%)",
-      }}
-    >
+    <div className="os-shell os-shell--day min-h-screen">
       {/* Le wallpaper MANA est retiré : TEMPOSYSTEM a sa propre identité
           (Cognitive Pixel Music). Son fond propre (PixelField) viendra avec les
           illustrations ; l'ambiance étoilée discrète reste en attendant. */}
 
       {/* Ambient starfield */}
-      <div className="os-ambient">
-        <div className="os-nebula-one" />
-        <div className="os-nebula-two" />
-        <div className="os-stars" />
-      </div>
-
-      {/* Butterfly fixe bioluminescent — masqué sur l'accueil où le module LULLABY
-          (papillon-comète) prend le relais ; gardé en ambiance sur les autres pages. */}
-      {activeRoute !== "home" && (
-        <img
-          src="/assets/temposystem-butterfly-transparent.png"
-          className="os-butterfly"
-          style={{ opacity: butterflyOp }}
-          aria-hidden="true"
-          alt=""
-        />
-      )}
-
       {/* Header */}
       <header className="os-header">
         <a href="#/" className="os-brand flex items-center gap-3" onClick={() => setMenuOpen(false)}>
           <img
             src="/assets/temposystem-butterfly-transparent.png"
             alt="TEMPOSYSTEM"
-            style={{ width: 28, height: 28, objectFit: "contain", filter: "drop-shadow(0 0 6px rgba(129,140,248,0.8))" }}
+            className="os-brand-mark"
           />
-          TEMPOSYSTEM OS
+          TEMPOSYSTEM
         </a>
 
         {/* Navigation en ligne — grand écran (≥ lg) */}
@@ -182,19 +141,34 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
       {/* Bloc écosystème — MANAHOME + les 6 mondes */}
       <EcosystemBlock lang={lang} />
 
+      {/* L'île quitte le hero et devient une conclusion visuelle. */}
+      <section className="island-footer" aria-label={lang === "fr" ? "Le temps partagé laisse une trace" : "Shared time leaves a trace"}>
+        <div className="island-footer__frames" aria-hidden="true">
+          <img className="island-footer__frame island-footer__frame--1" src="/islands/island-01-coordination-1400.jpg" alt="" loading="lazy" />
+          <img className="island-footer__frame island-footer__frame--2" src="/islands/island-02-decision-1400.jpg" alt="" loading="lazy" />
+          <img className="island-footer__frame island-footer__frame--3" src="/islands/island-03-memoire-1400.jpg" alt="" loading="lazy" />
+        </div>
+        <div className="island-footer__veil" />
+        <div className="island-footer__copy">
+          <span>TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
+          <strong>{lang === "fr" ? "Le temps partagé laisse une trace." : "Shared time leaves a trace."}</strong>
+          <p>{lang === "fr" ? "Les besoins deviennent des actions. Les actions deviennent une mémoire commune." : "Needs become actions. Actions become a shared memory."}</p>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/[0.07] bg-black/20 backdrop-blur-sm">
+      <footer className="os-footer relative z-10">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div>
-            <p className="font-['Philosopher',serif] text-base font-bold tracking-wide text-white/80">
-              TEMPOSYSTEM OS
+            <p className="os-footer-brand">
+              TEMPOSYSTEM
             </p>
-            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">
+            <p className="os-footer-copy">
               {lang === "fr"
                 ? "Chaque décision importante laisse une trace. Chaque évolution s'appuie sur la mémoire du système et rayonne vers l'ensemble de la coopération."
                 : "Every important decision leaves a trace. Every evolution builds on the system's memory and radiates across the whole cooperation."}
             </p>
-            <p className="mt-2 text-xs font-mono uppercase text-slate-600">
+            <p className="os-footer-meta">
               {lang === "fr"
                 ? "Launch 000 · Premier déploiement public · 2026"
                 : "Launch 000 · First public deployment · 2026"}

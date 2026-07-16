@@ -31,6 +31,6 @@ const content = {
 export function ArchitecturePage() {
   const { lang } = useLang(); const c = content[lang];
   return <main><Section eyebrow={c.eyebrow} title={c.title} intro={c.intro}>
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{c.steps.map(([title, body], i) => <article key={title} className="rounded-lg border border-white/10 bg-white/[0.04] p-6"><p className="text-xs font-bold text-amber-300/70">0{i + 1}</p><h3 className="mt-3 text-xl font-semibold text-slate-50">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{body}</p></article>)}</div>
+    <div className="civic-card-grid civic-card-grid--three">{c.steps.map(([title, body], i) => <article key={title} className="civic-card"><span className="civic-index">0{i + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
   </Section></main>;
 }
