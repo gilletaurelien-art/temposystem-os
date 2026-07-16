@@ -57,37 +57,6 @@ export function HomePage() {
     <main className="editorial-home">
       <TempoHero />
 
-      <section className="editorial-intro" aria-labelledby="editorial-intro-title">
-        <div className="editorial-wrap editorial-intro__grid">
-          <div>
-            <p className="editorial-kicker">TEMPOSYSTEM</p>
-            <h1 id="editorial-intro-title">
-              {lang === "fr"
-                ? "L'infrastructure d'orchestration de l'action collective."
-                : "The orchestration infrastructure for collective action."}
-            </h1>
-            <p className="editorial-lead">
-              {lang === "fr"
-                ? "TEMPOSYSTEM aide les collectivités, associations et établissements à coordonner des besoins, des personnes, des actions et des décisions dans une mémoire commune."
-                : "TEMPOSYSTEM helps local authorities, non-profits and institutions coordinate needs, people, actions and decisions in a shared memory."}
-            </p>
-            <div className="editorial-actions">
-              <a className="editorial-button editorial-button--primary" href="https://manatimebank.org/creer">
-                {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
-              </a>
-              <a className="editorial-button editorial-button--secondary" href="#exemple">
-                {lang === "fr" ? "Voir un exemple" : "See an example"}
-              </a>
-            </div>
-          </div>
-          <div className="editorial-promise" aria-label={lang === "fr" ? "Principes" : "Principles"}>
-            <p>{lang === "fr" ? "La technologie facilite la coordination." : "Technology supports coordination."}</p>
-            <strong>{lang === "fr" ? "Les humains gardent la décision." : "People keep the final decision."}</strong>
-            <span>{lang === "fr" ? "Participants et bénéficiaires — jamais produits." : "Participants and beneficiaries — never products."}</span>
-          </div>
-        </div>
-      </section>
-
       <section className="editorial-section" id="produit">
         <div className="editorial-wrap">
           <header className="editorial-heading">
