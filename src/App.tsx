@@ -44,15 +44,51 @@ const routeFromHash = (): Route => {
   return "home";
 };
 
+/** Ancre demandée dans l'URL (partie après le 2e « # », ex. #/tarifs#territoires → "territoires"). */
+const anchorFromHash = (): string | null => {
+  const parts = window.location.hash.split("#"); // ["", "/tarifs", "territoires"]
+  if (parts.length >= 3 && parts[2]) return parts[2].split("?")[0];
+  return null;
+};
+
 export default function App() {
   const [route, setRoute] = useState<Route>(() => routeFromHash());
+  const [nav, setNav] = useState(0);
 
   useEffect(() => {
-    const updateRoute = () => setRoute(routeFromHash());
+    // Le navigateur restaure sinon la position de scroll mémorisée de la page
+    // (d'où l'atterrissage au milieu/en bas) — on prend la main.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+    const updateRoute = () => {
+      setRoute(routeFromHash());
+      setNav((n) => n + 1); // relance la restauration du scroll à chaque navigation
+    };
 
     window.addEventListener("hashchange", updateRoute);
     return () => window.removeEventListener("hashchange", updateRoute);
   }, []);
+
+  // Restauration du scroll : vers la section demandée si ancre, sinon haut de page.
+  // On scrolle immédiatement (après le commit du DOM) ET une frame plus tard
+  // (filet, une fois la nouvelle page mise en page).
+  useEffect(() => {
+    const restore = () => {
+      const anchor = anchorFromHash();
+      if (anchor) {
+        const el = document.getElementById(anchor);
+        if (el) {
+          // décalage pour ne pas passer sous le header sticky (~72px)
+          window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - 80));
+          return;
+        }
+      }
+      window.scrollTo(0, 0);
+    };
+    restore();
+    const raf = requestAnimationFrame(restore);
+    return () => cancelAnimationFrame(raf);
+  }, [nav]);
 
   const page = {
     home: <HomePage />,
