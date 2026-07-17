@@ -7,3 +7,72 @@
 .create-summary { margin-bottom:26px; padding:22px; border-left:3px solid var(--ts-sun); background:rgba(255,255,255,.04); }.create-summary span { color:var(--ts-terracotta); font:500 9px var(--ts-font-system); letter-spacing:.15em; }.create-summary strong { display:block; margin-top:4px; font:400 1.8rem var(--ts-font-titre); }.create-summary p { color:var(--ts-encre-muted); }.create-consent { grid-template-columns:20px 1fr!important; align-items:start; margin-top:24px; }.create-consent input { margin-top:2px; padding:0; }.create-privacy { color:var(--ts-encre-faint); font-size:.78rem; line-height:1.55; }.create-form__actions { display:flex; justify-content:flex-end; gap:12px; margin-top:30px; }.create-form__actions button { cursor:pointer; }.create-form__actions button:disabled { opacity:.36; cursor:not-allowed; }
 @media(max-width:760px){.create-tempo{padding:16px}.create-tempo__shell{padding:40px 22px}.create-progress{grid-template-columns:1fr}.create-offers{grid-template-columns:1fr 1fr}.create-form__two{grid-template-columns:1fr}.create-form__actions{flex-direction:column-reverse}.create-form__actions button{width:100%}}
 @media(max-width:480px){.create-offers{grid-template-columns:1fr}}
+
+
+/* Frise de progression sous le formulaire — repère pixel discret */
+.create-progress--pixel {
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  background: transparent;
+}
+
+.create-progress--pixel li {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 58px;
+  padding: 0.85rem 1rem;
+  border: 2px solid rgba(36, 95, 118, 0.18);
+  border-radius: 0;
+  background: rgba(232, 247, 253, 0.7);
+  box-shadow: 4px 4px 0 rgba(36, 95, 118, 0.08);
+  color: var(--ts-encre-faint);
+  font-family: var(--ts-font-system);
+}
+
+.create-progress--pixel li::before,
+.create-progress--pixel li::after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  content: "";
+  background: var(--ts-ciel, #9ddcf1);
+}
+
+.create-progress--pixel li::before {
+  top: -2px;
+  left: -2px;
+}
+
+.create-progress--pixel li::after {
+  right: -2px;
+  bottom: -2px;
+}
+
+.create-progress--pixel span {
+  margin: 0;
+  color: var(--ts-terracotta);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.create-progress--pixel strong {
+  color: inherit;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.create-progress--pixel .is-active {
+  border-color: rgba(40, 107, 100, 0.5);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ts-encre-titre);
+  box-shadow: 4px 4px 0 rgba(40, 107, 100, 0.16);
+}
+
+@media (max-width: 680px) {
+  .create-progress--pixel {
+    grid-template-columns: 1fr;
+  }
+}
