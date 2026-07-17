@@ -478,6 +478,8 @@ h1::after, h2::after {
 .patron-card dl div { padding: 11px 0; border-top: 1px solid var(--ts-hairline); }
 .patron-card dt { color: var(--ts-encre-muted); font-size: .75rem; }
 .patron-card dd { margin: 3px 0 0; color: var(--ts-encre); font-weight: 750; }
+.patron-card__advantage { padding: 12px; border: 1px solid rgba(242,167,59,.34); border-radius: 10px; background: rgba(242,167,59,.1); font-size: .78rem; }
+.patron-card__advantage strong { display: block; margin-bottom: 4px; color: var(--ts-terracotta-encre); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
 .partner-clarification { margin-top: 24px; padding: 20px 22px; border-left: 4px solid var(--ts-sun); border-radius: 12px; color: var(--ts-encre-muted); background: var(--ts-parchment-2); font-size: .85rem; line-height: 1.65; }
 
 /* ---- MANA ECOSYSTEM ---- */
