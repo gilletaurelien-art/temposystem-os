@@ -44,7 +44,6 @@ export function PartnersPage() {
   return <Section
     eyebrow={lang === "fr" ? "Partenaires" : "Partners"}
     title={lang === "fr" ? "Un même écosystème. Trois manières d’y prendre part." : "One ecosystem. Three ways to take part."}
-    intro={lang === "fr" ? "Une collectivité ouvre le réseau à son territoire. Une entreprise mécène mobilise ses salariés et soutient les associations choisies. Un particulier contribue librement à l’infrastructure commune." : "A local authority opens the network to its territory. A corporate patron mobilises employees and supports chosen non-profits. An individual freely contributes to the shared infrastructure."}
   >
     <div className="partner-choice">
       <p className="partner-choice__label">{lang === "fr" ? "Choisissez votre situation" : "Choose your situation"}</p>
