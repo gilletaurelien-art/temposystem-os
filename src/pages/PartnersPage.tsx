@@ -43,13 +43,16 @@ export function PartnersPage() {
 
   return <Section
     eyebrow={lang === "fr" ? "Partenaires" : "Partners"}
-    title={lang === "fr" ? "Un même écosystème. Deux manières de le soutenir." : "One ecosystem. Two ways to support it."}
-    intro={lang === "fr" ? "Une collectivité ouvre le réseau à son territoire. Une entreprise mécène dote ses salariés et les associations qu’elle choisit. Sélectionnez votre situation pour accéder directement aux offres correspondantes." : "A local authority opens the network to its territory. A corporate patron supports its employees and chosen non-profits. Select your situation to see the relevant offers."}
+    title={lang === "fr" ? "Un même écosystème. Trois manières d’y prendre part." : "One ecosystem. Three ways to take part."}
+    intro={lang === "fr" ? "Une collectivité ouvre le réseau à son territoire. Une entreprise mécène mobilise ses salariés et soutient les associations choisies. Un particulier contribue librement à l’infrastructure commune." : "A local authority opens the network to its territory. A corporate patron mobilises employees and supports chosen non-profits. An individual freely contributes to the shared infrastructure."}
   >
-    <div className="partner-switch" role="tablist" aria-label={lang === "fr" ? "Type de partenaire" : "Partner type"}>
-      <button type="button" role="tab" aria-selected={path === "public"} className={path === "public" ? "is-active" : ""} onClick={() => setPath("public")}><span>01</span>{lang === "fr" ? "Partenaire public" : "Public partner"}</button>
-      <button type="button" role="tab" aria-selected={path === "private"} className={path === "private" ? "is-active" : ""} onClick={() => setPath("private")}><span>02</span>{lang === "fr" ? "Mécène privé" : "Private patron"}</button>
-      <button type="button" role="tab" aria-selected={path === "individual"} className={path === "individual" ? "is-active" : ""} onClick={() => setPath("individual")}><span>03</span>{lang === "fr" ? "Donateur particulier" : "Individual donor"}</button>
+    <div className="partner-choice">
+      <p className="partner-choice__label">{lang === "fr" ? "Choisissez votre situation" : "Choose your situation"}</p>
+      <div className="partner-switch" role="tablist" aria-label={lang === "fr" ? "Type de partenaire" : "Partner type"}>
+        <button type="button" role="tab" aria-selected={path === "public"} className={path === "public" ? "is-active" : ""} onClick={() => setPath("public")}><span>01</span><strong>{lang === "fr" ? "Partenaire public" : "Public partner"}</strong><small>{lang === "fr" ? "Collectivité · Institution" : "Authority · Institution"}</small></button>
+        <button type="button" role="tab" aria-selected={path === "private"} className={path === "private" ? "is-active" : ""} onClick={() => setPath("private")}><span>02</span><strong>{lang === "fr" ? "Mécène privé" : "Private patron"}</strong><small>{lang === "fr" ? "Entreprise · Fondation" : "Company · Foundation"}</small></button>
+        <button type="button" role="tab" aria-selected={path === "individual"} className={path === "individual" ? "is-active" : ""} onClick={() => setPath("individual")}><span>03</span><strong>{lang === "fr" ? "Donateur particulier" : "Individual donor"}</strong><small>{lang === "fr" ? "Ponctuel · Régulier" : "One-off · Recurring"}</small></button>
+      </div>
     </div>
 
     {path === "public" ? <section className="partner-path" role="tabpanel">
