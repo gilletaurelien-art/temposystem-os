@@ -45,10 +45,13 @@ export function TempoHero() {
   return <section className="selector-hero" aria-labelledby="selector-hero-title">
     <div className="selector-hero__wrap">
       <div className="selector-hero__intro">
-        <p className="editorial-kicker">TEMPOSYSTEM</p>
-        <h1 id="selector-hero-title">{lang === "fr" ? <>L'infrastructure d'orchestration de l'<em>action collective.</em></> : <>The orchestration infrastructure for <em>collective action.</em></>}</h1>
-        <p>{lang === "fr" ? "Reliez les besoins, les personnes, les organisations et les décisions dans un même espace de coordination." : "Connect needs, people, organisations and decisions in one coordination space."}</p>
+        <p className="editorial-kicker">{lang === "fr" ? "TECHNOLOGIE CIVIQUE · CONÇUE EN FRANCE" : "CIVIC TECHNOLOGY · DESIGNED IN FRANCE"}</p>
+        <h1 id="selector-hero-title">{lang === "fr" ? <>L'énergie de votre collectif. <em>Organisée autour de vos besoins.</em></> : <>The energy of your collective. <em>Organised around your needs.</em></>}</h1>
+        <p>{lang === "fr" ? "TEMPOSYSTEM réunit vos équipes, vos participants et vos actions dans un environnement numérique adapté à votre structure." : "TEMPOSYSTEM brings your teams, participants and actions together in a digital environment adapted to your organisation."}</p>
+        <p className="selector-hero__proof">{lang === "fr" ? "Simple à déployer · Sur mesure dans son apparence · Souverain dans ses données" : "Simple to deploy · Tailored in appearance · Sovereign by design"}</p>
       </div>
+      <div className="selector-hero__rings" aria-hidden="true"><i /><i /><i /><b /></div>
+
       <div className="selector-pipe" aria-label={lang === "fr" ? "Trouver mon TEMPOSYSTEM" : "Find my TEMPOSYSTEM"}>
         <div className="selector-pipe__step">
           <span className="selector-pipe__number">01</span>
@@ -82,7 +85,7 @@ export function TempoHero() {
       </div>
       <div className="selector-hero__actions">
         <a className="editorial-button editorial-button--primary" href={result ? `#/creer?offre=${result.slug}` : "#/creer"}>{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
-        <a className="editorial-button editorial-button--secondary" href="#produit">{lang === "fr" ? "Découvrir le fonctionnement" : "Discover how it works"}</a>
+        <a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Découvrir les formules" : "Explore plans"}</a>
       </div>
     </div>
   </section>;
