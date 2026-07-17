@@ -133,6 +133,9 @@ export function SkyBackground() {
 
       {/* Voile de lumière — assied le texte sur le ciel (§3) */}
       <div className="sky-bg__veil" />
+
+      {/* Le monde marin — archipel ancré en bas, fondu dans le ciel en haut */}
+      <img className="sky-bg__sea" src="/archipel-bandeau.jpg" alt="" aria-hidden="true" />
     </div>
   );
 }

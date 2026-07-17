@@ -131,6 +131,31 @@
 /* ── Voile de lumière (§3) — assied le texte sans écraser le ciel ── */
 .sky-bg__veil { position: absolute; inset: 0; background: var(--ts-veil); }
 
+/* ── Monde marin — archipel ancré tout en bas, pleine largeur ──
+   Image non distordue (hauteur auto d'après la largeur) posée sur le bord bas.
+   Le haut est FONDU (masque dégradé) : la mer profonde se marie au ciel pâle
+   sans ligne d'horizon dure. Décoratif, sous le contenu (z-index du ciel = 0). */
+.sky-bg__sea {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
+}
+/* Écrans étroits : l'archipel monterait trop haut → on le contient et on
+   ancre le centre (l'île principale) en bas. */
+@media (max-width: 900px) {
+  .sky-bg__sea {
+    height: clamp(180px, 34vh, 300px);
+    object-fit: cover;
+    object-position: center bottom;
+  }
+}
+
 /* Filet de sécurité autonome (MotionProvider pose déjà data-motion="0") */
 @media (prefers-reduced-motion: reduce) {
   .sky-bg *, .sky-bg { animation: none !important; }
