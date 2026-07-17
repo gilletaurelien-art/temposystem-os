@@ -37,6 +37,7 @@ export function PartnersPage() {
           <strong>{pack.donation}<span>{lang === "fr" ? "don annuel" : "annual donation"}</span></strong>
           <dl><div><dt>{lang === "fr" ? "Dotation" : "Allocation"}</dt><dd>{pack.mana}</dd></div><div><dt>{lang === "fr" ? "Temps correspondant" : "Equivalent time"}</dt><dd>{pack.time[lang]}</dd></div></dl>
           <p>{lang === "fr" ? "À répartir entre vos salariés. Les MANA immobiles soutiennent chaque nuit les associations choisies." : "Distribute among employees. Unused MANA supports chosen non-profits each night."}</p>
+          {pack.name === "Horizon" && <p className="patron-card__advantage"><strong>{lang === "fr" ? "Avantage Horizon" : "Horizon benefit"}</strong>{lang === "fr" ? "−20 % sur la première année d’abonnement TEMPOsystem, hors mise en service et développements spécifiques." : "20% off the first year of a TEMPOsystem subscription, excluding setup and custom development."}</p>}
           <a href={`mailto:contact@manahome.org?subject=${encodeURIComponent(`Devenir mécène MANAfrance — Pack ${pack.name}`)}`}>{lang === "fr" ? `Choisir ${pack.name}` : `Choose ${pack.name}`} →</a>
         </article>)}
       </div>
