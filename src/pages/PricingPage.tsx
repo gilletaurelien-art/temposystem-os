@@ -145,6 +145,7 @@ export function PricingPage() {
       <h2>{lang === "fr" ? "Des formules adaptées à la taille de votre équipe." : "Plans adapted to the size of your team."}</h2>
       <p>{lang === "fr" ? "Ces formules s’appliquent aux structures et réseaux qui ne déploient pas une licence territoriale calculée sur la population." : "These plans apply to organisations and networks that are not deploying a population-based territorial licence."}</p>
     </div>
+    <aside className="civic-note"><strong>{lang === "fr" ? "Extranet pro.MANAfrance.org inclus" : "pro.MANAfrance.org extranet included"}</strong>{lang === "fr" ? " dans chaque offre." : " in every plan."}</aside>
     <div className="civic-card-grid civic-card-grid--three pricing-grid">
       {formulas.map((formula) => <article className="civic-card pricing-card" id={formula.slug} key={formula.slug}>
         <span className="civic-index">{formula.capacity[lang]}</span>
