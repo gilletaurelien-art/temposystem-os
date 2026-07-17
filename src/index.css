@@ -40,7 +40,7 @@ h1, h2, h3 {
 }
 
 .os-shell { color: var(--ts-encre); font-family: var(--ts-font-main); }
-.os-shell--day { background: var(--ts-parchment); }
+.os-shell--day { background: transparent; } /* le ciel fixe (SkyBackground) est le fond */
 .os-shell--night { color: var(--ts-white); background: radial-gradient(circle at 50% 8%, #2d241c 0%, var(--ts-night) 46%, #100d0b 100%); }
 
 /* ---- GLASS PANELS ---- */
@@ -217,7 +217,7 @@ h1, h2, h3 {
   transition: color 160ms;
 }
 .os-footer-link:hover { color: var(--ts-tide); }
-.os-footer { border-top: 1px solid var(--ts-hairline); background: #eee9dc; }
+.os-footer { border-top: 1px solid var(--ts-hairline); background: rgba(238, 233, 220, 0.92); }
 .os-footer-brand { color: var(--ts-encre); font: 750 15px var(--ts-font-main); letter-spacing: .08em; }
 .os-footer-copy { max-width: 580px; margin-top: 8px; color: var(--ts-encre-muted); font-size: 13px; line-height: 1.65; }
 .os-footer-meta { margin-top: 8px; color: var(--ts-encre-faint); font: 600 10px var(--ts-font-system); text-transform: uppercase; letter-spacing: .1em; }
@@ -388,7 +388,7 @@ h1, h2, h3 {
 .pricing-card__price strong { color: var(--ts-encre); font-size: 1.15rem; }
 
 /* ---- MANA ECOSYSTEM ---- */
-.ecosystem { position: relative; z-index: 1; padding: clamp(72px, 9vw, 112px) 0; border-top: 1px solid var(--ts-hairline); background: #eee9dc; }
+.ecosystem { position: relative; z-index: 1; padding: clamp(72px, 9vw, 112px) 0; border-top: 1px solid var(--ts-hairline); background: rgba(238, 233, 220, 0.9); }
 .ecosystem__wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 .ecosystem__heading { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: end; }
 .ecosystem__heading h2 { max-width: 740px; margin: 0; color: var(--ts-encre); font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 1.08; }

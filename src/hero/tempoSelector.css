@@ -1,4 +1,4 @@
-.selector-hero { padding: clamp(32px, 5vw, 72px); color: var(--ts-encre); background: var(--ts-parchment-2); }
+.selector-hero { padding: clamp(32px, 5vw, 72px); color: var(--ts-encre); background: transparent; }
 .selector-hero__wrap { position: relative; width: min(1320px, 100%); margin: 0 auto; padding: clamp(48px, 7vw, 92px); overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 26px; color: #f2ede3; background: radial-gradient(100% 130% at 12% -20%, #2b2117 0%, #171310 56%, #100d0a 100%); box-shadow: 0 24px 60px -42px rgba(42,38,32,.7); }
 .selector-hero__intro { position: relative; z-index: 2; max-width: 700px; }
 .selector-hero .editorial-kicker { color: rgba(242,237,227,.55); }
