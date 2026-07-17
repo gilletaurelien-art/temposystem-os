@@ -5,12 +5,13 @@ import { DecisionsPage } from "./pages/DecisionsPage";
 import { HomePage } from "./pages/HomePage";
 import { ManaPage } from "./pages/ManaPage";
 import { PricingPage } from "./pages/PricingPage";
+import { PartnersPage } from "./pages/PartnersPage";
 import { CreateTempoPage } from "./pages/CreateTempoPage";
 import { OfferDetailPage } from "./pages/OfferDetailPage";
 import { VisionPage } from "./pages/VisionPage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "creer" | "offre";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "partenaires" | "creer" | "offre";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
@@ -32,6 +33,7 @@ const routeFromHash = (): Route => {
     hash === "memoire" ||
     hash === "applications"
     || hash === "tarifs"
+    || hash === "partenaires"
     || hash === "creer"
   ) {
     return hash;
@@ -57,6 +59,7 @@ export default function App() {
     memoire: <DecisionsPage />,
     applications: <ManaPage />,
     tarifs: <PricingPage />,
+    partenaires: <PartnersPage />,
     creer: <CreateTempoPage />,
     offre: <OfferDetailPage />,
   }[route];
