@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { tempoOffers } from "../config/offers";
 import { useLang } from "../lib/lang";
 import "./createTempo.css";
@@ -8,26 +8,42 @@ type FormState = {
   partners: string; timeline: string; name: string; email: string; phone: string;
 };
 
-const initialOffer = () => new URLSearchParams(window.location.hash.split("?")[1] || "").get("offre") || "";
+const STORAGE_KEY = "temposystem-join-draft";
+
+const emptyForm: FormState = { organisation: "", offer: "", need: "", territory: "", partners: "", timeline: "", name: "", email: "", phone: "" };
+
+const initialForm = (): FormState => {
+  const offer = new URLSearchParams(window.location.hash.split("?")[1] || "").get("offre") || "";
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}") as Partial<FormState>;
+    return { ...emptyForm, ...saved, offer: offer || saved.offer || "" };
+  } catch {
+    return { ...emptyForm, offer };
+  }
+};
 
 export function CreateTempoPage() {
   const { lang } = useLang();
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState<FormState>({ organisation: "", offer: initialOffer(), need: "", territory: "", partners: "", timeline: "", name: "", email: "", phone: "" });
+  const [form, setForm] = useState<FormState>(initialForm);
   const [consent, setConsent] = useState(false);
   const selected = useMemo(() => tempoOffers.find((offer) => offer.slug === form.offer), [form.offer]);
   const update = (field: keyof FormState, value: string) => setForm((current) => ({ ...current, [field]: value }));
-  const canContinue = step === 1 ? Boolean(form.organisation && form.offer) : Boolean(form.need && form.territory && form.partners);
+  const canContinue = step === 1 ? Boolean(form.organisation && form.offer) : Boolean(form.need && form.territory);
+
+  useEffect(() => {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(form));
+  }, [form]);
 
   const send = (event: FormEvent) => {
     event.preventDefault();
     if (!consent || !form.name || !form.email) return;
-    const subject = `Créer un TEMPOsystem ${selected?.name || ""} — ${form.organisation}`;
+    const subject = `Rejoindre TEMPOsystem ${selected?.name || ""} — ${form.organisation}`;
     const body = [
-      "Bonjour,", "", "Je souhaite étudier la création d’un TEMPOsystem.", "",
+      "Bonjour,", "", "Je souhaite rejoindre TEMPOsystem et cadrer un premier usage.", "",
       `Offre envisagée : TEMPOsystem ${selected?.name || form.offer}`,
       `Organisation : ${form.organisation}`, `Besoin prioritaire : ${form.need}`,
-      `Territoire / périmètre : ${form.territory}`, `Acteurs impliqués : ${form.partners}`,
+      `Territoire / périmètre : ${form.territory}`, `Acteurs impliqués : ${form.partners || "À préciser"}`,
       `Horizon souhaité : ${form.timeline || "À préciser"}`, "",
       `Nom : ${form.name}`, `E-mail : ${form.email}`, `Téléphone : ${form.phone || "Non renseigné"}`, "",
       "Merci de me recontacter pour cadrer ce premier usage.",
@@ -53,7 +69,7 @@ export function CreateTempoPage() {
         </fieldset>}
         {step === 2 && <fieldset><legend>{lang === "fr" ? "Quel premier usage devons-nous cadrer ?" : "Which first use should we scope?"}</legend>
           <label>{lang === "fr" ? "Besoin prioritaire" : "Priority need"}<textarea value={form.need} onChange={(e) => update("need", e.target.value)} required placeholder={lang === "fr" ? "Ex. coordonner un CCAS et cinq associations autour de l'isolement…" : "E.g. coordinate a social service and five non-profits…"} /></label>
-          <div className="create-form__two"><label>{lang === "fr" ? "Territoire ou périmètre" : "Territory or scope"}<input value={form.territory} onChange={(e) => update("territory", e.target.value)} required placeholder={lang === "fr" ? "Commune, département, réseau…" : "City, region, network…"} /></label><label>{lang === "fr" ? "Acteurs impliqués" : "Stakeholders involved"}<input value={form.partners} onChange={(e) => update("partners", e.target.value)} required placeholder={lang === "fr" ? "Équipes, associations, habitants…" : "Teams, non-profits, residents…"} /></label></div>
+          <div className="create-form__two"><label>{lang === "fr" ? "Territoire ou périmètre" : "Territory or scope"}<input value={form.territory} onChange={(e) => update("territory", e.target.value)} required placeholder={lang === "fr" ? "Commune, département, réseau…" : "City, region, network…"} /></label><label>{lang === "fr" ? "Acteurs impliqués (facultatif)" : "Stakeholders involved (optional)"}<input value={form.partners} onChange={(e) => update("partners", e.target.value)} placeholder={lang === "fr" ? "Équipes, associations, habitants…" : "Teams, non-profits, residents…"} /></label></div>
           <label>{lang === "fr" ? "Horizon souhaité" : "Desired timeline"}<select value={form.timeline} onChange={(e) => update("timeline", e.target.value)}><option value="">{lang === "fr" ? "À préciser" : "To be discussed"}</option><option>{lang === "fr" ? "Dans les 3 mois" : "Within 3 months"}</option><option>{lang === "fr" ? "Dans les 6 mois" : "Within 6 months"}</option><option>{lang === "fr" ? "Cette année" : "This year"}</option><option>{lang === "fr" ? "Exploration" : "Exploration"}</option></select></label>
         </fieldset>}
         {step === 3 && <fieldset><legend>{lang === "fr" ? "À qui répondre ?" : "Who should we reply to?"}</legend>
