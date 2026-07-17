@@ -1,5 +1,5 @@
 /**
- * TEMPOSYSTEM — HERO « Le Temps Vivant » (charte docs/refonte/00-charte-temps-vivant.md).
+ * TEMPOsystem — HERO « Le Temps Vivant » (charte docs/refonte/00-charte-temps-vivant.md).
  * Décor : ciel bleu clair pixel (fixe) + 3 nuages qui dérivent + soleil pixel qui respire.
  * Contraintes de coque conservées : aucune image raster, aucun WebGL/Canvas/RAF, aucun
  * listener ; les animations ne touchent que transform / opacity ; mouvement = souffle & dérive.

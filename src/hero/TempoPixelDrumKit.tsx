@@ -1,7 +1,7 @@
 /**
  * TempoPixelDrumKit — le symbole central du HERO (V3, étape 1 : STRUCTURE).
  *
- * La métaphore du cœur est abandonnée : TEMPOSYSTEM = une batterie musicale
+ * La métaphore du cœur est abandonnée : TEMPOsystem = une batterie musicale
  * numérique en pixel art (TEMPO = pulsation, SYSTEM = coordination, ENERGY =
  * énergie du mouvement collectif).
  *

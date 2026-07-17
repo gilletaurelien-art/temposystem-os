@@ -13,7 +13,7 @@ const cortexCopy = {
   luminousMemory: { fr: "Mémoire lumineuse", en: "Luminous memory" },
   activeSynapses: { fr: "Synapses actives", en: "Active synapses" },
   adrTraces: { fr: "Traces ADR", en: "ADR traces" },
-  legendCaption: { fr: "Légende des neuf orbites TEMPOSYSTEM", en: "Legend of the nine TEMPOSYSTEM orbits" },
+  legendCaption: { fr: "Légende des neuf orbites TEMPOsystem", en: "Legend of the nine TEMPOsystem orbits" },
   thRole: { fr: "Rôle", en: "Role" },
   thMission: { fr: "Mission", en: "Mission" },
   thCrew: { fr: "Équipage", en: "Crew" },
@@ -262,7 +262,7 @@ const systemRows = [
 ];
 
 const recentAdrs = [
-  { id: "ADR-0010", title: { fr: "TEMPOSYSTEM is energy", en: "TEMPOSYSTEM is energy" }, date: "29/06/2026" },
+  { id: "ADR-0010", title: { fr: "TEMPOsystem is energy", en: "TEMPOsystem is energy" }, date: "29/06/2026" },
   { id: "ADR-0009", title: { fr: "Cortex énergétique", en: "Energy Cortex" }, date: "29/06/2026" },
   { id: "ADR-0008", title: { fr: "Interface vivante", en: "Living interface" }, date: "29/06/2026" },
 ];
@@ -674,7 +674,7 @@ export function CortexMap() {
                 role="img"
                 aria-labelledby="cortex-title cortex-description"
               >
-                <title id="cortex-title">Cortex vivant de TEMPOSYSTEM OS</title>
+                <title id="cortex-title">Cortex vivant de TEMPOsystem OS</title>
                 <desc id="cortex-description">
                   Cartographie SVG dense des neuf fonctions permanentes du
                   Conseil, reliées par des faisceaux synaptiques et des influx
@@ -1174,7 +1174,7 @@ export function CortexMap() {
               </svg>
 
               <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-slate-950/70 px-3 py-1.5 text-xs font-medium uppercase text-slate-400 backdrop-blur">
-                TEMPOSYSTEM_IS_ENERGY // COGNITIVE_STAR
+                TEMPOsystem_IS_ENERGY // COGNITIVE_STAR
               </div>
 
             </div>

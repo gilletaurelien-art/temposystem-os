@@ -1,5 +1,5 @@
 /**
- * TEMPOSYSTEM — tokens « Le Temps Vivant ».
+ * TEMPOsystem — tokens « Le Temps Vivant ».
  * Source de vérité unique (charte docs/refonte/00-charte-temps-vivant.md).
  * Le pixel dessine la nature (ciel, soleil, nuages) ; le rouge est réservé aux incidents réels (§16).
  *
@@ -56,7 +56,7 @@
   /* AUBE — version LISIBLE en texte dégradé (le grad-sun finit trop pâle) : reste
      dans la gamme chaude contrastée pour les titres-accent (noms d'offres). */
   --ts-grad-aube: linear-gradient(105deg, #b44e2e 0%, #d15f2c 50%, #cf6f1f 100%);
-  /* OR — la charte du bouton « Créer mon TEMPOSYSTEM » pour les titres de page */
+  /* OR — la charte du bouton « Créer mon TEMPOsystem » pour les titres de page */
   --ts-grad-or: var(--ts-grad-sun);
   /* aube → écoulement → mémoire */
   --ts-grad-cycle: linear-gradient(90deg, var(--ts-sun) 0%, var(--ts-tide) 55%, var(--ts-dusk) 100%);
@@ -93,7 +93,6 @@
      Roboto Mono (Google Fonts) en secours web, puis les mono système. */
   --ts-mono-stack: "SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace;
   --ts-font-titre: "Philosopher", Georgia, "Times New Roman", serif; /* manifeste — éditorial seul */
-  --ts-font-pixel-titre: "Pixelify Sans", "Press Start 2P", ui-monospace, monospace; /* titres de page — pixel art */
   --ts-font-main: var(--ts-mono-stack);   /* courante — corps, nav, boutons, formulaires */
   --ts-font-system: var(--ts-mono-stack); /* système/data — labels, statuts, horodatages */
 

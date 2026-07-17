@@ -1,6 +1,6 @@
 {
-  "name": "TEMPOSYSTEM",
-  "short_name": "TEMPOSYSTEM",
+  "name": "TEMPOsystem",
+  "short_name": "TEMPOsystem",
   "description": "L'infrastructure d'orchestration de l'action collective.",
   "start_url": "/",
   "display": "standalone",

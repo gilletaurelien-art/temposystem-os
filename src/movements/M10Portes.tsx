@@ -1,5 +1,5 @@
 /**
- * 10 — Entrer dans TEMPOSYSTEM (RYTHME).
+ * 10 — Entrer dans TEMPOsystem (RYTHME).
  * Six portes : chaque visiteur trouve la sienne.
  */
 
@@ -16,7 +16,7 @@ const DOORS: { label: { fr: string; en: string }; href: string; color: string; e
 ];
 
 const copy = {
-  eyebrow: { fr: "Entrer dans TEMPOSYSTEM", en: "Enter TEMPOSYSTEM" },
+  eyebrow: { fr: "Entrer dans TEMPOsystem", en: "Enter TEMPOsystem" },
   title: { fr: "Choisir une porte", en: "Choose a door" },
 } as const;
 

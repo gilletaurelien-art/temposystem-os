@@ -91,11 +91,11 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Les déclinaisons" : "Solutions"}</p>
             <h2>{lang === "fr" ? "Un même socle, adapté à chaque terrain d'action" : "One foundation, adapted to every field of action"}</h2>
-            <p>{lang === "fr" ? "Chaque TEMPOSYSTEM active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOSYSTEM activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
+            <p>{lang === "fr" ? "Chaque TEMPOsystem active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOsystem activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
           </header>
           <div className="editorial-offers__grid">
             {tempoOffers.map((offer) => <a className="editorial-offer" href={`#/offres/${offer.slug}`} key={offer.slug}>
-              <span>TEMPOSYSTEM</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
+              <span>TEMPOsystem</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
             </a>)}
           </div>
           <div className="editorial-actions"><a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Comparer les offres et les tarifs" : "Compare offers and pricing"}</a></div>
@@ -107,7 +107,7 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Un exemple concret" : "A concrete example"}</p>
             <h2>{lang === "fr" ? "Un besoin apparaît. Voici ce qui se passe ensuite." : "A need emerges. Here is what happens next."}</h2>
-            <p>{lang === "fr" ? "Un CCAS, plusieurs associations et un établissement coordonnent une action contre l'isolement. TEMPOSYSTEM conserve le fil commun." : "A local social service, several non-profits and a care institution coordinate an action against isolation. TEMPOSYSTEM preserves the shared thread."}</p>
+            <p>{lang === "fr" ? "Un CCAS, plusieurs associations et un établissement coordonnent une action contre l'isolement. TEMPOsystem conserve le fil commun." : "A local social service, several non-profits and a care institution coordinate an action against isolation. TEMPOsystem preserves the shared thread."}</p>
           </header>
           <ol className="editorial-journey">
             {journey[lang].map(([number, title, body]) => <li key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}
@@ -136,8 +136,8 @@ export function HomePage() {
           <h2>{lang === "fr" ? "Commencez par un usage réel." : "Start with one real use case."}</h2>
           <p>{lang === "fr" ? "Décrivez votre organisation, votre territoire et le premier besoin que vous souhaitez mieux coordonner. Votre espace sera préparé sur l'infrastructure MANAtimebank." : "Tell us about your organisation, community and the first need you want to coordinate better. Your space will be prepared on the MANAtimebank infrastructure."}</p>
           <div className="editorial-actions editorial-actions--center">
-            <a className="editorial-button editorial-button--primary" href="#/creer">{lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}</a>
-            <a className="editorial-button editorial-button--secondary" href="mailto:contact@manahome.org?subject=TEMPOSYSTEM">{lang === "fr" ? "Contacter l'équipe" : "Contact the team"}</a>
+            <a className="editorial-button editorial-button--primary" href="#/creer">{lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}</a>
+            <a className="editorial-button editorial-button--secondary" href="mailto:contact@manahome.org?subject=TEMPOsystem">{lang === "fr" ? "Contacter l'équipe" : "Contact the team"}</a>
           </div>
         </div>
       </section>

@@ -21,21 +21,21 @@ const formulas: readonly Formula[] = [
     slug: "decouverte",
     name: "Découverte",
     capacity: { fr: "Jusqu’à 9 utilisateurs actifs", en: "Up to 9 active users" },
-    systems: { fr: "1 TEMPOSYSTEM ASSO", en: "1 TEMPOSYSTEM ASSO" },
+    systems: { fr: "1 TEMPOsystem ASSO", en: "1 TEMPOsystem ASSO" },
     audience: { fr: "Pour une petite association qui souhaite commencer simplement.", en: "For a small non-profit ready to start simply." },
     example: { fr: "Exemple : une association locale de 9 membres.", en: "Example: a local non-profit with 9 members." },
     annualPrice: { fr: "Gratuit", en: "Free" },
     setupPrice: { fr: "Autonome et gratuite", en: "Self-service and free" },
     included: {
-      fr: ["une adresse nom-association.temposystem.fr", "une application PWA essentielle", "le nom et le logo de l’association", "la charte graphique TEMPOSYSTEM standard", "l’hébergement et les mises à jour", "le support documentaire"],
-      en: ["a name.temposystem.fr address", "an essential installable PWA", "the organisation’s name and logo", "the standard TEMPOSYSTEM visual identity", "hosting and updates", "documentation support"],
+      fr: ["une adresse nom-association.temposystem.fr", "une application PWA essentielle", "le nom et le logo de l’association", "la charte graphique TEMPOsystem standard", "l’hébergement et les mises à jour", "le support documentaire"],
+      en: ["a name.temposystem.fr address", "an essential installable PWA", "the organisation’s name and logo", "the standard TEMPOsystem visual identity", "hosting and updates", "documentation support"],
     },
   },
   {
     slug: "eclosion",
     name: "Éclosion",
     capacity: { fr: "Jusqu’à 99 utilisateurs actifs", en: "Up to 99 active users" },
-    systems: { fr: "2 TEMPOSYSTEMS inclus", en: "2 TEMPOSYSTEMS included" },
+    systems: { fr: "2 TEMPOsystemS inclus", en: "2 TEMPOsystemS included" },
     audience: { fr: "Pour une association structurée ou une première équipe territoriale.", en: "For an established non-profit or a first territorial team." },
     example: { fr: "Exemple : 60 bénévoles coordonnés avec ASSO et IMPACT.", en: "Example: 60 volunteers coordinated with ASSO and IMPACT." },
     annualPrice: { fr: "1 200 € / an", en: "€1,200 / year" },
@@ -49,7 +49,7 @@ const formulas: readonly Formula[] = [
     slug: "cooperation",
     name: "Coopération",
     capacity: { fr: "Jusqu’à 499 utilisateurs actifs", en: "Up to 499 active users" },
-    systems: { fr: "4 TEMPOSYSTEMS inclus", en: "4 TEMPOSYSTEMS included" },
+    systems: { fr: "4 TEMPOsystemS inclus", en: "4 TEMPOsystemS included" },
     audience: { fr: "Pour un réseau local, une fédération ou plusieurs structures partenaires.", en: "For a local network, federation or several partner organisations." },
     example: { fr: "Exemple : 12 associations et 350 participants dans un même environnement.", en: "Example: 12 organisations and 350 participants in one environment." },
     annualPrice: { fr: "3 600 € / an", en: "€3,600 / year" },
@@ -63,7 +63,7 @@ const formulas: readonly Formula[] = [
     slug: "territoire",
     name: "Territoire",
     capacity: { fr: "Jusqu’à 999 utilisateurs actifs", en: "Up to 999 active users" },
-    systems: { fr: "6 TEMPOSYSTEMS inclus", en: "6 TEMPOSYSTEMS included" },
+    systems: { fr: "6 TEMPOsystemS inclus", en: "6 TEMPOsystemS included" },
     audience: { fr: "Pour une collectivité, une intercommunalité ou un programme territorial.", en: "For a local authority or territorial programme." },
     example: { fr: "Exemple : une communauté de communes coordonnant 800 participants.", en: "Example: a group of municipalities coordinating 800 participants." },
     annualPrice: { fr: "7 200 € / an", en: "€7,200 / year" },
@@ -95,10 +95,10 @@ export function PricingPage() {
   return <Section
     eyebrow={lang === "fr" ? "Offres & tarifs" : "Offers & pricing"}
     title={lang === "fr" ? "Un environnement complet. Une formule adaptée à votre échelle." : "A complete environment. One plan adapted to your scale."}
-    intro={lang === "fr" ? "Chaque formule réunit votre extranet de coordination, votre application PWA et les configurations TEMPOSYSTEM dont vous avez besoin. Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés individuellement." : "Each plan brings together your coordination extranet, installable PWA and the TEMPOSYSTEM configurations you need. Citizens, volunteers and beneficiaries are never billed individually."}
+    intro={lang === "fr" ? "Chaque formule réunit votre extranet de coordination, votre application PWA et les configurations TEMPOsystem dont vous avez besoin. Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés individuellement." : "Each plan brings together your coordination extranet, installable PWA and the TEMPOsystem configurations you need. Citizens, volunteers and beneficiaries are never billed individually."}
   >
     <div className="pricing-principles">
-      <div><strong>{lang === "fr" ? "La formule" : "The plan"}</strong><span>{lang === "fr" ? "Elle fixe la capacité et le nombre de TEMPOSYSTEMS inclus." : "It sets capacity and the number of included TEMPOSYSTEMS."}</span></div>
+      <div><strong>{lang === "fr" ? "La formule" : "The plan"}</strong><span>{lang === "fr" ? "Elle fixe la capacité et le nombre de TEMPOsystemS inclus." : "It sets capacity and the number of included TEMPOsystemS."}</span></div>
       <div><strong>{lang === "fr" ? "La mise en place" : "Setup"}</strong><span>{lang === "fr" ? "Elle construit votre environnement et décline votre identité graphique." : "It builds your environment and adapts your visual identity."}</span></div>
       <div><strong>{lang === "fr" ? "Les besoins particuliers" : "Specific needs"}</strong><span>{lang === "fr" ? "Ils font l’objet d’un chiffrage explicite avant tout engagement." : "They receive transparent pricing before any commitment."}</span></div>
     </div>
@@ -122,10 +122,10 @@ export function PricingPage() {
       <div className="offer-wrap">
         <p className="editorial-kicker">{lang === "fr" ? "Configurations disponibles" : "Available configurations"}</p>
         <h2>{lang === "fr" ? "Composez votre environnement selon vos usages." : "Compose your environment around your needs."}</h2>
-        <p>{lang === "fr" ? "CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE ne sont pas six abonnements séparés : ce sont les TEMPOSYSTEMS que vous réunissez dans votre formule." : "CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE are not six separate subscriptions: they are the TEMPOSYSTEMS brought together in your plan."}</p>
+        <p>{lang === "fr" ? "CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE ne sont pas six abonnements séparés : ce sont les TEMPOsystemS que vous réunissez dans votre formule." : "CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE are not six separate subscriptions: they are the TEMPOsystemS brought together in your plan."}</p>
         <div className="civic-card-grid civic-card-grid--three">
           {tempoOffers.map((offer) => <article className="civic-card" key={offer.slug}>
-            <span className="civic-index">TEMPOSYSTEM</span>
+            <span className="civic-index">TEMPOsystem</span>
             <h3>{offer.name}</h3>
             <strong>{offer.audience[lang]}</strong>
             <p>{offer.promise[lang]}</p>
@@ -135,6 +135,6 @@ export function PricingPage() {
       </div>
     </section>
 
-    <aside className="civic-note"><strong>{lang === "fr" ? "Inclus dans toutes les formules payantes : " : "Included in every paid plan: "}</strong>{lang === "fr" ? "hébergement sécurisé en Europe, HTTPS, maintenance, mises à jour, sauvegardes, gestion des rôles et accès, export des données, documentation RGPD de base et mention discrète « Propulsé par TEMPOSYSTEM »." : "secure European hosting, HTTPS, maintenance, updates, backups, role and access management, data export, baseline GDPR documentation and a discreet “Powered by TEMPOSYSTEM” mention."}</aside>
+    <aside className="civic-note"><strong>{lang === "fr" ? "Inclus dans toutes les formules payantes : " : "Included in every paid plan: "}</strong>{lang === "fr" ? "hébergement sécurisé en Europe, HTTPS, maintenance, mises à jour, sauvegardes, gestion des rôles et accès, export des données, documentation RGPD de base et mention discrète « Propulsé par TEMPOsystem »." : "secure European hosting, HTTPS, maintenance, updates, backups, role and access management, data export, baseline GDPR documentation and a discreet “Powered by TEMPOsystem” mention."}</aside>
   </Section>;
 }

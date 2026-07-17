@@ -36,7 +36,7 @@ export function M11Battement() {
           animation: "ts-slot-pulse var(--ts-beat) var(--ts-ease-pulse) infinite",
         }}
       />
-      <p className="t-label" style={{ marginTop: 34 }}>TEMPOSYSTEM IS ENERGY</p>
+      <p className="t-label" style={{ marginTop: 34 }}>TEMPOsystem IS ENERGY</p>
     </SectionShell>
   );
 }

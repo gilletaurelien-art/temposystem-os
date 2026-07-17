@@ -106,7 +106,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           </nav>
           <LangToggle lang={lang} setLang={setLang} />
           <a className="os-create-link" href="#/creer">
-            {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
+            {lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}
           </a>
         </div>
 
@@ -153,7 +153,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               <LangToggle lang={lang} setLang={setLang} />
             </div>
             <a className="os-create-link os-create-link--mobile" href="#/creer" onClick={() => setMenuOpen(false)}>
-              {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
+              {lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}
             </a>
           </nav>
         </div>
@@ -176,7 +176,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         </div>
         <div className="island-footer__veil" />
         <div className="island-footer__copy">
-          <span className="island-footer__eyebrow">TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
+          <span className="island-footer__eyebrow">TEMPOsystem · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
           <strong className="island-footer__type">
             <Typewriter text={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."} />
           </strong>

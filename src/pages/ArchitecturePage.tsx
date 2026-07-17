@@ -4,7 +4,7 @@ import { useLang } from "../lib/lang";
 const content = {
   fr: {
     eyebrow: "Fonctionnement", title: "Du besoin à l'action, sans perdre le fil.",
-    intro: "TEMPOSYSTEM ne remplace pas les organisations ni leurs outils métiers. Il crée une continuité commune entre ce qui doit être compris, coordonné, réalisé et mémorisé.",
+    intro: "TEMPOsystem ne remplace pas les organisations ni leurs outils métiers. Il crée une continuité commune entre ce qui doit être compris, coordonné, réalisé et mémorisé.",
     steps: [
       ["Signaler", "Un besoin, une ressource ou une question entre dans un espace partagé."],
       ["Coordonner", "Les acteurs utiles accèdent au même contexte et définissent les responsabilités."],
@@ -16,7 +16,7 @@ const content = {
   },
   en: {
     eyebrow: "How it works", title: "From need to action, without losing the thread.",
-    intro: "TEMPOSYSTEM does not replace organisations or their business tools. It creates shared continuity between what must be understood, coordinated, delivered and remembered.",
+    intro: "TEMPOsystem does not replace organisations or their business tools. It creates shared continuity between what must be understood, coordinated, delivered and remembered.",
     steps: [
       ["Signal", "A need, resource or question enters a shared space."],
       ["Coordinate", "Relevant actors access the same context and define responsibilities."],

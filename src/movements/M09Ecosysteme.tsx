@@ -1,6 +1,6 @@
 /**
  * 09 — Ce que le moteur alimente (INTENSITÉ).
- * La hiérarchie clarifiée : TEMPOSYSTEM (moteur) → MANAtimebank (plateforme)
+ * La hiérarchie clarifiée : TEMPOsystem (moteur) → MANAtimebank (plateforme)
  * → applications. Pas tous au même niveau orbital. Rien de commercial ici :
  * l'offre vit sur manatimebank.org.
  * Illustration F · Ecosystem Transmission habillera la cascade.
@@ -80,7 +80,7 @@ export function M09Ecosysteme() {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 0, alignItems: "center" }}>
-        <Tier label={copy.engine[lang]} name="TEMPOSYSTEM" desc={copy.engineDesc[lang]} color="--ts-orange" />
+        <Tier label={copy.engine[lang]} name="TEMPOsystem" desc={copy.engineDesc[lang]} color="--ts-orange" />
         <p className="t-label" aria-hidden="true" style={{ margin: "14px 0", color: "var(--ts-ink-faint)" }}>↓ {copy.feeds[lang]}</p>
         <Tier label={copy.platform[lang]} name="MANAtimebank" desc={copy.platformDesc[lang]} color="--ts-cyan" href="https://manatimebank.org" />
         <p className="t-label" aria-hidden="true" style={{ margin: "14px 0", color: "var(--ts-ink-faint)" }}>↓ {copy.enables[lang]}</p>

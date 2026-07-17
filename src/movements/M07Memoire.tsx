@@ -22,7 +22,7 @@ const CYCLE: { fr: string; en: string }[] = [
 const FEATURED_ADR = [
   { num: "ADR-0007", title: { fr: "Premier déploiement public", en: "First public deployment" }, date: "2026-06-28" },
   { num: "ADR-0009", title: { fr: "Cortex énergétique", en: "Energy cortex" }, date: "2026-06-29" },
-  { num: "ADR-0010", title: { fr: "TEMPOSYSTEM is energy", en: "TEMPOSYSTEM is energy" }, date: "2026-06-29" },
+  { num: "ADR-0010", title: { fr: "TEMPOsystem is energy", en: "TEMPOsystem is energy" }, date: "2026-06-29" },
 ];
 
 const copy = {

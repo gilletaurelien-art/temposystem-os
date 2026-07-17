@@ -76,16 +76,16 @@ export const cockpitStatusCards = [
 export const cockpitCouncilSnapshot = {
   lastConsultation: { fr: "29 juin 2026 · 09:12", en: "June 29, 2026 · 09:12" },
   question: {
-    fr: "Comment montrer que TEMPOSYSTEM n'est pas une interface informatique, mais une énergie produite par l'intelligence collective ?",
-    en: "How can we show that TEMPOSYSTEM is not a software interface, but an energy produced by collective intelligence?",
+    fr: "Comment montrer que TEMPOsystem n'est pas une interface informatique, mais une énergie produite par l'intelligence collective ?",
+    en: "How can we show that TEMPOsystem is not a software interface, but an energy produced by collective intelligence?",
   },
   consensus: {
     fr: "Le Conseil recommande de présenter le cœur, les agents, les flux et la mémoire comme un organisme vivant plutôt que comme des modules logiciels.",
     en: "The Council recommends presenting the core, the agents, the flows and the memory as a living organism rather than software modules.",
   },
   decision: {
-    fr: "Le Capitaine valide la vision : TEMPOSYSTEM est une énergie produite par le temps partagé, éclairée par les décisions et conservée par la mémoire.",
-    en: "The Captain validates the vision: TEMPOSYSTEM is an energy produced by shared time, illuminated by decisions and preserved by memory.",
+    fr: "Le Capitaine valide la vision : TEMPOsystem est une énergie produite par le temps partagé, éclairée par les décisions et conservée par la mémoire.",
+    en: "The Captain validates the vision: TEMPOsystem is an energy produced by shared time, illuminated by decisions and preserved by memory.",
   },
   adr: {
     label: "ADR-0007",
@@ -100,8 +100,8 @@ export const featuredArchitectureDecision = {
   date: "2026-06-28",
   href: "#/decisions",
   summary: {
-    fr: "TEMPOSYSTEM OS est publié avant les connexions IA afin de rendre visible son énergie fondatrice : gouvernance, mémoire, Conseil de Bord et temps partagé.",
-    en: "TEMPOSYSTEM OS is published before the AI connections in order to make visible its founding energy: governance, memory, Bridge Council and shared time.",
+    fr: "TEMPOsystem OS est publié avant les connexions IA afin de rendre visible son énergie fondatrice : gouvernance, mémoire, Conseil de Bord et temps partagé.",
+    en: "TEMPOsystem OS is published before the AI connections in order to make visible its founding energy: governance, memory, Bridge Council and shared time.",
   },
 };
 
@@ -129,8 +129,8 @@ export const narrativeMilestones = [
     icon: "🏴",
     title: { fr: "Launch 000", en: "Launch 000" },
     detail: {
-      fr: "TEMPOSYSTEM OS affirme publiquement son existence comme socle vivant.",
-      en: "TEMPOSYSTEM OS publicly affirms its existence as a living foundation.",
+      fr: "TEMPOsystem OS affirme publiquement son existence comme socle vivant.",
+      en: "TEMPOsystem OS publicly affirms its existence as a living foundation.",
     },
   },
   {
