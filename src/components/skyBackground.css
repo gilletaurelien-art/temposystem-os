@@ -146,14 +146,37 @@
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 42%);
 }
-/* Écrans étroits : l'archipel monterait trop haut → on le contient et on
-   ancre le centre (l'île principale) en bas. */
+/* Le petit bateau — sprite détouré, calé sur sa position dans l'archipel.
+   Tout est en vw : le bateau reste verrouillé sur l'eau quelle que soit la largeur
+   (le bandeau fait 100vw de large → 1px image = 100/1774 vw). Il flotte : léger
+   tangage (roulis + pilonnement) + une dérive douce, comme porté par la houle.
+   Position d'origine dans l'image : centre x≈530/1774, y≈337/380. */
+.sky-bg__boat {
+  position: absolute;
+  left: 29.9%;
+  bottom: 1.7vw;          /* (380-337)/1774 × 100vw − demi-hauteur */
+  width: 2.2vw;
+  height: auto;
+  margin-left: -1.1vw;    /* centre le sprite sur le point */
+  pointer-events: none;
+  transform-origin: 50% 80%;   /* pivote autour de la ligne de flottaison */
+  animation: boat-float 6s ease-in-out infinite;
+}
+@keyframes boat-float {
+  0%   { transform: translate(0, 0) rotate(-1.4deg); }
+  50%  { transform: translate(6px, -2px) rotate(1.4deg); }
+  100% { transform: translate(0, 0) rotate(-1.4deg); }
+}
+
+/* Écrans étroits : l'archipel passe en cover (recadré) → la position % du bateau
+   ne correspond plus. On le masque, le décor marin reste. */
 @media (max-width: 900px) {
   .sky-bg__sea {
     height: clamp(180px, 34vh, 300px);
     object-fit: cover;
     object-position: center bottom;
   }
+  .sky-bg__boat { display: none; }
 }
 
 /* Filet de sécurité autonome (MotionProvider pose déjà data-motion="0") */

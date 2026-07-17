@@ -136,6 +136,9 @@ export function SkyBackground() {
 
       {/* Le monde marin — archipel ancré en bas, fondu dans le ciel en haut */}
       <img className="sky-bg__sea" src="/archipel-bandeau.jpg" alt="" aria-hidden="true" />
+
+      {/* Le petit bateau — détouré de l'archipel, il flotte (tangage + dérive lente) */}
+      <img className="sky-bg__boat" src="/boat-sprite.png" alt="" aria-hidden="true" />
     </div>
   );
 }
