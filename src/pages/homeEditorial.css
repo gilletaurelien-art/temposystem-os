@@ -33,6 +33,8 @@
 .editorial-journey li { display: grid; grid-template-columns: 62px 1fr; gap: 22px; padding: 26px 0; border-top: 1px solid var(--ts-hairline); }
 .editorial-journey li > span { color: var(--ts-sous-titre); font: 700 14px var(--ts-font-system); }
 .editorial-journey h3 { margin-top: 0; }
+.editorial-journey-figure { margin: 0; }
+.editorial-journey-figure img { display: block; width: 100%; height: auto; border-radius: 16px; box-shadow: 0 24px 60px rgba(6, 16, 38, 0.35); }
 .editorial-section--night { color: var(--ts-encre); } /* fond → verre blanc 90% (glass.css) */
 .editorial-section--night .editorial-kicker { color: var(--ts-ciel-encre); } /* kicker bleu ciel */
 .editorial-trust { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 8vw, 110px); }
