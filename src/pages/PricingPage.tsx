@@ -166,15 +166,18 @@ export function PricingPage() {
         <p className="editorial-kicker">{lang === "fr" ? "Configurations disponibles" : "Available configurations"}</p>
         <h2>{lang === "fr" ? "Composez votre environnement selon vos usages." : "Compose your environment around your needs."}</h2>
         <p>{lang === "fr" ? "CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE ne sont pas six abonnements séparés : ce sont les TEMPOsystemS que vous réunissez dans votre formule." : "CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE are not six separate subscriptions: they are the TEMPOsystemS brought together in your plan."}</p>
-        <div className="civic-card-grid civic-card-grid--three pricing-configs">
-          {tempoOffers.map((offer) => <article className="civic-card" key={offer.slug}>
-            <span className="civic-index">TEMPOsystem</span>
-            <h3>{offer.name}</h3>
-            <strong>{offer.audience[lang]}</strong>
-            <p>{offer.promise[lang]}</p>
-            <a href={`#/offres/${offer.slug}`}>{lang === "fr" ? "Découvrir cette configuration" : "Explore this configuration"}</a>
-          </article>)}
-        </div>
+        <figure className="configurations-archipelago">
+          <img
+            src="/illustrations/configurations-archipel.png"
+            alt={lang === "fr" ? "Six îles reliées représentent les configurations CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE réunies dans un même environnement TEMPOsystem." : "Six connected islands represent the CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE configurations brought together in one TEMPOsystem environment."}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>{lang === "fr" ? "Six usages spécialisés. Un même environnement relié." : "Six specialised uses. One connected environment."}</figcaption>
+        </figure>
+        <nav className="configurations-links" aria-label={lang === "fr" ? "Découvrir les configurations" : "Explore configurations"}>
+          {tempoOffers.map((offer) => <a href={`#/offres/${offer.slug}`} key={offer.slug}>TEMPOsystem {offer.name}<span aria-hidden="true"> →</span></a>)}
+        </nav>
       </div>
     </section>
 
