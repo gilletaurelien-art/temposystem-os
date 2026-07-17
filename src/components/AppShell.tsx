@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 import { useLang, type Language } from "../lib/lang";
-import EcosystemBlock from "./EcosystemBlock";
 import { SkyBackground } from "./SkyBackground";
 import "./skyBackground.css";
 
@@ -196,9 +195,6 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
       <div className="relative z-10">
         {children}
       </div>
-
-      {/* Bloc écosystème — MANAHOME + les 6 mondes */}
-      <EcosystemBlock lang={lang} />
 
       {/* L'île quitte le hero et devient une conclusion visuelle. */}
       <section className="island-footer" aria-label={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective" : "The orchestration infrastructure for collective action"}>
