@@ -88,6 +88,9 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 30px 66px -40px rgba(42, 38, 32, 0.3);
 }
+/* Les 5 offres (page Tarifs) : verre BLANC 90 % au lieu du verre translucide */
+.os-shell .pricing-card { background: rgba(255, 255, 255, 0.9); }
+
 /* L'état « prêt » du sélecteur garde sa chaleur d'aube par-dessus le verre */
 .os-shell .selector-pipe__result.is-ready {
   background: rgba(214, 112, 74, 0.14);
