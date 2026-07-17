@@ -110,7 +110,6 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Un exemple concret" : "A concrete example"}</p>
             <h2>{lang === "fr" ? "Un besoin apparaît. Voici ce qui se passe ensuite." : "A need emerges. Here is what happens next."}</h2>
-            <p>{lang === "fr" ? "Un CCAS, plusieurs associations et un établissement coordonnent une action contre l'isolement. TEMPOsystem conserve le fil commun." : "A local social service, several non-profits and a care institution coordinate an action against isolation. TEMPOsystem preserves the shared thread."}</p>
           </header>
           <figure className="editorial-journey-figure">
             <img
