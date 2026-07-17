@@ -210,6 +210,9 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
             <Typewriter text={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."} />
           </strong>
         </div>
+        <nav className="island-footer__nav" aria-label={lang === "fr" ? "Navigation de pied de page" : "Footer navigation"}>
+          {publicNavigation.map((item) => <a href={item.href} key={item.href}>{item.label[lang]}</a>)}
+        </nav>
         <p className="island-footer__legal">
           © 2026 TEMPO<span>system</span> — {lang === "fr" ? "tous droits réservés" : "all rights reserved"}
         </p>
