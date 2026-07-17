@@ -118,14 +118,13 @@ export function HomePage() {
       <section className="editorial-section editorial-section--night" id="confiance">
         <div className="editorial-wrap editorial-trust">
           <div>
-            <p className="editorial-kicker">{lang === "fr" ? "Maîtrise humaine" : "Human control"}</p>
-            <h2>{lang === "fr" ? "La technologie éclaire. Elle ne gouverne pas." : "Technology informs. It does not govern."}</h2>
+            <p className="editorial-kicker">{lang === "fr" ? "Gouvernance" : "Governance"}</p>
+            <h2>{lang === "fr" ? "Nos limites sont écrites, avant la première ligne de code." : "Our limits are written, before the first line of code."}</h2>
           </div>
           <div className="editorial-trust__points">
-            <p>{lang === "fr" ? "Les outils peuvent préparer, synthétiser, signaler et documenter." : "Tools may prepare, summarise, flag and document."}</p>
-            <p>{lang === "fr" ? "Les outils peuvent changer. Les responsabilités, les règles et la mémoire demeurent." : "Tools may change. Responsibilities, rules and memory remain."}</p>
-            <p><strong>{lang === "fr" ? "Toute décision engageante est validée par une personne ou une instance humaine identifiée." : "Every binding decision is validated by an identified person or human body."}</strong></p>
-            <a href="#/memoire">{lang === "fr" ? "Découvrir la gouvernance et la mémoire" : "Explore governance and memory"} →</a>
+            <p>{lang === "fr" ? "TEMPOsystem s'inscrit sous une Constitution commune à l'univers MANA : seize articles qui fixent les limites que le pouvoir des machines ne franchira pas." : "TEMPOsystem stands under a Constitution shared across the MANA universe: sixteen articles fixing the limits the power of machines will not cross."}</p>
+            <p><strong>{lang === "fr" ? "Toute décision engageante reste validée par une personne ou une instance humaine identifiée." : "Every binding decision remains validated by an identified person or human body."}</strong></p>
+            <a href="https://constitution.temposystem.org/" target="_blank" rel="noopener">{lang === "fr" ? "Lire la Constitution" : "Read the Constitution"} →</a>
           </div>
         </div>
       </section>
