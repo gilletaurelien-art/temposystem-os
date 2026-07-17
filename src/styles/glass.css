@@ -1,0 +1,195 @@
+/**
+ * TEMPOSYSTEM — verre translucide (« le produit est beau dans tous les sens »).
+ *
+ * Tous les encadrés, petits et grands, passent sous verre : teinte quasi nulle,
+ * flou d'arrière-plan (le ciel et ses nuages se devinent DERRIÈRE la carte),
+ * liseré lumineux en haut, et un REFLET qui balaye lentement la surface —
+ * la lumière passe sur le verre comme un nuage passe dans le ciel.
+ *
+ * Trois verres :
+ *   · verre clair — cartes posées sur le ciel / le parchemin
+ *   · verre fumé  — grands encadrés sombres (hero, offres) : le ciel luit au travers
+ *   · verre intérieur — cartes posées SUR un verre fumé
+ *
+ * Règles de mouvement : le reflet est HORS CADRE au repos (transform statique) ;
+ * data-motion="0" coupe l'animation et le verre reste simplement calme.
+ * Spécificité : préfixe .os-shell pour gagner sur les feuilles de pages
+ * (chargées après) sans !important.
+ */
+
+:root {
+  --glass-clair: rgba(255, 255, 255, 0.09);
+  --glass-fume: rgba(23, 19, 16, 0.6); /* assez fumé pour porter le texte clair */
+  --glass-interieur: rgba(255, 255, 255, 0.05);
+  --glass-lisere: rgba(255, 255, 255, 0.42);
+  --glass-blur: 14px;
+  --glass-balayage: 9s;   /* un souffle long — la lumière passe, elle ne clignote pas */
+}
+
+/* ── Verre clair ── */
+.os-shell .editorial-card,
+.os-shell .editorial-offer,
+.os-shell .editorial-promise,
+.os-shell .civic-card,
+.os-shell .civic-note,
+.os-shell .offer-problems article,
+.os-shell .ecosystem__home,
+.os-shell .ecosystem__grid a,
+.os-shell .selector-pipe__step,
+.os-shell .selector-pipe__result,
+.os-shell .create-offers label,
+.os-shell .create-summary {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-clair);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.3);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 var(--glass-lisere),
+    0 24px 50px -30px rgba(42, 38, 32, 0.35);
+}
+
+/* ── Bandeaux nuit — nuit tiède translucide (charte §6 : exception intentionnelle).
+   Pas de blur sur des bandes pleine largeur (budget perf) : une simple teinte
+   profonde laisse le ciel luire au travers tout en portant le texte clair. */
+.os-shell .editorial-section--night,
+.os-shell .offer-section--night {
+  background: rgba(23, 19, 16, 0.78);
+}
+
+/* ── Verre pur — les grands encadrés (hero, Créer) : opacité 0 %.
+   Aucune teinte, aucun flou : le ciel pixel reste NET au travers. Ne restent
+   que le liseré de verre et le reflet qui balaye. Leurs textes sont à l'encre. */
+.os-shell .selector-hero__wrap,
+.os-shell .create-tempo__shell {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 24px 50px -34px rgba(42, 38, 32, 0.28);
+}
+
+/* ── Verre fumé — le hero des pages offres (texte clair conservé) ── */
+.os-shell .offer-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-fume);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.15);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 32px 70px -40px rgba(23, 19, 16, 0.8);
+}
+/* L'état « prêt » du sélecteur garde sa chaleur d'aube par-dessus le verre */
+.os-shell .selector-pipe__result.is-ready {
+  background: rgba(214, 112, 74, 0.14);
+  border-color: rgba(242, 167, 59, 0.42);
+}
+
+/* ── Le reflet lumineux qui balaye ──
+   Une lame de lumière inclinée traverse le verre puis laisse un long silence.
+   Transform STATIQUE hors cadre : à motion 0 le reflet n'existe pas, il ne se
+   fige jamais en travers de la carte. */
+.os-shell .editorial-card::after,
+.os-shell .editorial-offer::after,
+.os-shell .editorial-promise::after,
+.os-shell .civic-card::after,
+.os-shell .civic-note::after,
+.os-shell .offer-problems article::after,
+.os-shell .ecosystem__home::after,
+.os-shell .ecosystem__grid a::after,
+.os-shell .selector-hero__wrap::after,
+.os-shell .offer-hero::after,
+.os-shell .create-tempo__shell::after,
+.os-shell .selector-pipe__step::after,
+.os-shell .selector-pipe__result::after,
+.os-shell .create-offers label::after,
+.os-shell .create-summary::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 38%;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 42%,
+    rgba(255, 255, 255, 0.1) 58%,
+    transparent 100%
+  );
+  transform: translateX(-260%) skewX(-16deg);
+  animation: glass-balayage var(--glass-balayage) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+/* Sur le verre fumé, la lame est plus discrète */
+.os-shell .offer-hero::after {
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 42%,
+    rgba(255, 255, 255, 0.04) 58%,
+    transparent 100%
+  );
+  animation-duration: calc(var(--glass-balayage) * 1.6);
+}
+
+@keyframes glass-balayage {
+  0%, 46%  { transform: translateX(-260%) skewX(-16deg); }
+  74%, 100% { transform: translateX(560%) skewX(-16deg); }
+}
+
+/* Cascade — les reflets ne balayent pas tous en même temps */
+.os-shell :is(.editorial-card, .editorial-offer, .civic-card, .offer-problems article,
+  .ecosystem__grid a, .create-offers label):nth-child(2)::after { animation-delay: 1.4s; }
+.os-shell :is(.editorial-card, .editorial-offer, .civic-card, .offer-problems article,
+  .ecosystem__grid a, .create-offers label):nth-child(3)::after { animation-delay: 2.8s; }
+.os-shell :is(.editorial-card, .editorial-offer, .civic-card, .offer-problems article,
+  .ecosystem__grid a, .create-offers label):nth-child(4)::after { animation-delay: 4.2s; }
+.os-shell :is(.editorial-card, .editorial-offer, .civic-card,
+  .ecosystem__grid a):nth-child(5)::after { animation-delay: 5.6s; }
+.os-shell :is(.editorial-card, .editorial-offer, .civic-card,
+  .ecosystem__grid a):nth-child(6)::after { animation-delay: 7s; }
+
+/* ── Les accents de la charte survivent au verre ──
+   Le raccourci `border` du verre écraserait ces liserés porteurs de sens
+   (chaque couleur CODE une fonction, charte §7) : on les repose par-dessus. */
+.os-shell .editorial-card--capability { border-top: 4px solid var(--ts-tide); }
+.os-shell .editorial-promise { border-left: 4px solid var(--ts-sun); }
+.os-shell .civic-note { border-left: 4px solid var(--ts-sun); }
+.os-shell .create-summary { border-left: 3px solid var(--ts-sun); }
+
+/* ── Garde-fous ── */
+@media (prefers-reduced-motion: reduce) {
+  .os-shell .editorial-card::after, .os-shell .editorial-offer::after,
+  .os-shell .editorial-promise::after, .os-shell .civic-card::after,
+  .os-shell .civic-note::after, .os-shell .offer-problems article::after,
+  .os-shell .ecosystem__home::after, .os-shell .ecosystem__grid a::after,
+  .os-shell .selector-hero__wrap::after, .os-shell .offer-hero::after,
+  .os-shell .create-tempo__shell::after,
+  .os-shell .selector-pipe__step::after, .os-shell .selector-pipe__result::after,
+  .os-shell .create-offers label::after, .os-shell .create-summary::after {
+    animation: none;
+  }
+}
+
+/* Sans backdrop-filter (vieux moteurs) : le verre redevient une surface laiteuse */
+@supports not (backdrop-filter: blur(1px)) {
+  .os-shell .editorial-card, .os-shell .editorial-offer, .os-shell .editorial-promise,
+  .os-shell .civic-card, .os-shell .civic-note, .os-shell .offer-problems article,
+  .os-shell .ecosystem__home, .os-shell .ecosystem__grid a {
+    background: rgba(255, 255, 255, 0.6);
+  }
+  .os-shell .offer-hero {
+    background: rgba(23, 19, 16, 0.94);
+  }
+}
+
+/* Mobile : flou allégé (budget perf) */
+@media (max-width: 700px) {
+  :root { --glass-blur: 10px; }
+}

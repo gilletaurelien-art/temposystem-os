@@ -40,7 +40,7 @@ h1, h2, h3 {
 }
 
 .os-shell { color: var(--ts-encre); font-family: var(--ts-font-main); }
-.os-shell--day { background: var(--ts-parchment); }
+.os-shell--day { background: transparent; } /* le ciel fixe (SkyBackground) est le fond */
 .os-shell--night { color: var(--ts-white); background: radial-gradient(circle at 50% 8%, #2d241c 0%, var(--ts-night) 46%, #100d0b 100%); }
 
 /* ---- GLASS PANELS ---- */
@@ -217,15 +217,15 @@ h1, h2, h3 {
   transition: color 160ms;
 }
 .os-footer-link:hover { color: var(--ts-tide); }
-.os-footer { border-top: 1px solid var(--ts-hairline); background: #eee9dc; }
+.os-footer { border-top: 1px solid var(--ts-hairline);  }
 .os-footer-brand { color: var(--ts-encre); font: 750 15px var(--ts-font-main); letter-spacing: .08em; }
 .os-footer-copy { max-width: 580px; margin-top: 8px; color: var(--ts-encre-muted); font-size: 13px; line-height: 1.65; }
 .os-footer-meta { margin-top: 8px; color: var(--ts-encre-faint); font: 600 10px var(--ts-font-system); text-transform: uppercase; letter-spacing: .1em; }
 
 /* ---- ISLAND CLOSING SCENE ---- */
-.island-footer { position: relative; z-index: 1; width: 100%; aspect-ratio: 16 / 7; min-height: 360px; max-height: 720px; overflow: hidden; color: #f7f2e9; background: #0e6fb0; }
+.island-footer { position: relative; z-index: 1; width: 100%; aspect-ratio: 1400 / 788; min-height: 360px; overflow: hidden; color: #f7f2e9; background: #0e6fb0; }
 .island-footer__frames, .island-footer__frame, .island-footer__veil { position: absolute; inset: 0; width: 100%; height: 100%; }
-.island-footer__frame { object-fit: cover; opacity: 0; animation: island-footer-cycle 24s linear infinite; }
+.island-footer__frame { object-fit: contain; opacity: 0; animation: island-footer-cycle 24s linear infinite; }
 .island-footer__frame--1 { animation-delay: 0s; }
 .island-footer__frame--2 { animation-delay: -16s; }
 .island-footer__frame--3 { animation-delay: -8s; }
@@ -235,7 +235,7 @@ h1, h2, h3 {
 .island-footer__copy span { display: block; margin-bottom: 18px; color: rgba(247,242,233,.7); font: 500 10px var(--ts-font-system); letter-spacing: .22em; }
 .island-footer__copy strong { display: block; font: 400 clamp(2rem, 4.6vw, 4.3rem)/1.02 var(--ts-font-titre); letter-spacing: -.02em; }
 .island-footer__copy p { max-width: 520px; margin: 18px 0 0; color: rgba(247,242,233,.78); font-size: clamp(.95rem, 1.6vw, 1.12rem); line-height: 1.65; }
-@media (max-width: 700px) { .island-footer { aspect-ratio: 4 / 5; } .island-footer__frame { object-position: center; } .island-footer__veil { background: linear-gradient(0deg, rgba(9,22,32,.82), rgba(9,22,32,.08) 70%); } }
+@media (max-width: 700px) { .island-footer { aspect-ratio: 4 / 5; } .island-footer__frame { object-position: center 30%; } .island-footer__veil { background: linear-gradient(0deg, rgba(9,22,32,.82), rgba(9,22,32,.08) 70%); } }
 @media (prefers-reduced-motion: reduce) { .island-footer__frame { animation: none; opacity: 0; } .island-footer__frame--2 { opacity: 1; } }
 
 /* ---- HAMBURGER (mobile / PWA) ---- */
@@ -388,7 +388,7 @@ h1, h2, h3 {
 .pricing-card__price strong { color: var(--ts-encre); font-size: 1.15rem; }
 
 /* ---- MANA ECOSYSTEM ---- */
-.ecosystem { position: relative; z-index: 1; padding: clamp(72px, 9vw, 112px) 0; border-top: 1px solid var(--ts-hairline); background: #eee9dc; }
+.ecosystem { position: relative; z-index: 1; padding: clamp(72px, 9vw, 112px) 0; border-top: 1px solid var(--ts-hairline);  }
 .ecosystem__wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 .ecosystem__heading { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: end; }
 .ecosystem__heading h2 { max-width: 740px; margin: 0; color: var(--ts-encre); font-size: clamp(2rem, 4.2vw, 3.5rem); line-height: 1.08; }
