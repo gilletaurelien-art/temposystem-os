@@ -140,27 +140,6 @@ export function PricingPage() {
       <p className="territorial-pricing__note">{lang === "fr" ? "Tarifs annuels indicatifs, à calibrer territoire par territoire. Les éventuels kiosques MANA constituent un investissement séparé. Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés individuellement." : "Indicative annual pricing, calibrated for each territory. Any MANA kiosks are a separate investment. Citizens, volunteers and beneficiaries are never billed individually."}</p>
     </section>
 
-    <div className="pricing-subheading">
-      <p className="editorial-kicker">{lang === "fr" ? "Associations & organisations" : "Non-profits & organisations"}</p>
-      <h2>{lang === "fr" ? "Des formules adaptées à la taille de votre équipe." : "Plans adapted to the size of your team."}</h2>
-      <p>{lang === "fr" ? "Ces formules s’appliquent aux structures et réseaux qui ne déploient pas une licence territoriale calculée sur la population." : "These plans apply to organisations and networks that are not deploying a population-based territorial licence."}</p>
-    </div>
-    <aside className="civic-note pricing-note"><strong>{lang === "fr" ? "Extranet pro.MANAfrance.org inclus" : "pro.MANAfrance.org extranet included"}</strong>{lang === "fr" ? " dans chaque offre." : " in every plan."}</aside>
-    <div className="civic-card-grid civic-card-grid--three pricing-grid">
-      {formulas.map((formula) => <article className="civic-card pricing-card" id={formula.slug} key={formula.slug}>
-        <span className="civic-index">{formula.capacity[lang]}</span>
-        <h2>{formula.name}</h2>
-        <strong>{formula.systems[lang]}</strong>
-        <p>{formula.audience[lang]}</p>
-        <p><em>{formula.example[lang]}</em></p>
-        <h3>{lang === "fr" ? `Inclus dans la formule ${formula.name}` : `Included in the ${formula.name} plan`}</h3>
-        <ul>{formula.included[lang].map((item) => <li key={item}>{item}</li>)}</ul>
-        <div className="pricing-card__price"><span>{lang === "fr" ? "Abonnement" : "Subscription"}</span><strong>{formula.annualPrice[lang]}</strong></div>
-        <p><strong>{lang === "fr" ? "Mise en place : " : "Setup: "}</strong>{formula.setupPrice[lang]}</p>
-        <a className="civic-button civic-button--primary pricing-card__cta" href={formula.slug === "decouverte" ? "#/devis?formule=decouverte" : `#/devis?formule=${formula.slug}`}>{lang === "fr" ? `Rejoindre TEMPOsystem ${formula.name}` : `Join TEMPOsystem ${formula.name}`}</a>
-      </article>)}
-    </div>
-
     <section className="offer-section">
       <div className="offer-wrap">
         <p className="editorial-kicker">{lang === "fr" ? "Configurations disponibles" : "Available configurations"}</p>
@@ -181,6 +160,27 @@ export function PricingPage() {
       </div>
     </section>
 
-    <aside className="civic-note"><strong>{lang === "fr" ? "Inclus dans toutes les formules payantes : " : "Included in every paid plan: "}</strong>{lang === "fr" ? "hébergement sécurisé en Europe, HTTPS, maintenance, mises à jour, sauvegardes, gestion des rôles et accès, export des données, documentation RGPD de base et mention discrète « Propulsé par TEMPOsystem »." : "secure European hosting, HTTPS, maintenance, updates, backups, role and access management, data export, baseline GDPR documentation and a discreet “Powered by TEMPOsystem” mention."}</aside>
+    <aside className="civic-note"><strong>{lang === "fr" ? "Inclus dans toutes les formules payantes : " : "Included in every paid plan: "}</strong>{lang === "fr" ? "hébergement sécurisé en Europe, HTTPS, maintenance, mises à jour, sauvegardes, gestion des rôles et accès, export des données, documentation RGPD de base et mention discrète « Propulsé par TEMPOsystem »." : "secure European hosting, HTTPS, maintenance, updates, backups, role and access management, data export, baseline GDPR documentation and a discreet “Powered by TEMPOsystem” mention."}</aside>\n\n    <div className="pricing-subheading">
+      <p className="editorial-kicker">{lang === "fr" ? "Associations & organisations" : "Non-profits & organisations"}</p>
+      <h2>{lang === "fr" ? "Des formules adaptées à la taille de votre équipe." : "Plans adapted to the size of your team."}</h2>
+      <p>{lang === "fr" ? "Ces formules s’appliquent aux structures et réseaux qui ne déploient pas une licence territoriale calculée sur la population." : "These plans apply to organisations and networks that are not deploying a population-based territorial licence."}</p>
+    </div>
+    <aside className="civic-note pricing-note"><strong>{lang === "fr" ? "Extranet pro.MANAfrance.org inclus" : "pro.MANAfrance.org extranet included"}</strong>{lang === "fr" ? " dans chaque offre." : " in every plan."}</aside>
+    <div className="civic-card-grid civic-card-grid--three pricing-grid">
+      {formulas.map((formula) => <article className="civic-card pricing-card" id={formula.slug} key={formula.slug}>
+        <span className="civic-index">{formula.capacity[lang]}</span>
+        <h2>{formula.name}</h2>
+        <strong>{formula.systems[lang]}</strong>
+        <p>{formula.audience[lang]}</p>
+        <p><em>{formula.example[lang]}</em></p>
+        <h3>{lang === "fr" ? `Inclus dans la formule ${formula.name}` : `Included in the ${formula.name} plan`}</h3>
+        <ul>{formula.included[lang].map((item) => <li key={item}>{item}</li>)}</ul>
+        <div className="pricing-card__price"><span>{lang === "fr" ? "Abonnement" : "Subscription"}</span><strong>{formula.annualPrice[lang]}</strong></div>
+        <p><strong>{lang === "fr" ? "Mise en place : " : "Setup: "}</strong>{formula.setupPrice[lang]}</p>
+        <a className="civic-button civic-button--primary pricing-card__cta" href={formula.slug === "decouverte" ? "#/devis?formule=decouverte" : `#/devis?formule=${formula.slug}`}>{lang === "fr" ? `Rejoindre TEMPOsystem ${formula.name}` : `Join TEMPOsystem ${formula.name}`}</a>
+      </article>)}
+    </div>
+
+
   </Section>;
 }
