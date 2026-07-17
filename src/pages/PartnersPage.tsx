@@ -39,7 +39,7 @@ const patronPacks = [
 
 export function PartnersPage() {
   const { lang } = useLang();
-  const [path, setPath] = useState<"public" | "private">("public");
+  const [path, setPath] = useState<"public" | "private" | "individual">("public");
 
   return <Section
     eyebrow={lang === "fr" ? "Partenaires" : "Partners"}
@@ -49,6 +49,7 @@ export function PartnersPage() {
     <div className="partner-switch" role="tablist" aria-label={lang === "fr" ? "Type de partenaire" : "Partner type"}>
       <button type="button" role="tab" aria-selected={path === "public"} className={path === "public" ? "is-active" : ""} onClick={() => setPath("public")}><span>01</span>{lang === "fr" ? "Partenaire public" : "Public partner"}</button>
       <button type="button" role="tab" aria-selected={path === "private"} className={path === "private" ? "is-active" : ""} onClick={() => setPath("private")}><span>02</span>{lang === "fr" ? "Mécène privé" : "Private patron"}</button>
+      <button type="button" role="tab" aria-selected={path === "individual"} className={path === "individual" ? "is-active" : ""} onClick={() => setPath("individual")}><span>03</span>{lang === "fr" ? "Donateur particulier" : "Individual donor"}</button>
     </div>
 
     {path === "public" ? <section className="partner-path" role="tabpanel">
@@ -57,7 +58,7 @@ export function PartnersPage() {
         <article><small>MANAfrance</small><strong>{lang === "fr" ? "Dès 1 500 € / an" : "From €1,500 / year"}</strong><p>{lang === "fr" ? "Réseau civique mutualisé pour les habitants, les associations et les missions du territoire." : "A shared civic network for residents, non-profits and local missions."}</p><TypeCTA href="https://manafrance.org" text={lang === "fr" ? "Rejoindre MANAfrance" : "Join MANAfrance"} /></article>
         <article><span className="partner-badge">{lang === "fr" ? "MANAfrance inclus" : "MANAfrance included"}</span><small>TEMPOsystem</small><strong>{lang === "fr" ? "Dès 3 000 € / an" : "From €3,000 / year"}</strong><p>{lang === "fr" ? "Le réseau civique, votre extranet, votre application et un environnement adapté à votre organisation." : "The civic network, your extranet, app and an environment adapted to your organisation."}</p><TypeCTA href="#/tarifs#territoires" text={lang === "fr" ? "Voir la grille territoriale" : "See territorial pricing"} /></article>
       </div>
-    </section> : <section className="partner-path" role="tabpanel">
+    </section> : path === "private" ? <section className="partner-path" role="tabpanel">
       <div className="partner-path__heading"><div><p className="editorial-kicker">{lang === "fr" ? "Entreprises mécènes" : "Corporate patrons"}</p><h2>{lang === "fr" ? "Des MANA pour vos salariés. Du temps pour les associations." : "MANA for your employees. Time for non-profits."}</h2></div><p>{lang === "fr" ? "Votre don finance l’infrastructure commune. Une dotation de MANA est confiée à votre entreprise pour mobiliser vos salariés et soutenir les associations de votre choix." : "Your donation funds the shared infrastructure. Your company receives a MANA allocation to mobilise employees and support chosen non-profits."}</p></div>
       <div className="patron-grid">
         {patronPacks.map((pack) => <article className="patron-card" key={pack.name}>
@@ -70,6 +71,13 @@ export function PartnersPage() {
         </article>)}
       </div>
       <p className="partner-clarification">{lang === "fr" ? "Le don finance l’infrastructure : il ne constitue pas un achat de MANA. Les unités sont inconvertibles en euros et restent soumises aux règles de circulation solidaire de MANAfrance." : "The donation funds the infrastructure; it is not a purchase of MANA. Units cannot be converted into euros and remain subject to MANAfrance solidarity circulation rules."}</p>
+    </section> : <section className="partner-path partner-path--individual" role="tabpanel">
+      <div className="partner-path__heading"><div><p className="editorial-kicker">{lang === "fr" ? "Donateurs particuliers" : "Individual donors"}</p><h2>{lang === "fr" ? "Soutenir librement l'infrastructure commune." : "Freely support the shared infrastructure."}</h2></div><p>{lang === "fr" ? "Votre soutien aide MANAfrance et TEMPOsystem à développer les outils civiques communs, documenter les expérimentations et accompagner les premiers territoires." : "Your support helps MANAfrance and TEMPOsystem develop shared civic tools, document experiments and support the first territories."}</p></div>
+      <div className="partner-public-grid">
+        <article><small>{lang === "fr" ? "Soutien libre" : "Flexible support"}</small><strong>{lang === "fr" ? "Don ponctuel" : "One-off donation"}</strong><p>{lang === "fr" ? "Contribuer une fois, librement, au développement de l'infrastructure commune." : "Make a one-time contribution to the development of the shared infrastructure."}</p><a href={`mailto:contact@manahome.org?subject=${encodeURIComponent(lang === "fr" ? "Je souhaite faire un don ponctuel" : "I would like to make a one-off donation")}`}>{lang === "fr" ? "Préparer mon soutien" : "Prepare my support"} →</a></article>
+        <article><small>{lang === "fr" ? "Soutien dans la durée" : "Long-term support"}</small><strong>{lang === "fr" ? "Contribution régulière" : "Recurring contribution"}</strong><p>{lang === "fr" ? "Soutenir chaque mois la continuité du développement, de la documentation et des expérimentations." : "Support continued development, documentation and experiments each month."}</p><a href={`mailto:contact@manahome.org?subject=${encodeURIComponent(lang === "fr" ? "Je souhaite soutenir MANA régulièrement" : "I would like to support MANA regularly")}`}>{lang === "fr" ? "Préparer mon soutien" : "Prepare my support"} →</a></article>
+      </div>
+      <p className="partner-clarification">{lang === "fr" ? "Aucun paiement n'est réalisé sur ce site pour le moment. Votre messagerie s'ouvre avec une demande que vous pouvez relire avant l'envoi. Aucun avantage fiscal n'est annoncé à ce stade." : "No payment is currently processed on this site. Your email app opens with a request you can review before sending. No tax benefit is advertised at this stage."}</p>
     </section>}
   </Section>;
 }
