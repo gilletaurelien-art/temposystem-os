@@ -1824,3 +1824,25 @@ h1::after, h2::after {
     min-height: 76px;
   }
 }
+
+
+.partner-path__heading--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+}
+
+.partner-clarification--support {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.partner-clarification--support p {
+  margin: 0;
+}
+
+.partner-clarification--support p + p {
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(36, 95, 118, 0.14);
+  color: var(--ts-encre-titre);
+  font-weight: 650;
+}
