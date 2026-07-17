@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Section } from "../components/Section";
+import EcosystemBlock from "../components/EcosystemBlock";
 import { useLang } from "../lib/lang";
 
 /** CTA doré qui se tape en machine à écrire une fois (caret qui s'efface). */
@@ -41,7 +42,7 @@ export function PartnersPage() {
   const { lang } = useLang();
   const [path, setPath] = useState<"public" | "private" | "individual">("public");
 
-  return <Section
+  return <><Section
     eyebrow={lang === "fr" ? "Partenaires" : "Partners"}
     title={lang === "fr" ? "Un même écosystème. Trois manières d’y prendre part." : "One ecosystem. Three ways to take part."}
   >
@@ -84,5 +85,5 @@ export function PartnersPage() {
         <p>{lang === "fr" ? "Votre soutien aide MANAfrance et TEMPOsystem à développer les outils civiques communs, documenter les expérimentations et accompagner les premiers territoires." : "Your support helps MANAfrance and TEMPOsystem develop shared civic tools, document experiments and support the first territories."}</p>
       </div>
     </section>}
-  </Section>;
+  </Section><EcosystemBlock lang={lang} /></>;
 }
