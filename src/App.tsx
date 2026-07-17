@@ -47,6 +47,8 @@ const routeFromHash = (): Route => {
 const anchorFromHash = (): string | null => {
   const parts = window.location.hash.split("#"); // ["", "/tarifs", "territoires"]
   if (parts.length >= 3 && parts[2]) return parts[2].split("?")[0];
+  const legacyPath = parts[1]?.replace(/^\//, "").split("?")[0];
+  if (legacyPath === "applications" || legacyPath === "mana") return "applications";
   return null;
 };
 
