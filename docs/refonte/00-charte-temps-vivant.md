@@ -1,6 +1,6 @@
 # CHARTE GRAPHIQUE TEMPOSYSTEM — Le Temps Vivant
 
-**Version fondatrice — juillet 2026** · Gravée au dépôt le 16/07/2026.
+**Version fondatrice — juillet 2026** · Gravée au dépôt le 16/07/2026 · **Révision typographique du 17/07/2026** (§8, §23 : Philosopher + SF Mono remplacent Fraunces / Instrument Sans / IBM Plex Mono).
 *Refonte de la charte « Cognitive Pixel Music » (voir [archive](00-charte-cognitive-pixel-music.md)).*
 *Aperçu de référence : [planche-temps-vivant.html](planche-temps-vivant.html).*
 
@@ -95,23 +95,31 @@ Une section n'utilise jamais tout le cycle en même temps. Règle : **le ciel (f
 
 Les dégradés expriment une **transformation réelle** : `Terre cuite → Soleil → Miel` = contribution → énergie → horizon ; `Soleil → Marée → Crépuscule` = aube → écoulement → mémoire. Jamais de dégradé purement décoratif.
 
-## 8. Typographie — trois voix, plus chaudes
+## 8. Typographie — deux voix *(révisé le 17/07/2026)*
 
 | Voix | Police | Usage |
 |---|---|---|
-| **Manifeste** | **Fraunces** (axes optiques `opsz`, `SOFT`, `WONK`) | titres, manifeste, moments d'émotion. Serif organique, vivante, intemporelle. L'italique `SOFT`/`WONK` colore un mot-clé (souvent en terre cuite). |
-| **Courante** | **Instrument Sans** (humaniste) | textes, navigation, descriptions, boutons. Chaleureuse et lisible — un grotesque **humaniste**, jamais une géométrique froide. |
-| **Système** | **IBM Plex Mono** | ADR, code, horodatages, labels système, équation, données. |
+| **Éditoriale** | **Philosopher** (serif) | la vision, l'humanité, le caractère fondateur : titres `h1`/`h2`/`h3`, grandes promesses, citations et phrases manifestes. L'italique colore un mot-clé (souvent en terre cuite ou en miel). **Jamais** dans la navigation, les boutons, les champs, les petits labels ou les longs paragraphes. |
+| **Courante & système** | **SF Mono** | tout le reste : corps des textes, navigation, boutons, labels, formulaires, listes, statuts, ADR, horodatages, équation, données. Une seule voix d'interface, précise et honnête — la voix de la trace. |
 
-**Changement majeur vs Pixel Music** : on **abandonne la police pixel/bitmap pour le texte** (le signal « geek »). Le pixel vit désormais dans l'**image** (ciel, soleil, nuages, icônes), plus dans les lettres.
+**Philosopher est une police statique** : seules les graisses **400 et 700** existent (et leurs italiques). `font-synthesis: none` étant actif, aucune graisse intermédiaire ni italique ne sera synthétisée — la hiérarchie se joue sur la **taille**, pas sur la graisse.
+
+**SF Mono n'est pas distribuable sur le web** : elle vient de la pile système Apple. Pile de secours obligatoire — `"SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace` (Roboto Mono est chargée en secours web pour les appareils non-Apple).
+
+### Lisibilité du corps en monospace (règles bloquantes)
+
+Le monospace fatigue en bloc dense. Corps : base **≥ 16 px**, interligne **1.65–1.8**, paragraphes **≤ ~65 caractères**, graisse **400** (pas de gras systématique), `letter-spacing` légèrement resserré (**−0.01em**). Les capitales restent réservées aux **petits labels courts** — jamais un bloc entier.
+
+**Ce qui demeure de la version fondatrice** : on **n'écrit pas en police pixel/bitmap** (le signal « geek ») — le pixel vit dans l'**image** (ciel, soleil, nuages, icônes), plus dans les lettres. *(La version fondatrice employait Fraunces / Instrument Sans / IBM Plex Mono ; la révision resserre à deux voix et rapatrie Philosopher, la serif historique de l'univers MANA.)*
 
 ### Hiérarchie
 
-- *Titre manifeste* : Fraunces, très grand, peu de mots (« Le Temps **Vivant** »).
-- *Titre de section* : Fraunces, éditorial, 4–8 mots.
-- *Label système* : IBM Plex Mono, petites capitales, tracking `.22em` (`MÉMOIRE ACTIVE · ADR-0011`).
-- *Donnée* : IBM Plex Mono (`+1 MANA · 00:00:01 · SYNCHRONISÉ`).
-- *Corps* : Instrument Sans, largeur contenue **62–68 caractères**.
+- *Titre manifeste* : Philosopher, très grand, peu de mots (« Le Temps **Vivant** »).
+- *Titre de section* : Philosopher, éditorial, 4–8 mots.
+- *Grande promesse* : Philosopher (`.editorial-promise strong`, `.selector-pipe__result strong`, `.create-summary strong`).
+- *Label système* : SF Mono, petites capitales, tracking `.22em` (`MÉMOIRE ACTIVE · ADR-0011`).
+- *Donnée* : SF Mono (`+1 MANA · 00:00:01 · SYNCHRONISÉ`).
+- *Corps* : SF Mono, largeur contenue **≤ ~65 caractères**.
 
 ## 9. La grille
 
@@ -194,7 +202,7 @@ TEMPOSYSTEM tient l'axe **lumineux** de la charte-mère MANA, mais l'exprime en 
 
 ## 23. Ce qu'on garde de Cognitive Pixel Music
 
-Le pixel comme grammaire · les 3 voix typographiques (réchauffées) · IBM Plex Mono en voix système · les 3 niveaux de mouvement (`data-motion`) · la règle du `DataTag` · la doctrine « mana n'est pas de l'argent, une trace pas une créance » · l'exigence d'accessibilité · la composition en cinq questions.
+Le pixel comme grammaire · une voix mono pour le système (désormais SF Mono, §8) · les 3 niveaux de mouvement (`data-motion`) · la règle du `DataTag` · la doctrine « mana n'est pas de l'argent, une trace pas une créance » · l'exigence d'accessibilité · la composition en cinq questions.
 
 ## 24. Promesse visuelle
 
