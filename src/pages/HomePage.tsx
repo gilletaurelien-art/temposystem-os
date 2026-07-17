@@ -20,16 +20,18 @@ const capabilities = {
 
 const audiences = {
   fr: [
-    ["Collectivités · CCAS · CIAS", "Coordonner les acteurs de la solidarité et suivre les réponses apportées aux besoins du territoire."],
-    ["Associations · Fédérations", "Organiser les missions, coopérer entre structures et rendre le temps donné visible."],
-    ["Établissements sociaux et médico-sociaux", "Relier professionnels, familles, aidants, bénévoles et partenaires autour d'une situation commune."],
-    ["Réseaux ESS · Fondations", "Partager un cadre commun tout en préservant l'autonomie de chaque antenne et de chaque territoire."],
+    { title: "Collectivités · CCAS · CIAS", body: "Coordonner les acteurs de la solidarité et suivre les réponses apportées aux besoins du territoire.", solutions: [["CIVIC", "civic"]] },
+    { title: "Associations · Fédérations", body: "Organiser les missions, coopérer entre structures et rendre le temps donné visible.", solutions: [["ASSO", "asso"]] },
+    { title: "Établissements sociaux et médico-sociaux", body: "Relier professionnels, familles, aidants, bénévoles et partenaires autour d'une situation commune.", solutions: [["CARE", "care"]] },
+    { title: "Réseaux ESS · Fondations", body: "Partager un cadre commun, relier plusieurs territoires et suivre les actions soutenues sans effacer l'autonomie de chacun.", solutions: [["TERRITORIES", "territories"], ["IMPACT", "impact"]] },
+    { title: "Entreprises · Directions RSE · Mécènes", body: "Mobiliser le temps et les compétences des salariés, coordonner les partenariats associatifs et rendre les contributions visibles.", solutions: [["RSE", "rse"]] },
   ],
   en: [
-    ["Local authorities · Social services", "Coordinate solidarity actors and follow how local needs are addressed."],
-    ["Non-profits · Federations", "Organise missions, cooperate across organisations and make given time visible."],
-    ["Social and care institutions", "Connect professionals, families, caregivers, volunteers and partners around a shared situation."],
-    ["Social economy networks · Foundations", "Share a common framework while preserving local and organisational autonomy."],
+    { title: "Local authorities · Social services", body: "Coordinate solidarity actors and follow how local needs are addressed.", solutions: [["CIVIC", "civic"]] },
+    { title: "Non-profits · Federations", body: "Organise missions, cooperate across organisations and make given time visible.", solutions: [["ASSO", "asso"]] },
+    { title: "Social and care institutions", body: "Connect professionals, families, caregivers, volunteers and partners around a shared situation.", solutions: [["CARE", "care"]] },
+    { title: "Social economy networks · Foundations", body: "Share a common framework, connect territories and follow supported action without erasing local autonomy.", solutions: [["TERRITORIES", "territories"], ["IMPACT", "impact"]] },
+    { title: "Companies · CSR teams · Patrons", body: "Mobilise employee time and skills, coordinate non-profit partnerships and make contributions visible.", solutions: [["RSE", "rse"]] },
   ],
 } as const;
 
@@ -80,9 +82,23 @@ export function HomePage() {
             <p className="editorial-kicker">{lang === "fr" ? "Pour qui ?" : "Who is it for?"}</p>
             <h2>{lang === "fr" ? "Conçu pour celles et ceux qui font tenir les territoires" : "Built for those who hold communities together"}</h2>
           </header>
-          <div className="editorial-grid editorial-grid--two">
-            {audiences[lang].map(([title, body]) => <article className="editorial-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}
+          <div className="editorial-grid editorial-grid--two editorial-audiences">
+            {audiences[lang].map((audience) => <article className="editorial-card editorial-audience" key={audience.title}>
+              <h3>{audience.title}</h3>
+              <p>{audience.body}</p>
+              <div className="editorial-audience__links">
+                {audience.solutions.map(([name, slug]) => <a href={`#/offres/${slug}`} key={slug}>{lang === "fr" ? "En savoir plus" : "Learn more"} · TEMPOsystem {name}<span aria-hidden="true"> →</span></a>)}
+              </div>
+            </article>)}
           </div>
+          <aside className="editorial-partner-bridge">
+            <div>
+              <p className="editorial-kicker">{lang === "fr" ? "Soutenir l'écosystème" : "Support the ecosystem"}</p>
+              <h3>{lang === "fr" ? "Entreprises mécènes et donateurs particuliers rendent aussi l'infrastructure possible." : "Corporate patrons and individual donors also make the infrastructure possible."}</h3>
+              <p>{lang === "fr" ? "Les mécènes financent et mobilisent leur entreprise. Les particuliers peuvent soutenir MANAfrance par un don ponctuel ou régulier." : "Patrons fund and mobilise their company. Individuals can support MANAfrance through a one-off or recurring donation."}</p>
+            </div>
+            <a className="editorial-button editorial-button--secondary" href="#/partenaires">{lang === "fr" ? "Découvrir les partenariats" : "Explore partnerships"} →</a>
+          </aside>
         </div>
       </section>
 
