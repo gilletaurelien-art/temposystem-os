@@ -47,14 +47,16 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Le produit" : "The product"}</p>
             <h2>{lang === "fr" ? "Un même espace pour passer du besoin à l'action" : "One space to move from need to action"}</h2>
-            <p>{lang === "fr" ? "Quatre capacités forment un cycle continu. Chacune peut être activée progressivement, selon votre organisation." : "Four capabilities form one continuous cycle. Each can be introduced progressively to fit your organisation."}</p>
           </header>
-          <div className="editorial-grid editorial-grid--four">
-            {capabilities[lang].map(([title, body], index) => (
-              <article className="editorial-card editorial-card--capability" key={title}>
-                <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
-              </article>
-            ))}
+          <div className="editorial-capabilities-panel">
+            <p className="editorial-capabilities-panel__intro">{lang === "fr" ? "Quatre capacités forment un cycle continu. Chacune peut être activée progressivement, selon votre organisation." : "Four capabilities form one continuous cycle. Each can be introduced progressively to fit your organisation."}</p>
+            <div className="editorial-grid editorial-grid--four">
+              {capabilities[lang].map(([title, body], index) => (
+                <article className="editorial-card editorial-card--capability" key={title}>
+                  <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
