@@ -103,7 +103,7 @@ export function PricingPage() {
     eyebrow={lang === "fr" ? "Offres & tarifs" : "Offers & pricing"}
     title={lang === "fr" ? "Rejoindre le réseau commun. Ou disposer de votre environnement." : "Join the shared network. Or add your own environment."}
   >
-    <aside className="civic-note">{lang === "fr" ? "MANAfrance fonctionne grâce à TEMPOsystem. Rejoignez le réseau commun, ou choisissez TEMPOsystem pour disposer en plus de votre propre environnement." : "MANAfrance runs on TEMPOsystem. Join the shared network, or choose TEMPOsystem to also get your own environment."}</aside>
+    <aside className="civic-note pricing-note">{lang === "fr" ? "MANAfrance fonctionne grâce à TEMPOsystem. Rejoignez le réseau commun, ou choisissez TEMPOsystem pour disposer en plus de votre propre environnement." : "MANAfrance runs on TEMPOsystem. Join the shared network, or choose TEMPOsystem to also get your own environment."}</aside>
     <div className="pricing-principles">
       <div><strong>{lang === "fr" ? "La formule" : "The plan"}</strong><span>{lang === "fr" ? "Elle fixe la capacité et le nombre de TEMPOsystemS inclus." : "It sets capacity and the number of included TEMPOsystemS."}</span></div>
       <div><strong>{lang === "fr" ? "La mise en place" : "Setup"}</strong><span>{lang === "fr" ? "Elle construit votre environnement et décline votre identité graphique." : "It builds your environment and adapts your visual identity."}</span></div>
@@ -145,7 +145,7 @@ export function PricingPage() {
       <h2>{lang === "fr" ? "Des formules adaptées à la taille de votre équipe." : "Plans adapted to the size of your team."}</h2>
       <p>{lang === "fr" ? "Ces formules s’appliquent aux structures et réseaux qui ne déploient pas une licence territoriale calculée sur la population." : "These plans apply to organisations and networks that are not deploying a population-based territorial licence."}</p>
     </div>
-    <aside className="civic-note"><strong>{lang === "fr" ? "Extranet pro.MANAfrance.org inclus" : "pro.MANAfrance.org extranet included"}</strong>{lang === "fr" ? " dans chaque offre." : " in every plan."}</aside>
+    <aside className="civic-note pricing-note"><strong>{lang === "fr" ? "Extranet pro.MANAfrance.org inclus" : "pro.MANAfrance.org extranet included"}</strong>{lang === "fr" ? " dans chaque offre." : " in every plan."}</aside>
     <div className="civic-card-grid civic-card-grid--three pricing-grid">
       {formulas.map((formula) => <article className="civic-card pricing-card" id={formula.slug} key={formula.slug}>
         <span className="civic-index">{formula.capacity[lang]}</span>
@@ -166,7 +166,7 @@ export function PricingPage() {
         <p className="editorial-kicker">{lang === "fr" ? "Configurations disponibles" : "Available configurations"}</p>
         <h2>{lang === "fr" ? "Composez votre environnement selon vos usages." : "Compose your environment around your needs."}</h2>
         <p>{lang === "fr" ? "CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE ne sont pas six abonnements séparés : ce sont les TEMPOsystemS que vous réunissez dans votre formule." : "CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE are not six separate subscriptions: they are the TEMPOsystemS brought together in your plan."}</p>
-        <div className="civic-card-grid civic-card-grid--three">
+        <div className="civic-card-grid civic-card-grid--three pricing-configs">
           {tempoOffers.map((offer) => <article className="civic-card" key={offer.slug}>
             <span className="civic-index">TEMPOsystem</span>
             <h3>{offer.name}</h3>
