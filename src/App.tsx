@@ -22,7 +22,7 @@ const LEGACY: Record<string, Route> = {
 };
 
 const routeFromHash = (): Route => {
-  const hash = window.location.hash.replace("#/", "").split("?")[0];
+  const hash = window.location.hash.replace("#/", "").split(/[?#]/)[0];
 
   if (hash.startsWith("offres/")) return "offre";
 
