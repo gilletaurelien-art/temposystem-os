@@ -55,13 +55,9 @@ export function CreateTempoPage() {
     <div className="create-tempo__shell">
       <header className="create-tempo__heading">
         <p className="editorial-kicker">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</p>
-        <h1>{lang === "fr" ? <>Partons d'un besoin <em>réel.</em></> : <>Start with one <em>real need.</em></>}</h1>
-        <p>{lang === "fr" ? "Trois étapes pour préparer un premier échange utile. Comptez moins de trois minutes." : "Three steps to prepare a useful first conversation. It takes less than three minutes."}</p>
+        <h1>{lang === "fr" ? <>Votre besoin <em>réel.</em></> : <>Your <em>real need.</em></>}</h1>
+        <p>{lang === "fr" ? "Trois étapes pour préparer un premier échange utile." : "Three steps to prepare a useful first conversation."}</p>
       </header>
-      <ol className="create-progress" aria-label={lang === "fr" ? "Progression" : "Progress"}>
-        {[1,2,3].map((number) => <li className={step >= number ? "is-active" : ""} key={number}><span>{String(number).padStart(2,"0")}</span>{lang === "fr" ? ["Votre structure","Premier usage","Vos coordonnées"][number-1] : ["Your organisation","First use","Your details"][number-1]}</li>)}
-      </ol>
-
       <form onSubmit={send} className="create-form">
         {step === 1 && <fieldset><legend>{lang === "fr" ? "Quel TEMPOsystem correspond à votre structure ?" : "Which TEMPOsystem fits your organisation?"}</legend>
           <label>{lang === "fr" ? "Type d'organisation" : "Organisation type"}<select value={form.organisation} onChange={(e) => update("organisation", e.target.value)} required><option value="">{lang === "fr" ? "Sélectionner" : "Select"}</option><option>{lang === "fr" ? "Collectivité, CCAS ou CIAS" : "Local authority or social service"}</option><option>{lang === "fr" ? "Association ou fédération" : "Non-profit or federation"}</option><option>{lang === "fr" ? "Établissement social ou médico-social" : "Social or care institution"}</option><option>{lang === "fr" ? "Opérateur ou alliance territoriale" : "Territorial operator or alliance"}</option><option>{lang === "fr" ? "Fondation ou financeur" : "Foundation or funder"}</option><option>{lang === "fr" ? "Entreprise" : "Company"}</option></select></label>
@@ -81,6 +77,10 @@ export function CreateTempoPage() {
         </fieldset>}
         <div className="create-form__actions">{step > 1 && <button type="button" className="civic-button" onClick={() => setStep(step - 1)}>{lang === "fr" ? "Retour" : "Back"}</button>}{step < 3 ? <button type="button" className="civic-button civic-button--primary" disabled={!canContinue} onClick={() => canContinue && setStep(step + 1)}>{lang === "fr" ? "Continuer" : "Continue"} →</button> : <button type="submit" className="civic-button civic-button--primary" disabled={!consent || !form.name || !form.email}>{lang === "fr" ? "Préparer ma demande" : "Prepare my request"} →</button>}</div>
       </form>
+
+      <ol className="create-progress create-progress--pixel" aria-label={lang === "fr" ? "Progression" : "Progress"}>
+        {[1,2,3].map((number) => <li className={step >= number ? "is-active" : ""} key={number}><span>{String(number).padStart(2,"0")}</span><strong>{lang === "fr" ? ["Votre structure","Premier usage","Vos coordonnées"][number-1] : ["Your organisation","First use","Your details"][number-1]}</strong></li>)}
+      </ol>
     </div>
   </main>;
 }

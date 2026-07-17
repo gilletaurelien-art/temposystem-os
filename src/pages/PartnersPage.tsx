@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Section } from "../components/Section";
+import EcosystemBlock from "../components/EcosystemBlock";
 import { useLang } from "../lib/lang";
 
 /** CTA doré qui se tape en machine à écrire une fois (caret qui s'efface). */
@@ -41,15 +42,17 @@ export function PartnersPage() {
   const { lang } = useLang();
   const [path, setPath] = useState<"public" | "private" | "individual">("public");
 
-  return <Section
+  return <><Section
     eyebrow={lang === "fr" ? "Partenaires" : "Partners"}
-    title={lang === "fr" ? "Un même écosystème. Deux manières de le soutenir." : "One ecosystem. Two ways to support it."}
-    intro={lang === "fr" ? "Une collectivité ouvre le réseau à son territoire. Une entreprise mécène dote ses salariés et les associations qu’elle choisit. Sélectionnez votre situation pour accéder directement aux offres correspondantes." : "A local authority opens the network to its territory. A corporate patron supports its employees and chosen non-profits. Select your situation to see the relevant offers."}
+    title={lang === "fr" ? "Un même écosystème. Trois manières d’y prendre part." : "One ecosystem. Three ways to take part."}
   >
-    <div className="partner-switch" role="tablist" aria-label={lang === "fr" ? "Type de partenaire" : "Partner type"}>
-      <button type="button" role="tab" aria-selected={path === "public"} className={path === "public" ? "is-active" : ""} onClick={() => setPath("public")}><span>01</span>{lang === "fr" ? "Partenaire public" : "Public partner"}</button>
-      <button type="button" role="tab" aria-selected={path === "private"} className={path === "private" ? "is-active" : ""} onClick={() => setPath("private")}><span>02</span>{lang === "fr" ? "Mécène privé" : "Private patron"}</button>
-      <button type="button" role="tab" aria-selected={path === "individual"} className={path === "individual" ? "is-active" : ""} onClick={() => setPath("individual")}><span>03</span>{lang === "fr" ? "Donateur particulier" : "Individual donor"}</button>
+    <div className="partner-choice">
+      <p className="partner-choice__label">{lang === "fr" ? "Choisissez votre situation" : "Choose your situation"}</p>
+      <div className="partner-switch" role="tablist" aria-label={lang === "fr" ? "Type de partenaire" : "Partner type"}>
+        <button type="button" role="tab" aria-selected={path === "public"} className={path === "public" ? "is-active" : ""} onClick={() => setPath("public")}><span>01</span><strong>{lang === "fr" ? "Partenaire public" : "Public partner"}</strong><small>{lang === "fr" ? "Collectivité · Institution" : "Authority · Institution"}</small></button>
+        <button type="button" role="tab" aria-selected={path === "private"} className={path === "private" ? "is-active" : ""} onClick={() => setPath("private")}><span>02</span><strong>{lang === "fr" ? "Mécène privé" : "Private patron"}</strong><small>{lang === "fr" ? "Entreprise · Fondation" : "Company · Foundation"}</small></button>
+        <button type="button" role="tab" aria-selected={path === "individual"} className={path === "individual" ? "is-active" : ""} onClick={() => setPath("individual")}><span>03</span><strong>{lang === "fr" ? "Donateur particulier" : "Individual donor"}</strong><small>{lang === "fr" ? "Ponctuel · Régulier" : "One-off · Recurring"}</small></button>
+      </div>
     </div>
 
     {path === "public" ? <section className="partner-path" role="tabpanel">
@@ -72,12 +75,15 @@ export function PartnersPage() {
       </div>
       <p className="partner-clarification">{lang === "fr" ? "Le don finance l’infrastructure : il ne constitue pas un achat de MANA. Les unités sont inconvertibles en euros et restent soumises aux règles de circulation solidaire de MANAfrance." : "The donation funds the infrastructure; it is not a purchase of MANA. Units cannot be converted into euros and remain subject to MANAfrance solidarity circulation rules."}</p>
     </section> : <section className="partner-path partner-path--individual" role="tabpanel">
-      <div className="partner-path__heading"><div><p className="editorial-kicker">{lang === "fr" ? "Donateurs particuliers" : "Individual donors"}</p><h2>{lang === "fr" ? "Soutenir librement l'infrastructure commune." : "Freely support the shared infrastructure."}</h2></div><p>{lang === "fr" ? "Votre soutien aide MANAfrance et TEMPOsystem à développer les outils civiques communs, documenter les expérimentations et accompagner les premiers territoires." : "Your support helps MANAfrance and TEMPOsystem develop shared civic tools, document experiments and support the first territories."}</p></div>
+      <div className="partner-path__heading partner-path__heading--single"><div><p className="editorial-kicker">{lang === "fr" ? "Donateurs particuliers" : "Individual donors"}</p><h2>{lang === "fr" ? "Soutenir librement l'infrastructure commune." : "Freely support the shared infrastructure."}</h2></div></div>
       <div className="partner-public-grid">
         <article><small>{lang === "fr" ? "Soutien libre" : "Flexible support"}</small><strong>{lang === "fr" ? "Don ponctuel" : "One-off donation"}</strong><p>{lang === "fr" ? "Contribuer une fois, librement, au développement de l'infrastructure commune." : "Make a one-time contribution to the development of the shared infrastructure."}</p><a href={`mailto:contact@manahome.org?subject=${encodeURIComponent(lang === "fr" ? "Je souhaite faire un don ponctuel" : "I would like to make a one-off donation")}`}>{lang === "fr" ? "Préparer mon soutien" : "Prepare my support"} →</a></article>
         <article><small>{lang === "fr" ? "Soutien dans la durée" : "Long-term support"}</small><strong>{lang === "fr" ? "Contribution régulière" : "Recurring contribution"}</strong><p>{lang === "fr" ? "Soutenir chaque mois la continuité du développement, de la documentation et des expérimentations." : "Support continued development, documentation and experiments each month."}</p><a href={`mailto:contact@manahome.org?subject=${encodeURIComponent(lang === "fr" ? "Je souhaite soutenir MANA régulièrement" : "I would like to support MANA regularly")}`}>{lang === "fr" ? "Préparer mon soutien" : "Prepare my support"} →</a></article>
       </div>
-      <p className="partner-clarification">{lang === "fr" ? "Aucun paiement n'est réalisé sur ce site pour le moment. Votre messagerie s'ouvre avec une demande que vous pouvez relire avant l'envoi. Aucun avantage fiscal n'est annoncé à ce stade." : "No payment is currently processed on this site. Your email app opens with a request you can review before sending. No tax benefit is advertised at this stage."}</p>
+      <div className="partner-clarification partner-clarification--support">
+        <p>{lang === "fr" ? "Aucun paiement n'est réalisé sur ce site pour le moment. Votre messagerie s'ouvre avec une demande que vous pouvez relire avant l'envoi. Aucun avantage fiscal n'est annoncé à ce stade." : "No payment is currently processed on this site. Your email app opens with a request you can review before sending. No tax benefit is advertised at this stage."}</p>
+        <p>{lang === "fr" ? "Votre soutien aide MANAfrance et TEMPOsystem à développer les outils civiques communs, documenter les expérimentations et accompagner les premiers territoires." : "Your support helps MANAfrance and TEMPOsystem develop shared civic tools, document experiments and support the first territories."}</p>
+      </div>
     </section>}
-  </Section>;
+  </Section><EcosystemBlock lang={lang} /></>;
 }

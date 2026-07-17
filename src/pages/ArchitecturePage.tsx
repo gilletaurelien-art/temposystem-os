@@ -32,5 +32,9 @@ export function ArchitecturePage() {
   const { lang } = useLang(); const c = content[lang];
   return <main><Section eyebrow={c.eyebrow} title={c.title} intro={c.intro}>
     <div className="civic-card-grid civic-card-grid--three">{c.steps.map(([title, body], i) => <article key={title} className="civic-card"><span className="civic-index">0{i + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+    <figure className="architecture-journey">
+      <img src="/illustrations/parcours-temposystem.png" alt={lang === "fr" ? "Cinq îles reliées illustrent le signal, la coordination, l'action, le temps reconnu et la mémoire commune." : "Five connected islands illustrate signal, coordination, action, recognised time and shared memory."} loading="lazy" decoding="async" />
+      <figcaption>{lang === "fr" ? "Un fil commun relie le besoin, l'action, la reconnaissance et la mémoire." : "One shared thread connects need, action, recognition and memory."}</figcaption>
+    </figure>
   </Section></main>;
 }

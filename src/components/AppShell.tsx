@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 import { useLang, type Language } from "../lib/lang";
-import EcosystemBlock from "./EcosystemBlock";
 import { SkyBackground } from "./SkyBackground";
 import "./skyBackground.css";
 
@@ -197,9 +196,6 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         {children}
       </div>
 
-      {/* Bloc écosystème — MANAHOME + les 6 mondes */}
-      <EcosystemBlock lang={lang} />
-
       {/* L'île quitte le hero et devient une conclusion visuelle. */}
       <section className="island-footer" aria-label={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective" : "The orchestration infrastructure for collective action"}>
         <div className="island-footer__frames" aria-hidden="true">
@@ -214,6 +210,9 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
             <Typewriter text={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."} />
           </strong>
         </div>
+        <nav className="island-footer__nav" aria-label={lang === "fr" ? "Navigation de pied de page" : "Footer navigation"}>
+          {publicNavigation.map((item) => <a href={item.href} key={item.href}>{item.label[lang]}</a>)}
+        </nav>
         <p className="island-footer__legal">
           © 2026 TEMPO<span>system</span> — {lang === "fr" ? "tous droits réservés" : "all rights reserved"}
         </p>

@@ -17,7 +17,6 @@ export function TempoHero() {
         <a className="editorial-button editorial-button--primary" href="#/creer">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
         <a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Découvrir les offres" : "Explore the offers"}</a>
       </div>
-      <p className="selector-hero__relationship">{lang === "fr" ? "Un seul parcours vous guide vers la formule adaptée à votre structure. Moins de trois minutes." : "One simple journey guides you to the right plan for your organisation. Less than three minutes."}</p>
     </div>
   </section>;
 }

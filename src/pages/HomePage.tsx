@@ -35,6 +35,21 @@ const audiences = {
   ],
 } as const;
 
+const applicationUses = {
+  fr: [
+    ["Solidarité territoriale", "Relier un CCAS, des associations, des établissements et des bénévoles autour des besoins du territoire."],
+    ["Soin et présence", "Coordonner professionnels, familles, aidants et partenaires sans remplacer les outils de soin."],
+    ["Vie associative", "Organiser les missions, coopérer entre structures et reconnaître le temps bénévole."],
+    ["Réseaux et fédérations", "Partager un cadre et une mémoire communs tout en maintenant l'autonomie locale."],
+  ],
+  en: [
+    ["Local solidarity", "Connect social services, non-profits, institutions and volunteers around local needs."],
+    ["Care and presence", "Coordinate professionals, families, caregivers and partners without replacing care tools."],
+    ["Non-profit action", "Organise missions, cooperate across organisations and recognise volunteer time."],
+    ["Networks and federations", "Share a common framework and memory while preserving local autonomy."],
+  ],
+} as const;
+
 export function HomePage() {
   const { lang } = useLang();
 
@@ -47,14 +62,16 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Le produit" : "The product"}</p>
             <h2>{lang === "fr" ? "Un même espace pour passer du besoin à l'action" : "One space to move from need to action"}</h2>
-            <p>{lang === "fr" ? "Quatre capacités forment un cycle continu. Chacune peut être activée progressivement, selon votre organisation." : "Four capabilities form one continuous cycle. Each can be introduced progressively to fit your organisation."}</p>
           </header>
-          <div className="editorial-grid editorial-grid--four">
-            {capabilities[lang].map(([title, body], index) => (
-              <article className="editorial-card editorial-card--capability" key={title}>
-                <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
-              </article>
-            ))}
+          <div className="editorial-capabilities-panel">
+            <p className="editorial-capabilities-panel__intro">{lang === "fr" ? "Quatre capacités forment un cycle continu. Chacune peut être activée progressivement, selon votre organisation." : "Four capabilities form one continuous cycle. Each can be introduced progressively to fit your organisation."}</p>
+            <div className="editorial-grid editorial-grid--four">
+              {capabilities[lang].map(([title, body], index) => (
+                <article className="editorial-card editorial-card--capability" key={title}>
+                  <span>0{index + 1}</span><h3>{title}</h3><p>{body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -90,14 +107,33 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Les déclinaisons" : "Solutions"}</p>
             <h2>{lang === "fr" ? "Un même socle, adapté à chaque terrain d'action" : "One foundation, adapted to every field of action"}</h2>
-            <p>{lang === "fr" ? "Chaque TEMPOsystem active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOsystem activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
           </header>
-          <div className="editorial-offers__grid">
-            {tempoOffers.map((offer) => <a className="editorial-offer" href={`#/offres/${offer.slug}`} key={offer.slug}>
-              <span>TEMPOsystem</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
-            </a>)}
+          <div className="editorial-solutions-panel">
+            <p className="editorial-solutions-panel__intro">{lang === "fr" ? "Chaque TEMPOsystem active les mêmes capacités durables — coordonner, agir, mémoriser et décider — avec le vocabulaire et les usages de votre secteur." : "Every TEMPOsystem activates the same lasting capabilities — coordinate, act, remember and decide — with the language and uses of your sector."}</p>
+            <div className="editorial-offers__grid">
+              {tempoOffers.map((offer) => <a className="editorial-offer" href={`#/offres/${offer.slug}`} key={offer.slug}>
+                <span>TEMPOsystem</span><h3>{offer.name}</h3><strong>{offer.audience[lang]}</strong><p>{offer.promise[lang]}</p><em>{lang === "fr" ? "Découvrir l'offre" : "Explore the offer"} →</em>
+              </a>)}
+            </div>
           </div>
           <div className="editorial-actions"><a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Comparer les offres et les tarifs" : "Compare offers and pricing"}</a></div>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-section--tint" id="applications">
+        <div className="editorial-wrap">
+          <header className="editorial-heading">
+            <p className="editorial-kicker">{lang === "fr" ? "Usages" : "Use cases"}</p>
+            <h2>{lang === "fr" ? "Commencer par un problème réel" : "Start with one real problem"}</h2>
+            <p>{lang === "fr" ? "Chaque TEMPOsystem est configuré autour d'un périmètre clair, d'acteurs identifiés et d'un premier résultat observable." : "Each TEMPOsystem is configured around a clear scope, identified actors and a first observable outcome."}</p>
+          </header>
+          <div className="editorial-grid editorial-grid--two">
+            {applicationUses[lang].map(([title, body]) => <article className="editorial-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}
+          </div>
+          <div className="editorial-actions">
+            <a href="#/creer" className="editorial-button editorial-button--primary">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
+            <a href="mailto:contact@manahome.org?subject=TEMPOsystem" className="editorial-button editorial-button--secondary">{lang === "fr" ? "Parler de mon territoire" : "Discuss my community"}</a>
+          </div>
         </div>
       </section>
 
@@ -106,7 +142,6 @@ export function HomePage() {
           <header className="editorial-heading">
             <p className="editorial-kicker">{lang === "fr" ? "Un exemple concret" : "A concrete example"}</p>
             <h2>{lang === "fr" ? "Un besoin apparaît. Voici ce qui se passe ensuite." : "A need emerges. Here is what happens next."}</h2>
-            <p>{lang === "fr" ? "Un CCAS, plusieurs associations et un établissement coordonnent une action contre l'isolement. TEMPOsystem conserve le fil commun." : "A local social service, several non-profits and a care institution coordinate an action against isolation. TEMPOsystem preserves the shared thread."}</p>
           </header>
           <figure className="editorial-journey-figure">
             <img

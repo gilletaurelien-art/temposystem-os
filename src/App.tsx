@@ -3,7 +3,6 @@ import { AppShell } from "./components/AppShell";
 import { ArchitecturePage } from "./pages/ArchitecturePage";
 import { DecisionsPage } from "./pages/DecisionsPage";
 import { HomePage } from "./pages/HomePage";
-import { ManaPage } from "./pages/ManaPage";
 import { PricingPage } from "./pages/PricingPage";
 import { QuotePage } from "./pages/QuotePage";
 import { PartnersPage } from "./pages/PartnersPage";
@@ -12,14 +11,15 @@ import { OfferDetailPage } from "./pages/OfferDetailPage";
 import { VisionPage } from "./pages/VisionPage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "partenaires" | "creer" | "devis" | "offre";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "tarifs" | "partenaires" | "creer" | "devis" | "offre";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
   vision: "manifeste",
   architecture: "moteur",
   decisions: "memoire",
-  mana: "applications",
+  mana: "home",
+  applications: "home",
 };
 
 const routeFromHash = (): Route => {
@@ -32,8 +32,7 @@ const routeFromHash = (): Route => {
     hash === "manifeste" ||
     hash === "moteur" ||
     hash === "memoire" ||
-    hash === "applications"
-    || hash === "tarifs"
+    hash === "tarifs"
     || hash === "partenaires"
     || hash === "creer"
     || hash === "devis"
@@ -48,6 +47,8 @@ const routeFromHash = (): Route => {
 const anchorFromHash = (): string | null => {
   const parts = window.location.hash.split("#"); // ["", "/tarifs", "territoires"]
   if (parts.length >= 3 && parts[2]) return parts[2].split("?")[0];
+  const legacyPath = parts[1]?.replace(/^\//, "").split("?")[0];
+  if (legacyPath === "applications" || legacyPath === "mana") return "applications";
   return null;
 };
 
@@ -95,7 +96,6 @@ export default function App() {
     manifeste: <VisionPage />,
     moteur: <ArchitecturePage />,
     memoire: <DecisionsPage />,
-    applications: <ManaPage />,
     tarifs: <PricingPage />,
     partenaires: <PartnersPage />,
     creer: <CreateTempoPage />,
