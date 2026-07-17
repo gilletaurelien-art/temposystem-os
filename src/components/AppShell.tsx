@@ -142,7 +142,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
       <EcosystemBlock lang={lang} />
 
       {/* L'île quitte le hero et devient une conclusion visuelle. */}
-      <section className="island-footer" aria-label={lang === "fr" ? "Le temps partagé laisse une trace" : "Shared time leaves a trace"}>
+      <section className="island-footer" aria-label={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective" : "The orchestration infrastructure for collective action"}>
         <div className="island-footer__frames" aria-hidden="true">
           <img className="island-footer__frame island-footer__frame--1" src="/islands/island-01-coordination-1400.jpg" alt="" loading="lazy" />
           <img className="island-footer__frame island-footer__frame--2" src="/islands/island-02-decision-1400.jpg" alt="" loading="lazy" />
@@ -151,8 +151,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         <div className="island-footer__veil" />
         <div className="island-footer__copy">
           <span>TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
-          <strong>{lang === "fr" ? "Le temps partagé laisse une trace." : "Shared time leaves a trace."}</strong>
-          <p>{lang === "fr" ? "Les besoins deviennent des actions. Les actions deviennent une mémoire commune." : "Needs become actions. Actions become a shared memory."}</p>
+          <strong>{lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."}</strong>
         </div>
       </section>
 
