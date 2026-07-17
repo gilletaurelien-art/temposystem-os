@@ -38,7 +38,7 @@ export function CreateTempoPage() {
   return <main className="create-tempo">
     <div className="create-tempo__shell">
       <header className="create-tempo__heading">
-        <p className="editorial-kicker">{lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}</p>
+        <p className="editorial-kicker">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</p>
         <h1>{lang === "fr" ? <>Partons d'un besoin <em>réel.</em></> : <>Start with one <em>real need.</em></>}</h1>
         <p>{lang === "fr" ? "Trois étapes pour préparer un premier échange utile. Comptez moins de trois minutes." : "Three steps to prepare a useful first conversation. It takes less than three minutes."}</p>
       </header>
