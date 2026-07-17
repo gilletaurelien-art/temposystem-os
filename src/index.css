@@ -1720,3 +1720,107 @@ h1::after, h2::after {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+
+/* Choix partenaire — trois cartes clairement actionnables */
+.partner-choice {
+  max-width: 980px;
+  margin: 0 0 42px;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  border: 1px solid rgba(36, 95, 118, 0.2);
+  border-radius: 1.4rem;
+  background: rgba(239, 248, 252, 0.78);
+  box-shadow: 0 1.25rem 3rem -2.5rem rgba(20, 72, 96, 0.34);
+  backdrop-filter: blur(12px);
+}
+
+.partner-choice__label {
+  margin: 0 0 0.85rem;
+  color: var(--ts-encre-titre);
+  font: 700 0.76rem var(--ts-font-system);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.partner-choice .partner-switch {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.partner-choice .partner-switch button {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "index title"
+    "index detail";
+  gap: 0.2rem 0.75rem;
+  min-height: 92px;
+  padding: 1rem;
+  border: 1px solid rgba(36, 95, 118, 0.22);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.52);
+  color: var(--ts-encre-muted);
+  text-align: left;
+  box-shadow: 0 0.45rem 1.25rem rgba(20, 72, 96, 0.04);
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.partner-choice .partner-switch button:hover,
+.partner-choice .partner-switch button:focus-visible {
+  border-color: rgba(36, 95, 118, 0.5);
+  background: rgba(255, 255, 255, 0.76);
+  transform: translateY(-2px);
+}
+
+.partner-choice .partner-switch button > span {
+  grid-area: index;
+  align-self: start;
+  margin: 0;
+  padding-top: 0.2rem;
+  color: var(--ts-terracotta);
+}
+
+.partner-choice .partner-switch button strong {
+  grid-area: title;
+  color: var(--ts-encre-titre);
+  font: 700 1rem/1.25 var(--ts-font-main);
+}
+
+.partner-choice .partner-switch button small {
+  grid-area: detail;
+  color: var(--ts-encre-muted);
+  font: 600 0.68rem/1.4 var(--ts-font-system);
+  letter-spacing: 0.04em;
+}
+
+.partner-choice .partner-switch button.is-active {
+  border-color: #286b64;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0 0 2px rgba(40, 107, 100, 0.14), 0 0.8rem 1.8rem rgba(20, 72, 96, 0.12);
+  transform: translateY(-2px);
+}
+
+.partner-choice .partner-switch button.is-active::after {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  content: "✓";
+  color: #286b64;
+  font: 800 0.85rem var(--ts-font-system);
+}
+
+@media (max-width: 760px) {
+  .partner-choice .partner-switch {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-choice .partner-switch button {
+    min-height: 76px;
+  }
+}
