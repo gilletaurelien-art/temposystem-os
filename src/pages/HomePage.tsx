@@ -35,6 +35,21 @@ const audiences = {
   ],
 } as const;
 
+const applicationUses = {
+  fr: [
+    ["Solidarité territoriale", "Relier un CCAS, des associations, des établissements et des bénévoles autour des besoins du territoire."],
+    ["Soin et présence", "Coordonner professionnels, familles, aidants et partenaires sans remplacer les outils de soin."],
+    ["Vie associative", "Organiser les missions, coopérer entre structures et reconnaître le temps bénévole."],
+    ["Réseaux et fédérations", "Partager un cadre et une mémoire communs tout en maintenant l'autonomie locale."],
+  ],
+  en: [
+    ["Local solidarity", "Connect social services, non-profits, institutions and volunteers around local needs."],
+    ["Care and presence", "Coordinate professionals, families, caregivers and partners without replacing care tools."],
+    ["Non-profit action", "Organise missions, cooperate across organisations and recognise volunteer time."],
+    ["Networks and federations", "Share a common framework and memory while preserving local autonomy."],
+  ],
+} as const;
+
 export function HomePage() {
   const { lang } = useLang();
 
@@ -102,6 +117,23 @@ export function HomePage() {
             </div>
           </div>
           <div className="editorial-actions"><a className="editorial-button editorial-button--secondary" href="#/tarifs">{lang === "fr" ? "Comparer les offres et les tarifs" : "Compare offers and pricing"}</a></div>
+        </div>
+      </section>
+
+      <section className="editorial-section editorial-section--tint" id="applications">
+        <div className="editorial-wrap">
+          <header className="editorial-heading">
+            <p className="editorial-kicker">{lang === "fr" ? "Usages" : "Use cases"}</p>
+            <h2>{lang === "fr" ? "Commencer par un problème réel" : "Start with one real problem"}</h2>
+            <p>{lang === "fr" ? "Chaque TEMPOsystem est configuré autour d'un périmètre clair, d'acteurs identifiés et d'un premier résultat observable." : "Each TEMPOsystem is configured around a clear scope, identified actors and a first observable outcome."}</p>
+          </header>
+          <div className="editorial-grid editorial-grid--two">
+            {applicationUses[lang].map(([title, body]) => <article className="editorial-card" key={title}><h3>{title}</h3><p>{body}</p></article>)}
+          </div>
+          <div className="editorial-actions">
+            <a href="#/creer" className="editorial-button editorial-button--primary">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
+            <a href="mailto:contact@manahome.org?subject=TEMPOsystem" className="editorial-button editorial-button--secondary">{lang === "fr" ? "Parler de mon territoire" : "Discuss my community"}</a>
+          </div>
         </div>
       </section>
 
