@@ -59,20 +59,28 @@ Fichier unique `src/styles/tokens.css`, seule source de vérité. Aucune couleur
 
 Interdits : couleur hors tokens, rouge hors incident réel (§20), dégradé hors dégradés à signification.
 
-## 2. Typographie — trois voix
+## 2. Typographie — deux voix *(révisé le 17/07/2026, aligné charte « Le Temps Vivant » §8)*
+
+> Historique : ce document décrivait Space Grotesk / Departure Mono / IBM Plex Mono (ère
+> Cognitive Pixel Music), puis la charte fondatrice Le Temps Vivant a posé Fraunces /
+> Instrument Sans / IBM Plex Mono. La révision typographique du 17/07/2026 (PR #7)
+> resserre à **deux voix** — c'est l'état du code.
 
 | Voix | Police | Chargement | Usage |
 |---|---|---|---|
-| **Principale** | **Space Grotesk** (400/500/700) | Google Fonts, `display=swap` | textes, nav, titres éditoriaux, boutons |
-| **Pixel** | **Departure Mono** (OFL, auto-hébergée `public/fonts/`) | `@font-face`, woff2 ~30 Ko | valeurs, équation, labels système, séquences, micro-titres — **jamais de paragraphe** |
-| **Système** | **IBM Plex Mono** (400/600) | Google Fonts | ADR, code, horodatages, métadonnées |
+| **Éditoriale** | **Philosopher** (400/700 + italiques — police **statique**) | Google Fonts, `display=swap` | `h1`/`h2`/`h3`, grandes promesses, citations manifestes. **Jamais** nav, boutons, champs, petits labels, longs paragraphes. |
+| **Courante & système** | **SF Mono** (pile système Apple ; secours web **Roboto Mono** 400/500/700) | pile : `"SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace` | corps, nav, boutons, labels, formulaires, listes, statuts, ADR, horodatages, équation, données |
 
-À terme : **TEMPO Pixel**, police propriétaire sur grille 8 px, remplacera Departure Mono.
-Philosopher n'est **pas** utilisée ici : c'est la voix de l'univers MANA (le badge « propulsé par » la garde, lui).
+Tokens : `--ts-font-titre` (Philosopher) · `--ts-font-main` / `--ts-font-system` (pile SF Mono, alias `--ts-mono-stack`). Le pont hérité `--ts-font-pixel` suit `--ts-font-system`. Tailwind `font-sans/mono/serif` pointe sur ces tokens.
 
-Classes utilitaires : `.t-manifesto` (Space Grotesk 700, clamp(2.8rem→5.5rem), lettres serrées) ·
-`.t-section` (Space Grotesk 500, 4–8 mots) · `.t-label` (petites caps, tracking .22em, Departure Mono) ·
-`.t-data` (Departure Mono) · `.t-body` (Space Grotesk 400, **max-width 68ch**) · `.t-system` (IBM Plex Mono).
+Contraintes d'implémentation :
+- `font-synthesis: none` est actif → Philosopher n'offre QUE 400/700 : pas de graisse 340/360/380, pas d'axe variable (`SOFT`/`WONK` étaient propres à Fraunces). Hiérarchie par la **taille**.
+- Corps monospace : base **≥ 16 px**, interligne **1.65–1.8** (⚠️ posé sur `body` dans `index.css`, pas `typography.css` — le preflight Tailwind est importé après et écraserait la valeur), paragraphes **≤ ~65ch**, graisse 400, `letter-spacing` **−0.01em**. Tracking large réservé aux petits labels en capitales.
+- Philosopher est **rapatriée** : elle n'est plus réservée au badge « propulsé par » — elle est la voix éditoriale du site (l'idée « TEMPO Pixel » propriétaire est abandonnée avec la voix pixel-texte).
+
+Classes utilitaires : `.t-manifesto` (Philosopher 400, clamp(2.6rem→5.4rem)) ·
+`.t-section` (Philosopher 400, 4–8 mots) · `.t-label` (petites caps, tracking .22em, SF Mono) ·
+`.t-data` (SF Mono) · `.t-body` (SF Mono 400, **max-width 65ch**) · `.t-system` (SF Mono).
 
 ## 3. Grille & responsive
 
@@ -153,7 +161,7 @@ Jamais d'autoplay. Volume persisté. Se coupe au niveau 0.
 ## 8. Performance
 
 - Lazy : chaque mouvement de la home est un composant chargé `React.lazy` en dessous de la ligne de flottaison ; canvas instancié à l'approche (IO rootMargin 200px).
-- Fonts : 2 familles Google + 1 woff2 local, `font-display: swap`, subset latin.
+- Fonts : 2 familles Google (Philosopher + Roboto Mono en secours de SF Mono), `font-display: swap`, subset latin — plus aucune woff2 locale.
 - Images : aucune image raster dans les mouvements (tout est dessiné) hors mascotte papillon éventuelle.
 - Cible Lighthouse : ≥ 90 perf mobile. Zéro dépendance ajoutée (pas de lib d'animation : CSS + rAF + SVG suffisent).
 

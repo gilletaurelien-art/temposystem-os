@@ -6,7 +6,7 @@
 <title>TEMPOSYSTEM — Le Temps Vivant · charte (jour / île)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     /* ── Base claire (jour) ── */
@@ -37,9 +37,9 @@
     --souffle: 5.2s;
     --ease-vivant: cubic-bezier(.37,0,.24,1);
     --max: 1180px;
-    --font-titre: "Fraunces", Georgia, serif;
-    --font-corps: "Instrument Sans", system-ui, -apple-system, sans-serif;
-    --font-sys:   "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+    --font-titre: "Philosopher", Georgia, serif;
+    --font-corps: "SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace;
+    --font-sys:   "SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace;
   }
 
   * { box-sizing: border-box; }
@@ -54,11 +54,11 @@
 
   .eyebrow { font-family: var(--font-sys); font-size: .72rem; letter-spacing: .26em;
     text-transform: uppercase; color: var(--encre-tenue); margin: 0 0 1.1em; }
-  h1,h2,h3 { font-family: var(--font-titre); font-weight: 380; letter-spacing: -.01em; }
+  h1,h2,h3 { font-family: var(--font-titre); font-weight: 400; letter-spacing: -.01em; }
   section { padding: clamp(56px, 8vw, 116px) 0; border-top: 1px solid var(--lisiere); }
   .section-title { font-size: clamp(1.7rem, 3.4vw, 2.7rem); margin: 0 0 .25em; }
   .lede { color: var(--encre-douce); max-width: 62ch; font-size: 1.06rem; }
-  em.k { font-style: italic; font-variation-settings:"SOFT" 50,"WONK" 1; color: var(--terre-cuite); }
+  em.k { font-style: italic; color: var(--terre-cuite); }
 
   /* ── HERO — l'île sur la mer ── */
   .hero { position: relative; color: var(--lumiere); background: var(--grad-mer); overflow: hidden; border-top: 0; }
@@ -67,8 +67,8 @@
     padding: clamp(22px, 5vw, 72px);
     background: linear-gradient(0deg, rgba(6,28,52,.72) 0%, rgba(6,28,52,.18) 34%, transparent 60%); }
   .signature { font-family: var(--font-sys); letter-spacing: .28em; text-transform: uppercase; font-size: .74rem; color: rgba(251,246,238,.82); }
-  .concept-name { font-family: var(--font-titre); font-weight: 340; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .98; margin: .12em 0 .18em; letter-spacing: -.02em; text-shadow: 0 2px 24px rgba(0,0,0,.4); }
-  .concept-name em { font-style: italic; font-variation-settings:"SOFT" 40,"WONK" 1; color: var(--miel); }
+  .concept-name { font-family: var(--font-titre); font-weight: 400; font-size: clamp(2.4rem, 7vw, 5rem); line-height: .98; margin: .12em 0 .18em; letter-spacing: -.02em; text-shadow: 0 2px 24px rgba(0,0,0,.4); }
+  .concept-name em { font-style: italic; color: var(--miel); }
 
   .panel { background: var(--lumiere); border: 1px solid var(--lisiere); border-radius: 22px;
     padding: clamp(26px,4vw,52px); box-shadow: 0 20px 50px -38px rgba(42,38,32,.5); }
@@ -97,7 +97,7 @@
   .type-grid { display:grid; gap:22px; margin-top:34px; }
   .spec { border:1px solid var(--lisiere); border-radius:16px; padding:26px 28px; background: var(--parchemin); }
   .spec .tag { font-family:var(--font-sys); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--encre-tenue); }
-  .spec .voix-titre { font-family:var(--font-titre); font-weight:350; font-size:clamp(1.9rem,5vw,3rem); line-height:1.03; margin:.18em 0; }
+  .spec .voix-titre { font-family:var(--font-titre); font-weight:400; font-size:clamp(1.9rem,5vw,3rem); line-height:1.03; margin:.18em 0; }
   .spec .voix-corps { font-family:var(--font-corps); font-size:1.02rem; color:var(--encre-douce); max-width:60ch; }
   .spec .voix-sys { font-family:var(--font-sys); font-size:.9rem; color:var(--maree); }
 
@@ -127,8 +127,8 @@
   .mock .bar .logo { display:flex; align-items:center; gap:9px; color:#f7f2e9; font-weight:600; }
   .mock .bar .nav { margin-left:auto; display:flex; gap:18px; }
   .mock .body { display:grid; grid-template-columns:1.1fr .9fr; gap:24px; padding:clamp(28px,5vw,56px); align-items:center; }
-  .mock h3 { font-family:var(--font-titre); font-weight:340; font-size:clamp(1.7rem,4vw,2.8rem); line-height:1.04; margin:0 0 .3em; color:#f7f2e9; }
-  .mock h3 em { font-style:italic; font-variation-settings:"SOFT" 50,"WONK" 1; color:var(--miel); }
+  .mock h3 { font-family:var(--font-titre); font-weight:400; font-size:clamp(1.7rem,4vw,2.8rem); line-height:1.04; margin:0 0 .3em; color:#f7f2e9; }
+  .mock h3 em { font-style:italic; color:var(--miel); }
   .mock p { color:rgba(242,237,227,.68); max-width:44ch; margin:0; }
   .mock .btns { margin-top:1.6em; display:flex; gap:12px; flex-wrap:wrap; }
   .mock .btn { display:inline-flex; align-items:center; gap:.5em; padding:.78em 1.35em; border-radius:999px;
@@ -264,16 +264,15 @@
 <!-- ══ 05 · TYPO ══ -->
 <section>
   <div class="wrap"><div class="panel">
-    <p class="eyebrow">05 · Typographie — trois voix</p>
-    <h2 class="section-title">Une serif vivante, une humaniste, une mono.</h2>
+    <p class="eyebrow">05 · Typographie — deux voix <span style="opacity:.55">(révisée le 17/07/2026)</span></p>
+    <h2 class="section-title">Une serif fondatrice, une mono honnête.</h2>
     <div class="type-grid">
-      <div class="spec"><div class="tag">Voix manifeste — Fraunces (organique, axes SOFT/WONK)</div>
+      <div class="spec"><div class="tag">Voix éditoriale — Philosopher (statique, 400/700)</div>
         <div class="voix-titre">Le temps donné devient une <em class="k">trace vivante</em>.</div>
-        <div class="voix-corps">Titres, manifeste, émotion. L'italique colore un mot-clé, souvent en terre cuite.</div></div>
-      <div class="spec"><div class="tag">Voix courante — Instrument Sans (humaniste)</div>
-        <div class="voix-corps" style="font-size:1.1rem;color:var(--encre)">Textes, navigation, descriptions, boutons. Lisible et chaleureuse — un grotesque humaniste, jamais froid.</div></div>
-      <div class="spec"><div class="tag">Voix système — IBM Plex Mono</div>
-        <div class="voix-sys">ADR-0012 · 2026-07-16 · une seconde = une trace · SYNCHRONISÉ · +1 (symbolique)</div></div>
+        <div class="voix-corps">Titres, grandes promesses, phrases manifestes. L'italique colore un mot-clé — jamais dans la nav, les boutons ni les champs. La hiérarchie se joue sur la taille, pas la graisse.</div></div>
+      <div class="spec"><div class="tag">Voix courante &amp; système — SF Mono (secours : Roboto Mono)</div>
+        <div class="voix-corps" style="font-size:1.05rem;color:var(--encre)">Corps, navigation, boutons, labels, formulaires, listes, statuts. Base ≥ 16 px, interligne 1.65–1.8, paragraphes ≤ 65 caractères, graisse normale.</div>
+        <div class="voix-sys" style="margin-top:.7em">ADR-0012 · 2026-07-17 · une seconde = une trace · SYNCHRONISÉ · +1 (symbolique)</div></div>
     </div>
   </div></div>
 </section>
