@@ -5,6 +5,7 @@ export const publicNavigation = [
   { label: { fr: "Accueil", en: "Home" }, route: "home", href: "#/" },
   { label: { fr: "Usages", en: "Use cases" }, route: "applications", href: "#/applications" },
   { label: { fr: "Tarifs", en: "Pricing" }, route: "tarifs", href: "#/tarifs" },
+  { label: { fr: "Partenaires", en: "Partners" }, route: "partenaires", href: "#/partenaires" },
   { label: { fr: "Fonctionnement", en: "How it works" }, route: "moteur", href: "#/moteur" },
   { label: { fr: "Confiance", en: "Trust" }, route: "memoire", href: "#/memoire" },
   { label: { fr: "Ressources", en: "Resources" }, route: "manifeste", href: "#/manifeste" },
