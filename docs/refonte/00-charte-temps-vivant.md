@@ -1,6 +1,6 @@
 # CHARTE GRAPHIQUE TEMPOSYSTEM — Le Temps Vivant
 
-**Version fondatrice — juillet 2026** · Gravée au dépôt le 16/07/2026 · **Révision typographique du 17/07/2026** (§8, §23 : Philosopher + SF Mono remplacent Fraunces / Instrument Sans / IBM Plex Mono).
+**Version fondatrice — juillet 2026** · Gravée au dépôt le 16/07/2026 · **Révisions du 17/07/2026** : typographie (§8, §23 : Philosopher + SF Mono) · encres du texte (§6 : famille marine sur ciel).
 *Refonte de la charte « Cognitive Pixel Music » (voir [archive](00-charte-cognitive-pixel-music.md)).*
 *Aperçu de référence : [planche-temps-vivant.html](planche-temps-vivant.html).*
 
@@ -66,7 +66,13 @@ Le cœur d'énergie devient un **soleil en pixel art** : un disque construit en 
 | **Ombre de nuage** | `#C7DEEF` | face inférieure des nuages (pixel-shading) |
 | **Parchemin** | `#FBFAF5` | cartes, panneaux, surfaces de lecture |
 | **Parchemin alt** | `#F3EFE4` | surfaces secondaires |
-| **Encre** | `#2A2620` | texte (brun d'encre chaud, jamais noir pur) |
+| **Encre d'abysse** | `#0E2A38` | **titres** (h1/h2/h3) — bleu-nuit marin profond (≥ 8.5:1 sur le ciel) |
+| **Marée d'encre** | `#19525B` | **sous-titres**, kickers, numérotations (≥ 5:1) |
+| **Encre marine** | `#143140` | texte courant & interface, jamais noir pur |
+| **Ardoise marine** | `rgba(20,49,64,.78)` | **paragraphes** (≥ 4.4:1) |
+| **Terracotta d'encre** | `#B44E2E` | accent italique des grands titres sur ciel (≥ 3:1) |
+
+*Révision du 17/07/2026 — l'encre brune `#2A2620` (héritée du parchemin) est supplantée : depuis que le site vit sur le ciel, le texte appartient à une **famille d'encres marines** — même monde que le ciel, la marée et les mouettes. Trois profondeurs font la hiérarchie (titre → sous-titre → paragraphe) ; le terracotta reste le seul accent chaud du texte.*
 
 ### Le cycle du jour (accents — chaque couleur code une fonction)
 

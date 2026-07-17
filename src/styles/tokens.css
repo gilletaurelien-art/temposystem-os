@@ -23,13 +23,19 @@
   --ts-cloud: #feffff;          /* nuages, points de lumière */
   --ts-cloud-shadow: #c7deef;   /* face inférieure (pixel-shading) */
 
-  /* ---- Matière (surfaces & encre, charte §6) ---- */
+  /* ---- Matière (surfaces & encre, charte §6 — RÉVISION 17/07/2026) ----
+     Le texte vit sur le CIEL : l'encre brune du parchemin cède la place à une
+     famille d'ENCRES MARINES (même monde que le ciel, la marée, les mouettes).
+     Trois profondeurs = la hiérarchie ; le terracotta reste l'accent chaud. */
   --ts-parchment: #fbfaf5;      /* cartes, panneaux, surfaces de lecture */
   --ts-parchment-2: #f3efe4;    /* surfaces secondaires */
-  --ts-encre: #2a2620;          /* texte — brun d'encre chaud, jamais noir pur */
-  --ts-encre-muted: rgba(42, 38, 32, 0.66);
-  --ts-encre-faint: rgba(42, 38, 32, 0.42);
-  --ts-hairline: rgba(42, 38, 32, 0.14);
+  --ts-encre-titre: #0e2a38;    /* titres — encre d'abysse (8.5:1+ sur le ciel) */
+  --ts-sous-titre: #19525b;     /* sous-titres, kickers, numérotations — marée d'encre */
+  --ts-encre: #143140;          /* texte courant & UI — encre marine, jamais noir pur */
+  --ts-encre-muted: rgba(20, 49, 64, 0.78);  /* paragraphes — ardoise marine */
+  --ts-encre-faint: rgba(20, 49, 64, 0.48);
+  --ts-hairline: rgba(20, 49, 64, 0.15);
+  --ts-terracotta-encre: #b44e2e; /* accent italique des GRANDS titres sur ciel (3:1) */
 
   /* ---- Le cycle du jour (accents — chaque couleur CODE une fonction, §6/§7) ---- */
   --ts-sun: #f2a73b;            /* énergie donnée, décision, aube, source */

@@ -1,8 +1,8 @@
 .selector-hero { padding: clamp(32px, 5vw, 72px); color: var(--ts-encre); background: transparent; }
 .selector-hero__wrap { position: relative; width: min(1320px, 100%); margin: 0 auto; padding: clamp(48px, 7vw, 92px); border-radius: 26px; color: var(--ts-encre); }
 .selector-hero__intro { position: relative; z-index: 2; }
-.selector-hero__intro h1 { margin: 0; color: var(--ts-encre); font-size: clamp(2.5rem, 5.8vw, 5rem); font-weight: 400; line-height: .99; letter-spacing: -.02em; }
-.selector-hero__intro h1 em { color: var(--ts-terracotta); font-style: italic; }
+.selector-hero__intro h1 { margin: 0; color: var(--ts-encre-titre); font-size: clamp(2.5rem, 5.8vw, 5rem); font-weight: 400; line-height: .99; letter-spacing: -.02em; }
+.selector-hero__intro h1 em { color: var(--ts-terracotta-encre); font-style: italic; }
 .selector-hero__intro > p:last-child { max-width: 860px; margin: 25px 0 0; color: var(--ts-encre-muted); font-size: clamp(1rem, 1.7vw, 1.18rem); line-height: 1.68; }
 .selector-pipe { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 44px 1fr 44px 1.05fr; align-items: stretch; margin-top: clamp(58px, 7vw, 88px); }
 .selector-pipe__step, .selector-pipe__result { position: relative; min-height: 220px; padding: 25px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.035); }
@@ -21,7 +21,7 @@
 .selector-pipe__result { background: rgba(255,255,255,.06); transition: background .2s ease, transform .2s ease, border-color .2s ease; }
 .selector-pipe__result.is-ready { border-color: rgba(242,167,59,.42); background: rgba(214,112,74,.1); transform: translateY(-4px); }
 .selector-pipe__result .selector-pipe__number, .selector-pipe__result small { color: var(--ts-terracotta); }
-.selector-pipe__result strong { display: block; color: var(--ts-encre); font: 400 1.45rem var(--ts-font-titre); }
+.selector-pipe__result strong { display: block; color: var(--ts-encre-titre); font: 400 1.45rem var(--ts-font-titre); }
 .selector-pipe__result strong b { color: var(--ts-terracotta); font-weight: 500; }
 .selector-pipe__result p { margin: 12px 0 0; color: var(--ts-encre-muted); font-size: .9rem; line-height: 1.55; }
 .selector-pipe__result a { display: inline-flex; margin-top: 16px; color: #286b64; font-size: .86rem; font-weight: 650; text-decoration: none; }

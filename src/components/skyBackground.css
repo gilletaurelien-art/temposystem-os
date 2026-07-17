@@ -82,7 +82,7 @@
    (échange de poses pixel, sans interpolation) puis un long plané.
    Au repos (motion 0) : pose de plané, posée dans le ciel. */
 .sky-bg__gull { position: absolute; will-change: transform; opacity: 0.55; }
-.sky-bg__gull svg { fill: #2a2620; }
+.sky-bg__gull svg { fill: var(--ts-encre); }
 .sky-bg__gull > svg { animation: gull-tangage 7s ease-in-out infinite alternate; }
 .gull-glide { opacity: 1; animation: gull-pose-glide 3.2s infinite; }
 .gull-flap  { opacity: 0; animation: gull-pose-flap 3.2s infinite; }
