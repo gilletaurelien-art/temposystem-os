@@ -3,7 +3,11 @@
 .selector-hero__intro { position: relative; z-index: 2; }
 .selector-hero__intro h1 { margin: 0; color: var(--ts-encre-titre); font-size: clamp(2.5rem, 5.8vw, 5rem); font-weight: 400; line-height: .99; letter-spacing: -.02em; }
 .selector-hero__intro h1 em { color: var(--ts-terracotta-encre); font-style: italic; }
-.selector-hero__intro > p:last-child { max-width: 860px; margin: 25px 0 0; color: var(--ts-encre-muted); font-size: clamp(1rem, 1.7vw, 1.18rem); line-height: 1.68; }
+/* Paragraphe lead uniquement (le <p> qui suit le titre) — laisse kicker et preuve
+   porter leurs propres couleurs (marée d'encre) sans être écrasés. */
+.selector-hero__intro > h1 + p { max-width: 860px; margin: 25px 0 0; color: var(--ts-encre-muted); font-size: clamp(1rem, 1.7vw, 1.18rem); line-height: 1.68; }
+/* Ligne de preuve — voix système, marée d'encre (charte §6 révisée) */
+.selector-hero__proof { margin: 18px 0 0; color: var(--ts-sous-titre); font: 600 12px/1.6 var(--ts-font-system); letter-spacing: .08em; text-transform: uppercase; }
 .selector-pipe { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 44px 1fr 44px 1.05fr; align-items: stretch; margin-top: clamp(58px, 7vw, 88px); }
 .selector-pipe__step, .selector-pipe__result { position: relative; min-height: 220px; padding: 25px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.035); }
 .selector-pipe__number { display: block; margin-bottom: 28px; color: var(--ts-terracotta); font: 500 10px var(--ts-font-system); letter-spacing: .2em; }

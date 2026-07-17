@@ -50,8 +50,6 @@ export function TempoHero() {
         <p>{lang === "fr" ? "TEMPOSYSTEM réunit vos équipes, vos participants et vos actions dans un environnement numérique adapté à votre structure." : "TEMPOSYSTEM brings your teams, participants and actions together in a digital environment adapted to your organisation."}</p>
         <p className="selector-hero__proof">{lang === "fr" ? "Simple à déployer · Sur mesure dans son apparence · Souverain dans ses données" : "Simple to deploy · Tailored in appearance · Sovereign by design"}</p>
       </div>
-      <div className="selector-hero__rings" aria-hidden="true"><i /><i /><i /><b /></div>
-
       <div className="selector-pipe" aria-label={lang === "fr" ? "Trouver mon TEMPOSYSTEM" : "Find my TEMPOSYSTEM"}>
         <div className="selector-pipe__step">
           <span className="selector-pipe__number">01</span>
