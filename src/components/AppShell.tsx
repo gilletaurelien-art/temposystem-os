@@ -147,38 +147,6 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           <strong>{lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."}</strong>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="os-footer relative z-10">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <div>
-            <p className="os-footer-brand">
-              TEMPO<span className="os-footer-sys">system</span>
-            </p>
-            <p className="os-footer-copy">
-              {lang === "fr"
-                ? "Chaque décision importante laisse une trace. Chaque évolution s'appuie sur la mémoire du système et rayonne vers l'ensemble de la coopération."
-                : "Every important decision leaves a trace. Every evolution builds on the system's memory and radiates across the whole cooperation."}
-            </p>
-            <p className="os-footer-meta">
-              {lang === "fr"
-                ? "Launch 000 · Premier déploiement public · 2026"
-                : "Launch 000 · First public deployment · 2026"}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {publicNavigation.slice(1).map((item) => (
-              <a
-                key={item.route}
-                href={item.href}
-                className="os-footer-link"
-              >
-                {item.label[lang]}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
