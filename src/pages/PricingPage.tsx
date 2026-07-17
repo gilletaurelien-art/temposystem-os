@@ -155,7 +155,7 @@ export function PricingPage() {
         <ul>{formula.included[lang].map((item) => <li key={item}>{item}</li>)}</ul>
         <div className="pricing-card__price"><span>{lang === "fr" ? "Abonnement" : "Subscription"}</span><strong>{formula.annualPrice[lang]}</strong></div>
         <p><strong>{lang === "fr" ? "Mise en place : " : "Setup: "}</strong>{formula.setupPrice[lang]}</p>
-        <a className="civic-button civic-button--primary" href={formula.slug === "decouverte" ? "#/creer?formule=decouverte" : `#/creer?formule=${formula.slug}`}>{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
+        <a className="civic-button civic-button--primary pricing-card__cta" href={formula.slug === "decouverte" ? "#/creer?formule=decouverte" : `#/creer?formule=${formula.slug}`}>{lang === "fr" ? `Rejoindre TEMPOsystem ${formula.name}` : `Join TEMPOsystem ${formula.name}`}</a>
       </article>)}
     </div>
 

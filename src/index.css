@@ -468,6 +468,9 @@ h1::after, h2::after {
 .pricing-card__price { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-top: auto; padding: 18px 0; border-top: 1px solid var(--ts-hairline); }
 .pricing-card__price span { color: var(--ts-encre-muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
 .pricing-card__price strong { color: var(--ts-encre); font-size: 1.15rem; }
+/* CTA des offres : bouton BLANC, écriture NOIRE (adapté à chaque formule) */
+.pricing-card__cta { color: #171310; background: #fff; border: 1px solid var(--ts-hairline); box-shadow: 0 10px 24px -14px rgba(42,38,32,.28); }
+.pricing-card__cta:hover { background: #fff; border-color: color-mix(in srgb, var(--ts-encre) 30%, var(--ts-hairline)); }
 
 /* ---- PARTENAIRES : PUBLIC / PRIVÉ ---- */
 .partner-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 760px; margin-bottom: 38px; padding: 6px; border: 1px solid var(--ts-hairline); border-radius: 14px; background: rgba(255,255,255,.46); }
