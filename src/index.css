@@ -210,6 +210,18 @@ h1::after, h2::after {
 /* Wordmark « TEMPOsystem » : TEMPO en gras, system plus léger */
 .os-brand-sys { font-weight: 400; }
 .os-footer-sys { font-weight: 400; }
+/* Caret de la machine à écrire du logo — clignote pendant la frappe, s'efface après */
+.os-brand-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  margin-left: 2px;
+  background: var(--ts-terracotta);
+  vertical-align: -0.08em;
+  animation: os-brand-caret 1s steps(1) infinite;
+}
+@keyframes os-brand-caret { 50% { opacity: 0; } }
+.os-brand-caret.is-done { animation: none; opacity: 0; transition: opacity 0.5s ease 0.9s; }
 
 .os-nav-link {
   padding: 6px 14px;

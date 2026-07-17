@@ -43,6 +43,39 @@ function Typewriter({ text }: { text: string }) {
   );
 }
 
+/** Wordmark « TEMPOsystem » qui se tape UNE FOIS au chargement (machine à écrire).
+ *  TEMPO en gras, system plus léger ; caret doré qui s'efface une fois fini.
+ *  Un logo ne boucle pas : il se tape puis reste. Respecte prefers-reduced-motion. */
+function BrandTypewriter() {
+  const full = "TEMPOsystem";
+  const split = 5; // « TEMPO » | « system »
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setN(full.length);
+      return;
+    }
+    let i = 0;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      i += 1;
+      setN(i);
+      if (i < full.length) timer = setTimeout(tick, 90);
+    };
+    timer = setTimeout(tick, 280); // petit délai avant de commencer
+    return () => clearTimeout(timer);
+  }, []);
+  const shown = full.slice(0, n);
+  const done = n >= full.length;
+  return (
+    <span aria-label={full}>
+      <span aria-hidden="true">{shown.slice(0, split)}</span>
+      <span className="os-brand-sys" aria-hidden="true">{shown.slice(split)}</span>
+      <span className={`os-brand-caret${done ? " is-done" : ""}`} aria-hidden="true" />
+    </span>
+  );
+}
+
 /** Toggle langue FR / EN — réutilisé dans le header desktop et le menu mobile. */
 function LangToggle({ lang, setLang }: { lang: Language; setLang: (l: Language) => void }) {
   return (
@@ -87,8 +120,8 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
 
       {/* Header */}
       <header className="os-header">
-        <a href="#/" className="os-brand" onClick={() => setMenuOpen(false)}>
-          TEMPO<span className="os-brand-sys">system</span>
+        <a href="#/" className="os-brand" aria-label="TEMPOsystem" onClick={() => setMenuOpen(false)}>
+          <BrandTypewriter />
         </a>
 
         {/* Navigation en ligne — grand écran (≥ lg) */}
