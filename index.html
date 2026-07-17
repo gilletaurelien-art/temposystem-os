@@ -33,12 +33,16 @@
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
-    <!-- Les trois voix typographiques (charte « Le Temps Vivant » §8) :
-         Fraunces (manifeste, serif organique) · Instrument Sans (courante, humaniste) · IBM Plex Mono (système) -->
+    <!-- Les deux voix typographiques : Philosopher (hiérarchie éditoriale — h1/h2/h3,
+         promesses, phrases manifestes) · SF Mono (corps, interface, données).
+         SF Mono n'est pas distribuable sur le web : elle est prise dans la pile système
+         Apple ; Roboto Mono est chargée en secours web pour les appareils non-Apple.
+         Philosopher est chargée en 400/700, romain ET italique : `font-synthesis: none`
+         est actif, aucune graisse ni italique ne serait synthétisée. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..600,0..100,0..1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <!-- HERO reconstruit en code léger (Cognitive Pixel Music) : plus d'image

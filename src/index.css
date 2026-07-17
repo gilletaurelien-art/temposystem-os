@@ -19,6 +19,10 @@ body {
   min-height: 100vh;
   margin: 0;
   background: var(--ts-parchment);
+  /* L'interligne vit ICI et non dans typography.css : le preflight Tailwind
+     (`@tailwind base`, importé après) pose `body { line-height: inherit }` et
+     écraserait la valeur. Le corps est en monospace → il lui faut de l'air. */
+  line-height: 1.7;
 }
 
 button,
@@ -27,10 +31,11 @@ input {
   font: inherit;
 }
 
-/* ---- TYPOGRAPHY ---- */
+/* ---- TYPOGRAPHY ----
+   Philosopher (statique) : 400 seulement ici — la hiérarchie vient de la taille. */
 h1, h2, h3 {
   font-family: var(--ts-font-titre);
-  font-weight: 380;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
@@ -147,13 +152,16 @@ h1, h2, h3 {
 }
 
 .os-brand {
-  /* Voix principale de la charte Cognitive Pixel Music (Philosopher reste à MANA) */
-  font-family: var(--ts-font-main, 'Space Grotesk', sans-serif);
+  /* Le wordmark vit dans la nav → voix courante (SF Mono), jamais Philosopher.
+     Le mono est large : sans ce tracking resserré, l'en-tête déborde en 1280px. */
+  font-family: var(--ts-font-main);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.01em;
   color: var(--ts-encre);
   text-decoration: none;
+  flex-shrink: 0;   /* le mono est large : sans ça le flex comprime le wordmark */
+  white-space: nowrap;
 }
 .os-brand-mark { width: 30px; height: 30px; object-fit: contain; filter: sepia(.25) saturate(.75) drop-shadow(0 3px 7px rgba(42,38,32,.12)); }
 
@@ -161,8 +169,8 @@ h1, h2, h3 {
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 12px;
-  font-family: ui-monospace, 'SF Mono', monospace;
-  letter-spacing: 0.06em;
+  font-family: var(--ts-font-system);
+  letter-spacing: 0.01em; /* mono déjà large : tracking minimal pour tenir la nav */
   color: var(--ts-encre-muted);
   transition: color 160ms, background 160ms;
   text-decoration: none;
@@ -203,7 +211,7 @@ h1, h2, h3 {
 /* ---- FOOTER LINK ---- */
 .os-footer-link {
   font-size: 13px;
-  font-family: 'SF Mono', 'SFMono-Regular', ui-monospace, monospace;
+  font-family: var(--ts-font-system);
   color: var(--ts-encre-muted);
   text-decoration: none;
   transition: color 160ms;
@@ -225,7 +233,7 @@ h1, h2, h3 {
 .island-footer__veil { background: linear-gradient(90deg, rgba(9,22,32,.76) 0%, rgba(9,22,32,.28) 48%, transparent 75%), linear-gradient(0deg, rgba(9,22,32,.38), transparent 45%); }
 .island-footer__copy { position: absolute; z-index: 2; left: max(24px, calc((100% - 1180px) / 2)); bottom: clamp(34px, 7vw, 90px); width: min(580px, calc(100% - 48px)); }
 .island-footer__copy span { display: block; margin-bottom: 18px; color: rgba(247,242,233,.7); font: 500 10px var(--ts-font-system); letter-spacing: .22em; }
-.island-footer__copy strong { display: block; font: 340 clamp(2rem, 4.6vw, 4.3rem)/1.02 var(--ts-font-titre); letter-spacing: -.02em; }
+.island-footer__copy strong { display: block; font: 400 clamp(2rem, 4.6vw, 4.3rem)/1.02 var(--ts-font-titre); letter-spacing: -.02em; }
 .island-footer__copy p { max-width: 520px; margin: 18px 0 0; color: rgba(247,242,233,.78); font-size: clamp(.95rem, 1.6vw, 1.12rem); line-height: 1.65; }
 @media (max-width: 700px) { .island-footer { aspect-ratio: 4 / 5; } .island-footer__frame { object-position: center; } .island-footer__veil { background: linear-gradient(0deg, rgba(9,22,32,.82), rgba(9,22,32,.08) 70%); } }
 @media (prefers-reduced-motion: reduce) { .island-footer__frame { animation: none; opacity: 0; } .island-footer__frame--2 { opacity: 1; } }
@@ -300,7 +308,7 @@ h1, h2, h3 {
 .os-menu-link {
   padding: 13px 14px;
   border-radius: 12px;
-  font-family: ui-monospace, 'SF Mono', monospace;
+  font-family: var(--ts-font-system);
   font-size: 15px;
   letter-spacing: 0.04em;
   color: var(--ts-encre-muted);
@@ -321,7 +329,7 @@ h1, h2, h3 {
 
 /* ---- EYEBROW ---- */
 .os-eyebrow {
-  font-family: ui-monospace, 'SF Mono', monospace;
+  font-family: var(--ts-font-system);
   font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
@@ -1245,7 +1253,7 @@ h1, h2, h3 {
   gap: 1px;
   pointer-events: none;
   user-select: none;
-  font-family: 'SF Mono', 'SFMono-Regular', ui-monospace, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--ts-font-system);
 }
 .hts-counter-left  { top: 38.8%; left: 29.6%; transform: translate(-50%, calc(-50% + 0.3cm)); }
 .hts-counter-right { top: 38.8%; left: 70.4%; transform: translate(-50%, calc(-50% + 0.3cm)); }
@@ -1302,7 +1310,7 @@ h1, h2, h3 {
   justify-content: space-between;
   width: min(90vw, 620px);
   gap: 0.5em;
-  font-family: 'Philosopher', serif;
+  font-family: var(--ts-font-titre);
   font-weight: 700;
   font-size: clamp(17px, 2.6vw, 32px);
   letter-spacing: 0.015em;

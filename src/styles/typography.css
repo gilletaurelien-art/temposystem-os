@@ -1,19 +1,32 @@
 /**
- * TEMPOSYSTEM — hiérarchie typographique (charte « Le Temps Vivant » §8).
- * Trois voix : manifeste (Fraunces, serif organique) · courante (Instrument Sans, humaniste)
- * · système/data (IBM Plex Mono). La voix pixel-texte est abandonnée : le pixel vit dans l'image.
+ * TEMPOSYSTEM — hiérarchie typographique.
+ * Deux voix : éditoriale (Philosopher, serif) · courante & système (SF Mono).
+ *
+ * Philosopher porte la vision : titres (h1/h2/h3), grandes promesses, phrases
+ * manifestes. Elle est STATIQUE — seules les graisses 400 et 700 existent, et
+ * `font-synthesis: none` interdit toute synthèse : ne jamais demander 340/360/380
+ * (elles retomberaient toutes sur 400) ni d'axe variable (SOFT/WONK étaient propres
+ * à Fraunces). La hiérarchie se joue donc sur la TAILLE, pas sur la graisse.
+ *
+ * SF Mono porte le reste : corps, navigation, boutons, labels, formulaires, listes,
+ * statuts. Le monospace fatigue en bloc dense → base 16px, interligne 1.65–1.8,
+ * paragraphes ≤ 65ch, graisse 400, letter-spacing légèrement resserré.
  */
 
 body {
   font-family: var(--ts-font-main);
+  font-size: 16px;      /* base confortable pour un corps en monospace */
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--ts-ink);
+  /* NB : `line-height` est posé dans index.css — le preflight Tailwind y est importé
+     après et écraserait toute valeur déclarée ici (`body { line-height: inherit }`). */
 }
 
-/* Titre manifeste — Fraunces, très grand, peu de mots. L'italique colore un mot-clé. */
+/* Titre manifeste — Philosopher, très grand, peu de mots. L'italique colore un mot-clé. */
 .t-manifesto {
   font-family: var(--ts-font-titre);
-  font-optical-sizing: auto;
-  font-weight: 360;
+  font-weight: 400;
   font-size: clamp(2.6rem, 7vw, 5.4rem);
   line-height: 1.0;
   letter-spacing: -0.02em;
@@ -21,22 +34,21 @@ body {
 }
 .t-manifesto em {
   font-style: italic;
-  font-variation-settings: "SOFT" 40, "WONK" 1;
   color: var(--ts-terracotta);
 }
 
-/* Titre de section — Fraunces, éditorial, 4 à 8 mots */
+/* Titre de section — Philosopher, éditorial, 4 à 8 mots */
 .t-section {
   font-family: var(--ts-font-titre);
-  font-optical-sizing: auto;
-  font-weight: 380;
+  font-weight: 400;
   font-size: clamp(1.6rem, 3.4vw, 2.5rem);
   line-height: 1.12;
   letter-spacing: -0.01em;
   color: var(--ts-ink);
 }
 
-/* Label système — IBM Plex Mono, petites capitales, espacement généreux */
+/* Label système — SF Mono, petites capitales, espacement généreux.
+   Les capitales restent réservées aux libellés COURTS : jamais un bloc entier. */
 .t-label {
   font-family: var(--ts-font-system);
   font-size: 11px;
@@ -52,13 +64,14 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* Corps de texte — largeur contenue (60-70 caractères) */
+/* Corps de texte — largeur contenue (~65 caractères), interligne aéré pour le mono */
 .t-body {
   font-family: var(--ts-font-main);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.75;
-  max-width: 68ch;
+  letter-spacing: -0.01em;
+  max-width: 65ch;
   color: var(--ts-ink-muted);
 }
 

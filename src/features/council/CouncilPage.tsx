@@ -195,7 +195,7 @@ export function CouncilPage() {
             <p className="text-sm font-semibold uppercase text-[#a78bfa]">
               TEMPOSYSTEM
             </p>
-            <h1 className="mt-2 font-['Philosopher',serif] text-3xl font-semibold text-white sm:text-4xl">
+            <h1 className="mt-2 text-3xl font-semibold text-white sm:text-4xl">
               {copy.title[lang]}
             </h1>
           </div>

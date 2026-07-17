@@ -72,10 +72,17 @@
   --ts-gutter: clamp(20px, 5vw, 56px);
   --ts-space-unit: 8px;
 
-  /* ---- Voix typographiques (§8) ---- */
-  --ts-font-titre: "Fraunces", Georgia, "Times New Roman", serif;         /* manifeste */
-  --ts-font-main: "Instrument Sans", system-ui, -apple-system, sans-serif; /* courante */
-  --ts-font-system: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;   /* système/data */
+  /* ---- Voix typographiques (§8) ----
+     Deux voix : Philosopher porte la hiérarchie éditoriale (h1/h2/h3, promesses,
+     phrases manifestes) ; SF Mono porte tout le reste (corps, nav, boutons, labels,
+     formulaires, données). Philosopher est une police STATIQUE : seules les graisses
+     400 et 700 existent — ne pas redemander de graisse intermédiaire.
+     SF Mono n'est pas distribuable sur le web : pile système Apple d'abord, puis
+     Roboto Mono (Google Fonts) en secours web, puis les mono système. */
+  --ts-mono-stack: "SFMono-Regular", "SF Mono", "Roboto Mono", "Liberation Mono", "Courier New", monospace;
+  --ts-font-titre: "Philosopher", Georgia, "Times New Roman", serif; /* manifeste — éditorial seul */
+  --ts-font-main: var(--ts-mono-stack);   /* courante — corps, nav, boutons, formulaires */
+  --ts-font-system: var(--ts-mono-stack); /* système/data — labels, statuts, horodatages */
 
   /* ======== Pont hérité (legacy « Cognitive Pixel Music ») — À MIGRER ========
      Reproduit l'ancienne identité pour ne pas casser les 11 mouvements pendant leur

@@ -10,8 +10,12 @@ const config: Config = {
         harbor: "#0f766e",
         signal: "#2563eb",
       },
+      /* Les familles Tailwind pointent sur les tokens (source de vérité : styles/tokens.css)
+         pour qu'aucune utilitaire `font-*` ne puisse réintroduire une police non chargée. */
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--ts-font-main)"],
+        mono: ["var(--ts-font-system)"],
+        serif: ["var(--ts-font-titre)"],
       },
     },
   },
