@@ -102,8 +102,8 @@ export function PricingPage() {
   return <Section
     eyebrow={lang === "fr" ? "Offres & tarifs" : "Offers & pricing"}
     title={lang === "fr" ? "Rejoindre le réseau commun. Ou disposer de votre environnement." : "Join the shared network. Or add your own environment."}
-    intro={lang === "fr" ? "MANAfrance est le réseau civique prêt à rejoindre. TEMPOsystem inclut MANAfrance et ajoute votre extranet, votre application PWA, votre identité et les configurations dont vous avez besoin." : "MANAfrance is the civic network ready to join. TEMPOsystem includes MANAfrance and adds your extranet, installable PWA, identity and the configurations you need."}
   >
+    <aside className="civic-note">{lang === "fr" ? "MANAfrance fonctionne grâce à TEMPOsystem. Rejoignez le réseau commun, ou choisissez TEMPOsystem pour disposer en plus de votre propre environnement." : "MANAfrance runs on TEMPOsystem. Join the shared network, or choose TEMPOsystem to also get your own environment."}</aside>
     <div className="pricing-principles">
       <div><strong>{lang === "fr" ? "La formule" : "The plan"}</strong><span>{lang === "fr" ? "Elle fixe la capacité et le nombre de TEMPOsystemS inclus." : "It sets capacity and the number of included TEMPOsystemS."}</span></div>
       <div><strong>{lang === "fr" ? "La mise en place" : "Setup"}</strong><span>{lang === "fr" ? "Elle construit votre environnement et décline votre identité graphique." : "It builds your environment and adapts your visual identity."}</span></div>
