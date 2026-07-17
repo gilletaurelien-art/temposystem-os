@@ -71,6 +71,27 @@ function PixelSun() {
   );
 }
 
+/* Une mouette pixel, très fine : deux poses (plané / battement) échangées en
+   animation d'images — elle plane au vent et bat de l'aile par petites rafales. */
+function Gull() {
+  const draw = (spans: Span[], cls: string) => (
+    <g className={cls}>
+      {spans.map(([y, x1, x2]) => (
+        <rect key={`${y}-${x1}`} x={x1} y={y} width={x2 - x1 + 1} height={1} />
+      ))}
+    </g>
+  );
+  // Plané : ailes hautes, corps tendu · Battement : ailes rabattues sous le corps
+  const GLIDE: Span[] = [[0, 0, 1], [0, 11, 12], [1, 1, 3], [1, 9, 11], [2, 3, 9]];
+  const FLAP: Span[] = [[2, 3, 9], [3, 1, 3], [3, 9, 11], [4, 0, 1], [4, 11, 12]];
+  return (
+    <svg viewBox="0 0 13 5" shapeRendering="crispEdges" aria-hidden="true">
+      {draw(GLIDE, "gull-glide")}
+      {draw(FLAP, "gull-flap")}
+    </svg>
+  );
+}
+
 export function SkyBackground() {
   return (
     <div className="sky-bg" aria-hidden="true">
@@ -104,6 +125,11 @@ export function SkyBackground() {
           shadow={[[3, 2, 11], [4, 4, 9]]}
         />
       </div>
+
+      {/* Trois mouettes au vent — silhouettes fines, plané + petites rafales d'ailes */}
+      <div className="sky-bg__gull sky-bg__gull--1"><Gull /></div>
+      <div className="sky-bg__gull sky-bg__gull--2"><Gull /></div>
+      <div className="sky-bg__gull sky-bg__gull--3"><Gull /></div>
 
       {/* Voile de lumière — assied le texte sur le ciel (§3) */}
       <div className="sky-bg__veil" />

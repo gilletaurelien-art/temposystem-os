@@ -76,6 +76,58 @@
   to   { transform: translateY(4px); }
 }
 
+/* ── Mouettes (§10 : présence du vivant) — très fines, silhouettes d'encre ──
+   Elles traversent le ciel plus vite que les nuages (le vent les porte), avec
+   un léger tangage. L'aile bat par PETITES RAFALES : deux battements brefs
+   (échange de poses pixel, sans interpolation) puis un long plané.
+   Au repos (motion 0) : pose de plané, posée dans le ciel. */
+.sky-bg__gull { position: absolute; will-change: transform; opacity: 0.55; }
+.sky-bg__gull svg { fill: #2a2620; }
+.sky-bg__gull > svg { animation: gull-tangage 7s ease-in-out infinite alternate; }
+.gull-glide { opacity: 1; animation: gull-pose-glide 3.2s infinite; }
+.gull-flap  { opacity: 0; animation: gull-pose-flap 3.2s infinite; }
+
+.sky-bg__gull--1 {
+  top: 21vh; left: 34vw; width: 30px;
+  animation: sky-drift 130s linear infinite;
+  animation-delay: -63s; /* à l'ouverture : ~30vw, en plein ciel */
+}
+.sky-bg__gull--2 {
+  top: 24vh; left: 40vw; width: 21px;
+  animation: sky-drift 138s linear infinite;
+  animation-delay: -60s; /* compagne de la première, un peu en retrait */
+  opacity: 0.45;
+}
+.sky-bg__gull--2 > svg { animation-duration: 5.5s; animation-delay: -2s; }
+.sky-bg__gull--2 .gull-glide, .sky-bg__gull--2 .gull-flap { animation-delay: -1.3s; animation-duration: 2.9s; }
+.sky-bg__gull--3 {
+  top: 11vh; left: 76vw; width: 25px;
+  animation: sky-drift 112s linear infinite;
+  animation-delay: -48s; /* ~60vw, plus haut */
+  opacity: 0.5;
+}
+.sky-bg__gull--3 > svg { animation-duration: 8.5s; animation-delay: -4s; }
+.sky-bg__gull--3 .gull-glide, .sky-bg__gull--3 .gull-flap { animation-delay: -2.1s; animation-duration: 3.6s; }
+
+/* Deux battements brefs (0–5 % et 10–15 %), puis long plané — poses échangées
+   sans fondu : les doubles arrêts rendent la bascule instantanée (pixel art). */
+@keyframes gull-pose-glide {
+  0%, 4.9% { opacity: 0; }
+  5%, 9.9% { opacity: 1; }
+  10%, 14.9% { opacity: 0; }
+  15%, 100% { opacity: 1; }
+}
+@keyframes gull-pose-flap {
+  0%, 4.9% { opacity: 1; }
+  5%, 9.9% { opacity: 0; }
+  10%, 14.9% { opacity: 1; }
+  15%, 100% { opacity: 0; }
+}
+@keyframes gull-tangage {
+  from { transform: translateY(-6px) rotate(-2deg); }
+  to   { transform: translateY(6px) rotate(2deg); }
+}
+
 /* ── Voile de lumière (§3) — assied le texte sans écraser le ciel ── */
 .sky-bg__veil { position: absolute; inset: 0; background: var(--ts-veil); }
 
