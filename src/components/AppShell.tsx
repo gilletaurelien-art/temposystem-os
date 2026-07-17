@@ -65,8 +65,8 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         </a>
 
         {/* Navigation en ligne — grand écran (≥ lg) */}
-        <div className="hidden lg:flex items-center gap-3">
-          <nav className="flex gap-1">
+        <div className="os-header-tools hidden lg:flex items-center">
+          <nav className="os-nav">
             {publicNavigation.map((item) => (
               <a
                 key={item.route}
