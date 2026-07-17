@@ -33,23 +33,6 @@ const audiences = {
   ],
 } as const;
 
-const journey = {
-  fr: [
-    ["01", "Un besoin apparaît", "Une personne, une équipe ou une organisation signale une situation qui appelle une réponse."],
-    ["02", "Les acteurs se coordonnent", "Les organisations utiles partagent le contexte, les responsabilités et les ressources disponibles."],
-    ["03", "L'action est menée", "Les personnes mobilisées savent qui fait quoi, quand, et peuvent suivre l'avancement."],
-    ["04", "Le temps est reconnu", "Chaque contribution utile laisse une trace. Une trace, jamais une dette."],
-    ["05", "La décision demeure", "Le résultat, les arbitrages et les enseignements rejoignent une mémoire commune."],
-  ],
-  en: [
-    ["01", "A need emerges", "A person, team or organisation reports a situation that calls for a response."],
-    ["02", "Actors coordinate", "Relevant organisations share context, responsibilities and available resources."],
-    ["03", "Action is taken", "Those involved know who does what and when, and can monitor progress."],
-    ["04", "Time is recognised", "Every useful contribution leaves a trace. A trace, never a debt."],
-    ["05", "The decision remains", "Outcomes, decisions and learning enter a shared memory."],
-  ],
-} as const;
-
 export function HomePage() {
   const { lang } = useLang();
 
@@ -109,9 +92,15 @@ export function HomePage() {
             <h2>{lang === "fr" ? "Un besoin apparaît. Voici ce qui se passe ensuite." : "A need emerges. Here is what happens next."}</h2>
             <p>{lang === "fr" ? "Un CCAS, plusieurs associations et un établissement coordonnent une action contre l'isolement. TEMPOsystem conserve le fil commun." : "A local social service, several non-profits and a care institution coordinate an action against isolation. TEMPOsystem preserves the shared thread."}</p>
           </header>
-          <ol className="editorial-journey">
-            {journey[lang].map(([number, title, body]) => <li key={number}><span>{number}</span><div><h3>{title}</h3><p>{body}</p></div></li>)}
-          </ol>
+          <figure className="editorial-journey-figure">
+            <img
+              src="/parcours-exemple.png"
+              alt={lang === "fr"
+                ? "Un parcours en cinq îles reliées par un fil lumineux : Signal, Coordination, Action, Temps reconnu, Mémoire."
+                : "A journey across five islands linked by a luminous thread: Signal, Coordination, Action, Recognised time, Memory."}
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
 
