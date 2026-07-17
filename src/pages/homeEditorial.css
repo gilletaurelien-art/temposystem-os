@@ -33,12 +33,13 @@
 .editorial-journey li { display: grid; grid-template-columns: 62px 1fr; gap: 22px; padding: 26px 0; border-top: 1px solid var(--ts-hairline); }
 .editorial-journey li > span { color: var(--ts-sous-titre); font: 700 14px var(--ts-font-system); }
 .editorial-journey h3 { margin-top: 0; }
-.editorial-section--night { color: #f4efe6; } /* fond → nuit tiède translucide (glass.css) */
+.editorial-section--night { color: var(--ts-encre); } /* fond → verre blanc 90% (glass.css) */
+.editorial-section--night .editorial-kicker { color: var(--ts-ciel-encre); } /* kicker bleu ciel */
 .editorial-trust { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 8vw, 110px); }
-.editorial-trust h2 { color: #f4efe6; }
-.editorial-trust__points p { margin: 0 0 20px; color: rgba(244,239,230,.7); font-size: 1.02rem; line-height: 1.75; }
-.editorial-trust__points strong { color: #fff; }
-.editorial-trust__points a { display: inline-flex; margin-top: 14px; color: #f4c66e; font-weight: 700; text-decoration: none; }
+.editorial-trust h2 { color: var(--ts-encre-titre); }
+.editorial-trust__points p { margin: 0 0 20px; color: var(--ts-encre-muted); font-size: 1.02rem; line-height: 1.75; }
+.editorial-trust__points strong { color: var(--ts-encre-titre); }
+.editorial-trust__points a { display: inline-flex; margin-top: 14px; color: var(--ts-terracotta-encre); font-weight: 700; text-decoration: none; }
 .editorial-final { text-align: center; }
 .editorial-final .editorial-wrap { max-width: 820px; }
 .editorial-actions--center { justify-content: center; }
@@ -47,7 +48,7 @@
 .editorial-offer::before { content: ""; position: absolute; inset: 0 auto auto 0; width: 42px; height: 4px; background: var(--ts-tide); }
 .editorial-offer:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--ts-tide) 34%, var(--ts-hairline)); box-shadow: 0 16px 38px rgba(42,38,32,.08); }
 .editorial-offer > span { color: var(--ts-terracotta); font: 700 10px var(--ts-font-system); letter-spacing: .14em; }
-.editorial-offer h3 { margin: 10px 0 14px; color: var(--ts-encre-titre); font: 700 1.75rem/1.1 var(--ts-font-titre); }
+.editorial-offer h3 { margin: 10px 0 14px; font: 700 1.75rem/1.1 var(--ts-font-titre); background: var(--ts-grad-aube); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
 .editorial-offer strong { color: var(--ts-encre); font-size: .92rem; }
 .editorial-offer p { margin: 14px 0 24px; color: var(--ts-encre-muted); line-height: 1.68; }
 .editorial-offer em { color: #286b64; font-size: .9rem; font-style: normal; font-weight: 750; }

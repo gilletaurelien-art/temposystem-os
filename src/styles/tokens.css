@@ -35,7 +35,8 @@
   --ts-encre-muted: rgba(20, 49, 64, 0.78);  /* paragraphes — ardoise marine */
   --ts-encre-faint: rgba(20, 49, 64, 0.48);
   --ts-hairline: rgba(20, 49, 64, 0.15);
-  --ts-terracotta-encre: #b44e2e; /* accent italique des GRANDS titres sur ciel (3:1) */
+  --ts-ciel-encre: #17618f;       /* BLEU CIEL lisible — kickers, labels (5.9:1 sur verre blanc) */
+  --ts-terracotta-encre: #b44e2e; /* AUBE — accent (italiques, liens, nom d'offre) sur clair */
 
   /* ---- Le cycle du jour (accents — chaque couleur CODE une fonction, §6/§7) ---- */
   --ts-sun: #f2a73b;            /* énergie donnée, décision, aube, source */
@@ -52,6 +53,9 @@
   /* ---- Dégradés à signification (§7) ---- */
   /* contribution → énergie → horizon */
   --ts-grad-sun: linear-gradient(135deg, var(--ts-terracotta), var(--ts-sun), var(--ts-honey));
+  /* AUBE — version LISIBLE en texte dégradé (le grad-sun finit trop pâle) : reste
+     dans la gamme chaude contrastée pour les titres-accent (noms d'offres). */
+  --ts-grad-aube: linear-gradient(105deg, #b44e2e 0%, #d15f2c 50%, #cf6f1f 100%);
   /* aube → écoulement → mémoire */
   --ts-grad-cycle: linear-gradient(90deg, var(--ts-sun) 0%, var(--ts-tide) 55%, var(--ts-dusk) 100%);
 

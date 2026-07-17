@@ -51,14 +51,18 @@
 }
 
 /* ── Bandeaux nuit — nuit tiède translucide (charte §6 : exception intentionnelle).
-   Pas de blur sur des bandes pleine largeur (budget perf) : une simple teinte
-   profonde laisse le ciel luire au travers tout en portant le texte clair. */
+   Bandes pleine largeur en VERRE BLANC frosté (opacité 90 %) : le ciel et la mer
+   se devinent au travers, le texte est à l'encre marine. */
 .os-shell .editorial-section--night,
 .os-shell .offer-section--night {
-  background: rgba(23, 19, 16, 0.78);
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid var(--ts-hairline);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
 }
 
-/* ── Verre pur — les grands encadrés (hero, Créer) : opacité 0 %.
+/* ── Verre pur — les grands encadrés (hero accueil, Créer) : opacité 0 %.
    Aucune teinte, aucun flou : le ciel pixel reste NET au travers. Ne restent
    que le liseré de verre et le reflet qui balaye. Leurs textes sont à l'encre. */
 .os-shell .selector-hero__wrap,
@@ -72,17 +76,17 @@
     0 24px 50px -34px rgba(42, 38, 32, 0.28);
 }
 
-/* ── Verre fumé — le hero des pages offres (texte clair conservé) ── */
+/* ── Verre blanc frosté — le hero des pages offres (texte marine) ── */
 .os-shell .offer-hero {
   position: relative;
   overflow: hidden;
-  background: var(--glass-fume);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.15);
-  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.15);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.2);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(1.2);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 32px 70px -40px rgba(23, 19, 16, 0.8);
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 30px 66px -40px rgba(42, 38, 32, 0.3);
 }
 /* L'état « prêt » du sélecteur garde sa chaleur d'aube par-dessus le verre */
 .os-shell .selector-pipe__result.is-ready {
@@ -126,15 +130,8 @@
   transform: translateX(-260%) skewX(-16deg);
   animation: glass-balayage var(--glass-balayage) cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
-/* Sur le verre fumé, la lame est plus discrète */
+/* Sur les grands verres (hero offres), la lame balaye plus lentement */
 .os-shell .offer-hero::after {
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 42%,
-    rgba(255, 255, 255, 0.04) 58%,
-    transparent 100%
-  );
   animation-duration: calc(var(--glass-balayage) * 1.6);
 }
 
@@ -181,11 +178,10 @@
 @supports not (backdrop-filter: blur(1px)) {
   .os-shell .editorial-card, .os-shell .editorial-offer, .os-shell .editorial-promise,
   .os-shell .civic-card, .os-shell .civic-note, .os-shell .offer-problems article,
-  .os-shell .ecosystem__home, .os-shell .ecosystem__grid a {
-    background: rgba(255, 255, 255, 0.6);
-  }
-  .os-shell .offer-hero {
-    background: rgba(23, 19, 16, 0.94);
+  .os-shell .ecosystem__home, .os-shell .ecosystem__grid a,
+  .os-shell .offer-hero, .os-shell .editorial-section--night,
+  .os-shell .offer-section--night {
+    background: rgba(255, 255, 255, 0.94);
   }
 }
 
