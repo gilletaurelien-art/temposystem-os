@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { publicNavigation } from "../config/publicSite";
 import { useLang, type Language } from "../lib/lang";
-import { ManaConnect } from "../mana/ManaConnect";
 import EcosystemBlock from "./EcosystemBlock";
 import { SkyBackground } from "./SkyBackground";
 import "./skyBackground.css";
@@ -73,7 +72,6 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
             ))}
           </nav>
           <LangToggle lang={lang} setLang={setLang} />
-          <ManaConnect lang={lang} />
           <a className="os-create-link" href="#/creer">
             {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
           </a>
@@ -120,7 +118,6 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
             <div className="os-menu-sep" />
             <div className="flex items-center justify-between gap-3">
               <LangToggle lang={lang} setLang={setLang} />
-              <ManaConnect lang={lang} />
             </div>
             <a className="os-create-link os-create-link--mobile" href="#/creer" onClick={() => setMenuOpen(false)}>
               {lang === "fr" ? "Créer mon TEMPOSYSTEM" : "Create my TEMPOSYSTEM"}
