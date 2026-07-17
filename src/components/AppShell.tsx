@@ -10,6 +10,39 @@ interface AppShellProps {
   children: ReactNode;
 }
 
+/** Machine à écrire — tape le texte, marque une pause, l'efface, recommence (boucle).
+ *  Respecte prefers-reduced-motion (affiche le texte complet, sans animation). */
+function Typewriter({ text }: { text: string }) {
+  const [shown, setShown] = useState("");
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(text);
+      return;
+    }
+    let i = 0;
+    let dir = 1;
+    let timer: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      setShown(text.slice(0, i));
+      if (dir === 1) {
+        if (i < text.length) { i += 1; timer = setTimeout(tick, 55); }
+        else { dir = -1; timer = setTimeout(tick, 2200); } // pause, texte complet
+      } else {
+        if (i > 0) { i -= 1; timer = setTimeout(tick, 26); }
+        else { dir = 1; timer = setTimeout(tick, 700); }   // pause, avant de retaper
+      }
+    };
+    tick();
+    return () => clearTimeout(timer);
+  }, [text]);
+  return (
+    <span aria-label={text}>
+      <span aria-hidden="true">{shown}</span>
+      <span className="island-caret" aria-hidden="true" />
+    </span>
+  );
+}
+
 /** Toggle langue FR / EN — réutilisé dans le header desktop et le menu mobile. */
 function LangToggle({ lang, setLang }: { lang: Language; setLang: (l: Language) => void }) {
   return (
@@ -143,9 +176,14 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         </div>
         <div className="island-footer__veil" />
         <div className="island-footer__copy">
-          <span>TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
-          <strong>{lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."}</strong>
+          <span className="island-footer__eyebrow">TEMPOSYSTEM · {lang === "fr" ? "LE TEMPS VIVANT" : "LIVING TIME"}</span>
+          <strong className="island-footer__type">
+            <Typewriter text={lang === "fr" ? "L'infrastructure d'orchestration de l'action collective." : "The orchestration infrastructure for collective action."} />
+          </strong>
         </div>
+        <p className="island-footer__legal">
+          © 2026 TEMPO<span>system</span> — {lang === "fr" ? "tous droits réservés" : "all rights reserved"}
+        </p>
       </section>
     </div>
   );
