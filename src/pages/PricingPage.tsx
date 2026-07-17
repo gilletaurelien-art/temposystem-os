@@ -8,6 +8,8 @@ type Plan = {
   name: Copy;
   count: Copy;
   audience: Copy;
+  capacity: Copy;
+  example: Copy;
   price: Copy;
   monthly: Copy;
   features: readonly Copy[];
@@ -19,6 +21,8 @@ const plans: readonly Plan[] = [
     name: { fr: "Éclosion", en: "Seed" },
     count: { fr: "1 TEMPOSYSTEM", en: "1 TEMPOSYSTEM" },
     audience: { fr: "Premier usage, association ou établissement", en: "First use, non-profit or institution" },
+    capacity: { fr: "Jusqu’à 100 utilisateurs actifs", en: "Up to 100 active users" },
+    example: { fr: "Une association de 65 membres ouvre un TEMPOSYSTEM ASSO pour organiser ses missions, ses bénévoles et la mémoire de ses actions.", en: "A 65-member non-profit opens one ASSO TEMPOSYSTEM to organise missions, volunteers and the memory of its actions." },
     price: { fr: "1 200 € / an", en: "€1,200 / year" },
     monthly: { fr: "soit 100 € / mois", en: "equivalent to €100 / month" },
     features: [
@@ -31,6 +35,8 @@ const plans: readonly Plan[] = [
     name: { fr: "Coopération", en: "Cooperation" },
     count: { fr: "3 TEMPOSYSTEMS", en: "3 TEMPOSYSTEMS" },
     audience: { fr: "CCAS, commune ou réseau associatif", en: "Local authority or non-profit network" },
+    capacity: { fr: "Jusqu’à 500 utilisateurs actifs", en: "Up to 500 active users" },
+    example: { fr: "Un CCAS et ses partenaires relient un TEMPOSYSTEM CIVIC pour l’isolement, un CARE pour les aidants et un ASSO pour les bénévoles.", en: "A social service and its partners connect one CIVIC TEMPOSYSTEM for isolation, one CARE space for caregivers and one ASSO space for volunteers." },
     price: { fr: "3 600 € / an", en: "€3,600 / year" },
     monthly: { fr: "soit 300 € / mois", en: "equivalent to €300 / month" },
     featured: true,
@@ -44,6 +50,8 @@ const plans: readonly Plan[] = [
     name: { fr: "Territoire", en: "Territory" },
     count: { fr: "8 TEMPOSYSTEMS", en: "8 TEMPOSYSTEMS" },
     audience: { fr: "Intercommunalité, fédération ou programme territorial", en: "Federation or territorial programme" },
+    capacity: { fr: "Jusqu’à 1 000 utilisateurs actifs", en: "Up to 1,000 active users" },
+    example: { fr: "Une intercommunalité déploie huit espaces pour coordonner les solidarités, la mobilité, les aidants et les réseaux associatifs de plusieurs communes.", en: "An intermunicipal authority deploys eight spaces to coordinate solidarity, mobility, caregivers and non-profit networks across several towns." },
     price: { fr: "7 800 € / an", en: "€7,800 / year" },
     monthly: { fr: "soit 650 € / mois", en: "equivalent to €650 / month" },
     features: [
@@ -56,6 +64,8 @@ const plans: readonly Plan[] = [
     name: { fr: "Alliance", en: "Alliance" },
     count: { fr: "20 TEMPOSYSTEMS et plus", en: "20+ TEMPOSYSTEMS" },
     audience: { fr: "Département, fondation ou réseau national", en: "Regional authority, foundation or national network" },
+    capacity: { fr: "Plus de 1 000 utilisateurs actifs", en: "More than 1,000 active users" },
+    example: { fr: "Un département ou une fédération relie plus de vingt espaces locaux, tout en laissant à chaque territoire sa gouvernance et sa mémoire.", en: "A regional authority or federation connects more than twenty local spaces while preserving each territory’s governance and memory." },
     price: { fr: "Dès 15 000 € / an", en: "From €15,000 / year" },
     monthly: { fr: "périmètre défini ensemble", en: "scope defined together" },
     features: [
@@ -95,7 +105,7 @@ export function PricingPage() {
       : "Each space serves one use case, team or territory. Start with one real need, then add new TEMPOSYSTEMS as cooperation grows."}
   >
     <div className="pricing-principles">
-      <div><strong>{lang === "fr" ? "Sans prix par utilisateur" : "No per-user pricing"}</strong><span>{lang === "fr" ? "Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés comme des produits." : "Citizens, volunteers and beneficiaries are never billed as products."}</span></div>
+      <div><strong>{lang === "fr" ? "Un forfait par palier" : "Flat capacity bands"}</strong><span>{lang === "fr" ? "Moins de 100, 500, 1 000 ou plus : le prix reste fixe à l’intérieur de votre palier." : "Under 100, 500, 1,000 or more: the price remains fixed within your band."}</span></div>
       <div><strong>{lang === "fr" ? "Toutes les configurations" : "Every configuration"}</strong><span>{lang === "fr" ? "CARE, CIVIC, ASSO, TERRITORIES, IMPACT et RSE sont activables selon vos usages." : "CARE, CIVIC, ASSO, TERRITORIES, IMPACT and RSE can be enabled as needed."}</span></div>
       <div><strong>{lang === "fr" ? "Un périmètre lisible" : "A clear scope"}</strong><span>{lang === "fr" ? "L'abonnement, la mise en place et les options sont toujours distingués." : "Subscription, setup and options are always shown separately."}</span></div>
     </div>
@@ -105,8 +115,9 @@ export function PricingPage() {
         <span className="civic-index">{plan.featured && lang === "fr" ? "FORMULE RECOMMANDÉE" : plan.featured ? "RECOMMENDED PLAN" : plan.count[lang]}</span>
         <h2>{plan.name[lang]}</h2>
         <strong>{plan.count[lang]}</strong>
-        <p>{plan.audience[lang]}</p>
+        <p>{plan.capacity[lang]} · {plan.audience[lang]}</p>
         <ul>{plan.features.map((feature) => <li key={feature.fr}>{feature[lang]}</li>)}</ul>
+        <aside className="civic-note"><strong>{lang === "fr" ? "Mise en situation — " : "Example — "}</strong>{plan.example[lang]}</aside>
         <div className="pricing-card__price"><span>{lang === "fr" ? "Abonnement" : "Subscription"}</span><strong>{plan.price[lang]}</strong><small>{plan.monthly[lang]}</small></div>
         <a className="civic-button civic-button--primary" href="#/creer">{lang === "fr" ? "Préparer mon premier usage" : "Prepare my first use"}</a>
       </article>)}
