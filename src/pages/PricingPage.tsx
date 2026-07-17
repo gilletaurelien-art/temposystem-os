@@ -134,7 +134,7 @@ export function PricingPage() {
       </div>
       <div className="territorial-pricing__actions">
         <a className="civic-button civic-button--secondary" href="https://manafrance.org">{lang === "fr" ? "Rejoindre MANAfrance" : "Join MANAfrance"}</a>
-        <a className="civic-button civic-button--primary" href="#/creer?offre=territories">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
+        <a className="civic-button civic-button--primary" href="#/devis?offre=territories">{lang === "fr" ? "Demander un devis" : "Request a quote"}</a>
       </div>
       <p className="territorial-pricing__note">{lang === "fr" ? "Tarifs annuels indicatifs, à calibrer territoire par territoire. Les éventuels kiosques MANA constituent un investissement séparé. Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés individuellement." : "Indicative annual pricing, calibrated for each territory. Any MANA kiosks are a separate investment. Citizens, volunteers and beneficiaries are never billed individually."}</p>
     </section>
@@ -155,7 +155,7 @@ export function PricingPage() {
         <ul>{formula.included[lang].map((item) => <li key={item}>{item}</li>)}</ul>
         <div className="pricing-card__price"><span>{lang === "fr" ? "Abonnement" : "Subscription"}</span><strong>{formula.annualPrice[lang]}</strong></div>
         <p><strong>{lang === "fr" ? "Mise en place : " : "Setup: "}</strong>{formula.setupPrice[lang]}</p>
-        <a className="civic-button civic-button--primary pricing-card__cta" href={formula.slug === "decouverte" ? "#/creer?formule=decouverte" : `#/creer?formule=${formula.slug}`}>{lang === "fr" ? `Rejoindre TEMPOsystem ${formula.name}` : `Join TEMPOsystem ${formula.name}`}</a>
+        <a className="civic-button civic-button--primary pricing-card__cta" href={formula.slug === "decouverte" ? "#/devis?formule=decouverte" : `#/devis?formule=${formula.slug}`}>{lang === "fr" ? `Rejoindre TEMPOsystem ${formula.name}` : `Join TEMPOsystem ${formula.name}`}</a>
       </article>)}
     </div>
 
