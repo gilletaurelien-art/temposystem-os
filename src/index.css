@@ -1651,3 +1651,72 @@ h1::after, h2::after {
   }
   .os-brand { font-size: 12px; }
 }
+
+
+/* Archipel des configurations — illustration narrative + navigation accessible */
+.configurations-archipelago {
+  margin: clamp(2rem, 5vw, 4rem) 0 0;
+}
+
+.configurations-archipelago img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(109, 213, 255, 0.16);
+  border-radius: 1.25rem;
+  background: #031226;
+  box-shadow: 0 1.5rem 4rem rgba(0, 8, 24, 0.24);
+}
+
+.configurations-archipelago figcaption {
+  margin-top: 0.85rem;
+  color: var(--color-text-muted, #8fa6bd);
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.configurations-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.configurations-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.75rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(109, 213, 255, 0.14);
+  border-radius: 0.7rem;
+  color: inherit;
+  font-family: "SF Mono", "SFMono-Regular", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.configurations-links a:hover,
+.configurations-links a:focus-visible {
+  border-color: rgba(109, 213, 255, 0.48);
+  background: rgba(109, 213, 255, 0.06);
+}
+
+@media (max-width: 700px) {
+  .configurations-archipelago {
+    margin-inline: -1rem;
+  }
+
+  .configurations-archipelago img {
+    border-radius: 0.8rem;
+  }
+
+  .configurations-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
