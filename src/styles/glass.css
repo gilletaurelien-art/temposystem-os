@@ -34,7 +34,11 @@
 .os-shell .civic-note,
 .os-shell .offer-problems article,
 .os-shell .ecosystem__home,
-.os-shell .ecosystem__grid a {
+.os-shell .ecosystem__grid a,
+.os-shell .selector-pipe__step,
+.os-shell .selector-pipe__result,
+.os-shell .create-offers label,
+.os-shell .create-summary {
   position: relative;
   overflow: hidden;
   background: var(--glass-clair);
@@ -46,8 +50,29 @@
     0 24px 50px -30px rgba(42, 38, 32, 0.35);
 }
 
-/* ── Verre fumé — les grands encadrés sombres ── */
+/* ── Bandeaux nuit — nuit tiède translucide (charte §6 : exception intentionnelle).
+   Pas de blur sur des bandes pleine largeur (budget perf) : une simple teinte
+   profonde laisse le ciel luire au travers tout en portant le texte clair. */
+.os-shell .editorial-section--night,
+.os-shell .offer-section--night {
+  background: rgba(23, 19, 16, 0.78);
+}
+
+/* ── Verre pur — les grands encadrés (hero, Créer) : opacité 0 %.
+   Aucune teinte, aucun flou : le ciel pixel reste NET au travers. Ne restent
+   que le liseré de verre et le reflet qui balaye. Leurs textes sont à l'encre. */
 .os-shell .selector-hero__wrap,
+.os-shell .create-tempo__shell {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 24px 50px -34px rgba(42, 38, 32, 0.28);
+}
+
+/* ── Verre fumé — le hero des pages offres (texte clair conservé) ── */
 .os-shell .offer-hero {
   position: relative;
   overflow: hidden;
@@ -58,20 +83,6 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
     0 32px 70px -40px rgba(23, 19, 16, 0.8);
-}
-
-/* ── Verre intérieur — cartes posées sur le verre fumé ── */
-.os-shell .selector-pipe__step,
-.os-shell .selector-pipe__result,
-.os-shell .create-offers label,
-.os-shell .create-summary {
-  position: relative;
-  overflow: hidden;
-  background: var(--glass-interieur);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 /* L'état « prêt » du sélecteur garde sa chaleur d'aube par-dessus le verre */
 .os-shell .selector-pipe__result.is-ready {
@@ -93,6 +104,7 @@
 .os-shell .ecosystem__grid a::after,
 .os-shell .selector-hero__wrap::after,
 .os-shell .offer-hero::after,
+.os-shell .create-tempo__shell::after,
 .os-shell .selector-pipe__step::after,
 .os-shell .selector-pipe__result::after,
 .os-shell .create-offers label::after,
@@ -115,7 +127,6 @@
   animation: glass-balayage var(--glass-balayage) cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 /* Sur le verre fumé, la lame est plus discrète */
-.os-shell .selector-hero__wrap::after,
 .os-shell .offer-hero::after {
   background: linear-gradient(
     105deg,
@@ -159,6 +170,7 @@
   .os-shell .civic-note::after, .os-shell .offer-problems article::after,
   .os-shell .ecosystem__home::after, .os-shell .ecosystem__grid a::after,
   .os-shell .selector-hero__wrap::after, .os-shell .offer-hero::after,
+  .os-shell .create-tempo__shell::after,
   .os-shell .selector-pipe__step::after, .os-shell .selector-pipe__result::after,
   .os-shell .create-offers label::after, .os-shell .create-summary::after {
     animation: none;
@@ -172,7 +184,7 @@
   .os-shell .ecosystem__home, .os-shell .ecosystem__grid a {
     background: rgba(255, 255, 255, 0.6);
   }
-  .os-shell .selector-hero__wrap, .os-shell .offer-hero {
+  .os-shell .offer-hero {
     background: rgba(23, 19, 16, 0.94);
   }
 }

@@ -49,10 +49,6 @@
   /* aube → écoulement → mémoire */
   --ts-grad-cycle: linear-gradient(90deg, var(--ts-sun) 0%, var(--ts-tide) 55%, var(--ts-dusk) 100%);
 
-  /* ---- Surfaces de page translucides — le ciel (§3) se sent dessous ---- */
-  --ts-surface-page: rgba(251, 250, 245, 0.86);   /* parchemin posé sur le ciel */
-  --ts-surface-page-2: rgba(243, 239, 228, 0.86); /* parchemin alt posé sur le ciel */
-
   /* ---- Voile de lumière (assied le texte sur le ciel, §3) ---- */
   --ts-veil: linear-gradient(180deg, rgba(251, 250, 245, 0) 0%,
                              rgba(251, 250, 245, 0.35) 60%, rgba(251, 250, 245, 0.6) 100%);
