@@ -8,10 +8,10 @@
  */
 
 .tempo-hero {
-  /* Voix : titre en Fraunces (manifeste), labels/données en mono système (§8) */
-  --font-titre: var(--ts-font-titre, "Fraunces", Georgia, serif);
-  --font-pixel: var(--ts-font-system, "IBM Plex Mono", ui-monospace, monospace);
-  --font-mono: var(--ts-font-main, "Instrument Sans", system-ui, sans-serif);
+  /* Voix : titre en Philosopher (éditorial), labels/données en SF Mono (système) */
+  --font-titre: var(--ts-font-titre, "Philosopher", Georgia, serif);
+  --font-pixel: var(--ts-font-system, "SFMono-Regular", "SF Mono", "Roboto Mono", monospace);
+  --font-mono: var(--ts-font-main, "SFMono-Regular", "SF Mono", "Roboto Mono", monospace);
 
   /* Palette locale → cycle du jour (§6) */
   --tempo-white: var(--ts-encre, #2a2620);        /* texte principal (encre) */
@@ -101,8 +101,8 @@
 }
 .tempo-reveal__line {
   margin: 0;
-  font-family: var(--ts-font-titre, "Fraunces", Georgia, serif);
-  font-weight: 340;
+  font-family: var(--ts-font-titre, "Philosopher", Georgia, serif);
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(1.6rem, 4vw, 3rem);
   line-height: 1.1;
@@ -313,9 +313,9 @@
 /* ── Briefing « jour » — modules déplacés du hero vers la page Conseil ────── */
 .tempo-briefing {
   /* Voix + palette « cycle du jour » (reprises de .tempo-hero) */
-  --font-titre: var(--ts-font-titre, "Fraunces", Georgia, serif);
-  --font-pixel: var(--ts-font-system, "IBM Plex Mono", ui-monospace, monospace);
-  --font-mono: var(--ts-font-main, "Instrument Sans", system-ui, sans-serif);
+  --font-titre: var(--ts-font-titre, "Philosopher", Georgia, serif);
+  --font-pixel: var(--ts-font-system, "SFMono-Regular", "SF Mono", "Roboto Mono", monospace);
+  --font-mono: var(--ts-font-main, "SFMono-Regular", "SF Mono", "Roboto Mono", monospace);
   --tempo-white: var(--ts-encre, #2a2620);
   --tempo-muted: var(--ts-encre-muted, rgba(42, 38, 32, 0.66));
   --tempo-faint: var(--ts-encre-faint, rgba(42, 38, 32, 0.42));
@@ -372,8 +372,7 @@
 
 .tempo-hero__title-concept {
   font-family: var(--font-titre);
-  font-optical-sizing: auto;
-  font-weight: 360;
+  font-weight: 400;
   font-size: clamp(2.6rem, 6vw, 4.6rem);
   line-height: 0.98;
   letter-spacing: -0.02em;
@@ -381,7 +380,6 @@
 }
 .tempo-hero__title-concept em {
   font-style: italic;
-  font-variation-settings: "SOFT" 40, "WONK" 1;
   color: var(--tempo-magenta); /* terre cuite */
 }
 

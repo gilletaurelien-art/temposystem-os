@@ -51,7 +51,7 @@
 .editorial-offer > span { color: var(--ts-terracotta); font: 700 10px var(--ts-font-system); letter-spacing: .14em; }
 .editorial-offer h3 { margin: 10px 0 14px; color: var(--ts-encre); font: 700 1.75rem/1.1 var(--ts-font-titre); }
 .editorial-offer strong { color: var(--ts-encre); font-size: .92rem; }
-.editorial-offer p { margin: 14px 0 24px; color: var(--ts-encre-muted); line-height: 1.62; }
+.editorial-offer p { margin: 14px 0 24px; color: var(--ts-encre-muted); line-height: 1.68; }
 .editorial-offer em { color: #286b64; font-size: .9rem; font-style: normal; font-weight: 750; }
 @media (max-width: 900px) { .editorial-intro__grid, .editorial-trust { grid-template-columns: 1fr; } .editorial-grid--four { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px) { .editorial-offers__grid { grid-template-columns: repeat(2, 1fr); } }

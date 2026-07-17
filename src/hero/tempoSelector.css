@@ -2,8 +2,8 @@
 .selector-hero__wrap { position: relative; width: min(1320px, 100%); margin: 0 auto; padding: clamp(48px, 7vw, 92px); overflow: hidden; border: 1px solid rgba(255,255,255,.08); border-radius: 26px; color: #f2ede3; background: radial-gradient(100% 130% at 12% -20%, #2b2117 0%, #171310 56%, #100d0a 100%); box-shadow: 0 24px 60px -42px rgba(42,38,32,.7); }
 .selector-hero__intro { position: relative; z-index: 2; max-width: 700px; }
 .selector-hero .editorial-kicker { color: rgba(242,237,227,.55); }
-.selector-hero__intro h1 { margin: 0; max-width: 760px; color: #f7f2e9; font-size: clamp(2.5rem, 5.8vw, 5rem); font-weight: 340; line-height: .99; letter-spacing: -.02em; }
-.selector-hero__intro h1 em { color: var(--ts-honey); font-style: italic; font-variation-settings: "SOFT" 50, "WONK" 1; }
+.selector-hero__intro h1 { margin: 0; max-width: 760px; color: #f7f2e9; font-size: clamp(2.5rem, 5.8vw, 5rem); font-weight: 400; line-height: .99; letter-spacing: -.02em; }
+.selector-hero__intro h1 em { color: var(--ts-honey); font-style: italic; }
 .selector-hero__intro > p:last-child { max-width: 620px; margin: 25px 0 0; color: rgba(242,237,227,.68); font-size: clamp(1rem, 1.7vw, 1.18rem); line-height: 1.68; }
 .selector-hero__rings { position: absolute; z-index: 1; top: clamp(76px, 9vw, 130px); right: clamp(50px, 9vw, 140px); width: clamp(170px, 20vw, 270px); aspect-ratio: 1; border: 1px solid rgba(242,167,59,.17); border-radius: 50%; }
 .selector-hero__rings i, .selector-hero__rings b { position: absolute; inset: 12%; border: 1.5px solid rgba(91,107,166,.85); border-radius: 50%; }
@@ -17,13 +17,18 @@
 .selector-pipe label, .selector-pipe__result small { display: block; margin-bottom: 10px; color: rgba(242,237,227,.72); font-size: .82rem; font-weight: 600; }
 .selector-pipe select { width: 100%; min-height: 50px; padding: 0 42px 0 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; color: #f2ede3; background: #241c15; cursor: pointer; }
 .selector-pipe select:focus-visible { outline: 2px solid var(--ts-sun); outline-offset: 3px; }
+/* SF Mono est ~20% plus large que la sans qu'elle remplace : à 16px le libellé du
+   menu déroulant ne tient plus dans une colonne de la grille à 3 colonnes. On le
+   resserre uniquement là ; en 1 colonne (< 780px) la colonne est large et le champ
+   reste à 16px, seuil sous lequel Safari iOS zoome automatiquement au focus. */
+@media (min-width: 781px) { .selector-pipe select { font-size: .875rem; } }
 .selector-pipe__link { position: relative; align-self: center; height: 1px; background: rgba(255,255,255,.16); }
 .selector-pipe__link::before, .selector-pipe__link::after { content: ""; position: absolute; top: -3px; width: 7px; height: 7px; border-radius: 2px; background: var(--ts-tide); }
 .selector-pipe__link::before { left: 0; }.selector-pipe__link::after { right: 0; }
 .selector-pipe__result { background: rgba(255,255,255,.06); transition: background .2s ease, transform .2s ease, border-color .2s ease; }
 .selector-pipe__result.is-ready { border-color: rgba(242,167,59,.42); background: rgba(214,112,74,.1); transform: translateY(-4px); }
 .selector-pipe__result .selector-pipe__number, .selector-pipe__result small { color: var(--ts-honey); }
-.selector-pipe__result strong { display: block; color: #f7f2e9; font: 380 1.45rem var(--ts-font-titre); }
+.selector-pipe__result strong { display: block; color: #f7f2e9; font: 400 1.45rem var(--ts-font-titre); }
 .selector-pipe__result strong b { color: var(--ts-honey); font-weight: 500; }
 .selector-pipe__result p { margin: 12px 0 0; color: rgba(242,237,227,.68); font-size: .9rem; line-height: 1.55; }
 .selector-pipe__result a { display: inline-flex; margin-top: 16px; color: var(--ts-honey); font-size: .86rem; font-weight: 650; text-decoration: none; }
