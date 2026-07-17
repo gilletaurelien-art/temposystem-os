@@ -242,3 +242,96 @@
     backdrop-filter: none;
   }
 }
+
+
+.editorial-solutions-panel {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid rgba(36, 95, 118, 0.16);
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(180deg, rgba(229, 246, 255, 0.88), rgba(238, 248, 252, 0.78));
+  box-shadow: 0 1.25rem 3rem -2.5rem rgba(20, 72, 96, 0.32);
+  backdrop-filter: blur(10px);
+}
+
+.editorial-solutions-panel__intro {
+  max-width: 58rem;
+  margin: 0 0 1.75rem;
+  color: var(--ts-encre-muted);
+  font: 500 1rem/1.75 var(--ts-font-system);
+}
+
+.editorial-solutions-panel .editorial-offers__grid {
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(36, 95, 118, 0.13);
+  border-radius: 1rem;
+}
+
+.editorial-solutions-panel .editorial-offer {
+  border: 0;
+  border-right: 1px solid rgba(36, 95, 118, 0.13);
+  border-bottom: 1px solid rgba(36, 95, 118, 0.13);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+}
+
+.editorial-solutions-panel .editorial-offer:nth-child(3n) {
+  border-right: 0;
+}
+
+.editorial-solutions-panel .editorial-offer:nth-last-child(-n + 3) {
+  border-bottom: 0;
+}
+
+.editorial-solutions-panel .editorial-offer:hover,
+.editorial-solutions-panel .editorial-offer:focus-visible {
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .editorial-solutions-panel .editorial-offer:nth-child(3n) {
+    border-right: 1px solid rgba(36, 95, 118, 0.13);
+  }
+
+  .editorial-solutions-panel .editorial-offer:nth-child(even) {
+    border-right: 0;
+  }
+
+  .editorial-solutions-panel .editorial-offer:nth-last-child(-n + 3) {
+    border-bottom: 1px solid rgba(36, 95, 118, 0.13);
+  }
+
+  .editorial-solutions-panel .editorial-offer:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .editorial-solutions-panel {
+    padding: 1.25rem;
+    border-radius: 1.1rem;
+  }
+
+  .editorial-solutions-panel .editorial-offer,
+  .editorial-solutions-panel .editorial-offer:nth-child(3n),
+  .editorial-solutions-panel .editorial-offer:nth-child(even),
+  .editorial-solutions-panel .editorial-offer:nth-last-child(-n + 2) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(36, 95, 118, 0.13);
+  }
+
+  .editorial-solutions-panel .editorial-offer:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .editorial-solutions-panel {
+    background: #eaf6fb;
+    backdrop-filter: none;
+  }
+}
