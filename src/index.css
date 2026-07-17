@@ -454,6 +454,13 @@ h1::after, h2::after {
 .territorial-pricing__table tbody th { font-weight: 600; }
 .territorial-pricing__table tbody td:last-child { background: rgba(242,167,59,.09); }
 .territorial-pricing__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+/* Boutons calés SOUS leurs colonnes (rangée tfoot) : MANAfrance blanc/noir,
+   TEMPOsystem noir/blanc. */
+.territorial-pricing__table tfoot td { padding: 16px 20px; border-right: 1px solid var(--ts-hairline); border-top: 1px solid var(--ts-hairline); background: transparent; }
+.territorial-pricing__table tfoot td:last-child { border-right: 0; }
+.territorial-pricing__table tfoot .civic-button { display: flex; width: 100%; }
+.territorial-pricing__table tfoot .civic-button--secondary { color: #171310; background: #fff; border: 1px solid var(--ts-hairline); }
+.territorial-pricing__table tfoot .civic-button--primary { color: #fff; background: #171310; border-color: #171310; }
 .territorial-pricing__note { margin: 20px 0 0; color: var(--ts-encre-muted); font-size: .82rem; line-height: 1.6; }
 .pricing-subheading { max-width: 800px; margin: 0 0 30px; }
 .pricing-subheading > p { margin-top: 12px; }

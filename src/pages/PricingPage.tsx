@@ -130,11 +130,12 @@ export function PricingPage() {
             <td>{rate.mana[lang]}</td>
             <td><strong>{rate.tempo[lang]}</strong></td>
           </tr>)}</tbody>
+          <tfoot><tr>
+            <td aria-hidden="true"></td>
+            <td><a className="civic-button civic-button--secondary" href="https://manafrance.org">{lang === "fr" ? "Rejoindre MANAfrance" : "Join MANAfrance"}</a></td>
+            <td><a className="civic-button civic-button--primary" href="#/creer?offre=territories">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a></td>
+          </tr></tfoot>
         </table>
-      </div>
-      <div className="territorial-pricing__actions">
-        <a className="civic-button civic-button--secondary" href="https://manafrance.org">{lang === "fr" ? "Rejoindre MANAfrance" : "Join MANAfrance"}</a>
-        <a className="civic-button civic-button--primary" href="#/creer?offre=territories">{lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}</a>
       </div>
       <p className="territorial-pricing__note">{lang === "fr" ? "Tarifs annuels indicatifs, à calibrer territoire par territoire. Les éventuels kiosques MANA constituent un investissement séparé. Les citoyens, bénévoles et bénéficiaires ne sont jamais facturés individuellement." : "Indicative annual pricing, calibrated for each territory. Any MANA kiosks are a separate investment. Citizens, volunteers and beneficiaries are never billed individually."}</p>
     </section>
