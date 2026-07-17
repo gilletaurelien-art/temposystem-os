@@ -106,7 +106,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
           </nav>
           <LangToggle lang={lang} setLang={setLang} />
           <a className="os-create-link" href="#/creer">
-            {lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}
+            {lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}
           </a>
         </div>
 
@@ -153,7 +153,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               <LangToggle lang={lang} setLang={setLang} />
             </div>
             <a className="os-create-link os-create-link--mobile" href="#/creer" onClick={() => setMenuOpen(false)}>
-              {lang === "fr" ? "Créer mon TEMPOsystem" : "Create my TEMPOsystem"}
+              {lang === "fr" ? "Rejoindre TEMPOsystem" : "Join TEMPOsystem"}
             </a>
           </nav>
         </div>
