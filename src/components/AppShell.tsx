@@ -55,13 +55,8 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
 
       {/* Header */}
       <header className="os-header">
-        <a href="#/" className="os-brand flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-          <img
-            src="/assets/temposystem-butterfly-transparent.png"
-            alt="TEMPOSYSTEM"
-            className="os-brand-mark"
-          />
-          TEMPOSYSTEM
+        <a href="#/" className="os-brand" onClick={() => setMenuOpen(false)}>
+          TEMPO<span className="os-brand-sys">system</span>
         </a>
 
         {/* Navigation en ligne — grand écran (≥ lg) */}
@@ -161,7 +156,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <div>
             <p className="os-footer-brand">
-              TEMPOSYSTEM
+              TEMPO<span className="os-footer-sys">system</span>
             </p>
             <p className="os-footer-copy">
               {lang === "fr"

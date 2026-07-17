@@ -32,12 +32,55 @@ input {
 }
 
 /* ---- TYPOGRAPHY ----
-   Philosopher (statique) : 400 seulement ici — la hiérarchie vient de la taille. */
-h1, h2, h3 {
+   h3 (sous-titres, noms de cartes) : Philosopher, encre marine. */
+h3 {
   font-family: var(--ts-font-titre);
   font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--ts-encre-titre);
+}
+
+/* Titres de page (h1/h2) — IDENTIQUES AU BOUTON « Créer mon TEMPOSYSTEM » :
+   plaque à FOND dégradé OR, écriture NOIRE, police pixel art, taille medium
+   (≈ 2× le bouton = 24px), coins arrondis + balai de lumière qui traverse.
+   `!important` : gagne sur les tailles/couleurs/polices posées par chaque page. */
+h1, h2 {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--ts-font-pixel-titre) !important;
+  font-weight: 700 !important;
+  font-size: clamp(20px, 2.1vw, 24px) !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+  color: #171310 !important;
+  -webkit-text-fill-color: #171310 !important;
+  background: var(--ts-grad-or) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  padding: 0.32em 0.62em;
+  border-radius: 16px;
+  box-shadow: 0 14px 32px -16px rgba(214, 112, 74, 0.55);
+}
+/* Le balai de lumière — une lame claire traverse la plaque, hors cadre au repos */
+h1::after, h2::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  width: 42%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.55) 45%, transparent 100%);
+  transform: translateX(-260%) skewX(-16deg);
+  animation: title-sweep 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes title-sweep {
+  0%, 42%  { transform: translateX(-260%) skewX(-16deg); }
+  72%, 100% { transform: translateX(320%) skewX(-16deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  h1::after, h2::after { animation: none; }
 }
 
 .os-shell { color: var(--ts-encre); font-family: var(--ts-font-main); }
@@ -164,7 +207,9 @@ h1, h2, h3 {
   flex-shrink: 0;   /* le mono est large : sans ça le flex comprime le wordmark */
   white-space: nowrap;
 }
-.os-brand-mark { width: 30px; height: 30px; object-fit: contain; filter: sepia(.25) saturate(.75) drop-shadow(0 3px 7px rgba(42,38,32,.12)); }
+/* Wordmark « TEMPOsystem » : TEMPO en gras, system plus léger */
+.os-brand-sys { font-weight: 400; }
+.os-footer-sys { font-weight: 400; }
 
 .os-nav-link {
   padding: 6px 14px;
