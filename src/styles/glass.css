@@ -18,7 +18,7 @@
  */
 
 :root {
-  --glass-clair: rgba(255, 255, 255, 0.09);
+  --glass-clair: rgba(255, 255, 255, 0.8); /* fond blanc frosté (80 %) — lisibilité du texte */
   --glass-fume: rgba(23, 19, 16, 0.6); /* assez fumé pour porter le texte clair */
   --glass-interieur: rgba(255, 255, 255, 0.05);
   --glass-lisere: rgba(255, 255, 255, 0.42);
@@ -62,15 +62,16 @@
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
 }
 
-/* ── Verre pur — les grands encadrés (hero accueil, Créer) : opacité 0 %.
-   Aucune teinte, aucun flou : le ciel pixel reste NET au travers. Ne restent
-   que le liseré de verre et le reflet qui balaye. Leurs textes sont à l'encre. */
+/* ── Les grands encadrés (hero accueil, Créer) : blanc frosté 80 % comme le reste,
+   pour la lisibilité. Le liseré et le reflet qui balaye restent. */
 .os-shell .selector-hero__wrap,
 .os-shell .create-tempo__shell {
   position: relative;
   overflow: hidden;
-  background: transparent;
+  background: var(--glass-clair);
   border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.3);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.3);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 24px 50px -34px rgba(42, 38, 32, 0.28);
