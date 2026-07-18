@@ -452,7 +452,27 @@ h1::after, h2::after {
 .territorial-pricing__heading h2, .pricing-subheading h2 { margin: 8px 0 0; color: var(--ts-encre-titre); }
 .territorial-pricing__heading > p, .pricing-subheading > p { margin: 0; color: var(--ts-encre-muted); line-height: 1.65; }
 .territorial-pricing__table-wrap { margin-top: 30px; overflow-x: auto; border: 1px solid var(--ts-hairline); border-radius: 14px; }
-.territorial-pricing__table { width: 100%; min-width: 690px; border-collapse: collapse; color: var(--ts-encre); background: rgba(255,255,255,.48); }
+.territorial-pricing__table { width: 100%; min-width: 690px; table-layout: fixed; border-collapse: collapse; color: var(--ts-encre); background: rgba(255,255,255,.48); }
+/* Colonne « Taille du territoire » réduite de moitié (35% → ~17%) ; le reste va aux 2 autres colonnes */
+.territorial-pricing__table th:first-child, .territorial-pricing__table td:first-child { width: 17%; }
+/* Chaque case de la colonne « Taille » est écrite sur EXACTEMENT 3 lignes (les \n
+   du texte), identique en desktop et en PWA ; texte aligné en haut. */
+.territorial-pricing__table td, .territorial-pricing__table th { vertical-align: top; }
+.territorial-pricing__table thead th:first-child, .territorial-pricing__table tbody th:first-child { white-space: pre; line-height: 1.5; }
+/* PWA / mobile : les 3 colonnes TIENNENT (pas de scroll horizontal) — police et
+   padding compacts, colonne « Taille » un peu plus large pour les libellés, et
+   les 2 boutons empilés pleine largeur sous le tableau. */
+@media (max-width: 700px) {
+  .territorial-pricing__table-wrap { overflow-x: visible; }
+  .territorial-pricing__table { min-width: 0; }
+  .territorial-pricing__table th, .territorial-pricing__table td { padding: 8px 6px; font-size: .72rem; }
+  .territorial-pricing__table thead th { font-size: .74rem; }
+  .territorial-pricing__table thead th span { margin-top: 3px; font-size: 7px; letter-spacing: 0; }
+  .territorial-pricing__table th:first-child, .territorial-pricing__table td:first-child { width: 34%; }
+  .territorial-pricing__table tfoot, .territorial-pricing__table tfoot tr { display: block; }
+  .territorial-pricing__table tfoot td { display: block; width: auto; border: 0; padding: 8px 0 0; }
+  .territorial-pricing__table tfoot td:first-child { display: none; }
+}
 .territorial-pricing__table th, .territorial-pricing__table td { padding: 18px 20px; border-right: 1px solid var(--ts-hairline); border-bottom: 1px solid var(--ts-hairline); text-align: left; }
 .territorial-pricing__table tr:last-child th, .territorial-pricing__table tr:last-child td { border-bottom: 0; }
 .territorial-pricing__table th:last-child, .territorial-pricing__table td:last-child { border-right: 0; }
