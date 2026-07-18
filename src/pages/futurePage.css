@@ -50,7 +50,12 @@
   backdrop-filter: blur(3px);
 }
 
-.future-lede { max-width: 880px; margin: 0 auto clamp(18px, 3vw, 26px); padding: clamp(24px, 4vw, 40px); text-align: center; }
+/* Lede « bleuté avec liseré or » */
+.future-lede { max-width: 880px; margin: 0 auto clamp(18px, 3vw, 26px); padding: clamp(24px, 4vw, 40px); text-align: center;
+  background: rgba(212, 232, 248, 0.92);
+  border: 1px solid rgba(231, 180, 65, .55);
+  border-left: 4px solid var(--ts-honey);
+}
 .future-lede p { margin: 0; font-family: var(--ts-font-titre); font-weight: 400; font-size: clamp(1.2rem, 2.3vw, 1.7rem); line-height: 1.42; color: var(--ts-encre-titre); }
 
 .future-section { margin: 0 auto clamp(16px, 2.6vw, 22px); padding: clamp(26px, 4vw, 48px); }
@@ -183,7 +188,7 @@
 }
 
 /* ---- Neutralise la « plaque dégradé OR » globale (h1,h2) pour cette page --- */
-.future-hero__title, .future-section h2, .future-refs h2 {
+.future-hero__title, .future-section h2, .future-refs h2, .future-resources h2 {
   display: block !important;
   overflow: visible !important;
   padding: 0 !important;
@@ -199,8 +204,8 @@
   font-size: clamp(4rem, 14vw, 10rem) !important; line-height: .9 !important; letter-spacing: .06em !important;
   box-shadow: none !important;
 }
-/* Curseur bloc « pixel » de la machine à écrire */
-.future-caret { display: inline-block; width: .18em; height: .82em; margin-left: .1em; background: #fdfaf3; vertical-align: -.04em; animation: island-caret-blink 1.05s steps(1) infinite; }
+/* Curseur bloc « pixel » de la machine à écrire — clignote en kaki */
+.future-caret { display: inline-block; width: .18em; height: .82em; margin-left: .1em; background: var(--fp-kaki); box-shadow: 0 0 12px rgba(124, 138, 63, .85); vertical-align: -.04em; animation: island-caret-blink 1.05s steps(1) infinite; }
 .future-section h2 {
   color: var(--ts-encre-titre) !important; -webkit-text-fill-color: var(--ts-encre-titre) !important;
   font-size: clamp(1.6rem, 3.2vw, 2.5rem) !important; line-height: 1.1 !important;
@@ -211,4 +216,13 @@
   color: var(--ts-encre-titre) !important; -webkit-text-fill-color: var(--ts-encre-titre) !important;
   font-size: clamp(1.4rem, 2.6vw, 2rem) !important; line-height: 1.12 !important;
   box-shadow: 0 12px 26px -16px var(--fp-sky-glow) !important;
+}
+/* Ressources — sous l'écosystème (hors wrapper .future : valeurs littérales) */
+.future-resources { padding: clamp(30px,5vw,58px) var(--ts-gutter) clamp(48px,7vw,84px); }
+.future-resources__wrap { max-width: 1180px; margin: 0 auto; }
+.future-resources h2 {
+  color: var(--ts-encre-titre) !important; -webkit-text-fill-color: var(--ts-encre-titre) !important;
+  font-size: clamp(1.5rem, 3vw, 2.2rem) !important; line-height: 1.1 !important;
+  margin: 8px 0 26px !important;
+  box-shadow: 0 12px 26px -16px rgba(120, 190, 235, 0.72) !important;
 }
