@@ -10,9 +10,10 @@ import { PartnersPage } from "./pages/PartnersPage";
 import { CreateTempoPage } from "./pages/CreateTempoPage";
 import { OfferDetailPage } from "./pages/OfferDetailPage";
 import { VisionPage } from "./pages/VisionPage";
+import { FuturePage } from "./pages/FuturePage";
 import { MotionProvider } from "./lib/motion";
 
-type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "partenaires" | "creer" | "devis" | "offre";
+type Route = "home" | "manifeste" | "moteur" | "memoire" | "applications" | "tarifs" | "partenaires" | "creer" | "devis" | "offre" | "future";
 
 /** Anciennes routes → nouvelles (refonte 07/2026) : les liens historiques survivent. */
 const LEGACY: Record<string, Route> = {
@@ -27,6 +28,7 @@ const routeFromHash = (): Route => {
 
   if (hash.startsWith("offres/")) return "offre";
 
+  if (hash === "2042") return "future";
   if (hash in LEGACY) return LEGACY[hash];
   if (
     hash === "manifeste" ||
@@ -101,6 +103,7 @@ export default function App() {
     creer: <CreateTempoPage />,
     devis: <QuotePage />,
     offre: <OfferDetailPage />,
+    future: <FuturePage />,
   }[route];
 
   return (
