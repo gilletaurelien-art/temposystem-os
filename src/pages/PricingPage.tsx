@@ -16,11 +16,12 @@ type Formula = {
   included: Record<Language, readonly string[]>;
 };
 
+// La taille du territoire est écrite sur 3 lignes (\n rendu via white-space: pre-line).
 const territorialRates = [
-  { size: { fr: "Moins de 5 000 habitants", en: "Fewer than 5,000 residents" }, mana: { fr: "1 500 € / an", en: "€1,500 / year" }, tempo: { fr: "3 000 € / an", en: "€3,000 / year" } },
-  { size: { fr: "5 000 à 20 000 habitants", en: "5,000 to 20,000 residents" }, mana: { fr: "0,35 € / habitant / an", en: "€0.35 / resident / year" }, tempo: { fr: "0,70 € / habitant / an", en: "€0.70 / resident / year" } },
-  { size: { fr: "20 000 à 50 000 habitants", en: "20,000 to 50,000 residents" }, mana: { fr: "0,28 € / habitant / an", en: "€0.28 / resident / year" }, tempo: { fr: "0,56 € / habitant / an", en: "€0.56 / resident / year" } },
-  { size: { fr: "Plus de 50 000 habitants", en: "More than 50,000 residents" }, mana: { fr: "0,22 € / habitant / an", en: "€0.22 / resident / year" }, tempo: { fr: "0,44 € / habitant / an", en: "€0.44 / resident / year" } },
+  { size: { fr: "Moins de\n5 000\nhabitants", en: "Fewer than\n5,000\nresidents" }, mana: { fr: "1 500 € / an", en: "€1,500 / year" }, tempo: { fr: "3 000 € / an", en: "€3,000 / year" } },
+  { size: { fr: "5 000 à\n20 000\nhabitants", en: "5,000 to\n20,000\nresidents" }, mana: { fr: "0,35 € / habitant / an", en: "€0.35 / resident / year" }, tempo: { fr: "0,70 € / habitant / an", en: "€0.70 / resident / year" } },
+  { size: { fr: "20 000 à\n50 000\nhabitants", en: "20,000 to\n50,000\nresidents" }, mana: { fr: "0,28 € / habitant / an", en: "€0.28 / resident / year" }, tempo: { fr: "0,56 € / habitant / an", en: "€0.56 / resident / year" } },
+  { size: { fr: "Plus de\n50 000\nhabitants", en: "More than\n50,000\nresidents" }, mana: { fr: "0,22 € / habitant / an", en: "€0.22 / resident / year" }, tempo: { fr: "0,44 € / habitant / an", en: "€0.44 / resident / year" } },
 ] as const;
 
 const formulas: readonly Formula[] = [
@@ -121,7 +122,7 @@ export function PricingPage() {
       <div className="territorial-pricing__table-wrap">
         <table className="territorial-pricing__table">
           <thead><tr>
-            <th>{lang === "fr" ? "Taille du territoire" : "Territory size"}</th>
+            <th>{lang === "fr" ? "Taille\ndu\nterritoire" : "Size of\nthe\nterritory"}</th>
             <th>MANAfrance<span>{lang === "fr" ? "Réseau civique mutualisé" : "Shared civic network"}</span></th>
             <th>TEMPOsystem<span>{lang === "fr" ? "MANAfrance inclus" : "MANAfrance included"}</span></th>
           </tr></thead>
