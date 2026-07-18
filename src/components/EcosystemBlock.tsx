@@ -1,7 +1,7 @@
 import type { Language } from "../lib/lang";
 
 const WORLDS = [
-  ["TEMPOsystem.eu", "Vision & manifeste", "Vision & manifesto", "https://temposystem.eu"],
+  ["TEMPOsystem.fr", "Vision & manifeste", "Vision & manifesto", "https://temposystem.fr"],
   ["MANAtimebank.org", "Infrastructure logicielle", "Software infrastructure", "https://manatimebank.org"],
   ["MANAfrance.org", "Action territoriale", "Territorial action", "https://manafrance.org"],
   ["MANA.bzh", "Laboratoire breton", "Breton laboratory", "https://mana.bzh"],

@@ -110,11 +110,7 @@ export const featuredArchitectureDecision = {
 export const publicDomains = [
   {
     domain: "temposystem.fr",
-    purpose: { fr: "documentation et gouvernance françaises", en: "French documentation and governance" },
-  },
-  {
-    domain: "temposystem.eu",
-    purpose: { fr: "documentation et gouvernance internationales", en: "International documentation and governance" },
+    purpose: { fr: "documentation et gouvernance publiques", en: "public documentation and governance" },
   },
   {
     domain: "manafrance.org",
@@ -163,8 +159,8 @@ export const narrativeMilestones = [
     icon: "🌍",
     title: { fr: "Premier domaine", en: "First domain" },
     detail: {
-      fr: "temposystem.fr et temposystem.eu préparent l'accueil public du système.",
-      en: "temposystem.fr and temposystem.eu prepare the public reception of the system.",
+      fr: "temposystem.fr prépare l'accueil public du système.",
+      en: "temposystem.fr prepares the public reception of the system.",
     },
   },
   {
