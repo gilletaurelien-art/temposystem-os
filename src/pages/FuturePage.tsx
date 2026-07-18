@@ -26,6 +26,45 @@ function Cite({ n }: { n: number }) {
   );
 }
 
+/** Ressources — déplacées ici, en bas de la page 2042, sous l'écosystème MANA.
+ *  Rendues par AppShell après le bloc écosystème quand la route active est « future ». */
+export function FutureResources() {
+  const { lang } = useLang();
+  const fr = lang === "fr";
+  const resources: Array<[string, string, string]> = fr
+    ? [
+        ["Le manifeste", "Comprendre la vision du temps partagé et de l'action collective.", "https://temposystem.eu"],
+        ["Le livre blanc", "Approfondir le modèle du temps donné, ses principes et ses limites.", "/livre-blanc.html"],
+        ["Le registre des décisions", "Lire les ADR qui conservent les choix structurants de TEMPOsystem.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs/captains-log/decisions"],
+        ["La documentation", "Consulter l'architecture, le journal du Capitaine et la feuille de route.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs"],
+        ["MANAtimebank", "Découvrir l'infrastructure logicielle qui permet de configurer un espace temps.", "https://manatimebank.org"],
+      ]
+    : [
+        ["Manifesto", "Understand the vision for shared time and collective action.", "https://temposystem.eu"],
+        ["White paper", "Explore the given-time model, its principles and boundaries.", "/livre-blanc-en.html"],
+        ["Decision register", "Read the ADRs preserving TEMPOsystem's structural choices.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs/captains-log/decisions"],
+        ["Documentation", "Browse the architecture, Captain's log and roadmap.", "https://github.com/gilletaurelien-art/temposystem-os/tree/main/docs"],
+        ["MANAtimebank", "Discover the software infrastructure used to configure a time space.", "https://manatimebank.org"],
+      ];
+  return (
+    <section className="future-resources" aria-label={fr ? "Ressources" : "Resources"}>
+      <div className="future-resources__wrap">
+        <p className="os-eyebrow">{fr ? "Ressources" : "Resources"}</p>
+        <h2>{fr ? "Explorer les fondations" : "Explore the foundations"}</h2>
+        <div className="civic-card-grid civic-card-grid--three">
+          {resources.map(([title, body, href]) => (
+            <a key={title} href={href} className="civic-card civic-card--link">
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <span>{fr ? "Ouvrir" : "Open"} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /** « 2042 » en pixel-art, tapé en boucle (machine à écrire : tape → pause →
  *  efface → recommence). Respecte prefers-reduced-motion (texte figé). */
 function PixelType({ text }: { text: string }) {
