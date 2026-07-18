@@ -4,21 +4,24 @@ import { useLang } from "../lib/lang";
 import "./createTempo.css";
 
 type FormState = {
-  organisation: string; offer: string; need: string; territory: string;
+  organisation: string; offers: string[]; need: string; territory: string;
   partners: string; timeline: string; name: string; email: string; phone: string;
 };
 
 const STORAGE_KEY = "temposystem-join-draft";
 
-const emptyForm: FormState = { organisation: "", offer: "", need: "", territory: "", partners: "", timeline: "", name: "", email: "", phone: "" };
+const emptyForm: FormState = { organisation: "", offers: [], need: "", territory: "", partners: "", timeline: "", name: "", email: "", phone: "" };
 
 const initialForm = (): FormState => {
   const offer = new URLSearchParams(window.location.hash.split("?")[1] || "").get("offre") || "";
   try {
-    const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}") as Partial<FormState>;
-    return { ...emptyForm, ...saved, offer: offer || saved.offer || "" };
+    // Rétro-compat : les brouillons d'avant le multi-select stockaient `offer` (string).
+    const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "{}") as Partial<FormState> & { offer?: string };
+    const savedOffers = Array.isArray(saved.offers) ? saved.offers : (saved.offer ? [saved.offer] : []);
+    const offers = offer ? Array.from(new Set([offer, ...savedOffers])) : savedOffers;
+    return { ...emptyForm, ...saved, offers };
   } catch {
-    return { ...emptyForm, offer };
+    return { ...emptyForm, offers: offer ? [offer] : [] };
   }
 };
 
@@ -27,9 +30,13 @@ export function CreateTempoPage() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormState>(initialForm);
   const [consent, setConsent] = useState(false);
-  const selected = useMemo(() => tempoOffers.find((offer) => offer.slug === form.offer), [form.offer]);
+  const selectedOffers = useMemo(() => tempoOffers.filter((offer) => form.offers.includes(offer.slug)), [form.offers]);
   const update = (field: keyof FormState, value: string) => setForm((current) => ({ ...current, [field]: value }));
-  const canContinue = step === 1 ? Boolean(form.organisation && form.offer) : Boolean(form.need && form.territory);
+  const toggleOffer = (slug: string) => setForm((current) => ({
+    ...current,
+    offers: current.offers.includes(slug) ? current.offers.filter((s) => s !== slug) : [...current.offers, slug],
+  }));
+  const canContinue = step === 1 ? Boolean(form.organisation && form.offers.length) : Boolean(form.need && form.territory);
 
   useEffect(() => {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(form));
@@ -38,10 +45,11 @@ export function CreateTempoPage() {
   const send = (event: FormEvent) => {
     event.preventDefault();
     if (!consent || !form.name || !form.email) return;
-    const subject = `Rejoindre TEMPOsystem ${selected?.name || ""} — ${form.organisation}`;
+    const offersLabel = selectedOffers.map((o) => o.name).join(" + ") || form.offers.join(", ");
+    const subject = `Rejoindre TEMPOsystem ${offersLabel} — ${form.organisation}`;
     const body = [
       "Bonjour,", "", "Je souhaite rejoindre TEMPOsystem et cadrer un premier usage.", "",
-      `Offre envisagée : TEMPOsystem ${selected?.name || form.offer}`,
+      `Offres envisagées : ${selectedOffers.map((o) => `TEMPOsystem ${o.name}`).join(", ") || offersLabel}`,
       `Organisation : ${form.organisation}`, `Besoin prioritaire : ${form.need}`,
       `Territoire / périmètre : ${form.territory}`, `Acteurs impliqués : ${form.partners || "À préciser"}`,
       `Horizon souhaité : ${form.timeline || "À préciser"}`, "",
@@ -63,9 +71,10 @@ export function CreateTempoPage() {
       </ol>
 
       <form onSubmit={send} className="create-form">
-        {step === 1 && <fieldset><legend>{lang === "fr" ? "Quel TEMPOsystem correspond à votre structure ?" : "Which TEMPOsystem fits your organisation?"}</legend>
+        {step === 1 && <fieldset><legend>{lang === "fr" ? "Quels TEMPOsystem correspondent à votre structure ?" : "Which TEMPOsystems fit your organisation?"}</legend>
           <label>{lang === "fr" ? "Type d'organisation" : "Organisation type"}<select value={form.organisation} onChange={(e) => update("organisation", e.target.value)} required><option value="">{lang === "fr" ? "Sélectionner" : "Select"}</option><option>{lang === "fr" ? "Collectivité, CCAS ou CIAS" : "Local authority or social service"}</option><option>{lang === "fr" ? "Association ou fédération" : "Non-profit or federation"}</option><option>{lang === "fr" ? "Établissement social ou médico-social" : "Social or care institution"}</option><option>{lang === "fr" ? "Opérateur ou alliance territoriale" : "Territorial operator or alliance"}</option><option>{lang === "fr" ? "Fondation ou financeur" : "Foundation or funder"}</option><option>{lang === "fr" ? "Entreprise" : "Company"}</option></select></label>
-          <div className="create-offers">{tempoOffers.map((offer) => <label className={form.offer === offer.slug ? "is-selected" : ""} key={offer.slug}><input type="radio" name="offer" value={offer.slug} checked={form.offer === offer.slug} onChange={(e) => update("offer", e.target.value)} /><span>TEMPOsystem</span><strong>{offer.name}</strong><small>{offer.audience[lang]}</small></label>)}</div>
+          <p className="create-offers-hint">{lang === "fr" ? "Vous pouvez en réunir plusieurs dans une même formule." : "You can combine several within one plan."}</p>
+          <div className="create-offers">{tempoOffers.map((offer) => <label className={form.offers.includes(offer.slug) ? "is-selected" : ""} key={offer.slug}><input type="checkbox" value={offer.slug} checked={form.offers.includes(offer.slug)} onChange={() => toggleOffer(offer.slug)} /><span>TEMPOsystem</span><strong>{offer.name}</strong><small>{offer.audience[lang]}</small></label>)}</div>
         </fieldset>}
         {step === 2 && <fieldset><legend>{lang === "fr" ? "Quel premier usage devons-nous cadrer ?" : "Which first use should we scope?"}</legend>
           <label>{lang === "fr" ? "Besoin prioritaire" : "Priority need"}<textarea value={form.need} onChange={(e) => update("need", e.target.value)} required placeholder={lang === "fr" ? "Ex. coordonner un CCAS et cinq associations autour de l'isolement…" : "E.g. coordinate a social service and five non-profits…"} /></label>
@@ -73,7 +82,7 @@ export function CreateTempoPage() {
           <label>{lang === "fr" ? "Horizon souhaité" : "Desired timeline"}<select value={form.timeline} onChange={(e) => update("timeline", e.target.value)}><option value="">{lang === "fr" ? "À préciser" : "To be discussed"}</option><option>{lang === "fr" ? "Dans les 3 mois" : "Within 3 months"}</option><option>{lang === "fr" ? "Dans les 6 mois" : "Within 6 months"}</option><option>{lang === "fr" ? "Cette année" : "This year"}</option><option>{lang === "fr" ? "Exploration" : "Exploration"}</option></select></label>
         </fieldset>}
         {step === 3 && <fieldset><legend>{lang === "fr" ? "À qui répondre ?" : "Who should we reply to?"}</legend>
-          <div className="create-summary"><span>TEMPOsystem</span><strong>{selected?.name || "—"}</strong><p>{form.organisation}<br />{form.territory}</p></div>
+          <div className="create-summary"><span>TEMPOsystem</span><strong>{selectedOffers.map((o) => o.name).join(" + ") || "—"}</strong><p>{form.organisation}<br />{form.territory}</p></div>
           <div className="create-form__two"><label>{lang === "fr" ? "Nom et fonction" : "Name and role"}<input value={form.name} onChange={(e) => update("name", e.target.value)} required autoComplete="name" /></label><label>E-mail<input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} required autoComplete="email" /></label></div>
           <label>{lang === "fr" ? "Téléphone (facultatif)" : "Phone (optional)"}<input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} autoComplete="tel" /></label>
           <label className="create-consent"><input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} required /><span>{lang === "fr" ? "J'accepte que ces informations soient utilisées uniquement pour répondre à ma demande." : "I agree that this information may be used solely to answer my request."}</span></label>
