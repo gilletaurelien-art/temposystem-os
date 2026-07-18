@@ -183,5 +183,7 @@ export function PricingPage() {
     </section>
 
     <aside className="civic-note"><strong>{lang === "fr" ? "Inclus dans toutes les formules payantes : " : "Included in every paid plan: "}</strong>{lang === "fr" ? "hébergement sécurisé en Europe, HTTPS, maintenance, mises à jour, sauvegardes, gestion des rôles et accès, export des données, documentation RGPD de base et mention discrète « Propulsé par TEMPOsystem »." : "secure European hosting, HTTPS, maintenance, updates, backups, role and access management, data export, baseline GDPR documentation and a discreet “Powered by TEMPOsystem” mention."}</aside>
+
+    <aside className="civic-note"><strong>{lang === "fr" ? "Soutenir sans être un territoire ? " : "Support without being a territory? "}</strong>{lang === "fr" ? "Le mécénat ouvre le réseau à d'autres : collectivités, entreprises et particuliers dotent des heures et les associations de leur choix." : "Patronage opens the network to others: authorities, companies and individuals fund hours and the non-profits of their choice."} <a href="#/partenaires">{lang === "fr" ? "Devenir partenaire" : "Become a partner"} →</a></aside>
   </Section>;
 }

@@ -100,6 +100,10 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
   const { lang, setLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Onglet actif = route courante OU l'une de ses pages rattachées (fil d'Ariane).
+  const isActive = (item: (typeof publicNavigation)[number]) =>
+    activeRoute === item.route || (("alsoActive" in item && item.alsoActive?.includes(activeRoute)) ?? false);
+
   // Menu mobile : fermeture à Échap + verrou du défilement du corps.
   useEffect(() => {
     if (!menuOpen) return;
@@ -132,7 +136,7 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
               <a
                 key={item.route}
                 href={item.href}
-                className={`os-nav-link${activeRoute === item.route ? " os-nav-link-active" : ""}`}
+                className={`os-nav-link${isActive(item) ? " os-nav-link-active" : ""}`}
               >
                 {item.label[lang]}
               </a>
@@ -176,8 +180,8 @@ export function AppShell({ activeRoute, children }: AppShellProps) {
                 key={item.route}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                aria-current={activeRoute === item.route ? "page" : undefined}
-                className={`os-menu-link${activeRoute === item.route ? " os-menu-link-active" : ""}`}
+                aria-current={isActive(item) ? "page" : undefined}
+                className={`os-menu-link${isActive(item) ? " os-menu-link-active" : ""}`}
               >
                 {item.label[lang]}
               </a>

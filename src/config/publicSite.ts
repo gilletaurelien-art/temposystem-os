@@ -1,14 +1,15 @@
 // Contenu bilingue FR/EN. Les champs traduisibles sont { fr, en } ; route/href/date
 // restent neutres. Consommer via item.label[lang] ou pick(item.label, lang).
 
+// `alsoActive` : routes des pages rattachées (sorties du menu) qui doivent tout de
+// même allumer l'onglet parent — fil d'Ariane. Ex. 2042 vit sous « Fonctionnement ».
 export const publicNavigation = [
+  // Crescendo : je me reconnais → je comprends → je fais confiance → je connais le prix.
   { label: { fr: "Bienvenue", en: "Welcome" }, route: "home", href: "#/" },
-  { label: { fr: "2042", en: "2042" }, route: "future", href: "#/2042" },
-  { label: { fr: "Usages", en: "Use cases" }, route: "applications", href: "#/applications" },
-  { label: { fr: "Tarifs", en: "Pricing" }, route: "tarifs", href: "#/tarifs" },
-  { label: { fr: "Partenaires", en: "Partners" }, route: "partenaires", href: "#/partenaires" },
-  { label: { fr: "Fonctionnement", en: "How it works" }, route: "moteur", href: "#/moteur" },
+  { label: { fr: "Applications", en: "Applications" }, route: "applications", href: "#/applications" },
+  { label: { fr: "Fonctionnement", en: "How it works" }, route: "moteur", href: "#/moteur", alsoActive: ["future"] },
   { label: { fr: "Confiance", en: "Trust" }, route: "memoire", href: "#/memoire" },
+  { label: { fr: "Tarifs", en: "Pricing" }, route: "tarifs", href: "#/tarifs", alsoActive: ["partenaires"] },
 ];
 
 export const cockpitStatusCards = [
