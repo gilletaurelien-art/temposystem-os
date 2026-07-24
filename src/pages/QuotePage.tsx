@@ -3,7 +3,7 @@ import { tempoOffers } from "../config/offers";
 import { useLang } from "../lib/lang";
 import "./createTempo.css";
 
-const formulas = ["Découverte", "Éclosion", "Coopération", "Territoire", "Alliance"] as const;
+const formulas = ["Découverte", "Éclosion", "Coopération", "Territoire", "Souverain"] as const;
 
 // Clé PUBLIQUE Web3Forms de l'univers Mana (identifiant de formulaire, pas un secret) :
 // toutes les soumissions arrivent dans contact@manahome.org, sans ouvrir le client mail.

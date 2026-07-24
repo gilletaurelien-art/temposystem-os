@@ -82,8 +82,8 @@ const formulas: readonly Formula[] = [
     },
   },
   {
-    slug: "alliance",
-    name: "Alliance",
+    slug: "souverain",
+    name: "Souverain",
     capacity: { fr: "À partir de 1 000 utilisateurs actifs", en: "From 1,000 active users" },
     systems: { fr: "Environnements reliés selon le projet", en: "Connected environments tailored to the project" },
     audience: { fr: "Pour une région, un grand réseau ou une fédération nationale.", en: "For a region, large network or national federation." },
