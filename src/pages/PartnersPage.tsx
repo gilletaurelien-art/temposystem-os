@@ -31,10 +31,10 @@ function TypeCTA({ href, text }: { href: string; text: string }) {
 }
 
 const patronPacks = [
-  { name: "Bronze", donation: "1 500 €", mana: "180 000 MANA", time: { fr: "50 heures", en: "50 hours" } },
-  { name: "Argent", donation: "3 000 €", mana: "540 000 MANA", time: { fr: "150 heures", en: "150 hours" } },
-  { name: "Or", donation: "6 000 €", mana: "1 620 000 MANA", time: { fr: "450 heures", en: "450 hours" } },
-  { name: "Horizon", donation: "12 000 €", mana: "4 320 000 MANA", time: { fr: "1 200 heures", en: "1,200 hours" } },
+  { name: "Bronze", donation: "1 500 € / an", mana: "180 000 MANA", time: { fr: "50 heures", en: "50 hours" } },
+  { name: "Argent", donation: "3 000 € / an", mana: "540 000 MANA", time: { fr: "150 heures", en: "150 hours" } },
+  { name: "Or", donation: "6 000 € / an", mana: "1 620 000 MANA", time: { fr: "450 heures", en: "450 hours" } },
+  { name: "Horizon", donation: "12 000 € / an", mana: "4 320 000 MANA", time: { fr: "1 200 heures", en: "1,200 hours" } },
 ] as const;
 
 export function PartnersPage() {
